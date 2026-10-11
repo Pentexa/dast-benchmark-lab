@@ -143,4 +143,7 @@ router.get('/:page', (req, res) => {
   res.status(404).send(`<h1>Eski site</h1><p>Aradığın sayfa yok: ${req.params.page}</p><p>/legacy/&lt;script&gt;alert(1)&lt;/script&gt; dene</p>`);
 });
 
+// Taramalar arası sıfırlama (P0 reset registry)
+require('../lib/stateReset').onReset(() => { pendingUsers.length = 0; });
+
 module.exports = router;

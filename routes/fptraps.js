@@ -99,4 +99,7 @@ router.get('/slow-report', (req, res) => {
   }, 2000);
 });
 
+// Taramalar arası sıfırlama (P0 reset registry)
+require('../lib/stateReset').onReset(() => { fpUsed.clear(); });
+
 module.exports = router;

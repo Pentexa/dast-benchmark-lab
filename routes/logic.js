@@ -85,4 +85,7 @@ router.get('/coupon', (req, res) => {
   res.send(`<h1>Kupon uygulandı: ${escHtml(code)}</h1><p>İndirim: -10 TL (kullanım sayacı yok, tekrar kullanılabilir)</p>`);
 });
 
+// Taramalar arası sıfırlama (P0 reset registry)
+require('../lib/stateReset').onReset(() => { couponUsed = {}; });
+
 module.exports = router;

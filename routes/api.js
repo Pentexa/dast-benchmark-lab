@@ -107,4 +107,7 @@ router.get('/invite', (req, res) => {
   res.status(404).send('Geçersiz davet');
 });
 
+// Taramalar arası sıfırlama (P0 reset registry)
+require('../lib/stateReset').onReset(() => { otpAttempts = 0; lock.fails = 0; lock.until = 0; });
+
 module.exports = router;

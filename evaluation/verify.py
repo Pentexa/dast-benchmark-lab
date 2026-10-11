@@ -380,6 +380,7 @@ def resolve_headers(h, ctx: Ctx):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--target", default=TARGET)
+    ap.add_argument("--seed", default=None, help="önce sunucuyu sıfırla + tohumla (POST /api/admin/reset)")
     args = ap.parse_args()
     ctx = Ctx(args.target)
     gt = load_gt()
@@ -390,6 +391,10 @@ def main():
     if st == -1:
         print("hata: sunucuya ulaşılamadı:", args.target)
         sys.exit(2)
+
+    if args.seed is not None:
+        st, _, body = ctx.http("POST", "/api/admin/reset", body={"seed": int(args.seed)})
+        print(f"reset+seed: status={st} {body[:160]}")
 
     custom = custom_proofs(ctx)
     verified, reachable, failed = [], [], []
@@ -422,6 +427,7 @@ def main():
     result = {
         "timestamp": time.strftime("%Y-%m-%dT%H:%M:%S%z"),
         "target": args.target,
+        "seed": args.seed,
         "total_vulnerable": len(vulns),
         "verified": len(verified),
         "reachable": len(reachable),

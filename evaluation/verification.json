@@ -1,6 +1,7 @@
 {
-  "timestamp": "2026-10-10T23:59:25+0300",
+  "timestamp": "2026-10-11T18:57:51+0300",
   "target": "http://localhost:3000",
+  "seed": "7",
   "total_vulnerable": 163,
   "verified": 163,
   "reachable": 0,

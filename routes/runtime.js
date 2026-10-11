@@ -300,4 +300,7 @@ router.get('/attr-secure', (req, res) => {
   res.send(`<h1>Rozet (güvenli)</h1><img src="${escHtml(img)}">`);
 });
 
+// Taramalar arası sıfırlama (P0 reset registry)
+require('../lib/stateReset').onReset(() => { feedbacks.length = 0; });
+
 module.exports = router;

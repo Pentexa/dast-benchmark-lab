@@ -179,4 +179,7 @@ router.get('/remember', (req, res) => {
   res.send('<h1>Beni hatırla (mock)</h1><p>Çerez 2038’e kadar geçerli + JS okuyabilir (XSS ile kalıcı hesap gaspı).</p>');
 });
 
+// Taramalar arası sıfırlama (P0 reset registry)
+require('../lib/stateReset').onReset(() => { otpFails = 0; sxFails = 0; sxLock = 0; });
+
 module.exports = router;

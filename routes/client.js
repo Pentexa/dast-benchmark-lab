@@ -109,4 +109,7 @@ router.get('/goto-secure', (req, res) => {
   res.redirect(s);
 });
 
+// Taramalar arası sıfırlama (P0 reset registry)
+require('../lib/stateReset').onReset(() => { notes.length = 0; notes.push({ md: '# Hoşgeldin\nGüvenli not.' }); polluted = {}; });
+
 module.exports = router;

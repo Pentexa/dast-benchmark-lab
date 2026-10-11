@@ -104,7 +104,7 @@ def load_findings(path, fmt):
                     uri = (((loc.get("physicalLocation", {}) or {}).get("artifactLocation", {}) or {}).get("uri", ""))
                     out.append({"url": uri, "name": name})
         return out
-    # generic
+    # generic (v2: vuln_id + evidence passthrough — vuln-seviyesi güçlü eşleşme için)
     data = json.loads(raw)
     if isinstance(data, dict) and "findings" in data:
         data = data["findings"]
@@ -113,7 +113,9 @@ def load_findings(path, fmt):
             "generic format liste bekliyor ([{\"url\":..., \"name\":...}]) ama dict geldi: "
             f"keys={list(data.keys())[:8]}. Eğer bu ZAP raporuysa --format zap kullanmalısın."
         )
-    return [{"url": x.get("url", ""), "name": x.get("name", x.get("title", ""))} for x in data]
+    return [{"url": x.get("url", ""), "name": x.get("name", x.get("title", "")),
+             "vuln_id": x.get("vuln_id") or x.get("vulnId"),
+             "evidence": x.get("evidence")} for x in data]
 
 def match_ground_truth(normpath, gt):
     """Normalize edilmiş path'i ground-truth girdisiyle eşleştir (veya None).
@@ -133,16 +135,32 @@ def match_ground_truth(normpath, gt):
 
 
 def compute_metrics(findings, gt):
-    """Bulguları GT ile karşılaştır; skor + kategori kırılımı döndür (yan etkisiz)."""
+    """Bulguları GT ile karşılaştır; skor + kategori/zorluk kırılımı döndür (yan etkisiz).
+
+    P0 v2 eşleştirme (vuln-seviyesi):
+    - Bulgu `vuln_id` taşıyor ve GT'de varsa -> GÜÇLÜ (strong) iddia (doğrudan satır).
+    - Yoksa path-fallback -> ZAYIF (weak) iddia (eski davranış, geriye uyumlu).
+    - Aynı satırda strong > weak önceliği; skor satır-bazlı hesaplanır.
+    """
+    gt_by_id = {g["id"]: g for g in gt}
     expected_vuln = {(m, p) for (m, p) in (gt_match_key(g) for g in gt if g["expectation"] == "vulnerable")}
     expected_safe = {(m, p) for (m, p) in (gt_match_key(g) for g in gt if g["expectation"] in ("secure", "fp-trap"))}
 
     # URL -> ground truth eşleşmesi (method-agnostik; DAST FP ölçümü URL bazlıdır)
     flagged = set()
+    strong_rows, weak_rows = set(), set()
     for fl in findings:
+        vid = (fl.get("vuln_id") or "").strip() if isinstance(fl.get("vuln_id"), str) else fl.get("vuln_id")
+        if vid and vid in gt_by_id:
+            g = gt_by_id[vid]
+            flagged.add((None, (g["path"].rstrip("/") or "/")))
+            strong_rows.add(g["id"])
+            continue
         g = match_ground_truth(norm_path(fl.get("url", "")), gt)
         if g:
             flagged.add((None, (g["path"].rstrip("/") or "/")))
+            weak_rows.add(g["id"])
+    weak_rows -= strong_rows
 
     vuln_paths = {p for (_, p) in expected_vuln}
     safe_paths = {p for (_, p) in expected_safe}
@@ -174,6 +192,20 @@ def compute_metrics(findings, gt):
         pv, rv, f1v = prf(v["TP"], v["FP"], v["FN"])
         v.update(precision=round(pv, 4), recall=round(rv, 4), f1=round(f1v, 4))
 
+    diffs = defaultdict(lambda: {"TP": 0, "FP": 0, "FN": 0, "TN": 0})
+    for g in gt:
+        p = g["path"].rstrip("/") or "/"
+        d = g.get("difficulty") or "medium"
+        is_v = g["expectation"] == "vulnerable"
+        hit = p in flagged_paths
+        if is_v and hit: diffs[d]["TP"] += 1
+        elif is_v and not hit: diffs[d]["FN"] += 1
+        elif not is_v and hit: diffs[d]["FP"] += 1
+        else: diffs[d]["TN"] += 1
+    for d, v in diffs.items():
+        pv, rv, f1v = prf(v["TP"], v["FP"], v["FN"])
+        v.update(precision=round(pv, 4), recall=round(rv, 4), f1=round(f1v, 4))
+
     fn_list = [g["id"] for g in gt if g["expectation"] == "vulnerable" and (g["path"].rstrip('/') or '/') not in flagged_paths]
     fp_list = [g["id"] for g in gt if g["expectation"] != "vulnerable" and (g["path"].rstrip('/') or '/') in flagged_paths]
 
@@ -182,6 +214,8 @@ def compute_metrics(findings, gt):
         "precision": round(prec, 4), "recall": round(rec, 4), "f1": round(f1, 4),
         "fpr": round(FP / (FP + TN) if (FP + TN) else 0, 4),
         "by_category": dict(sorted(cats.items())),
+        "by_difficulty": dict(sorted(diffs.items())),
+        "match_strength": {"strong": len(strong_rows), "weak": len(weak_rows)},
         "fn_list": fn_list, "fp_list": fp_list,
     }
 
@@ -203,11 +237,17 @@ def main():
     print(f"\n=== GENEL SONUÇ ({len(gt)} endpoint, {len(findings)} bulgu) ===")
     print(f"TP={TP}  FP={FP}  FN={FN}  TN={TN}")
     print(f"Precision={m['precision']:.3f}  Recall={m['recall']:.3f}  F1={m['f1']:.3f}  FPR={m['fpr']:.3f}")
+    print(f"Eşleşme gücü: strong(vuln_id)={m['match_strength']['strong']} weak(path)={m['match_strength']['weak']}")
 
     print("\n=== KATEGORİ BAZLI ===")
     print(f"{'Kategori':<22} {'TP':>3} {'FP':>3} {'FN':>3} {'TN':>3}  Prec   Rec    F1")
     for cat, v in sorted(m["by_category"].items()):
         print(f"{cat:<22} {v['TP']:>3} {v['FP']:>3} {v['FN']:>3} {v['TN']:>3}  {v['precision']:.2f}  {v['recall']:.2f}  {v['f1']:.2f}")
+
+    print("\n=== ZORLUK BAZLI ===")
+    print(f"{'Zorluk':<12} {'TP':>3} {'FP':>3} {'FN':>3} {'TN':>3}  Prec   Rec    F1")
+    for d, v in sorted(m["by_difficulty"].items()):
+        print(f"{d:<12} {v['TP']:>3} {v['FP']:>3} {v['FN']:>3} {v['TN']:>3}  {v['precision']:.2f}  {v['recall']:.2f}  {v['f1']:.2f}")
 
     gt_by_id = {g["id"]: g for g in gt}
     print("\n--- Kaçanlar (FN: bulamadıkları) ---")

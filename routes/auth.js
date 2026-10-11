@@ -73,4 +73,7 @@ router.get('/session-fixation', (req, res) => {
   res.send(`<h1>Login</h1><p>Session ID URL'den alındı ve sabitlendi: <code>${escHtml(sid)}</code> (HttpOnly yok, regenerate yok)</p>`);
 });
 
+// Taramalar arası sıfırlama (P0 reset registry)
+require('../lib/stateReset').onReset(() => { attempts = 0; });
+
 module.exports = router;

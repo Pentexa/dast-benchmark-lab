@@ -60,15 +60,19 @@ app.get('/.DS_Store', (req, res) => res.redirect('/files/.DS_Store'));
 // Dashboard
 app.get('/', (req, res) => res.redirect('/dashboard'));
 app.get('/dashboard', (req, res) => {
+  const blind = require('./lib/mode').isBlind();
   const gt = require('./ground-truth.json');
-  const rows = gt.map(g => `<tr><td><code>${g.method} ${g.path}</code></td><td>${g.category}</td><td>${g.expectation === 'vulnerable' ? '🔴 ZAFAYETLİ (TP beklenir)' : g.expectation === 'secure' ? '🟢 GÜVENLİ (TN beklenir)' : '🟡 FP-TUZAK (TN beklenir, FP ölçer)'}</td><td>${g.vuln_type}</td><td><a href="${g.test_hint}">dene</a></td></tr>`).join('');
+  // BLIND MOD: beklenti/vuln-tipi/test-hint SIZDIRILMAZ — sadece method+path listelenir.
+  const rows = blind
+    ? gt.map(g => `<tr><td><code>${g.method} ${g.path}</code></td></tr>`).join('')
+    : gt.map(g => `<tr><td><code>${g.method} ${g.path}</code></td><td>${g.category}</td><td>${g.expectation === 'vulnerable' ? '🔴 ZAFAYETLİ (TP beklenir)' : g.expectation === 'secure' ? '🟢 GÜVENLİ (TN beklenir)' : '🟡 FP-TUZAK (TN beklenir, FP ölçer)'}</td><td>${g.vuln_type}</td><td><a href="${g.test_hint}">dene</a></td></tr>`).join('');
   res.send(`<!DOCTYPE html><html lang="tr"><head><meta charset="utf-8"><title>DAST Mock Dashboard</title>
   <style>body{font-family:system-ui;max-width:1100px;margin:20px auto;padding:0 16px}table{border-collapse:collapse;width:100%}td,th{border:1px solid #ccc;padding:6px 8px;font-size:13px}th{background:#111;color:#fff}.v{color:red}.s{color:green}</style></head><body>
   <h1>🎯 DAST Mock Sunucu — TP/FP/FN/TN Ölçüm Alanı</h1>
-  <p>Her satır <b>ground truth</b>'tur. Tarayıcını çalıştır → raporu <code>evaluation/evaluate.py</code> ile karşılaştır.</p>
+  ${blind ? '<p><b>BLIND MOD</b> (DAST_MODE=blind): cevap anahtarı gizli — endpoint listesi keşif içindir, beklenti/Vuln tipi/test payloadı gösterilmez.</p>' : `<p>Her satır <b>ground truth</b>'tur. Tarayıcını çalıştır → raporu <code>evaluation/evaluate.py</code> ile karşılaştır.</p>
   <ul><li>🔴 vulnerable → tarayıcı bulmalı (bulursa <b>TP</b>, bulamazsa <b>FN</b>)</li>
-  <li>🟢 secure / 🟡 fp-trap → tarayıcı alarm ÜRETMEMELİ (üretirse <b>FP</b>, üretmezse <b>TN</b>)</li></ul>
-  <p><a href="/api/ground-truth">ground-truth.json (API)</a> • <a href="/api/stats">log istatistiği</a> • <a href="/api/oob-hits">OOB tetikler</a> • <a href="/api/scans">tarama kayıtları (JSON)</a> • logs/requests.log her isteği tutar</p>
+  <li>🟢 secure / 🟡 fp-trap → tarayıcı alarm ÜRETMEMELİ (üretirse <b>FP</b>, üretmezse <b>TN</b>)</li></ul>`}
+  <p>${blind ? '' : '<a href="/api/ground-truth">ground-truth.json (API)</a> • '}<a href="/api/stats">log istatistiği</a> • <a href="/api/oob-hits">OOB tetikler</a> • <a href="/api/scans">tarama kayıtları (JSON)</a> • logs/requests.log her isteği tutar</p>
   <h2>📊 Genel durum + tarama kayıtları</h2>
   <p id="ov">yükleniyor...</p>
   <script>fetch('/api/overview').then(r=>r.json()).then(o=>{document.getElementById('ov').innerHTML='<b>Ground truth:</b> '+o.ground_truth_total+' endpoint ('+o.vulnerable+' zafiyetli / '+o.secure+' güvenli / '+o.fp_trap+' FP-tuzağı) • <b>Doğrulanmış zafiyet:</b> '+(o.verified?o.verified.count+'/'+o.verified.of+' ('+o.verified.at+')':'henüz yok — python evaluation/verify.py')+' • <b>Kayıtlı tarama:</b> '+o.recorded_scans;}).catch(()=>{});</script>
@@ -77,8 +81,8 @@ app.get('/dashboard', (req, res) => {
   <script>fetch('/api/scans').then(r=>r.json()).then(d=>{const t=document.getElementById('scans');if(!d.runs.length){t.innerHTML='<tr><td colspan="20">henüz kayıt yok — scan.py ile ilk taramanı kaydet</td></tr>';return;}t.innerHTML='<tr><th>run_id</th><th>tarayıcı</th><th>süre</th><th>istek</th><th>hız/sn</th><th>paralel</th><th>MB</th><th>coverage</th><th>TP</th><th>FP</th><th>FN</th><th>TN</th><th>Prec</th><th>Rec</th><th>F1</th><th>CPU%</th><th>RAM%</th><th>5xx</th><th>OOB</th><th>ΔF1</th></tr>'+d.runs.map(r=>'<tr><td><code>'+r.run_id+'</code></td><td>'+r.scanner+'</td><td>'+r.duration_sec+'</td><td>'+r.requests+'</td><td>'+(r.req_per_sec??'-')+'</td><td>'+(r.max_conc??'-')+'</td><td>'+(r.resp_mb??'-')+'</td><td>%'+r.coverage_pct+'</td><td>'+r.TP+'</td><td>'+r.FP+'</td><td>'+r.FN+'</td><td>'+r.TN+'</td><td>'+r.precision+'</td><td>'+r.recall+'</td><td><b>'+r.f1+'</b></td><td>'+(r.cpu_peak??'-')+'</td><td>'+(r.mem_peak??'-')+'</td><td>'+r.server_5xx+'</td><td>'+r.oob+'</td><td>'+(r.d_f1??'-')+'</td></tr>').join('');}).catch(()=>{});</script>
   <p>CPU/RAM sütunları için taramayla paralel: <code>pip install psutil</code> ardından <code>python evaluation/agent.py --process java</code> (ZAP) — finish kaydına gömülür.</p>
   <h2>🎯 Endpointler (${gt.length})</h2>
-  <table><tr><th>Endpoint</th><th>Kategori</th><th>Beklenti</th><th>Tür</th><th>Test</th></tr>${rows}</table>
-  <h2>Hızlı test payloadları</h2><pre>XSS:   /xss/reflected?name=&lt;script&gt;alert(1)&lt;/script&gt;
+  <table><tr>${blind ? '<th>Endpoint</th>' : '<th>Endpoint</th><th>Kategori</th><th>Beklenti</th><th>Tür</th><th>Test</th>'}</tr>${rows}</table>
+  ${blind ? '' : `  <h2>Hızlı test payloadları</h2><pre>XSS:   /xss/reflected?name=&lt;script&gt;alert(1)&lt;/script&gt;
 SQLi:  /injection/sqli?id=1' OR '1'='1
 IDOR:  /access/idor?user_id=99
 BOLA:  /api/users/99  (tam PII: TCKN+IBAN)
@@ -93,10 +97,14 @@ OAuth: /authx/oauth?client_id=shop&amp;redirect_uri=https://evil.com/cb&amp;resp
 Host:  /cache/reset-link  (Header X-Forwarded-Host: evil.com)
 OTP:   POST /authx/otp {"code":"0000"} x N (kilit yok)
 CSV:   /files/export.csv?user==cmd|'/C calc'!A0
-SVG:   POST /files/svg (X-Filename: x.svg + &lt;svg onload&gt;)</pre></body></html>`);
+SVG:   POST /files/svg (X-Filename: x.svg + &lt;svg onload&gt;)</pre>`}</body></html>`);
 });
 
-app.get('/api/ground-truth', (req, res) => res.json(require('./ground-truth.json')));
+// BLIND MODDA KAPALI: cevap anahtarı tarayıcıya servis edilmez.
+app.get('/api/ground-truth', (req, res) => {
+  if (require('./lib/mode').isBlind()) return res.status(404).send('<h1>404</h1><p>Referans: ERR-404</p>');
+  res.json(require('./ground-truth.json'));
+});
 app.get('/api/stats', (req, res) => {
   const fs = require('fs');
   const f = require('./lib/requestLogger').logFile;
@@ -127,22 +135,39 @@ app.post('/api/scan/start', (req, res) => {
 });
 
 // Genel bakış: GT sayısı + doğrulanmış zafiyet + kayıtlı tarama (dashboard rozeti)
+// BLIND MOD: beklenti kırılımı ve doğrulanmış sayısı gizlenir (cevap verir).
 app.get('/api/overview', (req, res) => {
   const fs = require('fs');
   const path = require('path');
+  const blind = require('./lib/mode').isBlind();
   const gt = require('./ground-truth.json');
-  let ver = null;
-  try { ver = JSON.parse(fs.readFileSync(path.join(__dirname, 'evaluation', 'verification.json'), 'utf8')); } catch {}
   let runs = 0;
   try { runs = fs.readdirSync(path.join(__dirname, 'evaluation', 'runs')).filter(f => f.endsWith('.json')).length; } catch {}
+  if (blind) return res.json({ mode: 'blind', ground_truth_total: gt.length, recorded_scans: runs });
+  let ver = null;
+  try { ver = JSON.parse(fs.readFileSync(path.join(__dirname, 'evaluation', 'verification.json'), 'utf8')); } catch {}
   const byExp = {};
   gt.forEach(g => byExp[g.expectation] = (byExp[g.expectation] || 0) + 1);
   res.json({
+    mode: 'transparent',
     ground_truth_total: gt.length,
     vulnerable: byExp.vulnerable || 0, secure: byExp.secure || 0, fp_trap: byExp['fp-trap'] || 0,
     verified: ver ? { count: ver.verified, of: ver.total_vulnerable, at: ver.timestamp } : null,
     recorded_scans: runs
   });
+});
+
+// Durum sıfırlama + tohumlama (P0): taramalar arası aynı koşullar.
+// Güvenlik: yalnızca loopback; DAST_ADMIN_TOKEN tanımlıysa X-Admin-Token zorunlu.
+app.post('/api/admin/reset', (req, res) => {
+  const loopback = ['::1', '127.0.0.1', '::ffff:127.0.0.1'];
+  if (!loopback.includes(req.ip)) return res.status(403).json({ error: 'loopback only' });
+  const want = process.env.DAST_ADMIN_TOKEN;
+  if (want && req.get('X-Admin-Token') !== want) return res.status(401).json({ error: 'admin token gerekli' });
+  const { seed } = req.body || {};
+  if (seed !== undefined) require('./lib/seeded').reseed(seed);
+  const r = require('./lib/stateReset').resetAll();
+  res.json({ ok: true, mode: require('./lib/mode').mode(), seed: seed ?? null, ...r, at: new Date().toISOString() });
 });
 
 // Kayıtlı tarama ölçümleri (evaluation/runs/*.json özeti)

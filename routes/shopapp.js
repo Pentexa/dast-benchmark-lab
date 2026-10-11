@@ -305,7 +305,11 @@ router.post('/api/register-check-secure', (req, res) => {
 });
 
 // ---------- Scanner score-board: coverage haritası (ölçüm altyapısı, GT dışı) ----------
+// BLIND MODDA KAPALI: beklenti sütunu cevap verir.
 router.get('/coverage', (req, res) => {
+  try {
+    if (require('../lib/mode').isBlind()) return res.status(404).send('<h1>404</h1><p>Referans: ERR-404</p>');
+  } catch {}
   mark(res, 'APP-COVERAGE', 'APP-Shop', 'secure');
   const fs = require('fs');
   let hitPaths = new Set();
@@ -332,6 +336,27 @@ router.get('/coverage', (req, res) => {
   <h1>🎯 Scanner coverage: ${hit}/${rows.length} (%${(100 * hit / rows.length).toFixed(1)})</h1>
   <p>requests.log'a göre hangi GT endpoint'ine en az 1 istek geldi. Vurulmayan = tarayıcı oraya hiç gitmedi (kapsama dışı FN adayı).</p>
   <table><tr><th>ID</th><th>Path</th><th>Kategori</th><th>Durum</th></tr>${rows.map(r => `<tr class="${r.hit ? 'h' : 'm'}"><td>${r.id}</td><td><code>${r.path}</code></td><td>${r.category}</td><td>${r.hit ? '✅ dokunuldu' : '❌ dokunulmadı'}</td></tr>`).join('')}</table></body></html>`);
+});
+
+// Başlangıç anlık görüntüsü + taramalar arası sıfırlama (P0 reset registry)
+const SHOPAPP_SNAPSHOT = JSON.parse(JSON.stringify({ profiles, wallets, orders, points }));
+const USERS_SNAPSHOT = JSON.parse(JSON.stringify(users));
+require('../lib/stateReset').onReset(() => {
+  for (const k of Object.keys(profiles)) delete profiles[k];
+  Object.assign(profiles, JSON.parse(JSON.stringify(SHOPAPP_SNAPSHOT.profiles)));
+  for (const k of Object.keys(baskets)) delete baskets[k];
+  for (const k of Object.keys(wallets)) delete wallets[k];
+  Object.assign(wallets, JSON.parse(JSON.stringify(SHOPAPP_SNAPSHOT.wallets)));
+  for (const k of Object.keys(orders)) delete orders[k];
+  Object.assign(orders, JSON.parse(JSON.stringify(SHOPAPP_SNAPSHOT.orders)));
+  nextOrder = 9003;
+  appFeedbacks.length = 0;
+  for (const k of Object.keys(loginHits)) delete loginHits[k];
+  for (const k of Object.keys(giftcards)) delete giftcards[k];
+  giftSeq = 5000;
+  for (const k of Object.keys(points)) delete points[k];
+  Object.assign(points, JSON.parse(JSON.stringify(SHOPAPP_SNAPSHOT.points)));
+  users.forEach((u, i) => { u.email = USERS_SNAPSHOT[i].email; });
 });
 
 module.exports = router;
