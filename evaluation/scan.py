@@ -70,7 +70,21 @@ def safe_name(s):
 def cmd_start(args):
     scan_id = f"run-{utcnow().strftime('%Y%m%d-%H%M%S')}"
     started_at = utcnow().isoformat()
-    marker = {"scan_id": scan_id, "scanner": args.scanner, "target": args.target, "started_at": started_at}
+    marker = {"scan_id": scan_id, "scanner": args.scanner, "target": args.target,
+              "mode": args.mode, "started_at": started_at}
+    # P0 reset: aynı koşullar için sunucu durumunu sıfırla (+tohumla)
+    if args.reset or args.seed is not None:
+        try:
+            payload = {}
+            if args.seed is not None:
+                payload["seed"] = args.seed
+            req = Request(args.target.rstrip("/") + "/api/admin/reset",
+                          data=json.dumps(payload).encode(),
+                          headers={"Content-Type": "application/json"}, method="POST")
+            with urlopen(req, timeout=10) as r:
+                print("reset:", r.read().decode()[:160])
+        except Exception as e:
+            print(f"uyarı: reset atılamadı ({e}) — mevcut durumla devam ediliyor")
     # sunucuya da işaret bırak (başarısız olursa yerel devam)
     try:
         req = Request(args.target.rstrip("/") + "/api/scan/start",
@@ -82,7 +96,7 @@ def cmd_start(args):
         print(f"uyarı: sunucuya ulaşılamadı ({e}) — yerel işaretle devam ediliyor")
     with open(ACTIVE_FILE, "w", encoding="utf-8") as f:
         json.dump(marker, f, indent=2)
-    print(f"\n[+] Tarama başlatıldı\n    scan_id : {scan_id}\n    scanner : {args.scanner}\n    target  : {args.target}\n    started : {started_at}")
+    print(f"\n[+] Tarama başlatıldı\n    scan_id : {scan_id}\n    scanner : {args.scanner}\n    mode    : {args.mode}\n    target  : {args.target}\n    started : {started_at}")
     print("    Şimdi tarayıcıyı çalıştır, bitince 'scan.py finish ...' komutunu ver.")
 
 
@@ -225,7 +239,10 @@ def cmd_finish(args):
             active = json.load(f)
     else:
         active = {"scan_id": f"run-{utcnow().strftime('%Y%m%d-%H%M%S')}", "scanner": args.scanner or "unknown",
-                  "target": args.target, "started_at": args.started}
+                  "target": args.target, "started_at": args.started,
+                  "mode": args.mode or "unauthenticated"}
+    if args.mode:
+        active["mode"] = args.mode
     scanner = args.scanner or active.get("scanner", "unknown")
     started = parse_ts(active["started_at"])
     finished = utcnow()
@@ -257,6 +274,7 @@ def cmd_finish(args):
     run = {
         "run_id": run_id,
         "scanner": scanner,
+        "mode": active.get("mode", "unauthenticated"),
         "target": active.get("target", args.target),
         "started_at": active["started_at"],
         "finished_at": finished.isoformat(),
@@ -288,7 +306,7 @@ def cmd_finish(args):
     if os.path.exists(ACTIVE_FILE):
         os.remove(ACTIVE_FILE)
 
-    print(f"\n=== TARAMA KAYDI: {run_id} ({scanner}) ===")
+    print(f"\n=== TARAMA KAYDI: {run_id} ({scanner} [{run['mode']}]) ===")
     print(f"süre: {duration} sn | istek: {stats['total_requests']} ({stats['unique_paths']} unique path) | hız: {stats['req_per_sec']}/sn (tepe {stats['peak_10s_rps']}/sn) | paralellik: ~{stats['max_concurrency']} eşzamanlı")
     print(f"bant: {stats['total_response_mb']} MB | tek path'e max: {stats['max_hits_single_path']} istek | sinyal çeşitliliği: {stats['payload_variety_signals']} | robots.txt: {'evet' if stats['fetched_robots_txt'] else 'hayır'}")
     if stats["discovery_curve_sec"]:
@@ -322,7 +340,7 @@ def cmd_list(args):
     if not files:
         print("kayıt yok.");
         return
-    print(f"{'run_id':<22} {'scanner':<14} {'süre':>7} {'istek':>6} {'hız':>6} {'par':>4} {'cov%':>6} {'TP':>4} {'FP':>4} {'FN':>4} {'TN':>4}   F1    CPU  MEM  5xx  OOB")
+    print(f"{'run_id':<22} {'scanner':<14} {'mode':<11} {'süre':>7} {'istek':>6} {'hız':>6} {'par':>4} {'cov%':>6} {'TP':>4} {'FP':>4} {'FN':>4} {'TN':>4}   F1    CPU  MEM  5xx  OOB")
     for fn in files if not args.last else files[-args.last:]:
         if fn.endswith(".resources.json"):
             continue
@@ -332,7 +350,7 @@ def cmd_list(args):
             m = r.get("metrics", {})
             q = r.get("requests", {})
             res = r.get("scanner_resources") or {}
-            print(f"{r.get('run_id','?'):<22} {str(r.get('scanner','?'))[:14]:<14} {str(r.get('duration_sec')):>7} "
+            print(f"{r.get('run_id','?'):<22} {str(r.get('scanner','?'))[:14]:<14} {str(r.get('mode','-'))[:11]:<11} {str(r.get('duration_sec')):>7} "
                   f"{q.get('total_requests',0):>6} {str(q.get('req_per_sec','-')):>6} {str(q.get('max_concurrency','-')):>4} "
                   f"{str(q.get('coverage_pct','-')):>6} {m.get('TP',0):>4} {m.get('FP',0):>4} "
                   f"{m.get('FN',0):>4} {m.get('TN',0):>4}   {m.get('f1',0):<5} "
@@ -348,6 +366,11 @@ def main():
     s = sub.add_parser("start", help="taramayı başlat (işaret koy)")
     s.add_argument("--scanner", required=True, help='tarayıcı adı, örn "ZAP 2.14"')
     s.add_argument("--target", default=TARGET)
+    s.add_argument("--mode", default="unauthenticated",
+                   choices=["unauthenticated", "authenticated-full", "advanced-protocol"],
+                   help="tarama modu (P3)")
+    s.add_argument("--reset", action="store_true", help="başlamadan sunucu durumunu sıfırla")
+    s.add_argument("--seed", type=int, default=None, help="sıfırlarken tohumla (tekrarlanabilirlik)")
     s.set_defaults(fn=cmd_start)
     f = sub.add_parser("finish", help="taramayı bitir + ölç + kaydet")
     f.add_argument("--findings", required=True)
@@ -357,6 +380,7 @@ def main():
     f.add_argument("--started", default=None, help="start atlandıysa ISO8601 başlangıç")
     f.add_argument("--exit-code", type=int, default=0, help="tarayıcı çıkış kodu (hata takibi)")
     f.add_argument("--errors", type=int, default=0, help="tarayıcının bildirdiği hata sayısı")
+    f.add_argument("--mode", default=None, help="start atlandıysa mod (unauthenticated|authenticated-full|advanced-protocol)")
     f.add_argument("--note", default="", help="serbest not")
     f.set_defaults(fn=cmd_finish)
     l = sub.add_parser("list", help="kayıtlı taramaları listele")

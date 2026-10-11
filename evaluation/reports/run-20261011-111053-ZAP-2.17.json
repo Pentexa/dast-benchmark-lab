@@ -1,0 +1,1351 @@
+{
+  "generated_at": "2026-10-11T16:06:40.005833+00:00",
+  "scanner": "ZAP 2.17",
+  "mode": "unauthenticated",
+  "target": "http://localhost:3000",
+  "summary": {
+    "TP": 34,
+    "FP": 13,
+    "FN": 129,
+    "TN": 46,
+    "precision": 0.7234,
+    "recall": 0.2086,
+    "f1": 0.3238,
+    "fpr": 0.2203
+  },
+  "match_strength": {
+    "strong": 0,
+    "weak": "n/a (legacy run)"
+  },
+  "by_category": {
+    "A01-AccessControl": {
+      "TP": 8,
+      "FP": 1,
+      "FN": 4,
+      "TN": 4,
+      "precision": 0.8889,
+      "recall": 0.6667,
+      "f1": 0.7619
+    },
+    "A02-Crypto": {
+      "TP": 2,
+      "FP": 1,
+      "FN": 3,
+      "TN": 0,
+      "precision": 0.6667,
+      "recall": 0.4,
+      "f1": 0.5
+    },
+    "A03-Injection": {
+      "TP": 5,
+      "FP": 1,
+      "FN": 18,
+      "TN": 3,
+      "precision": 0.8333,
+      "recall": 0.2174,
+      "f1": 0.3448
+    },
+    "A03-XSS": {
+      "TP": 2,
+      "FP": 2,
+      "FN": 6,
+      "TN": 1,
+      "precision": 0.5,
+      "recall": 0.25,
+      "f1": 0.3333
+    },
+    "A04-BusinessLogic": {
+      "TP": 0,
+      "FP": 0,
+      "FN": 4,
+      "TN": 2,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+    },
+    "A04-FileHandling": {
+      "TP": 0,
+      "FP": 0,
+      "FN": 9,
+      "TN": 3,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+    },
+    "A04-InsecureDesign": {
+      "TP": 0,
+      "FP": 0,
+      "FN": 2,
+      "TN": 1,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+    },
+    "A05-CacheSmuggle": {
+      "TP": 2,
+      "FP": 0,
+      "FN": 4,
+      "TN": 2,
+      "precision": 1.0,
+      "recall": 0.3333,
+      "f1": 0.5
+    },
+    "A05-Exposure": {
+      "TP": 1,
+      "FP": 0,
+      "FN": 10,
+      "TN": 0,
+      "precision": 1.0,
+      "recall": 0.0909,
+      "f1": 0.1667
+    },
+    "A05-Misconfig": {
+      "TP": 4,
+      "FP": 2,
+      "FN": 4,
+      "TN": 1,
+      "precision": 0.6667,
+      "recall": 0.5,
+      "f1": 0.5714
+    },
+    "A07-Auth": {
+      "TP": 5,
+      "FP": 2,
+      "FN": 18,
+      "TN": 5,
+      "precision": 0.7143,
+      "recall": 0.2174,
+      "f1": 0.3333
+    },
+    "A08-Integrity": {
+      "TP": 0,
+      "FP": 0,
+      "FN": 1,
+      "TN": 0,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+    },
+    "A10-SSRF": {
+      "TP": 0,
+      "FP": 0,
+      "FN": 6,
+      "TN": 2,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+    },
+    "API-GraphQL": {
+      "TP": 0,
+      "FP": 0,
+      "FN": 4,
+      "TN": 1,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+    },
+    "API-Security": {
+      "TP": 2,
+      "FP": 0,
+      "FN": 7,
+      "TN": 5,
+      "precision": 1.0,
+      "recall": 0.2222,
+      "f1": 0.3636
+    },
+    "APP-Shop": {
+      "TP": 0,
+      "FP": 0,
+      "FN": 23,
+      "TN": 4,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+    },
+    "Client-Side": {
+      "TP": 3,
+      "FP": 1,
+      "FN": 6,
+      "TN": 3,
+      "precision": 0.75,
+      "recall": 0.3333,
+      "f1": 0.4615
+    },
+    "FP-Trap": {
+      "TP": 0,
+      "FP": 3,
+      "FN": 0,
+      "TN": 9,
+      "precision": 0.0,
+      "recall": 0,
+      "f1": 0
+    }
+  },
+  "by_difficulty": {},
+  "by_execution": {
+    "live": {
+      "TP": 52,
+      "FN": 80,
+      "FP": 0
+    },
+    "simulated": {
+      "TP": 13,
+      "FN": 49,
+      "FP": 0
+    },
+    "n/a": {
+      "TP": 0,
+      "FN": 0,
+      "FP": 13
+    }
+  },
+  "coverage": {
+    "hit": 143,
+    "total": 222,
+    "pct": 64.4
+  },
+  "requests": {
+    "total": 17419
+  },
+  "duration_sec": 835.9,
+  "missed": [
+    {
+      "id": "INJ-AUTH-BYPASS-01",
+      "method": "POST",
+      "path": "/injection/login",
+      "vuln_type": "Auth Bypass via SQLi",
+      "difficulty": "easy",
+      "execution": "simulated"
+    },
+    {
+      "id": "INJ-CMDI-01",
+      "method": "GET",
+      "path": "/injection/cmdi",
+      "vuln_type": "OS Command Injection (mock)",
+      "difficulty": "easy",
+      "execution": "simulated"
+    },
+    {
+      "id": "INJ-SSTI-01",
+      "method": "GET",
+      "path": "/injection/ssti",
+      "vuln_type": "SSTI (mock)",
+      "difficulty": "hard",
+      "execution": "simulated"
+    },
+    {
+      "id": "INJ-XXE-01",
+      "method": "POST",
+      "path": "/injection/xxe",
+      "vuln_type": "XXE",
+      "difficulty": "hard",
+      "execution": "simulated"
+    },
+    {
+      "id": "INJ-CRLF-01",
+      "method": "GET",
+      "path": "/injection/crlf",
+      "vuln_type": "CRLF/Header Injection",
+      "difficulty": "easy",
+      "execution": "live"
+    },
+    {
+      "id": "XSS-STORED-01",
+      "method": "GET",
+      "path": "/xss/stored",
+      "vuln_type": "Stored XSS",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "CSRF-01",
+      "method": "GET",
+      "path": "/csrf/transfer",
+      "vuln_type": "CSRF (GET state-change)",
+      "difficulty": "easy",
+      "execution": "live"
+    },
+    {
+      "id": "AUTH-JWT-01",
+      "method": "GET",
+      "path": "/auth/jwt-none",
+      "vuln_type": "JWT alg:none",
+      "difficulty": "easy",
+      "execution": "live"
+    },
+    {
+      "id": "AUTH-RESET-01",
+      "method": "GET",
+      "path": "/auth/reset",
+      "vuln_type": "Predictable reset token",
+      "difficulty": "easy",
+      "execution": "live"
+    },
+    {
+      "id": "AUTH-BRUTE-01",
+      "method": "POST",
+      "path": "/auth/bruteforce",
+      "vuln_type": "No rate limiting",
+      "difficulty": "easy",
+      "execution": "live"
+    },
+    {
+      "id": "CRYPTO-DEBUG-01",
+      "method": "GET",
+      "path": "/crypto/debug",
+      "vuln_type": "Debug env leak",
+      "difficulty": "easy",
+      "execution": "simulated"
+    },
+    {
+      "id": "CRYPTO-GIT-01",
+      "method": "GET",
+      "path": "/crypto/.git/config",
+      "vuln_type": "Exposed .git",
+      "difficulty": "easy",
+      "execution": "simulated"
+    },
+    {
+      "id": "CRYPTO-HASH-01",
+      "method": "GET",
+      "path": "/crypto/hash",
+      "vuln_type": "Weak hash MD5",
+      "difficulty": "easy",
+      "execution": "simulated"
+    },
+    {
+      "id": "MIS-HDR-01",
+      "method": "GET",
+      "path": "/misconfig/headers",
+      "vuln_type": "Missing security headers",
+      "difficulty": "easy",
+      "execution": "live"
+    },
+    {
+      "id": "MIS-DIR-01",
+      "method": "GET",
+      "path": "/misconfig/dir-listing/",
+      "vuln_type": "Directory listing + .env",
+      "difficulty": "easy",
+      "execution": "simulated"
+    },
+    {
+      "id": "CLICK-01",
+      "method": "GET",
+      "path": "/logic/clickjack",
+      "vuln_type": "Clickjacking (no XFO)",
+      "difficulty": "easy",
+      "execution": "live"
+    },
+    {
+      "id": "SSRF-01",
+      "method": "GET",
+      "path": "/ssrf",
+      "vuln_type": "SSRF (mock)",
+      "difficulty": "easy",
+      "execution": "simulated"
+    },
+    {
+      "id": "UPL-01",
+      "method": "POST",
+      "path": "/logic/upload",
+      "vuln_type": "Unrestricted upload",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "BIZ-01",
+      "method": "GET",
+      "path": "/logic/coupon",
+      "vuln_type": "Business logic (coupon reuse)",
+      "difficulty": "easy",
+      "execution": "live"
+    },
+    {
+      "id": "DESER-01",
+      "method": "POST",
+      "path": "/logic/deserialize",
+      "vuln_type": "Insecure Deserialization (mock)",
+      "difficulty": "hard",
+      "execution": "simulated"
+    },
+    {
+      "id": "API-MASS-01",
+      "method": "POST",
+      "path": "/api/users",
+      "vuln_type": "Mass Assignment: role client'tan",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "API-RATE-01",
+      "method": "POST",
+      "path": "/api/otp-verify",
+      "vuln_type": "OTP rate-limit yok (sınırsız deneme)",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "API-KEY-01",
+      "method": "GET",
+      "path": "/api/balance",
+      "vuln_type": "API key URL query'de (loglara düşer)",
+      "difficulty": "easy",
+      "execution": "live"
+    },
+    {
+      "id": "API-PAGE-01",
+      "method": "GET",
+      "path": "/api/orders",
+      "vuln_type": "Pagination abuse (?limit=100000 dökülür)",
+      "difficulty": "easy",
+      "execution": "live"
+    },
+    {
+      "id": "API-INVITE-01",
+      "method": "GET",
+      "path": "/api/invite",
+      "vuln_type": "Tahmin edilebilir davet token (sıralı)",
+      "difficulty": "easy",
+      "execution": "simulated"
+    },
+    {
+      "id": "GQL-INTROS-01",
+      "method": "POST",
+      "path": "/graphql",
+      "vuln_type": "Introspection açık (şema+passwordHash sızar)",
+      "difficulty": "easy",
+      "execution": "simulated"
+    },
+    {
+      "id": "GQL-BATCH-01",
+      "method": "POST",
+      "path": "/graphql/batch",
+      "vuln_type": "Batch brute-force (50 login/tek istek)",
+      "difficulty": "hard",
+      "execution": "simulated"
+    },
+    {
+      "id": "GQL-DEPTH-01",
+      "method": "POST",
+      "path": "/graphql/depth",
+      "vuln_type": "Depth-limit yok (DoS, 2.4M kayıt)",
+      "difficulty": "chaos",
+      "execution": "live"
+    },
+    {
+      "id": "GQL-IDOR-01",
+      "method": "POST",
+      "path": "/graphql/user",
+      "vuln_type": "GraphQL IDOR (auth'suz user(id:99))",
+      "difficulty": "hard",
+      "execution": "simulated"
+    },
+    {
+      "id": "AUTHX-OTP-01",
+      "method": "POST",
+      "path": "/authx/otp",
+      "vuln_type": "4 haneli SMS kodu, kilit yok",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "AUTHX-MFA-01",
+      "method": "POST",
+      "path": "/authx/mfa",
+      "vuln_type": "MFA bypass (boş kod / mfa=skip)",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "AUTHX-RESET-POISON-01",
+      "method": "GET",
+      "path": "/authx/forgot",
+      "vuln_type": "Reset link Host zehirlenmesi",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "AUTHX-ENUM-01",
+      "method": "POST",
+      "path": "/authx/login-enum",
+      "vuln_type": "Kullanıcı enumeration (404 vs 401)",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "AUTHX-KID-01",
+      "method": "GET",
+      "path": "/authx/jwt-kid",
+      "vuln_type": "JWT kid path traversal (mock key load)",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "AUTHX-JKU-01",
+      "method": "GET",
+      "path": "/authx/jwt-jku",
+      "vuln_type": "JWT jku allowlist dışı JWK güveni",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "AUTHX-WEAK-01",
+      "method": "GET",
+      "path": "/authx/jwt-weak",
+      "vuln_type": "JWT zayıf secret (secret/password)",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "CL-PM-01",
+      "method": "GET",
+      "path": "/client/chat",
+      "vuln_type": "postMessage XSS (origin yok + innerHTML)",
+      "difficulty": "easy",
+      "execution": "live"
+    },
+    {
+      "id": "CL-MD-01",
+      "method": "GET",
+      "path": "/client/notes",
+      "vuln_type": "Markdown stored XSS (filtresiz HTML)",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "CL-CLOBBER-01",
+      "method": "GET",
+      "path": "/client/clobber",
+      "vuln_type": "DOM Clobbering (window.config)",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "CL-PPOLL-01",
+      "method": "POST",
+      "path": "/client/pollute",
+      "vuln_type": "Prototype Pollution (mock merge)",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "EXP-ENV-01",
+      "method": "GET",
+      "path": "/files/.env",
+      "vuln_type": "Exposed .env (DB+AWS+Stripe mock)",
+      "difficulty": "easy",
+      "execution": "simulated"
+    },
+    {
+      "id": "EXP-BAK-01",
+      "method": "GET",
+      "path": "/files/backup.bak",
+      "vuln_type": "Backup dump (.bak/.sql.bak)",
+      "difficulty": "easy",
+      "execution": "simulated"
+    },
+    {
+      "id": "EXP-DS-01",
+      "method": "GET",
+      "path": "/files/.DS_Store",
+      "vuln_type": ".DS_Store dosya listesi sızar",
+      "difficulty": "easy",
+      "execution": "simulated"
+    },
+    {
+      "id": "EXP-MAP-01",
+      "method": "GET",
+      "path": "/files/app.js.map",
+      "vuln_type": "Source-map secret sızıntısı",
+      "difficulty": "easy",
+      "execution": "simulated"
+    },
+    {
+      "id": "EXP-SWAG-01",
+      "method": "GET",
+      "path": "/files/swagger.json",
+      "vuln_type": "Internal swagger ifşası",
+      "difficulty": "easy",
+      "execution": "simulated"
+    },
+    {
+      "id": "EXP-ACT-01",
+      "method": "GET",
+      "path": "/files/actuator",
+      "vuln_type": "Actuator env ifşası (Spring)",
+      "difficulty": "easy",
+      "execution": "simulated"
+    },
+    {
+      "id": "FILE-SVG-01",
+      "method": "POST",
+      "path": "/files/svg",
+      "vuln_type": "SVG upload XSS (image/svg+xml yürütülür)",
+      "difficulty": "hard",
+      "execution": "simulated"
+    },
+    {
+      "id": "FILE-ZIP-01",
+      "method": "POST",
+      "path": "/files/unzip",
+      "vuln_type": "Zip Slip (../../evil.sh mock)",
+      "difficulty": "hard",
+      "execution": "simulated"
+    },
+    {
+      "id": "FILE-LFI-01",
+      "method": "GET",
+      "path": "/files/view",
+      "vuln_type": "LFI (template= + php://filter mock)",
+      "difficulty": "hard",
+      "execution": "simulated"
+    },
+    {
+      "id": "FILE-RFI-01",
+      "method": "GET",
+      "path": "/files/page",
+      "vuln_type": "RFI (remote include mock, fetch yok)",
+      "difficulty": "hard",
+      "execution": "simulated"
+    },
+    {
+      "id": "FILE-CSV-01",
+      "method": "GET",
+      "path": "/files/export.csv",
+      "vuln_type": "CSV formula injection (=cmd|...)",
+      "difficulty": "easy",
+      "execution": "live"
+    },
+    {
+      "id": "SHOP-PRICE-01",
+      "method": "POST",
+      "path": "/shop/cart",
+      "vuln_type": "Fiyat client'tan (price tampering)",
+      "difficulty": "easy",
+      "execution": "live"
+    },
+    {
+      "id": "SHOP-QTY-01",
+      "method": "POST",
+      "path": "/shop/cart-qty",
+      "vuln_type": "Negatif adet (bedava/iade mock)",
+      "difficulty": "easy",
+      "execution": "live"
+    },
+    {
+      "id": "SHOP-RACE-01",
+      "method": "POST",
+      "path": "/shop/coupon-race",
+      "vuln_type": "Tek kupon sınırsız (race, kilit yok)",
+      "difficulty": "chaos",
+      "execution": "live"
+    },
+    {
+      "id": "SHOP-ORDER-01",
+      "method": "GET",
+      "path": "/shop/order/:id",
+      "vuln_type": "Sıralı sipariş ID enumeration",
+      "difficulty": "easy",
+      "execution": "live"
+    },
+    {
+      "id": "CACHE-HOST-01",
+      "method": "GET",
+      "path": "/cache/reset-link",
+      "vuln_type": "Host zehirlenmesi (X-Forwarded-Host reset link)",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "HTTP-METHOD-01",
+      "method": "POST",
+      "path": "/http/method",
+      "vuln_type": "Method override ile yetkisiz DELETE",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "HTTP-SMUG-01",
+      "method": "POST",
+      "path": "/http/smuggle",
+      "vuln_type": "CL.TE smuggle oracle (mock, desync yok)",
+      "difficulty": "chaos",
+      "execution": "live"
+    },
+    {
+      "id": "RT-TIME-01",
+      "method": "GET",
+      "path": "/runtime/sqli-time",
+      "vuln_type": "Time-based SQLi (gerçek 3sn gecikme)",
+      "difficulty": "chaos",
+      "execution": "live"
+    },
+    {
+      "id": "RT-BOOL-01",
+      "method": "GET",
+      "path": "/runtime/sqli-bool",
+      "vuln_type": "Boolean-based SQLi (içerik farkı)",
+      "difficulty": "easy",
+      "execution": "live"
+    },
+    {
+      "id": "RT-HDRSQLI-01",
+      "method": "GET",
+      "path": "/runtime/search-ua",
+      "vuln_type": "Header-based SQLi (User-Agent)",
+      "difficulty": "easy",
+      "execution": "live"
+    },
+    {
+      "id": "RT-MAGIC-01",
+      "method": "POST",
+      "path": "/runtime/login-magic",
+      "vuln_type": "Magic hash loose-compare bypass",
+      "difficulty": "easy",
+      "execution": "live"
+    },
+    {
+      "id": "RT-MAILHDR-01",
+      "method": "POST",
+      "path": "/runtime/contact",
+      "vuln_type": "E-posta header enjeksiyonu (Bcc)",
+      "difficulty": "hard",
+      "execution": "simulated"
+    },
+    {
+      "id": "RT-LOGPOISON-01",
+      "method": "GET",
+      "path": "/runtime/log-viewer",
+      "vuln_type": "Log poisoning stored XSS (escape yok)",
+      "difficulty": "chaos",
+      "execution": "simulated"
+    },
+    {
+      "id": "RT-SIDURL-01",
+      "method": "GET",
+      "path": "/runtime/session-url",
+      "vuln_type": "Oturum ID'si URL'de",
+      "difficulty": "easy",
+      "execution": "live"
+    },
+    {
+      "id": "RT-BFLA-01",
+      "method": "POST",
+      "path": "/runtime/admin-export",
+      "vuln_type": "BFLA: normal kullanıcı admin export çalıştırır",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "RT-HEADBOLA-01",
+      "method": "GET",
+      "path": "/runtime/profile-mine",
+      "vuln_type": "Header-spoof BOLA (X-User-Id'e güven)",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "RT-JWK-01",
+      "method": "GET",
+      "path": "/runtime/jwt-jwk",
+      "vuln_type": "JWT gömülü jwk'ya güven (saldırgan anahtarı)",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "RT-NOEXP-ISSUE",
+      "method": "GET",
+      "path": "/runtime/jwt-issue-long",
+      "vuln_type": "Süresiz JWT üretimi (exp yok)",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "RT-NOEXP-01",
+      "method": "GET",
+      "path": "/runtime/jwt-verify",
+      "vuln_type": "JWT expiration yok sayılıyor",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "RT-LOG4J-01",
+      "method": "POST",
+      "path": "/runtime/log",
+      "vuln_type": "Log4Shell kalıbı (mock lookup, outbound yok)",
+      "difficulty": "hard",
+      "execution": "simulated"
+    },
+    {
+      "id": "RT-BLINDXSS-01",
+      "method": "POST",
+      "path": "/runtime/feedback",
+      "vuln_type": "Blind XSS giriş (callback depolanır)",
+      "difficulty": "chaos",
+      "execution": "live"
+    },
+    {
+      "id": "RT-BLINDXSS-02",
+      "method": "GET",
+      "path": "/runtime/feedback-view",
+      "vuln_type": "Blind XSS tetik (admin view script src)",
+      "difficulty": "chaos",
+      "execution": "simulated"
+    },
+    {
+      "id": "RT-PHPINFO-01",
+      "method": "GET",
+      "path": "/runtime/phpinfo",
+      "vuln_type": "phpinfo ifşası",
+      "difficulty": "easy",
+      "execution": "simulated"
+    },
+    {
+      "id": "RT-PKG-01",
+      "method": "GET",
+      "path": "/runtime/package.json",
+      "vuln_type": "package.json sürüm ifşası",
+      "difficulty": "easy",
+      "execution": "simulated"
+    },
+    {
+      "id": "RT-COMPOSER-01",
+      "method": "GET",
+      "path": "/runtime/composer.json",
+      "vuln_type": "composer.json sürüm ifşası",
+      "difficulty": "easy",
+      "execution": "simulated"
+    },
+    {
+      "id": "RT-UPLDBL-01",
+      "method": "POST",
+      "path": "/runtime/upload-img",
+      "vuln_type": "Çift uzantı + MIME spoof (shell.php.jpg)",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "RT-CTX-JS-01",
+      "method": "GET",
+      "path": "/runtime/jsvar",
+      "vuln_type": "JS-string-context XSS",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "APP-AUTH-01",
+      "method": "POST",
+      "path": "/app/api/login",
+      "vuln_type": "Login soft-throttle var, kilit yok (kaba kuvvet)",
+      "difficulty": "chaos",
+      "execution": "live"
+    },
+    {
+      "id": "APP-MASS-01",
+      "method": "PUT",
+      "path": "/app/api/profile",
+      "vuln_type": "Mass-assignment role escalation (ZİNCİR)",
+      "difficulty": "chaos",
+      "execution": "live"
+    },
+    {
+      "id": "APP-ADDR-01",
+      "method": "GET",
+      "path": "/app/api/address/:id",
+      "vuln_type": "Adres IDOR (auth var, sahiplik yok)",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "APP-TRACK-01",
+      "method": "GET",
+      "path": "/app/api/track/:id",
+      "vuln_type": "Sipariş takip enumeration (9001, 9002...)",
+      "difficulty": "easy",
+      "execution": "live"
+    },
+    {
+      "id": "APP-BASKET-01",
+      "method": "POST",
+      "path": "/app/api/basket",
+      "vuln_type": "Para birimi karışıklığı (USD=TRY)",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "APP-CSRF-01",
+      "method": "GET",
+      "path": "/app/api/basket/add",
+      "vuln_type": "GET ile sepet değişir (CSRF-able)",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "APP-COUPON-01",
+      "method": "POST",
+      "path": "/app/api/checkout",
+      "vuln_type": "Kupon istifleme (sınırsız, hepsi uygulanır)",
+      "difficulty": "chaos",
+      "execution": "live"
+    },
+    {
+      "id": "APP-WALLET-01",
+      "method": "POST",
+      "path": "/app/api/wallet/topup",
+      "vuln_type": "Negatif yükleme bakiyeyi artırır",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "APP-REFUND-01",
+      "method": "POST",
+      "path": "/app/api/refund",
+      "vuln_type": "Aynı sipariş sınırsız iade",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "APP-RESET-01",
+      "method": "POST",
+      "path": "/app/api/reset",
+      "vuln_type": "Güvenlik sorusu cevap profilde (admin dahil)",
+      "difficulty": "chaos",
+      "execution": "live"
+    },
+    {
+      "id": "APP-BFLA-01",
+      "method": "GET",
+      "path": "/app/api/internal/config",
+      "vuln_type": "BFLA: internal config (rol kontrolsüz)",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "APP-DEBUG-01",
+      "method": "GET",
+      "path": "/app/api/debug",
+      "vuln_type": "Debug kapısı (X-Debug header)",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "APP-AVATAR-01",
+      "method": "GET",
+      "path": "/app/api/avatar",
+      "vuln_type": "Auth-gated SSRF (avatar proxy)",
+      "difficulty": "hard",
+      "execution": "simulated"
+    },
+    {
+      "id": "APP-ENUM-01",
+      "method": "GET",
+      "path": "/app/api/users",
+      "vuln_type": "Kullanıcı listesi (auth var, yetki yok)",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "APP-FEED-01",
+      "method": "POST",
+      "path": "/app/api/feedback",
+      "vuln_type": "Stored XSS (captcha anahtarı bundle'da)",
+      "difficulty": "chaos",
+      "execution": "live"
+    },
+    {
+      "id": "APP-FEEDVIEW-01",
+      "method": "GET",
+      "path": "/app/api/feedback-view",
+      "vuln_type": "Stored XSS tetik (escalation zinciri gerekir)",
+      "difficulty": "chaos",
+      "execution": "live"
+    },
+    {
+      "id": "APP-TOKEN-01",
+      "method": "GET",
+      "path": "/app/share",
+      "vuln_type": "JWT URL'de (sepet paylaşım linki)",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "APP-RECOVERY-01",
+      "method": "GET",
+      "path": "/app/api/recovery",
+      "vuln_type": "Sıralı kurtarma kodları (REC-1001...)",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "CH-UNION-01",
+      "method": "GET",
+      "path": "/injection/union",
+      "vuln_type": "UNION-based SQLi (sütun sayacı oracle)",
+      "difficulty": "hard",
+      "execution": "simulated"
+    },
+    {
+      "id": "CH-STACK-01",
+      "method": "GET",
+      "path": "/injection/stacked",
+      "vuln_type": "Stacked queries (; ikinci sorgu)",
+      "difficulty": "hard",
+      "execution": "simulated"
+    },
+    {
+      "id": "CH-2ND-01",
+      "method": "POST",
+      "path": "/runtime/register2",
+      "vuln_type": "Second-order SQLi giriş (ham saklanır)",
+      "difficulty": "chaos",
+      "execution": "live"
+    },
+    {
+      "id": "CH-2ND-02",
+      "method": "GET",
+      "path": "/runtime/admin-list",
+      "vuln_type": "Second-order SQLi tetik (admin liste)",
+      "difficulty": "chaos",
+      "execution": "simulated"
+    },
+    {
+      "id": "CH-SSTI-JINJA",
+      "method": "GET",
+      "path": "/ssti/jinja",
+      "vuln_type": "SSTI Jinja2 {{7*7}}",
+      "difficulty": "hard",
+      "execution": "simulated"
+    },
+    {
+      "id": "CH-SSTI-TWIG",
+      "method": "GET",
+      "path": "/ssti/twig",
+      "vuln_type": "SSTI Twig {{7*7}}",
+      "difficulty": "hard",
+      "execution": "simulated"
+    },
+    {
+      "id": "CH-SSTI-FMT",
+      "method": "GET",
+      "path": "/ssti/freemarker",
+      "vuln_type": "SSTI Freemarker ${7*7}",
+      "difficulty": "hard",
+      "execution": "simulated"
+    },
+    {
+      "id": "CH-SSTI-ERB",
+      "method": "GET",
+      "path": "/ssti/erb",
+      "vuln_type": "SSTI ERB <%= 7*7 %>",
+      "difficulty": "hard",
+      "execution": "simulated"
+    },
+    {
+      "id": "CH-LEGACY-01",
+      "method": "GET",
+      "path": "/legacy/:page",
+      "vuln_type": "Legacy 404 path yansıması",
+      "difficulty": "easy",
+      "execution": "simulated"
+    },
+    {
+      "id": "CH-ROLE-01",
+      "method": "GET",
+      "path": "/runtime/role-cookie",
+      "vuln_type": "İmzasız rol çerezi (base64 bit-flip)",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "CH-HTACCESS-01",
+      "method": "POST",
+      "path": "/runtime/upload-htaccess",
+      "vuln_type": ".htaccess overwrite upload",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "CH-VERB-01",
+      "method": "GET",
+      "path": "/runtime/verb-gate",
+      "vuln_type": "Verb confusion (GET ile silme)",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "EDGE-SSRF-DEC",
+      "method": "GET",
+      "path": "/edge/dec",
+      "vuln_type": "SSRF desimal IP bypass (2130706433)",
+      "difficulty": "hard",
+      "execution": "simulated"
+    },
+    {
+      "id": "EDGE-SSRF-ZERO",
+      "method": "GET",
+      "path": "/edge/zero",
+      "vuln_type": "SSRF 0.0.0.0 bypass",
+      "difficulty": "hard",
+      "execution": "simulated"
+    },
+    {
+      "id": "EDGE-SSRF-AT",
+      "method": "GET",
+      "path": "/edge/at",
+      "vuln_type": "SSRF credential confusion (user@host)",
+      "difficulty": "hard",
+      "execution": "simulated"
+    },
+    {
+      "id": "EDGE-SSRF-FRAG",
+      "method": "GET",
+      "path": "/edge/frag",
+      "vuln_type": "SSRF fragment hilesi",
+      "difficulty": "hard",
+      "execution": "simulated"
+    },
+    {
+      "id": "EDGE-SSRF-REDIR",
+      "method": "GET",
+      "path": "/edge/redir",
+      "vuln_type": "SSRF redirect-zinciri takibi",
+      "difficulty": "hard",
+      "execution": "simulated"
+    },
+    {
+      "id": "EDGE-ORIG-01",
+      "method": "GET",
+      "path": "/edge/panel",
+      "vuln_type": "X-Original-URL admin bypass",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "EDGE-LOCAL-01",
+      "method": "GET",
+      "path": "/edge/internal",
+      "vuln_type": "Localhost kapısı XFF bypass",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "EDGE-TRACE-01",
+      "method": "TRACE",
+      "path": "/edge/trace",
+      "vuln_type": "TRACE açık, çerez yankılanır (XST)",
+      "difficulty": "easy",
+      "execution": "live"
+    },
+    {
+      "id": "EDGE-CFG-01",
+      "method": "GET",
+      "path": "/static/config.js",
+      "vuln_type": "Build artifact anahtar ifşası",
+      "difficulty": "easy",
+      "execution": "simulated"
+    },
+    {
+      "id": "CACHE-XFF-01",
+      "method": "GET",
+      "path": "/cache/echo",
+      "vuln_type": "XFF yansıması + public cache",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "AX-CONFUSE-01",
+      "method": "GET",
+      "path": "/authx/jwt-confuse",
+      "vuln_type": "JWT RS256->HS256 confusion (gerçek RSA)",
+      "difficulty": "chaos",
+      "execution": "live"
+    },
+    {
+      "id": "AX-REUSE-01",
+      "method": "GET",
+      "path": "/authx/reset-reuse",
+      "vuln_type": "Reset token süresiz + tekrar kullanımlı",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "FILE-WRAP-01",
+      "method": "GET",
+      "path": "/files/include",
+      "vuln_type": "LFI wrapperlar (php://filter, data://...)",
+      "difficulty": "hard",
+      "execution": "simulated"
+    },
+    {
+      "id": "FILE-UNI-01",
+      "method": "GET",
+      "path": "/files/download",
+      "vuln_type": "Unicode/overlong traversal + ADS",
+      "difficulty": "hard",
+      "execution": "simulated"
+    },
+    {
+      "id": "APP-EMAIL-01",
+      "method": "POST",
+      "path": "/app/api/email",
+      "vuln_type": "E-posta doğrulamasız değişir (gasp)",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "APP-GIFT-01",
+      "method": "POST",
+      "path": "/app/api/giftcard",
+      "vuln_type": "Hediye çeki keyfi tutarla basılır",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "APP-POINTS-01",
+      "method": "POST",
+      "path": "/app/api/points",
+      "vuln_type": "Negatif puan transferi",
+      "difficulty": "hard",
+      "execution": "live"
+    },
+    {
+      "id": "APP-SHIP-01",
+      "method": "POST",
+      "path": "/app/api/shipping",
+      "vuln_type": "Kargo ağırlığı client'tan (0=bedava)",
+      "difficulty": "easy",
+      "execution": "live"
+    },
+    {
+      "id": "APP-REG-01",
+      "method": "POST",
+      "path": "/app/api/register-check",
+      "vuln_type": "Kayıt oracle kullanıcı enumeration",
+      "difficulty": "easy",
+      "execution": "live"
+    },
+    {
+      "id": "XSS-MXSS-01",
+      "method": "GET",
+      "path": "/xss/mxss",
+      "vuln_type": "mXSS (innerHTML round-trip mutasyonu)",
+      "difficulty": "hard",
+      "execution": "simulated"
+    },
+    {
+      "id": "CL-PPOLLQ-01",
+      "method": "GET",
+      "path": "/client/pollute-q",
+      "vuln_type": "Query-string proto pollution",
+      "difficulty": "hard",
+      "execution": "live"
+    }
+  ],
+  "false_alarms": [
+    {
+      "id": "INJ-SQLI-01-SECURE",
+      "method": "GET",
+      "path": "/injection/sqli-secure",
+      "vuln_type": "SQLi secure control",
+      "difficulty": "fp-hunter",
+      "execution": "n/a"
+    },
+    {
+      "id": "XSS-REFL-01-SECURE",
+      "method": "GET",
+      "path": "/xss/reflected-secure",
+      "vuln_type": "Reflected XSS secure control",
+      "difficulty": "fp-hunter",
+      "execution": "n/a"
+    },
+    {
+      "id": "XSS-DOM-01-SECURE",
+      "method": "GET",
+      "path": "/xss/dom-secure",
+      "vuln_type": "DOM XSS secure control",
+      "difficulty": "fp-hunter",
+      "execution": "n/a"
+    },
+    {
+      "id": "AC-IDOR-01-SECURE",
+      "method": "GET",
+      "path": "/access/idor-secure",
+      "vuln_type": "IDOR secure control",
+      "difficulty": "fp-hunter",
+      "execution": "n/a"
+    },
+    {
+      "id": "CRYPTO-PAN-01-SECURE",
+      "method": "GET",
+      "path": "/crypto/creditcard-secure",
+      "vuln_type": "PAN masked control",
+      "difficulty": "fp-hunter",
+      "execution": "n/a"
+    },
+    {
+      "id": "MIS-HDR-01-SECURE",
+      "method": "GET",
+      "path": "/misconfig/headers-secure",
+      "vuln_type": "Headers secure control",
+      "difficulty": "fp-hunter",
+      "execution": "n/a"
+    },
+    {
+      "id": "MIS-ERR-01-SECURE",
+      "method": "GET",
+      "path": "/misconfig/error-secure",
+      "vuln_type": "Generic error control",
+      "difficulty": "fp-hunter",
+      "execution": "n/a"
+    },
+    {
+      "id": "FP-VERSION-01",
+      "method": "GET",
+      "path": "/fp/version",
+      "vuln_type": "FP trap: version banner",
+      "difficulty": "fp-hunter",
+      "execution": "n/a"
+    },
+    {
+      "id": "FP-ERROR-01",
+      "method": "GET",
+      "path": "/fp/error-fake",
+      "vuln_type": "FP trap: generic error",
+      "difficulty": "fp-hunter",
+      "execution": "n/a"
+    },
+    {
+      "id": "CL-PM-01-SECURE",
+      "method": "GET",
+      "path": "/client/chat-secure",
+      "vuln_type": "postMessage secure (origin+textContent)",
+      "difficulty": "fp-hunter",
+      "execution": "n/a"
+    },
+    {
+      "id": "FP-CSP-01",
+      "method": "GET",
+      "path": "/fp/csp-inline",
+      "vuln_type": "FP trap: nonce+CSP'li güvenli inline script",
+      "difficulty": "fp-hunter",
+      "execution": "n/a"
+    },
+    {
+      "id": "RT-COOKIE-01-SECURE",
+      "method": "GET",
+      "path": "/runtime/cookie-set-secure",
+      "vuln_type": "Cookie secure control",
+      "difficulty": "fp-hunter",
+      "execution": "n/a"
+    },
+    {
+      "id": "CH-ROLE-01-SECURE",
+      "method": "GET",
+      "path": "/runtime/role-cookie-secure",
+      "vuln_type": "HMAC imzalı rol çerezi control",
+      "difficulty": "fp-hunter",
+      "execution": "n/a"
+    }
+  ]
+}

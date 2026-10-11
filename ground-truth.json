@@ -17,7 +17,8 @@
           "matcher": "SQL syntax"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "INJ-SQLI-01-SECURE",
@@ -29,7 +30,8 @@
     "test_hint": "/injection/sqli-secure?id=1' OR '1'='1",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "INJ-AUTH-BYPASS-01",
@@ -49,7 +51,8 @@
           "matcher": "Hoşgeldin admin"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "INJ-AUTH-BYPASS-01-SECURE",
@@ -61,7 +64,8 @@
     "test_hint": "/injection/login-secure",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "INJ-NOSQLI-01",
@@ -81,7 +85,8 @@
           "matcher": "Hoşgeldin admin"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "INJ-CMDI-01",
@@ -101,7 +106,8 @@
           "matcher": "www-data"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "INJ-CMDI-01-SECURE",
@@ -113,7 +119,8 @@
     "test_hint": "/injection/cmdi-secure?host=8.8.8.8;whoami",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "INJ-SSTI-01",
@@ -133,7 +140,8 @@
           "matcher": "49"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "INJ-LDAP-01",
@@ -153,7 +161,8 @@
           "matcher": "cn=admin"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "INJ-XPATH-01",
@@ -173,7 +182,8 @@
           "matcher": "admin@example.com"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "INJ-XXE-01",
@@ -193,7 +203,8 @@
           "matcher": "root:x"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "INJ-CRLF-01",
@@ -214,7 +225,8 @@
           "matcher": "injected-by-crlf"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "XSS-REFL-01",
@@ -234,7 +246,8 @@
           "matcher": "<script>alert(1)"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "XSS-REFL-01-SECURE",
@@ -246,7 +259,8 @@
     "test_hint": "/xss/reflected-secure?name=<script>alert(1)</script>",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "XSS-STORED-01",
@@ -267,7 +281,8 @@
           "note": "stored round-trip"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "XSS-STORED-01-SECURE",
@@ -279,7 +294,8 @@
     "test_hint": "/xss/stored-secure",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "XSS-DOM-01",
@@ -299,7 +315,8 @@
           "matcher": "innerHTML"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "XSS-DOM-01-SECURE",
@@ -311,7 +328,8 @@
     "test_hint": "/xss/dom-secure?default=<img src=x onerror=alert(1)>",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "AC-IDOR-01",
@@ -331,7 +349,8 @@
           "matcher": "admin@example.com"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "AC-IDOR-01-SECURE",
@@ -343,7 +362,8 @@
     "test_hint": "/access/idor-secure?as=1&user_id=99",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "AC-TRAV-01",
@@ -363,7 +383,8 @@
           "matcher": "MOCK SECRET"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "AC-TRAV-01-SECURE",
@@ -375,7 +396,8 @@
     "test_hint": "/access/traversal-secure?file=../../secrets.txt",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "AC-FORCED-01",
@@ -395,7 +417,8 @@
           "matcher": "Admin Panel"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "AC-FORCED-01-SECURE",
@@ -407,7 +430,8 @@
     "test_hint": "/access/admin-secure",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "REDIR-01",
@@ -428,7 +452,8 @@
           "matcher": "evil.com"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "REDIR-01-SECURE",
@@ -440,7 +465,8 @@
     "test_hint": "/ssrf/redirect-secure?next=https://evil.com",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "CSRF-01",
@@ -460,7 +486,8 @@
           "matcher": "Transfer tamamlandı"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "CSRF-01-SECURE",
@@ -472,7 +499,8 @@
     "test_hint": "/csrf/transfer-secure (token gerekli)",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "AUTH-JWT-01",
@@ -493,7 +521,8 @@
           "note": "alg:none accepted"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "AUTH-JWT-01-SECURE",
@@ -505,7 +534,8 @@
     "test_hint": "/auth/jwt-secure?token=<hs256>",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "AUTH-RESET-01",
@@ -525,7 +555,8 @@
           "matcher": "Token geçerli"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "AUTH-BRUTE-01",
@@ -545,7 +576,8 @@
           "matcher": "rate-limit yok"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "AUTH-SESS-01",
@@ -565,7 +597,8 @@
           "matcher": "sabitlendi"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "CRYPTO-PAN-01",
@@ -585,7 +618,8 @@
           "matcher": "4111 1111"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "CRYPTO-PAN-01-SECURE",
@@ -597,7 +631,8 @@
     "test_hint": "/crypto/creditcard-secure?user=1",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "CRYPTO-DEBUG-01",
@@ -617,7 +652,8 @@
           "matcher": "DB_PASSWORD"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "CRYPTO-GIT-01",
@@ -637,7 +673,8 @@
           "matcher": "repositoryformatversion"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "CRYPTO-HASH-01",
@@ -657,7 +694,8 @@
           "matcher": "e10adc"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "MIS-HDR-01",
@@ -677,7 +715,8 @@
           "header": "Content-Security-Policy"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "MIS-HDR-01-SECURE",
@@ -689,7 +728,8 @@
     "test_hint": "/misconfig/headers-secure",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "MIS-ERR-01",
@@ -709,7 +749,8 @@
           "matcher": "TypeError"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "MIS-ERR-01-SECURE",
@@ -721,7 +762,8 @@
     "test_hint": "/misconfig/error-secure",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "MIS-DIR-01",
@@ -741,7 +783,8 @@
           "matcher": "backup.zip"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "MIS-DEFAULT-01",
@@ -761,7 +804,8 @@
           "matcher": "admin:admin"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "CORS-01",
@@ -782,7 +826,8 @@
           "matcher": "*"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "CORS-01-SECURE",
@@ -794,7 +839,8 @@
     "test_hint": "/cors/cors-secure",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "CLICK-01",
@@ -814,7 +860,8 @@
           "matcher": "X-Frame-Options yok"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "SSRF-01",
@@ -834,7 +881,8 @@
           "matcher": "MOCK-SSRF-LEAK"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "SSRF-01-SECURE",
@@ -846,7 +894,8 @@
     "test_hint": "/ssrf/secure?url=http://169.254.169.254/",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "UPL-01",
@@ -866,7 +915,8 @@
           "matcher": "erişilebilir"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "UPL-01-SECURE",
@@ -878,7 +928,8 @@
     "test_hint": "/logic/upload-secure (X-Filename: a.png)",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "BIZ-01",
@@ -898,7 +949,8 @@
           "matcher": "Kupon uygulandı"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "DESER-01",
@@ -918,7 +970,8 @@
           "matcher": "mock RCE"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "FP-SEARCH-01",
@@ -930,7 +983,8 @@
     "test_hint": "/fp/search?q=' OR 1=1",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "FP-HEALTH-01",
@@ -942,7 +996,8 @@
     "test_hint": "/fp/health",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "FP-VERSION-01",
@@ -954,7 +1009,8 @@
     "test_hint": "/fp/version",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "FP-ECHO-01",
@@ -966,7 +1022,8 @@
     "test_hint": "/fp/profile-echo?nick=<script>alert(1)</script>",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "FP-ERROR-01",
@@ -978,7 +1035,8 @@
     "test_hint": "/fp/error-fake",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "API-BOLA-01",
@@ -998,7 +1056,8 @@
           "matcher": "10000009982"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "API-BOLA-01-SECURE",
@@ -1010,7 +1069,8 @@
     "test_hint": "/api/users-secure/99 (Header X-User-Id: 1)",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "API-MASS-01",
@@ -1030,7 +1090,8 @@
           "matcher": "\"role\":\"admin\""
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "API-MASS-01-SECURE",
@@ -1042,7 +1103,8 @@
     "test_hint": "/api/users-secure {\"username\":\"x\",\"role\":\"admin\"} -> 400",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "API-EXCESS-01",
@@ -1062,7 +1124,8 @@
           "matcher": "10000000146"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "API-EXCESS-01-SECURE",
@@ -1074,7 +1137,8 @@
     "test_hint": "/api/account-secure?user=1",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "API-RATE-01",
@@ -1094,7 +1158,8 @@
           "matcher": "rate-limit yok"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "API-RATE-01-SECURE",
@@ -1106,7 +1171,8 @@
     "test_hint": "/api/otp-verify-secure {\"code\":\"x\"} x6 -> 429",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "API-KEY-01",
@@ -1126,7 +1192,8 @@
           "matcher": "12500"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "API-KEY-01-SECURE",
@@ -1138,7 +1205,8 @@
     "test_hint": "/api/balance-secure (Header X-API-Key)",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "API-PAGE-01",
@@ -1158,7 +1226,8 @@
           "matcher": "\"order_id\":5199"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "API-INVITE-01",
@@ -1178,7 +1247,8 @@
           "matcher": "bob"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "GQL-INTROS-01",
@@ -1198,7 +1268,8 @@
           "matcher": "passwordHash"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "GQL-INTROS-01-SECURE",
@@ -1210,7 +1281,8 @@
     "test_hint": "/graphql/secure introspection -> 400",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "GQL-BATCH-01",
@@ -1230,7 +1302,8 @@
           "matcher": "mock-admin-session"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "GQL-DEPTH-01",
@@ -1250,7 +1323,8 @@
           "matcher": "2.4M"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "GQL-IDOR-01",
@@ -1270,7 +1344,8 @@
           "matcher": "admin@example.com"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "AUTHX-OTP-01",
@@ -1290,7 +1365,8 @@
           "matcher": "rate-limit yok"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "AUTHX-OTP-01-SECURE",
@@ -1302,7 +1378,8 @@
     "test_hint": "/authx/otp-secure x6 -> 429",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "AUTHX-MFA-01",
@@ -1322,7 +1399,8 @@
           "matcher": "mock-session-mfa-bypass"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "AUTHX-OAUTH-01",
@@ -1343,7 +1421,8 @@
           "matcher": "evil.com"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "AUTHX-OAUTH-01-SECURE",
@@ -1355,7 +1434,8 @@
     "test_hint": "/authx/oauth-secure?redirect_uri=https://evil.com/cb -> 400",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "AUTHX-RESET-POISON-01",
@@ -1375,7 +1455,8 @@
           "matcher": "evil.com"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "AUTHX-ENUM-01",
@@ -1399,7 +1480,8 @@
           "matcher": "404"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "AUTHX-ENUM-01-SECURE",
@@ -1411,7 +1493,8 @@
     "test_hint": "/authx/login-enum-secure her zaman 401",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "AUTHX-KID-01",
@@ -1431,7 +1514,8 @@
           "matcher": "kid"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "AUTHX-JKU-01",
@@ -1452,7 +1536,8 @@
           "note": "jku bypass"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "AUTHX-WEAK-01",
@@ -1473,7 +1558,8 @@
           "note": "weak secret cracked"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "CL-PM-01",
@@ -1493,7 +1579,8 @@
           "matcher": "innerHTML"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "CL-PM-01-SECURE",
@@ -1505,7 +1592,8 @@
     "test_hint": "/client/chat-secure",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "CL-JSONP-01",
@@ -1525,7 +1613,8 @@
           "matcher": "alert(1)//"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "CL-MD-01",
@@ -1546,7 +1635,8 @@
           "note": "markdown round-trip"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "CL-MD-01-SECURE",
@@ -1558,7 +1648,8 @@
     "test_hint": "/client/notes-secure",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "CL-CLOBBER-01",
@@ -1578,7 +1669,8 @@
           "matcher": "window.config"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "CL-PPOLL-01",
@@ -1598,7 +1690,8 @@
           "matcher": "kirletildi"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "CL-GOTO-01",
@@ -1618,7 +1711,8 @@
           "matcher": "javascript:"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "CL-GOTO-01-SECURE",
@@ -1630,7 +1724,8 @@
     "test_hint": "/client/goto-secure?next=javascript:alert(1) -> 400",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "EXP-ENV-01",
@@ -1650,7 +1745,8 @@
           "matcher": "DB_PASSWORD"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "EXP-BAK-01",
@@ -1670,7 +1766,8 @@
           "matcher": "Sup3rS3cret"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "EXP-DS-01",
@@ -1690,7 +1787,8 @@
           "matcher": "admin.php"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "EXP-MAP-01",
@@ -1710,7 +1808,8 @@
           "matcher": "sk_live_mock"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "EXP-SWAG-01",
@@ -1730,7 +1829,8 @@
           "matcher": "/admin/users"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "EXP-ACT-01",
@@ -1750,7 +1850,8 @@
           "matcher": "DB_PASSWORD"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "EXP-ROBOTS-01",
@@ -1770,7 +1871,8 @@
           "matcher": "Disallow: /admin"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "FILE-SVG-01",
@@ -1790,7 +1892,8 @@
           "matcher": "image/svg+xml"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "FILE-SVG-01-SECURE",
@@ -1802,7 +1905,8 @@
     "test_hint": "/files/svg-secure (X-Filename: x.svg -> 415)",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "FILE-ZIP-01",
@@ -1822,7 +1926,8 @@
           "matcher": "Zip Slip"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "FILE-LFI-01",
@@ -1842,7 +1947,8 @@
           "matcher": "root:x"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "FILE-LFI-01-SECURE",
@@ -1854,7 +1960,8 @@
     "test_hint": "/files/view-secure?template=../../etc/passwd -> 400",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "FILE-RFI-01",
@@ -1874,7 +1981,8 @@
           "matcher": "Include edildi"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "FILE-CSV-01",
@@ -1894,7 +2002,8 @@
           "matcher": "=cmd"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "SHOP-PRICE-01",
@@ -1914,7 +2023,8 @@
           "matcher": "\"total\":1"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "SHOP-PRICE-01-SECURE",
@@ -1926,7 +2036,8 @@
     "test_hint": "/shop/cart-secure fiyat yoksayılır",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "SHOP-QTY-01",
@@ -1946,7 +2057,8 @@
           "matcher": "-2495"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "SHOP-RACE-01",
@@ -1966,7 +2078,8 @@
           "matcher": "sınırsız"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "SHOP-ORDER-01",
@@ -1986,7 +2099,8 @@
           "matcher": "\"user\":\"bob\""
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "SHOP-ORDER-01-SECURE",
@@ -1998,7 +2112,8 @@
     "test_hint": "/shop/order-secure-ids ile UUID al",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "CACHE-HOST-01",
@@ -2018,7 +2133,8 @@
           "matcher": "evil.com"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "CACHE-DECEPT-01",
@@ -2038,7 +2154,8 @@
           "matcher": "TCKN"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "CACHE-DECEPT-01-SECURE",
@@ -2050,7 +2167,8 @@
     "test_hint": "/cache/account-secure/1",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "HTTP-METHOD-01",
@@ -2070,7 +2188,8 @@
           "matcher": "SİLİNDİ"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "HTTP-SMUG-01",
@@ -2091,7 +2210,8 @@
           "note": "raw-socket chunked TE"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "FP-SDK-01",
@@ -2103,7 +2223,8 @@
     "test_hint": "/fp/sdk-example",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "FP-WAF-01",
@@ -2115,7 +2236,8 @@
     "test_hint": "/fp/waf-block",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "FP-CSP-01",
@@ -2127,7 +2249,8 @@
     "test_hint": "/fp/csp-inline",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "FP-APIDOCS-01",
@@ -2139,7 +2262,8 @@
     "test_hint": "/fp/api-docs (Header X-User-Id: 1)",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "FP-COUPON-01",
@@ -2151,7 +2275,8 @@
     "test_hint": "/fp/coupon-once {\"code\":\"ONCE10\"} x2",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "FP-LOCK-01",
@@ -2163,7 +2288,8 @@
     "test_hint": "/fp/login-lock",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "RT-TIME-01",
@@ -2184,7 +2310,8 @@
           "note": "real delay oracle"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "RT-BOOL-01",
@@ -2204,7 +2331,8 @@
           "matcher": "bulunamadı"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "RT-HDRSQLI-01",
@@ -2224,7 +2352,8 @@
           "matcher": "SQL syntax"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "RT-ORDERBY-01",
@@ -2244,7 +2373,8 @@
           "matcher": "SQL syntax"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "RT-HPP-01",
@@ -2264,7 +2394,8 @@
           "matcher": "admin@example.com"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "RT-MAGIC-01",
@@ -2284,7 +2415,8 @@
           "matcher": "Hoşgeldin admin"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "RT-CACHEPOISON-01",
@@ -2304,7 +2436,8 @@
           "matcher": "<script>alert(9)"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "RT-CACHEPOISON-01-SECURE",
@@ -2316,7 +2449,8 @@
     "test_hint": "/runtime/search-secure?q=<script>alert(1)</script>",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "RT-MAILHDR-01",
@@ -2336,7 +2470,8 @@
           "matcher": "ENJEKTE"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "RT-LOGPOISON-01",
@@ -2357,7 +2492,8 @@
           "note": "unique tag reflected in viewer"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "RT-RESETLEAK-01",
@@ -2377,7 +2513,8 @@
           "matcher": "analytics"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "RT-SIDURL-01",
@@ -2397,7 +2534,8 @@
           "matcher": "sid=abc"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "RT-COOKIE-01",
@@ -2417,7 +2555,8 @@
           "matcher": "Set-Cookie without HttpOnly"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "RT-COOKIE-01-SECURE",
@@ -2429,7 +2568,8 @@
     "test_hint": "/runtime/cookie-set-secure",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "RT-BFLA-01",
@@ -2449,7 +2589,8 @@
           "matcher": "\"export\""
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "RT-HEADBOLA-01",
@@ -2469,7 +2610,8 @@
           "matcher": "10000009982"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "RT-JWK-01",
@@ -2490,7 +2632,8 @@
           "note": "embedded jwk trusted"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "RT-NOEXP-ISSUE",
@@ -2510,7 +2653,8 @@
           "matcher": "exp yok"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "RT-NOEXP-01",
@@ -2531,7 +2675,8 @@
           "note": "chain: issue-long then verify"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "RT-LOG4J-01",
@@ -2551,7 +2696,8 @@
           "matcher": "çözümlenmeye çalışıldı"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "RT-BLINDXSS-01",
@@ -2572,7 +2718,8 @@
           "note": "blind entry"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "RT-BLINDXSS-02",
@@ -2593,7 +2740,8 @@
           "note": "admin view trigger"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "RT-PHPINFO-01",
@@ -2613,7 +2761,8 @@
           "matcher": "PHP Version"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "RT-PKG-01",
@@ -2633,7 +2782,8 @@
           "matcher": "\"express\""
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "RT-COMPOSER-01",
@@ -2653,7 +2803,8 @@
           "matcher": "laravel"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "RT-REDIRBYPASS-01",
@@ -2674,7 +2825,8 @@
           "matcher": "//evil.com"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "RT-UPLDBL-01",
@@ -2694,7 +2846,8 @@
           "matcher": "çalıştırır"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "RT-UPLDBL-01-SECURE",
@@ -2706,7 +2859,8 @@
     "test_hint": "/runtime/upload-img-secure (X-Filename: shell.php.jpg -> 400)",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "RT-CTX-ATTR-01",
@@ -2726,7 +2880,8 @@
           "matcher": "onerror=alert(1)"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "RT-CTX-JS-01",
@@ -2746,7 +2901,8 @@
           "matcher": "alert(1)"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "RT-CTX-SECURE",
@@ -2758,7 +2914,8 @@
     "test_hint": "/runtime/attr-secure?img=x onerror=alert(1) -> 400",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "FP-SLOW-01",
@@ -2770,7 +2927,8 @@
     "test_hint": "/fp/slow-report",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "APP-AUTH-01",
@@ -2790,7 +2948,8 @@
           "matcher": "401"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "APP-PROFILE",
@@ -2802,7 +2961,8 @@
     "test_hint": "/app/api/profile (Bearer token)",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "APP-MASS-01",
@@ -2822,7 +2982,8 @@
           "matcher": "admin_token"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "APP-ADDR-01",
@@ -2842,7 +3003,8 @@
           "matcher": "Çankaya"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "APP-TRACK-01",
@@ -2862,7 +3024,8 @@
           "matcher": "\"user\":\"bob\""
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "APP-BASKET-01",
@@ -2882,7 +3045,8 @@
           "matcher": "charged_try"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "APP-CSRF-01",
@@ -2902,7 +3066,8 @@
           "matcher": "\"ok\":true"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "APP-CSRF-TOKEN",
@@ -2914,7 +3079,8 @@
     "test_hint": "/app/api/csrf-token (Bearer token)",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "APP-CSRF-01-SECURE",
@@ -2926,7 +3092,8 @@
     "test_hint": "/app/api/basket/add POST + X-CSRF",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "APP-COUPON-01",
@@ -2946,7 +3113,8 @@
           "matcher": "\"discount\":600"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "APP-WALLET-01",
@@ -2966,7 +3134,8 @@
           "matcher": "\"balance\":"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "APP-REFUND-01",
@@ -2986,7 +3155,8 @@
           "matcher": "\"refunded\""
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "APP-RESET-01",
@@ -3006,7 +3176,8 @@
           "matcher": "temp_password"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "APP-BFLA-01",
@@ -3026,7 +3197,8 @@
           "matcher": "\"stripe\""
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "APP-DEBUG-01",
@@ -3046,7 +3218,8 @@
           "matcher": "DB_PASSWORD"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "APP-AVATAR-01",
@@ -3066,7 +3239,8 @@
           "matcher": "MOCK-SSRF-LEAK"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "APP-ENUM-01",
@@ -3086,7 +3260,8 @@
           "matcher": "\"username\":\"admin\""
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "APP-FEED-01",
@@ -3106,7 +3281,8 @@
           "matcher": "\"ok\":true"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "APP-FEEDVIEW-01",
@@ -3127,7 +3303,8 @@
           "note": "chain: escalation then stored XSS trigger"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "APP-TOKEN-01",
@@ -3147,7 +3324,8 @@
           "matcher": "/app/share?token="
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "APP-RECOVERY-01",
@@ -3167,7 +3345,8 @@
           "matcher": "REC-1003"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "CH-UNION-01",
@@ -3187,7 +3366,8 @@
           "matcher": "admin@example.com"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "CH-STACK-01",
@@ -3207,7 +3387,8 @@
           "matcher": "2 result set"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "CH-2ND-01",
@@ -3227,7 +3408,8 @@
           "matcher": "\"ok\":true"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "CH-2ND-02",
@@ -3248,7 +3430,8 @@
           "note": "second-order dump after register2"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "CH-SSTI-JINJA",
@@ -3268,7 +3451,8 @@
           "matcher": "49"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "CH-SSTI-TWIG",
@@ -3288,7 +3472,8 @@
           "matcher": "49"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "CH-SSTI-FMT",
@@ -3308,7 +3493,8 @@
           "matcher": "49"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "CH-SSTI-ERB",
@@ -3328,7 +3514,8 @@
           "matcher": "49"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "CH-SSTI-SEC",
@@ -3340,7 +3527,8 @@
     "test_hint": "/ssti/secure?tpl={{7*7}}",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "CH-LEGACY-01",
@@ -3360,7 +3548,8 @@
           "matcher": "zzverify"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "CH-ROLE-01",
@@ -3380,7 +3569,8 @@
           "matcher": "Admin paneli"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "CH-ROLE-01-SECURE",
@@ -3392,7 +3582,8 @@
     "test_hint": "/runtime/role-cookie-secure",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "CH-HTACCESS-01",
@@ -3412,7 +3603,8 @@
           "matcher": "üzerine yazıldı"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "CH-VERB-01",
@@ -3432,7 +3624,8 @@
           "matcher": "SİLİNDİ"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "EDGE-SSRF-DEC",
@@ -3452,7 +3645,8 @@
           "matcher": "BYPASS"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "EDGE-SSRF-ZERO",
@@ -3472,7 +3666,8 @@
           "matcher": "BYPASS"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "EDGE-SSRF-AT",
@@ -3492,7 +3687,8 @@
           "matcher": "BYPASS"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "EDGE-SSRF-FRAG",
@@ -3512,7 +3708,8 @@
           "matcher": "BYPASS"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "EDGE-SSRF-REDIR",
@@ -3532,7 +3729,8 @@
           "matcher": "takip edildi"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "EDGE-SSRF-SECURE",
@@ -3544,7 +3742,8 @@
     "test_hint": "/edge/fetch-secure?url=http://169.254.169.254/ -> 400",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "EDGE-RET-01",
@@ -3564,7 +3763,8 @@
           "matcher": "https://evil.com"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "EDGE-DOUBLE-01",
@@ -3585,7 +3785,8 @@
           "matcher": "evil.com"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "EDGE-ORIG-01",
@@ -3605,7 +3806,8 @@
           "matcher": "bypass"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "EDGE-LOCAL-01",
@@ -3625,7 +3827,8 @@
           "matcher": "Internal stats"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "EDGE-TRACE-01",
@@ -3645,7 +3848,8 @@
           "matcher": "Cookie: sessionid=abc"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "EDGE-XDOM-01",
@@ -3665,7 +3869,8 @@
           "matcher": "domain=\"*\""
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "EDGE-CFG-01",
@@ -3685,7 +3890,8 @@
           "matcher": "API_SECRET"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "CACHE-XFF-01",
@@ -3705,7 +3911,8 @@
           "matcher": "<script>alert(9)"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "AX-CONFUSE-01",
@@ -3726,7 +3933,8 @@
           "note": "RS->HS with real HMAC(pubkey)"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "AX-PUBKEY-SECURE",
@@ -3738,7 +3946,8 @@
     "test_hint": "/authx/jwt-pubkey",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "AX-REUSE-01",
@@ -3758,7 +3967,8 @@
           "matcher": "Token geçerli"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "AX-NOSTATE-01",
@@ -3779,7 +3989,8 @@
           "matcher": "evil.com"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "AX-REMEMBER-01",
@@ -3800,7 +4011,8 @@
           "matcher": "2038"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "FILE-WRAP-01",
@@ -3820,7 +4032,8 @@
           "matcher": "PD9waHA"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "FILE-UNI-01",
@@ -3840,7 +4053,8 @@
           "matcher": "DB_PASSWORD"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "APP-EMAIL-01",
@@ -3860,7 +4074,8 @@
           "matcher": "\"ok\":true"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "APP-GIFT-01",
@@ -3880,7 +4095,8 @@
           "matcher": "\"code\":\"GIFT-"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "APP-POINTS-01",
@@ -3900,7 +4116,8 @@
           "matcher": "\"balances\""
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "APP-SHIP-01",
@@ -3920,7 +4137,8 @@
           "matcher": "\"cost_try\":0"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "APP-REG-01",
@@ -3944,7 +4162,8 @@
           "matcher": "409"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "APP-REG-01-SECURE",
@@ -3956,7 +4175,8 @@
     "test_hint": "/app/api/register-check-secure",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "XSS-MXSS-01",
@@ -3976,7 +4196,8 @@
           "matcher": "2. parse"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "CL-PPOLLQ-01",
@@ -3996,7 +4217,8 @@
           "matcher": "\"isAdmin\":true"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "SPA2-SHADOW-01",
@@ -4016,7 +4238,8 @@
           "matcher": "<img src=x onerror=alert(1)>"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "SPA2-SHADOW-01-SECURE",
@@ -4028,7 +4251,8 @@
     "test_hint": "/spa2/widget-secure?config=yildiz",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "SPA2-WIZARD-01",
@@ -4048,7 +4272,8 @@
           "matcher": "shipped without payment"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "SPA2-WIZARD-01-SECURE",
@@ -4060,7 +4285,8 @@
     "test_hint": "/spa2/wizard-secure?step=3&progress=2.x",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "XSS2-STORED-ROLE-01",
@@ -4081,7 +4307,8 @@
           "note": "post then view"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "XSS2-STORED-ROLE-02",
@@ -4102,7 +4329,8 @@
           "note": "post then view"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "XSS2-STORED-ROLE-01-SECURE",
@@ -4114,7 +4342,8 @@
     "test_hint": "/xss2/view-secure?id=1",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "XSS2-BLIND-ROLE-01",
@@ -4135,7 +4364,8 @@
           "note": "post then modqueue"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "XSS2-BLIND-ROLE-02",
@@ -4156,7 +4386,8 @@
           "note": "post then modqueue"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "XSS2-BLIND-ROLE-01-SECURE",
@@ -4168,7 +4399,8 @@
     "test_hint": "/xss2/modqueue-secure?role=moderator",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "TENANT-IDOR-01",
@@ -4188,7 +4420,8 @@
           "matcher": "GLOBEX-SECRET-999"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "TENANT-IDOR-01-SECURE",
@@ -4200,7 +4433,8 @@
     "test_hint": "/tenant/docs-secure?tenant=acme&id=D1 (X-Tenant/X-User)",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "TENANT-BOLA-01",
@@ -4224,7 +4458,8 @@
           "matcher": "globex"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "TENANT-BOLA-01-SECURE",
@@ -4236,7 +4471,8 @@
     "test_hint": "/tenant/transfer-secure (X-Role: admin)",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "GQL2-NESTED-01",
@@ -4260,7 +4496,8 @@
           "matcher": "42.5"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "GQL2-NESTED-01-SECURE",
@@ -4272,7 +4509,8 @@
     "test_hint": "/gql2/graphql-secure supplierCost (no role)",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "GQL2-FED-01",
@@ -4292,7 +4530,8 @@
           "matcher": "422-11-0001"
         }
       ]
-    }
+    },
+    "execution": "simulated"
   },
   {
     "id": "GQL2-FED-01-SECURE",
@@ -4304,7 +4543,8 @@
     "test_hint": "/gql2/federation-secure (no sig -> 401)",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "OIDC-REDIR-01",
@@ -4325,7 +4565,8 @@
           "matcher": "evil.com"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "OIDC-NOSTATE-01",
@@ -4346,7 +4587,8 @@
           "matcher": "evil.com"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "OIDC-REDIR-01-SECURE",
@@ -4358,7 +4600,8 @@
     "test_hint": "/oidc/authorize-secure?redirect_uri=https://evil.com -> 400",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "OIDC-PKCE-01",
@@ -4379,7 +4622,8 @@
           "note": "needs fresh code from authorize"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "OIDC-PKCE-01-SECURE",
@@ -4391,7 +4635,8 @@
     "test_hint": "/oidc/token-secure (no verifier -> 400)",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "FLOW-ORDER-01",
@@ -4411,7 +4656,8 @@
           "matcher": "FL-"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "FLOW-SKIP-01",
@@ -4431,7 +4677,8 @@
           "matcher": "shipped without payment"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "FLOW-SKIP-01-SECURE",
@@ -4443,7 +4690,8 @@
     "test_hint": "/flow/ship-secure {orderId:FL-1001} -> 409",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "FLOW-REPLAY-01",
@@ -4463,7 +4711,8 @@
           "matcher": "charged twice"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "FLOW-REPLAY-01-SECURE",
@@ -4475,7 +4724,8 @@
     "test_hint": "/flow/pay-secure {orderId:FL-1002} -> 409",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "RACE2-BURST-01",
@@ -4495,7 +4745,8 @@
           "matcher": "OVER-CLAIMED"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "RACE2-BURST-01-SECURE",
@@ -4507,7 +4758,8 @@
     "test_hint": "/race2/claim-secure?burst=10 -> partial+waitlist",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "ASYNC2-ENTRY-01",
@@ -4527,7 +4779,8 @@
           "matcher": "queued"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "ASYNC2-TRIGGER-01",
@@ -4548,7 +4801,8 @@
           "note": "submit evil then flush then report"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "ASYNC2-ENTRY-01-SECURE",
@@ -4560,7 +4814,8 @@
     "test_hint": "/async2/submit-secure {username:x' OR...} -> 400",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "ASYNC2-TRIGGER-01-SECURE",
@@ -4572,7 +4827,8 @@
     "test_hint": "POST /async2/flush-secure",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "BLINDTIME-01",
@@ -4593,7 +4849,8 @@
           "note": "jitter-budgeted delay oracle"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "BLINDTIME-01-SECURE",
@@ -4605,7 +4862,8 @@
     "test_hint": "/blindtime/lookup-secure?key=SLEEP(2)",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "OOB2-STAGED-01",
@@ -4626,7 +4884,8 @@
           "note": "register then fire then oob-hits"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "OOB2-STAGED-01-SECURE",
@@ -4638,7 +4897,8 @@
     "test_hint": "/oob2/register-secure -> 403",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "PARSER-SEMI-01",
@@ -4658,7 +4918,8 @@
           "matcher": "parsed_first: 1"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "PARSER-CTYPE-01",
@@ -4678,7 +4939,8 @@
           "matcher": "fallback parser"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "PARSER-CTYPE-01-SECURE",
@@ -4690,7 +4952,8 @@
     "test_hint": "/parser/ctype-secure (form body -> 400)",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "PARSER-METHOD-01",
@@ -4710,7 +4973,8 @@
           "matcher": "SİLİNDİ"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "PARSER-METHOD-01-SECURE",
@@ -4722,7 +4986,8 @@
     "test_hint": "/parser/resource-secure?_method=DELETE",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "CACHE2-SHARED-01",
@@ -4743,7 +5008,8 @@
           "note": "poison as alice, read as bob"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "CACHE2-SHARED-01-SECURE",
@@ -4755,7 +5021,8 @@
     "test_hint": "/cache2/profile-secure?user=1",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "CACHE2-POISON-01",
@@ -4776,7 +5043,8 @@
           "note": "request twice, second is HIT"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "CACHE2-POISON-01-SECURE",
@@ -4788,7 +5056,8 @@
     "test_hint": "/cache2/search-secure?q=<script>",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "CONFUSE-ENUM-01",
@@ -4808,7 +5077,8 @@
           "matcher": "did you mean"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "CONFUSE-ENUM-01-SECURE",
@@ -4820,7 +5090,8 @@
     "test_hint": "/confuse/user-secure/zzz -> 404",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "CONFUSE-RATELIMIT-01",
@@ -4840,7 +5111,8 @@
           "matcher": "not enforced"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "CONFUSE-RATELIMIT-01-SECURE",
@@ -4852,7 +5124,8 @@
     "test_hint": "/confuse/ratelimit-secure x6 -> 429",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "REALTIME-WS-01",
@@ -4873,7 +5146,8 @@
           "note": "raw-socket upgrade"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "REALTIME-WS-01-SECURE",
@@ -4885,7 +5159,8 @@
     "test_hint": "WS /realtime/ws-secure (evil Origin -> close)",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "REALTIME-SSE-01",
@@ -4905,7 +5180,8 @@
           "matcher": "<script>alert(1)</script>"
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "REALTIME-SSE-01-SECURE",
@@ -4917,7 +5193,8 @@
     "test_hint": "/realtime/sse-secure?msg=<script>",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "REALTIME-GRPC-01",
@@ -4941,7 +5218,8 @@
           "matcher": "trace="
         }
       ]
-    }
+    },
+    "execution": "live"
   },
   {
     "id": "REALTIME-GRPC-01-SECURE",
@@ -4953,7 +5231,8 @@
     "test_hint": "POST /realtime/grpc-secure",
     "severity": "info",
     "difficulty": "fp-hunter",
-    "oracle": null
+    "oracle": null,
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-001",
@@ -4978,7 +5257,8 @@
         "@@version",
         "2 result set"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-002",
@@ -5003,7 +5283,8 @@
         "@@version",
         "2 result set"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-003",
@@ -5028,7 +5309,8 @@
         "@@version",
         "2 result set"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-004",
@@ -5053,7 +5335,8 @@
         "@@version",
         "2 result set"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-005",
@@ -5078,7 +5361,8 @@
         "@@version",
         "2 result set"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-006",
@@ -5103,7 +5387,8 @@
         "@@version",
         "2 result set"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-007",
@@ -5128,7 +5413,8 @@
         "@@version",
         "2 result set"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-008",
@@ -5153,7 +5439,8 @@
         "@@version",
         "2 result set"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-009",
@@ -5178,7 +5465,8 @@
         "@@version",
         "2 result set"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-010",
@@ -5203,7 +5491,8 @@
         "@@version",
         "2 result set"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-011",
@@ -5228,7 +5517,8 @@
         "@@version",
         "2 result set"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-012",
@@ -5253,7 +5543,8 @@
         "@@version",
         "2 result set"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-013",
@@ -5278,7 +5569,8 @@
         "@@version",
         "2 result set"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-014",
@@ -5303,7 +5595,8 @@
         "@@version",
         "2 result set"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-015",
@@ -5328,7 +5621,8 @@
         "@@version",
         "2 result set"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-016",
@@ -5353,7 +5647,8 @@
         "@@version",
         "2 result set"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-017",
@@ -5377,7 +5672,8 @@
         "<svg onload=",
         "WS-ECHO-READY"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-018",
@@ -5401,7 +5697,8 @@
         "<svg onload=",
         "WS-ECHO-READY"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-019",
@@ -5425,7 +5722,8 @@
         "<svg onload=",
         "WS-ECHO-READY"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-020",
@@ -5449,7 +5747,8 @@
         "<svg onload=",
         "WS-ECHO-READY"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-021",
@@ -5473,7 +5772,8 @@
         "<svg onload=",
         "WS-ECHO-READY"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-022",
@@ -5497,7 +5797,8 @@
         "<svg onload=",
         "WS-ECHO-READY"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-023",
@@ -5521,7 +5822,8 @@
         "<svg onload=",
         "WS-ECHO-READY"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-024",
@@ -5545,7 +5847,8 @@
         "<svg onload=",
         "WS-ECHO-READY"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-025",
@@ -5569,7 +5872,8 @@
         "<svg onload=",
         "WS-ECHO-READY"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-026",
@@ -5593,7 +5897,8 @@
         "<svg onload=",
         "WS-ECHO-READY"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-027",
@@ -5617,7 +5922,8 @@
         "<svg onload=",
         "WS-ECHO-READY"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-028",
@@ -5641,7 +5947,8 @@
         "<svg onload=",
         "WS-ECHO-READY"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-029",
@@ -5665,7 +5972,8 @@
         "<svg onload=",
         "WS-ECHO-READY"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-030",
@@ -5689,7 +5997,8 @@
         "<svg onload=",
         "WS-ECHO-READY"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-031",
@@ -5713,7 +6022,8 @@
         "<svg onload=",
         "WS-ECHO-READY"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-032",
@@ -5737,7 +6047,8 @@
         "<svg onload=",
         "WS-ECHO-READY"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-033",
@@ -5760,7 +6071,8 @@
         "secret:",
         "role: admin"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-034",
@@ -5783,7 +6095,8 @@
         "secret:",
         "role: admin"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-035",
@@ -5806,7 +6119,8 @@
         "secret:",
         "role: admin"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-036",
@@ -5829,7 +6143,8 @@
         "secret:",
         "role: admin"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-037",
@@ -5852,7 +6167,8 @@
         "secret:",
         "role: admin"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-038",
@@ -5875,7 +6191,8 @@
         "secret:",
         "role: admin"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-039",
@@ -5898,7 +6215,8 @@
         "secret:",
         "role: admin"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-040",
@@ -5921,7 +6239,8 @@
         "secret:",
         "role: admin"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-041",
@@ -5944,7 +6263,8 @@
         "secret:",
         "role: admin"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-042",
@@ -5967,7 +6287,8 @@
         "secret:",
         "role: admin"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-043",
@@ -5991,7 +6312,8 @@
         "query_time=",
         "SLEEP çalıştı"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-044",
@@ -6015,7 +6337,8 @@
         "query_time=",
         "SLEEP çalıştı"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-045",
@@ -6039,7 +6362,8 @@
         "query_time=",
         "SLEEP çalıştı"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-046",
@@ -6063,7 +6387,8 @@
         "query_time=",
         "SLEEP çalıştı"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-047",
@@ -6087,7 +6412,8 @@
         "query_time=",
         "SLEEP çalıştı"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-048",
@@ -6111,7 +6437,8 @@
         "query_time=",
         "SLEEP çalıştı"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-049",
@@ -6135,7 +6462,8 @@
         "query_time=",
         "SLEEP çalıştı"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-050",
@@ -6159,7 +6487,8 @@
         "query_time=",
         "SLEEP çalıştı"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-051",
@@ -6183,7 +6512,8 @@
         "query_time=",
         "SLEEP çalıştı"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-052",
@@ -6207,7 +6537,8 @@
         "query_time=",
         "SLEEP çalıştı"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-053",
@@ -6231,7 +6562,8 @@
         "Sup3rS3cret",
         "DB_PASSWORD=postgres"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-054",
@@ -6255,7 +6587,8 @@
         "Sup3rS3cret",
         "DB_PASSWORD=postgres"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-055",
@@ -6279,7 +6612,8 @@
         "Sup3rS3cret",
         "DB_PASSWORD=postgres"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-056",
@@ -6303,7 +6637,8 @@
         "Sup3rS3cret",
         "DB_PASSWORD=postgres"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-057",
@@ -6327,7 +6662,8 @@
         "Sup3rS3cret",
         "DB_PASSWORD=postgres"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-058",
@@ -6351,7 +6687,8 @@
         "Sup3rS3cret",
         "DB_PASSWORD=postgres"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-059",
@@ -6375,7 +6712,8 @@
         "Sup3rS3cret",
         "DB_PASSWORD=postgres"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-060",
@@ -6399,7 +6737,8 @@
         "Sup3rS3cret",
         "DB_PASSWORD=postgres"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-061",
@@ -6423,7 +6762,8 @@
         "Sup3rS3cret",
         "DB_PASSWORD=postgres"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-062",
@@ -6447,7 +6787,8 @@
         "Sup3rS3cret",
         "DB_PASSWORD=postgres"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-063",
@@ -6471,7 +6812,8 @@
         "Sup3rS3cret",
         "DB_PASSWORD=postgres"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-064",
@@ -6495,7 +6837,8 @@
         "Sup3rS3cret",
         "DB_PASSWORD=postgres"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-065",
@@ -6519,7 +6862,8 @@
         "Sup3rS3cret",
         "DB_PASSWORD=postgres"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-066",
@@ -6543,7 +6887,8 @@
         "Sup3rS3cret",
         "DB_PASSWORD=postgres"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-067",
@@ -6567,7 +6912,8 @@
         "Sup3rS3cret",
         "DB_PASSWORD=postgres"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-068",
@@ -6591,7 +6937,8 @@
         "Sup3rS3cret",
         "DB_PASSWORD=postgres"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-069",
@@ -6615,7 +6962,8 @@
         "mock-admin-session",
         "Temp123!"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-070",
@@ -6639,7 +6987,8 @@
         "mock-admin-session",
         "Temp123!"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-071",
@@ -6663,7 +7012,8 @@
         "mock-admin-session",
         "Temp123!"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-072",
@@ -6687,7 +7037,8 @@
         "mock-admin-session",
         "Temp123!"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-073",
@@ -6711,7 +7062,8 @@
         "mock-admin-session",
         "Temp123!"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-074",
@@ -6735,7 +7087,8 @@
         "mock-admin-session",
         "Temp123!"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-075",
@@ -6759,7 +7112,8 @@
         "mock-admin-session",
         "Temp123!"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-076",
@@ -6783,7 +7137,8 @@
         "mock-admin-session",
         "Temp123!"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-077",
@@ -6807,7 +7162,8 @@
         "mock-admin-session",
         "Temp123!"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-078",
@@ -6831,7 +7187,8 @@
         "mock-admin-session",
         "Temp123!"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-079",
@@ -6855,7 +7212,8 @@
         "mock-admin-session",
         "Temp123!"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-080",
@@ -6879,7 +7237,8 @@
         "mock-admin-session",
         "Temp123!"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-081",
@@ -6903,7 +7262,8 @@
         "mock-admin-session",
         "Temp123!"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-082",
@@ -6927,7 +7287,8 @@
         "mock-admin-session",
         "Temp123!"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-083",
@@ -6951,7 +7312,8 @@
         "kural dışı bırakıldı",
         "engelleme kaldırıldı"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-084",
@@ -6975,7 +7337,8 @@
         "kural dışı bırakıldı",
         "engelleme kaldırıldı"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-085",
@@ -6999,7 +7362,8 @@
         "kural dışı bırakıldı",
         "engelleme kaldırıldı"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-086",
@@ -7023,7 +7387,8 @@
         "kural dışı bırakıldı",
         "engelleme kaldırıldı"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-087",
@@ -7047,7 +7412,8 @@
         "kural dışı bırakıldı",
         "engelleme kaldırıldı"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-088",
@@ -7071,7 +7437,8 @@
         "kural dışı bırakıldı",
         "engelleme kaldırıldı"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-089",
@@ -7095,7 +7462,8 @@
         "kural dışı bırakıldı",
         "engelleme kaldırıldı"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-090",
@@ -7119,7 +7487,8 @@
         "kural dışı bırakıldı",
         "engelleme kaldırıldı"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-091",
@@ -7143,7 +7512,8 @@
         "kural dışı bırakıldı",
         "engelleme kaldırıldı"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-092",
@@ -7167,7 +7537,8 @@
         "kural dışı bırakıldı",
         "engelleme kaldırıldı"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-093",
@@ -7191,7 +7562,8 @@
         "DB_PASSWORD=postgres",
         "PRIVATE KEY"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-094",
@@ -7215,7 +7587,8 @@
         "DB_PASSWORD=postgres",
         "PRIVATE KEY"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-095",
@@ -7239,7 +7612,8 @@
         "DB_PASSWORD=postgres",
         "PRIVATE KEY"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-096",
@@ -7263,7 +7637,8 @@
         "DB_PASSWORD=postgres",
         "PRIVATE KEY"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-097",
@@ -7287,7 +7662,8 @@
         "DB_PASSWORD=postgres",
         "PRIVATE KEY"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-098",
@@ -7311,7 +7687,8 @@
         "DB_PASSWORD=postgres",
         "PRIVATE KEY"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-099",
@@ -7335,7 +7712,8 @@
         "DB_PASSWORD=postgres",
         "PRIVATE KEY"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-100",
@@ -7359,7 +7737,8 @@
         "DB_PASSWORD=postgres",
         "PRIVATE KEY"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-101",
@@ -7383,7 +7762,8 @@
         "DB_PASSWORD=postgres",
         "PRIVATE KEY"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-102",
@@ -7407,7 +7787,8 @@
         "DB_PASSWORD=postgres",
         "PRIVATE KEY"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-103",
@@ -7431,7 +7812,8 @@
         "DB_PASSWORD=postgres",
         "PRIVATE KEY"
       ]
-    }
+    },
+    "execution": "n/a"
   },
   {
     "id": "FP-HELL-104",
@@ -7455,6 +7837,7 @@
         "DB_PASSWORD=postgres",
         "PRIVATE KEY"
       ]
-    }
+    },
+    "execution": "n/a"
   }
 ]
