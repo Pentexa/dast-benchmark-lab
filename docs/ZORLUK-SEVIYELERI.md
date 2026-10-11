@@ -8,16 +8,17 @@
 
 | DAST yeteneği | Projedeki karşılığı | Nerede görülür? |
 |---|---|---|
-| 🕷️ Crawl / keşif | 222 endpoint dashboard'da linkli • `robots.txt` hassas yol listeler • JS-render SPA | `/dashboard`, `/files/robots.txt`, `/app` |
-| 🎯 Aktif fuzz + oracle | Deterministik işaretler: `SQL syntax`, boolean içerik farkı, **gerçek 3 sn delay**, `Location` yankısı | `/injection/sqli`, `/runtime/sqli-bool`, `/runtime/sqli-time`, `/runtime/go` |
-| 🙈 Kör (blind/OOB) | Callback toplayıcı + sayaç | `/oob/*`, `/runtime/feedback`, `GET /api/oob-hits` |
-| 🔐 Authenticated tarama | Bearer JWT, cookie (`role`/`sessionid`), header-spoof (`X-User-Id`, `X-Role`, `X-Debug`) | `/app/*`, `/api/users-secure/*`, `/runtime/profile-mine` |
-| 🧠 FP direnci | Güvenli ikiz + 12 tuzak (şüpheli görünüp temiz) | `/injection/sqli-secure`, `/fp/*` |
-| 📡 Eşleştirme dostu | Her yanıtta `X-Vuln-Id` / `X-Vuln-Category` / `X-Ground-Truth` | Tüm yanıt header'ları |
-| 📊 Davranış profili | Sinyal etiketli istek logu → "denedi mi / denemedi mi?" | `logs/requests.log`, `GET /api/stats` |
+| 🕷️ Crawl / keşif | 383 endpoint dashboard'da linkli • `robots.txt` hassas yol listeler • JS-render SPA + Shadow-DOM sayfa | `/dashboard`, `/files/robots.txt`, `/app`, `/spa2/widget` |
+| 🎯 Aktif fuzz + oracle | Deterministik işaretler: `SQL syntax`, boolean içerik farkı, **gerçek 3 sn delay**, kalibreli timing (`/blindtime`), `Location` yankısı | `/injection/sqli`, `/runtime/sqli-bool`, `/runtime/sqli-time`, `/blindtime/lookup`, `/runtime/go` |
+| 🙈 Kör (blind/OOB) | Callback toplayıcı + sayaç + **kademeli** OOB + rol-farklı kör kuyruk | `/oob/*`, `/oob2/*`, `/runtime/feedback`, `/xss2/modqueue`, `GET /api/oob-hits` |
+| 🔐 Authenticated tarama | Bearer JWT, cookie (`role`/`sessionid`), header-spoof (`X-User-Id`, `X-Role`, `X-Debug`), multi-tenant matris | `/app/*`, `/tenant/*`, `/api/users-secure/*`, `/runtime/profile-mine` |
+| ⏱️ Gerçek-zamanlı protokoller | WebSocket echo, SSE akışı, gRPC-Web mock (+ secure ikizleri) | `/realtime/ws`, `/realtime/sse`, `/realtime/grpc` |
+| 🧠 FP direnci | Güvenli ikiz + 12 klasik tuzak + **104 decoy** (negatif proof'lu) | `/injection/sqli-secure`, `/fp/*`, `/fphell/*` |
+| 📡 Eşleştirme dostu | Her yanıtta `X-Vuln-Id` / `X-Vuln-Category` / `X-Ground-Truth` (transparent; blind'da gizli) + `vuln_id`-li bulgu şeması | Tüm yanıt header'ları, generic v2 format |
+| 📊 Davranış profili | Sinyal etiketli istek logu → "denedi mi / denemedi mi?" + tohumlu reset ile aynı koşullar | `logs/requests.log`, `GET /api/stats`, `POST /api/admin/reset` |
 | 🛡️ Güvenli fuzz | Tehlikeli vektörler mock (gerçek komut/istek yok) | CMDi, SSRF, XXE, Deser, RFI, Zip Slip |
 
-SAST "kodu okur", DAST "hedefle konuşur" — bu sunucu 222 konulu konuşmaya hazır bir muhataptır.
+SAST "kodu okur", DAST "hedefle konuşur" — bu sunucu 383 konulu konuşmaya hazır bir muhataptır.
 
 ---
 
@@ -28,10 +29,12 @@ SAST "kodu okur", DAST "hedefle konuşur" — bu sunucu 222 konulu konuşmaya ha
 | Severity | Adet | Dağılım | Not |
 |---|---|---|---|
 | critical | 4 | hepsi `vulnerable` | Auth bypass, BOLA, MFA bypass... — kritik ama bazıları kolay bulunur |
-| high | 72 | hepsi `vulnerable` | En kalabalık zafiyet grubu |
-| medium | 68 | hepsi `vulnerable` | İkinci kalabalık grup |
-| low | 19 | hepsi `vulnerable` | Düşük etki ama bazıları zor (örn. remember-me, TRACE) |
-| info | 59 | 47 `secure` + 12 `fp-trap` | Skorlanabilir temiz yüzey (TN beklenir) |
+| high | 91 | hepsi `vulnerable` | En kalabalık zafiyet grubu (V2 ile büyüdü) |
+| medium | 79 | hepsi `vulnerable` | İkinci kalabalık grup |
+| low | 20 | hepsi `vulnerable` | Düşük etki ama bazıları zor (örn. remember-me, TRACE) |
+| info | 189 | 73 `secure` + 116 `fp-trap` | Skorlanabilir temiz yüzey (TN beklenir) |
+
+GT'de ayrıca `difficulty` alanı var: easy 65 • medium 4 • hard 100 • chaos 25 • fp-hunter 189 — `evaluate.py` ve `report.py` bu kırılımı otomatik basar.
 
 > Örnek: `critical` bir IDOR (`/api/users/99`) Seviye 1 kolaylıkta yakalanabilirken, `low` bir cache-poisoning Seviye 4 ustalığı isteyebilir. **Kritiklik ≠ yakalama zorluğu.**
 
@@ -92,6 +95,9 @@ Aşağıdaki 5 seviye, kritiklikten bağımsız **DAST yeteneği** katmanıdır.
 | SSRF bypass seti (`/edge/dec`, `/edge/zero`, `/edge/at`, `/edge/frag`, `/edge/redir`) | Filtre-atlatma payload çeşitliliği ister |
 | OAuth `redirect_uri` + `state`sizlik (`/authx/oauth`, `/oauth-nostate`) | Akış (flow) takibi ister |
 | Second-order SQLi (`POST /runtime/register2` → `GET /runtime/admin-list`) | Giriş ayrı, tetik ayrı istekte |
+| Asenkron second-order (`POST /async2/submit` → `POST /async2/flush` → `GET /async2/report`) | Giriş ayrı, tetik ayrı **zamanda** (worker arada çalışır) |
+| OIDC akışları (`/oidc/authorize` → `/oidc/token`, PKCE'siz) | Kodu kapıp verifier'sız token alma |
+| Multi-tenant IDOR/BOLA (`/tenant/docs`, `/tenant/transfer`) | Kiracı × rol × sahiplik matrisini çözme |
 
 **Yakalayan profil:** Authenticated scan (login context tanımlı) + API/GraphQL eklentileri + manuel destek.
 **Kaçırıyorsa:** Büyük ihtimal **crawl/auth eksik**, dedektör değil → `logs/requests.log`'da ilgili path'e hiç istek yoksa (`coverage_by_category hit=0`) önce girişi düzelt.
@@ -106,6 +112,10 @@ Aşağıdaki 5 seviye, kritiklikten bağımsız **DAST yeteneği** katmanıdır.
 |---|---|
 | Time-based SQLi (`/runtime/sqli-time?id=1 AND SLEEP(3)`) | **Gerçek 3 sn** uyur; eşiği düşük tarayıcı kaçırır. Meşru yavaş sayfa (`/fp/slow-report`) ile karışır! |
 | Blind XSS (`POST /runtime/feedback` → `/runtime/feedback-view` → `/oob/*`) | Callback'in OOB kanalında dinlenmesi gerekir |
+| Rol-farklı blind XSS (`POST /xss2/blindreply` → `/xss2/modqueue`) | Yazan user, okuyan moderator — roller arası akış |
+| Kademeli OOB (`POST /oob2/register` → `GET /oob2/fire` → sayaç) | İki kademe + gecikmeli ateşleme |
+| Kalibreli timing (`GET /blindtime/calibrate` → `/blindtime/lookup?key=SLEEP(2)`) | Taban ölç + delta yorumla (jitter bütçeli) |
+| Deterministik race (`POST /race2/claim?burst=10`) | Tek istekte patlak veren stok aşımı (`OVER-CLAIMED`) |
 | `/app` SPA kapsaması | Klasik spider yetmez; **AJAX spider** + JS çalıştırma gerekir |
 | Tek kupon race (`POST /shop/coupon-race` × N) | Paralel istek + sayaç yarışı gerekir |
 | GraphQL depth DoS (`POST /graphql/depth`) | Derin iç-içe sorgu üretimi gerekir |
@@ -118,7 +128,7 @@ Aşağıdaki 5 seviye, kritiklikten bağımsız **DAST yeteneği** katmanıdır.
 
 ### 🟣 Seviye FP-Avcısı (sinyal değil muhakeme)
 
-**İstediği yetenek:** Alarm üretMEme disiplini. 12 tuzak + 47 secure ikiz.
+**İstediği yetenek:** Alarm üretMEme disiplini. 116 tuzak (12 klasik + 104 decoy) + 73 secure ikiz.
 
 | Tuzak | Masum gerçek | Acemi kural ne yapar? |
 |---|---|---|

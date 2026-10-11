@@ -9,11 +9,11 @@
 Tek seferlik skor yerine **her koşuyu kaydet**: süre, istek, hız, coverage, CPU/RAM, TP/FP/FN/TN ve önceki koşuyla fark (ΔF1).
 
 ```powershell
-# 0) Öz-doğrulama (bir kez — 163/163 beklenir)
-python evaluation/verify.py
+# 0) Öz-doğrulama (bir kez — 194/194 + 104/104 beklenir)
+python evaluation/verify.py --seed 7
 
-# 1) Taramayı başlat (sunucuya + lokale işaret koyulur)
-python evaluation/scan.py start --scanner "ZAP 2.14"
+# 1) Taramayı başlat (durumu sıfırlar + tohumlar + işaret koyar)
+python evaluation/scan.py start --scanner "ZAP 2.17" --mode authenticated-full --reset --seed 7
 
 # 2) Tarayıcıyı çalıştır (aşağıdan birini seç) +
 #    AYNI ANDA kaynak ölçer (ayrı terminal — opsiyonel ama önerilir)
@@ -29,15 +29,27 @@ python evaluation/scan.py list
 ```
 
 Kaydedilen dosya: `evaluation/runs/run-<tarih>-<tarayıcı>.json` — **silinmez**, araç karşılaştırması buradan yapılır.
+Modlar: `unauthenticated` (kimliksiz) • `authenticated-full` (girişli tam) • `advanced-protocol` (WS/SSE/gRPC-Web + OOB + AJAX spider).
+Aynı koşul için kimlik paketi: [AUTH-PACK.md](./AUTH-PACK.md) (EN). Adil ölçüm için blind mod: [BLIND-MODE.md](./BLIND-MODE.md) (EN).
 
 `finish` çıktısında göreceğin satırlar:
 
 ```
 süre: 812 sn | istek: 45210 (188 unique path) | hız: 55.6/sn | paralellik: ~8
-coverage: 201/222 endpoint (%90.5) | OOB tetik: 3
-bulgu: 41 | TP=35 FP=2 FN=128 TN=57 | P=0.946 R=0.215 F1=0.350
+coverage: 340/383 endpoint (%88.8) | OOB tetik: 3
+bulgu: 41 | TP=35 FP=2 FN=159 TN=187 | P=0.946 R=0.180 F1=0.303
 önceki (...) vs delta: dTP=+4 dFP=-1 dFN=-4 dF1=+0.042
 kayıt: evaluation/runs/run-20261011-120000-ZAP-2.14.json
+```
+
+Rapor üretimi (JSON + Markdown, sınıf×zorluk×simüle/gerçek kırılımlı):
+
+```powershell
+# kayıtlı koşudan:
+python evaluation/report.py --run evaluation/runs/run-20261011-111053-ZAP-2.17.json
+# doğrudan bulgudan (mod belirterek):
+python evaluation/report.py --findings zap.json --format zap --scanner "ZAP 2.17" --mode authenticated-full
+# çıktı: evaluation/reports/<ad>.json + <ad>.md
 ```
 
 ---
@@ -78,14 +90,16 @@ python evaluation/evaluate.py --findings burp.xml --format zap-xml
 python evaluation/evaluate.py --findings burp.sarif --format sarif
 ```
 
-### Generic format (kendi betiğin)
+### Generic format (kendi betiğin — v2: `vuln_id` ile güçlü eşleşme)
 
 ```json
 [
   {"url": "http://localhost:3000/xss/reflected?name=<script>alert(1)</script>", "name": "Reflected XSS"},
-  {"url": "http://localhost:3000/injection/sqli?id=1", "name": "SQL Injection"}
+  {"url": "http://localhost:3000/injection/sqli?id=1", "name": "SQL Injection", "vuln_id": "INJ-SQLI-01", "evidence": "SQL syntax ..."}
 ]
 ```
+
+`vuln_id` verirsen satır doğrudan eşleşir (**strong**); vermezsen path-fallback (**weak**) — raporda ikisi ayrı yazılır. Eski format dosyalar çalışmaya devam eder.
 
 ```powershell
 python evaluation/evaluate.py --findings bulgular.json --format generic
@@ -98,10 +112,10 @@ python evaluation/evaluate.py --findings bulgular.json --format generic
 ## 3. Skor nasıl hesaplanır? (evaluate.py)
 
 1. Her bulgunun URL'si normalize edilir (`norm_path`)
-2. `ground-truth.json`'daki path ile eşleştirilir (`:` placeholder ve trailing-slash duyarsız)
-3. Eşleşen zafiyetli path → **TP**, eşleşmeyen zafiyetli → **FN**
+2. `vuln_id` varsa GT satırıyla **doğrudan** eşleşir (strong); yoksa path ile (`:` placeholder ve trailing-slash duyarsız, weak)
+3. Eşleşen zafiyetli satır → **TP**, eşleşmeyen zafiyetli → **FN**
 4. Eşleşen güvenli/FP-tuzak → **FP**, eşleşmeyen → **TN**
-5. Genel + **kategori bazlı** Precision/Recall/F1 hesaplanır, FN ve FP listesi dökülür
+5. Genel + **kategori + zorluk + simüle/gerçek kırılımlı** Precision/Recall/F1 hesaplanır, FN ve FP listesi dökülür
 
 ```
 --- Kaçanlar (FN: bulamadıkları) ---
@@ -180,9 +194,10 @@ Invoke-RestMethod http://localhost:3000/api/oob-hits
 | `GET /api/scans` | Son 30 koşu özeti (süre, hız, coverage, TP/FP/FN/TN, CPU/RAM, ΔF1) |
 | `GET /api/stats` | Log özeti (istek sayısı, sinyal dağılımı) |
 | `GET /api/oob-hits` | Kör callback listesi |
-| `GET /api/ground-truth` | Canlı `ground-truth.json` |
+| `GET /api/ground-truth` | Canlı `ground-truth.json` (blind modda 404) |
+| `POST /api/admin/reset` | Durumu sıfırla + tohumla (yalnızca localhost) |
 
-Her yanıt ayrıca şu header'ları taşır: `X-Vuln-Id`, `X-Vuln-Category`, `X-Ground-Truth`.
+Her yanıt ayrıca şu header'ları taşır (transparent modda; blind'da basılmaz): `X-Vuln-Id`, `X-Vuln-Category`, `X-Ground-Truth`.
 
 ---
 
@@ -190,5 +205,6 @@ Her yanıt ayrıca şu header'ları taşır: `X-Vuln-Id`, `X-Vuln-Category`, `X-
 
 - **AJAX Spider / authenticated scan** aç → `/app` SPA ve auth-gated endpoint'ler (`/app/*`, `/api/users-secure/*`) coverage'a girer
 - **GraphQL + API taraması** için OpenAPI/GraphQL eklentilerini etkinleştir
-- **Time-based** yakalamak için tarayıcı timeout eşiğini 3 sn üstünde tut (`/runtime/sqli-time` gerçek 3 sn uyur)
-- **FP'leri kısmak** için `secure` ikizlerde öten kuralları not et → policy'den çıkar, F1'in nasıl arttığını `scan.py list` ile izle
+- **Time-based** yakalamak için tarayıcı timeout eşiğini 3 sn üstünde tut (`/runtime/sqli-time` gerçek 3 sn uyur; kalibreli oracle: `/blindtime/calibrate` + `/blindtime/lookup?key=SLEEP(2)`)
+- **FP'leri kısmak** için `secure` ikizlerde + `/fphell/*` decoy'larda öten kuralları not et → policy'den çıkar, F1'in nasıl arttığını `scan.py list` ile izle
+- **Gerçek-zamanlı yüzey** için WS istemcisiyle `/realtime/ws`, event-stream ile `/realtime/sse?msg=`, grpc-web frame ile `POST /realtime/grpc` dene (secure ikizleri karşılaştır)

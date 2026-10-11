@@ -1,6 +1,7 @@
-# 🔧 Kurulum Rehberi
+# 🔧 Kurulum Rehberi (v2 güncel)
 
 > **Süre:** ~2 dakika • **Zorluk:** Kolay • **İhtiyaç:** Node.js 18+ ve Python 3.10+
+> **Kapsam:** 383 endpoint (194 zafiyetli + 73 güvenli + 116 FP-tuzağı)
 
 Bu doküman projeyi **sıfırdan çalışır hale** getirir. Hızlı özet için [README](../README.md#-hızlı-kurulum-2-dakika) yeter; takıldığın yerde buraya dön.
 
@@ -33,18 +34,20 @@ ZIP ile indirdiysen klasöre girmen yeterli.
 ## 3. Kurulum (Windows / macOS / Linux — aynı)
 
 ```powershell
-# 1) Node bağımlılıklarını kur (express, cookie-parser, cors, jsonwebtoken, morgan)
+# 1) Node bağımlılıklarını kur (express, cookie-parser, cors, jsonwebtoken, morgan, ws)
 npm install
 
-# 2) Sunucuyu başlat
+# 2) Sunucuyu başlat (transparent mod = öğrenme dostu, cevaplar görünür)
 npm start
 ```
 
 Başarılı çıktı:
 
 ```
-[+] DAST mock server: http://localhost:3000/dashboard
+[+] DAST mock server (transparent): http://localhost:3000/dashboard
 ```
+
+> Adil ölçüm için **blind mod** (cevap anahtarı gizli): `$env:DAST_MODE="blind"; npm start` → detay: [BLIND-MODE.md](./BLIND-MODE.md) (EN)
 
 Tarayıcıda aç: **http://localhost:3000/dashboard** 🎉
 
@@ -61,18 +64,27 @@ npm run dev   # node --watch server.js
 Yeni bir terminal aç (sunucu çalışmaya devam etsin):
 
 ```powershell
-# 163 zafiyetin hepsi gerçekten sömürülebilir mi?
+# 194 zafiyetin hepsi gerçekten sömürülebilir mi? + 104 decoy gerçekten temiz mi?
 python evaluation/verify.py
+# deterministik koşu (önce sunucuyu sıfırlar + tohumlar):
+python evaluation/verify.py --seed 7
 ```
 
 Beklenen çıktı:
 
 ```
-=== DOĞRULAMA: 163/163 sömürülebilir (+0 erişilebilir, 0 hatalı) ===
+=== DOĞRULAMA: 194/194 sömürülebilir (+0 erişilebilir, 0 hatalı) ===
+=== DECOY: 104/104 temiz (0 sızıntı) ===
 kayıt: evaluation/verification.json
 ```
 
-Bu sonuç `evaluation/verification.json` dosyasına yazılır ve dashboard'daki rozette görünür (`GET /api/overview`).
+Bu sonuç `evaluation/verification.json` dosyasına yazılır ve dashboard'daki rozette görünür (`GET /api/overview` — blind modda rozet gizlenir).
+
+Hızlı kabul paketi (şema + tutarlılık + canlı spot-kontroller, <60 sn):
+
+```powershell
+npm test   # python tests/acceptance.py
+```
 
 > `sunucuya ulaşılamadı` hatası alırsan → sunucunun `npm start` ile ayakta olduğundan ve `http://localhost:3000/dashboard` adresinin açıldığından emin ol.
 
@@ -98,7 +110,22 @@ $env:DAST_TARGET="http://localhost:4000"; python evaluation/verify.py
 
 ---
 
-## 6. Docker ile ZAP taraması (kurulumsuz tarayıcı)
+## 6. Taramadan önce sıfırlama (aynı koşullar)
+
+Kilit sayaçları, kupon havuzları, sepetler taramadan taramaya sarkmasın:
+
+```powershell
+# scan.py bunu otomatik yapar:
+python evaluation/scan.py start --scanner "ZAP 2.17" --mode authenticated-full --reset --seed 7
+# veya elle:
+# POST /api/admin/reset  {"seed": 7}   (yalnızca localhost)
+```
+
+Detay: [RESET.md](./RESET.md) (EN). Modlar ve kimlik paketi: [AUTH-PACK.md](./AUTH-PACK.md) (EN).
+
+---
+
+## 7. Docker ile ZAP taraması (kurulumsuz tarayıcı)
 
 Sunucu host'ta çalışırken ZAP'ı Docker'dan koşturmak en temiz yoldur:
 
@@ -118,14 +145,15 @@ Raporu skora çevirme → [TARAMA-VE-OLCUM.md](./TARAMA-VE-OLCUM.md)
 
 ---
 
-## 7. Sorun giderme (hızlı tablo)
+## 8. Sorun giderme (hızlı tablo)
 
 | Sorun | Neden | Çözüm |
 |---|---|---|
 | `npm start` → `EADDRINUSE :::3000` | Port dolu | Başka uygulamayı kapat veya [port değiştir](#5-port-değiştirme) |
 | `python` bulunamadı | Python PATH'te yok | Python'u "Add to PATH" seçeneğiyle yeniden kur; veya `py` komutunu dene |
 | `verify.py` → bağlantı hatası | Sunucu kapalı | `npm start` çalışıyor mu? `http://localhost:3000/dashboard` açılıyor mu? |
-| `163/163` yerine düşük sayı | Eski kod / yarım başlatma | `npm start`'ı yeniden başlatıp `verify.py`'yi tekrar koştur |
+| `194/194` yerine düşük sayı | Eski kod / yarım başlatma / sıfırlanmamış durum | `npm start`'ı yeniden başlat, `python evaluation/verify.py --seed 7` ile tekrar koştur |
+| `DECOY` sızıntısı (104/104 değil) | Kodda gerçek bir kirlenme | Hangi ID olduğunu not edip issue aç — benchmark bug'ı demektir |
 | Dashboard açılıyor ama `/app` boş | JS kapalı | `/app` JS-render SPA'dır, JS'i aç; API'yi direkt dene: `/app/api/login` |
 | ZAP Docker'dan bağlanamıyor (Win) | `host` network yok | Hedef olarak `http://host.docker.internal:3000` kullan |
 | `agent.py` CPU göstermiyor | `psutil` yok | `pip install psutil` kur, tekrar dene |
@@ -135,12 +163,13 @@ Daha fazlası → [SSS.md](./SSS.md)
 
 ---
 
-## 8. Temiz kurulum kontrol listesi ✅
+## 9. Temiz kurulum kontrol listesi ✅
 
 - [ ] `node --version` → v18+
 - [ ] `npm install` hatasız bitti
 - [ ] `npm start` → `http://localhost:3000/dashboard` açılıyor
-- [ ] `python evaluation/verify.py` → `163/163`
+- [ ] `python evaluation/verify.py` → `194/194` + `104/104`
+- [ ] `npm test` → `ACCEPTANCE: PASS`
 - [ ] Dashboard'da endpoint tablosu + skor tablosu görünüyor
 
 Hepsi tamsa sıradaki adım: **[📖 NE-ISE-YARAR.md](./NE-ISE-YARAR.md)** (konsept) veya **[📊 TARAMA-VE-OLCUM.md](./TARAMA-VE-OLCUM.md)** (ilk taramanı ölç).

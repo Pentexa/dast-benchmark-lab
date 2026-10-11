@@ -28,9 +28,9 @@ Sunucu `ground-truth.json` adlı bir **hakem heyeti** ile gelir: her endpoint'in
 
 | Sembol | Tür | Adet | Anlamı | Örnek |
 |---|---|---|---|---|
-| 🔴 | `vulnerable` | 163 | Gerçek zaaf, tarayıcı **bulmalı** | `/injection/sqli?id=1' OR '1'='1` → SQL hatası döner |
-| 🟢 | `secure` | 47 | Güvenli kontrol, tarayıcı **susmalı** | `/injection/sqli-secure` → aynı payload etkisiz |
-| 🟡 | `fp-trap` | 12 | **FP tuzağı**: şüpheli görünüp temiz olan sayfa | `/fp/search` → yardım metninde "SQL syntax" geçer ama zaaf yok |
+| 🔴 | `vulnerable` | 194 | Gerçek zaaf, tarayıcı **bulmalı** | `/injection/sqli?id=1' OR '1'='1` → SQL hatası döner |
+| 🟢 | `secure` | 73 | Güvenli kontrol, tarayıcı **susmalı** | `/injection/sqli-secure` → aynı payload etkisiz |
+| 🟡 | `fp-trap` | 116 | **FP tuzağı**: şüpheli görünüp temiz olan sayfa (12 klasik + 104 decoy) | `/fp/search` → yardım metninde "SQL syntax" geçer ama zaaf yok |
 
 Her zafiyetli endpoint'in **yanında ikizi** vardır: biri zafiyetli, biri güvenli. Böylece "tarayıcı ikisini ayırt edebiliyor mu?" test edilir.
 
@@ -53,14 +53,14 @@ Tıbbi test gibi düşün: hasta mı değil mi + test ne dedi?
 - **FPR** = `FP / (FP + TN)` → "Temiz sayfalarda ne sıklıkla ötüyor?"
 
 ```
-Örnek: TP=35 FP=2 FN=128 TN=57
-→ Precision 0.95 (alarmlar güvenilir) ama Recall 0.21 (çoğu açığı kaçırmış!)
+Örnek (gerçek ZAP 2.17 koşusu, v1 GT): TP=34 FP=13 FN=129 TN=46
+→ Precision 0.72 (alarmlar çoğunlukla güvenilir) ama Recall 0.21 (çoğu açığı kaçırmış!)
 → Yorum: "sakin ama kör bir tarayıcı"
 ```
 
 ---
 
-## 4. FP-tuzağı nedir? Neden 12 tane var? 🟡
+## 4. FP-tuzağı nedir? Neden 116 tane var? 🟡
 
 Gerçek DAST araçları bazı **masum kalıplara** yanlış alarm verir. Bu proje o kalıpları bilerek barındırır:
 
@@ -76,6 +76,8 @@ Gerçek DAST araçları bazı **masum kalıplara** yanlış alarm verir. Bu proj
 
 > FP-tuzağına alarm veren tarayıcı **gürültücüdür**; sessiz kalan **olgun**.
 
+V2'de klasik 12 tuzağa ek **104 decoy** (`/fphell/*`) eklendi: sahte SQL hataları, nötralize yansımalar, hiç ateşlenmeyen sahte callback'ler, meşru yavaşlıklar, ÖRNEK/TEST secret'lar, yanıltıcı auth yanıtları, WAF-benzeri sayfalar, sahte ifşalar. Her decoy'un **makineyle doğrulanmış negatif proof'u** var (`verify.py` → `104/104 temiz`): tuzak metin ortada, zaaf işareti yok. Yani decoy'lar "muhtemelen temiz" değil, **kanıtlı temiz**.
+
 ---
 
 ## 5. Kimler için?
@@ -84,8 +86,8 @@ Gerçek DAST araçları bazı **masum kalıplara** yanlış alarm verir. Bu proj
 |---|---|
 | 🧪 **Pentester / AppSec uzmanı** | Kullandığı tarayıcının kör noktalarını öğrenir, manuel teste oradan başlar |
 | 🔄 **DevSecOps mühendisi** | Pipeline'a koyacağı tarayıcıyı sayıyla seçer (ZAP vs Nuclei vs Burp → ΔF1 tablosu) |
-| 🎓 **Öğrenci / eğitim veren** | 222 gerçekçi senaryoda zafiyetleri eliyle sömürür (dashboard'daki "dene" linkleri + `test_hint`'ler) |
-| 🔬 **Araştırmacı** | Yeni dedektör fikrini 163 proof'lu hedefte benchmark'lar, kategoriye göre F1 raporlar |
+| 🎓 **Öğrenci / eğitim veren** | 383 gerçekçi senaryoda zafiyetleri eliyle sömürür (dashboard'daki "dene" linkleri + `test_hint`'ler) |
+| 🔬 **Araştırmacı** | Yeni dedektör fikrini 194 proof'lu hedefte benchmark'lar, kategori×zorluk F1 raporlar |
 | 🧑‍💼 **Yönetici** | "Tarayıcımız %X recall ile çalışıyor" diye raporlanabilir metrik alır |
 
 ---
@@ -94,10 +96,11 @@ Gerçek DAST araçları bazı **masum kalıplara** yanlış alarm verir. Bu proj
 
 | | Bu proje | Klasik DVWA / Juice Shop | Gerçek uygulama |
 |---|---|---|---|
-| Cevap anahtarı | ✅ 222 endpoint'lik `ground-truth.json` | ❌ yok / kısmi | ❌ bilinmiyor |
-| Skorlayıcı | ✅ `evaluate.py` (TP/FP/FN/TN + F1) | ❌ | ❌ |
-| FP ölçümü | ✅ 12 tuzak + 47 güvenli ikiz | ❌ | ❌ |
-| Doğrulanabilirlik | ✅ `verify.py` → 163/163 proof | ❌ | ❌ |
+| Cevap anahtarı | ✅ 383 satırlık `ground-truth.json` (zorluk + oracle + simüle/gerçek ayrımıyla) | ❌ yok / kısmi | ❌ bilinmiyor |
+| Skorlayıcı | ✅ `evaluate.py` (TP/FP/FN/TN + F1 + zorluk kırılımı) + `report.py` (JSON+MD) | ❌ | ❌ |
+| FP ölçümü | ✅ 116 tuzak + 73 güvenli ikiz | ❌ | ❌ |
+| Doğrulanabilirlik | ✅ `verify.py` → 194/194 proof + 104/104 decoy negatifi | ❌ | ❌ |
+| Adil ölçüm | ✅ Blind Mode (cevap anahtarı gizli) + tohumlu reset | ❌ | ❌ |
 | Tarama geçmişi | ✅ `scan.py` ile kalıcı koşu kaydı | ❌ | ❌ |
 | FN analizi | ✅ sinyal etiketli `requests.log` | ❌ | ❌ |
 | Güvenli tarama | ✅ tehlikeli vektörler mock | ⚠️ kısmen gerçek | ⚠️ riskli |
@@ -119,6 +122,17 @@ npm start
 4. **Zinciri dene:** `/app` SPA'sında login ol → `PUT /app/api/profile {"role":"admin"}` → admin token al → `/app/api/feedback-view`'da stored XSS tetikle
 
 Hepsi `ground-truth.json`'da `test_hint` olarak yazılıdır.
+
+---
+
+## 8. V2'de yeni (Extreme Range)
+
+- **14 extreme grubu:** Shadow-DOM SPA, rol-farklı stored/blind XSS, multi-tenant IDOR/BOLA, GraphQL iç-içe yetki + federasyon, OAuth/OIDC akışları, iş-akışı atlama, deterministik race, asenkron second-order, kalibreli blind timing, kademeli OOB, parser farklılıkları, paylaşımlı-cache, soft-404/limit karışıklığı, WebSocket/SSE/gRPC-Web.
+- **Blind Mode:** `DAST_MODE=blind` ile cevap anahtarı (header, dashboard, API) gizlenir — adil ölçüm modu. Varsayılan transparent (öğrenme) değişmedi.
+- **Zorluk + oracle:** her satırda `difficulty` (easy/medium/hard/chaos/fp-hunter) ve makine-okunur `oracle`; raporlar zorluk kırılımlı.
+- **Simüle vs gerçek:** `execution` alanı — mock iddia (`simulated`, örn. sahte metadata) ile gerçekten icra edilen davranış (`live`, örn. gerçek 3 sn uyku, gerçek HMAC) raporda ayrı yazılır.
+
+Detay: [ZORLUK-SEVIYELERI.md](./ZORLUK-SEVIYELERI.md), [BLIND-MODE.md](./BLIND-MODE.md) (EN), [ORACLES.md](./ORACLES.md) (EN).
 
 ---
 
