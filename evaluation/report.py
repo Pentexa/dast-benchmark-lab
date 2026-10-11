@@ -148,7 +148,7 @@ def main():
     ap.add_argument("--scanner", default=None)
     ap.add_argument("--mode", default="unauthenticated",
                     choices=["unauthenticated", "authenticated-full", "advanced-protocol"])
-    ap.add_argument("--target", default=os.environ.get("DAST_TARGET", "http://localhost:3000"))
+    ap.add_argument("--target", default=os.environ.get("DAST_TARGET", "http://localhost:8800"))
     ap.add_argument("--out", default=None, help="output basename (default: reports/<ts>-<scanner>)")
     args = ap.parse_args()
 

@@ -36,7 +36,7 @@ Paths and `test_hint`-free discovery stay visible: a scanner must crawl, but not
 ## Checking blindness
 
 ```powershell
-python tests/acceptance.py --target http://localhost:3000   # B3 asserts run per reported mode
+python tests/acceptance.py --target http://localhost:8800   # B3 asserts run per reported mode
 ```
 
 B3 fails if any leak exists. See also [RESET.md](./RESET.md) and [ORACLES.md](./ORACLES.md).

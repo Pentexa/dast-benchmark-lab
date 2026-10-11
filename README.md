@@ -41,7 +41,7 @@
 
 ```mermaid
 flowchart LR
-    A[🔴 194 Vulnerable\nTP expected] --> S[🎯 Mock Server\n:3000]
+    A[🔴 194 Vulnerable\nTP expected] --> S[🎯 Mock Server\n:8800]
     B[🟢 73 Secure\nTN expected] --> S
     C[🟡 116 FP-Traps\nTN expected] --> S
     S --> D[ZAP / Nuclei / Burp\nscan]
@@ -64,7 +64,7 @@ Concept deep-dive (Turkish) → **[📖 docs/NE-ISE-YARAR.md](./docs/NE-ISE-YARA
 | 📊 **Persistent score tracking** | `scan.py start/finish` → every run stored as JSON under `evaluation/runs/`. Duration, request count, speed, coverage, CPU/RAM, 5xx, OOB, **ΔF1 vs previous run**. |
 | 🔍 **FN analysis** | Every request lands in `logs/requests.log` with a signal tag (`sqli_probe`, `xss_probe`...). Distinguish "tried but missed" from "never tried". |
 | 🛡️ **Safe to scan** | CMDi / SSRF / XXE / Deserialization / RFI / Zip Slip **never really execute** — pattern-match mocks. `ping` / `cat /etc/passwd` outputs are fake text. |
-| 🧭 **Live dashboard** | `http://localhost:3000/dashboard` → 383-endpoint list with try-it links + score table + OOB triggers. |
+| 🧭 **Live dashboard** | `http://localhost:8800/dashboard` → 383-endpoint list with try-it links + score table + OOB triggers. |
 
 ---
 
@@ -118,7 +118,7 @@ npm install
 
 # 2) Start the server
 npm start
-# [+] DAST mock server: http://localhost:3000/dashboard
+# [+] DAST mock server: http://localhost:8800/dashboard
 ```
 
 ```powershell
@@ -128,7 +128,7 @@ python evaluation/verify.py
 # === DECOY: 104/104 clean ===
 ```
 
-🎉 Open **`http://localhost:3000/dashboard`** — you'll see all endpoints with "try it" links.
+🎉 Open **`http://localhost:8800/dashboard`** — you'll see all endpoints with "try it" links.
 
 Quick test payloads:
 
@@ -157,14 +157,14 @@ python evaluation/scan.py start --scanner "ZAP 2.14"
 # 2) Run the scanner (example: ZAP baseline + resource monitor IN PARALLEL)
 pip install psutil
 python evaluation/agent.py --process java   # separate terminal, for ZAP
-docker run --rm --network host ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t http://localhost:3000 -J zap-report.json
+docker run --rm --network host ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t http://localhost:8800 -J zap-report.json
 
 # 3) Finish + measure + save
 python evaluation/scan.py finish --findings zap-report.json --format zap --exit-code 0 --errors 0 --note "first ZAP run"
 
 # 4) See history
 python evaluation/scan.py list
-# or dashboard: http://localhost:3000/dashboard  |  GET /api/scans
+# or dashboard: http://localhost:8800/dashboard  |  GET /api/scans
 ```
 
 One-shot quick look (no record saved):

@@ -25,14 +25,14 @@ Her zaafın yanında aynı görünümlü temiz bir ikiz var (`/injection/sqli` �
 **`npm install` hata veriyor?**
 Node 18+ kullandığından emin ol (`node --version`). Kurumsal proxy arkasındaysan `npm config set registry https://registry.npmjs.org/` dene, sonra tekrar kur.
 
-**`EADDRINUSE :::3000`?**
+**`EADDRINUSE :::8800`?**
 Port dolu. Ya kullanan uygulamayı kapat ya da başka portta çalıştır: PowerShell'de `$env:PORT=4000; npm start`.
 
 **`python` komutu yok?**
 Python PATH'e ekli değildir. `py --version` dene; olmuyorsa python.org'dan "Add python.exe to PATH" işaretli şekilde yeniden kur.
 
 **Dashboard açılmıyor?**
-Önce terminalde `[+] DAST mock server` satırını gör. Sonra `http://localhost:3000/dashboard` (http**s** değil, sondaki slash'e dikkat). Antivirüs/proxy localhost'u kesiyorsa geçici kapatıp dene.
+Önce terminalde `[+] DAST mock server` satırını gör. Sonra `http://localhost:8800/dashboard` (http**s** değil, sondaki slash'e dikkat). Antivirüs/proxy localhost'u kesiyorsa geçici kapatıp dene.
 
 ## Tarama
 
@@ -40,7 +40,7 @@ Python PATH'e ekli değildir. `py --version` dene; olmuyorsa python.org'dan "Add
 Yanlış rapor tipini indirmişsin (Auth/Log raporu gibi). ZAP'ta **Report → Generate Report → JSON Report** (alert'li olan) seçmelisin. `evaluate.py` bu durumda uyarı verir.
 
 **Nuclei hiçbir şey bulamadı, normal mi?**
-Baseline Nuclei şablonları bu mock'un bazı özel yollarını taramayabilir. Önce `nuclei -u http://localhost:3000 -t httptechnologies/ -jsonl` gibi ilgili şablonlarla dene; coverage'ı `GET /api/stats` ile kontrol et.
+Baseline Nuclei şablonları bu mock'un bazı özel yollarını taramayabilir. Önce `nuclei -u http://localhost:8800 -t httptechnologies/ -jsonl` gibi ilgili şablonlarla dene; coverage'ı `GET /api/stats` ile kontrol et.
 
 **Tarayıcı `/app` sayfalarını hiç gezmemiş?**
 `/app` JS-render SPA'dır; klasik spider yetmez. ZAP'ta **AJAX Spider** aç veya authenticated scan ile giriş yapmış bağlam kullan. `logs/requests.log`'da `/app/api/*` isteği yoksa crawl eksiktir.
@@ -52,7 +52,7 @@ Endpoint gerçekten 3 saniye uyur. Tarayıcının "time-based" eşiği/timeout'u
 `/runtime/feedback` adresine `callback` ile payload bırak, `/runtime/feedback-view` tetikler ve `/oob/*`'a callback düşer. V2'de ek olarak: rol-farklı kör kuyruk (`/xss2/blindreply` → `/xss2/modqueue`) ve kademeli OOB (`POST /oob2/register` → `GET /oob2/fire` → 2 sn sonra sayaç artar). `GET /api/oob-hits` sayacını koşu öncesi/sonrası karşılaştır.
 
 **WebSocket taraması nasıl yapılır?**
-`ws://localhost:3000/realtime/ws` — Origin sorulmaz, echo yapar (açık). Karşılaştırma için `/realtime/ws-secure` (yabancı Origin'e 403). ZAP'ta WebSocket eklentisiyle pasif dinle + manuel gönder; SSE için `/realtime/sse?msg=`, gRPC-Web için `POST /realtime/grpc`.
+`ws://localhost:8800/realtime/ws` — Origin sorulmaz, echo yapar (açık). Karşılaştırma için `/realtime/ws-secure` (yabancı Origin'e 403). ZAP'ta WebSocket eklentisiyle pasif dinle + manuel gönder; SSE için `/realtime/sse?msg=`, gRPC-Web için `POST /realtime/grpc`.
 
 ## Skorlama
 

@@ -8,7 +8,7 @@ Kullanım:
   python evaluate.py --findings rapor.json --format zap
   python evaluate.py --findings rapor.json --format generic
 
-Generic format: [{"url": "http://localhost:3000/xss/reflected?name=...", "name": "Reflected XSS"}, ...]
+Generic format: [{"url": "http://localhost:8800/xss/reflected?name=...", "name": "Reflected XSS"}, ...]
 ZAP format: OWASP ZAP JSON raporundaki "site > alerts" yapısı otomatik parse edilir.
 Nuclei format: -jsonl çıktısındaki her satırdaki "matched-at" alanı parse edilir (--format nuclei).
 """

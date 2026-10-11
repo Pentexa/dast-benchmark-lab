@@ -113,7 +113,7 @@ V2'de klasik 12 tuzağa ek **104 decoy** (`/fphell/*`) eklendi: sahte SQL hatala
 
 ```powershell
 npm start
-# http://localhost:3000/dashboard aç
+# http://localhost:8800/dashboard aç
 ```
 
 1. **Zafiyetliyi dene:** `/xss/reflected?name=<script>alert(1)</script>` → script yansır (🔴 TP beklenir)

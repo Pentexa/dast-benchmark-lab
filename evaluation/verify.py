@@ -5,7 +5,7 @@ sömürülebilir davranışı TEYİT eder -> evaluation/verification.json
 (doğrulanmış zafiyet sayısı).
 
 Kullanım:
-  python evaluation/verify.py [--target http://localhost:3000]
+  python evaluation/verify.py [--target http://localhost:8800]
 
 Çıktı: {timestamp, total, verified, reachable, failed:[{id, detail}]}
   verified   = proof marker bulundu (sömürülebilir)
@@ -21,7 +21,7 @@ BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(BASE, "evaluation"))
 from evaluate import load_gt
 
-TARGET = os.environ.get("DAST_TARGET", "http://localhost:3000")
+TARGET = os.environ.get("DAST_TARGET", "http://localhost:8800")
 OUT = os.path.join(BASE, "evaluation", "verification.json")
 
 

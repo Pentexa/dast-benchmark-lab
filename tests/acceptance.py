@@ -13,7 +13,7 @@ Live checks (--target, needs running server):
      (blind asserts run only when server reports mode=blind)
 
 Usage:
-  python tests/acceptance.py [--target http://localhost:3000]
+  python tests/acceptance.py [--target http://localhost:8800]
 """
 import json, os, sys, argparse
 from urllib.request import Request, urlopen
@@ -120,7 +120,7 @@ def live_checks(target, gt):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--target", default=os.environ.get("DAST_TARGET", "http://localhost:3000"))
+    ap.add_argument("--target", default=os.environ.get("DAST_TARGET", "http://localhost:8800"))
     args = ap.parse_args()
     gt = static_checks()
     live_checks(args.target, gt)

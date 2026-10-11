@@ -44,12 +44,12 @@ npm start
 Başarılı çıktı:
 
 ```
-[+] DAST mock server (transparent): http://localhost:3000/dashboard
+[+] DAST mock server (transparent): http://localhost:8800/dashboard
 ```
 
 > Adil ölçüm için **blind mod** (cevap anahtarı gizli): `$env:DAST_MODE="blind"; npm start` → detay: [BLIND-MODE.md](./BLIND-MODE.md) (EN)
 
-Tarayıcıda aç: **http://localhost:3000/dashboard** 🎉
+Tarayıcıda aç: **http://localhost:8800/dashboard** 🎉
 
 Durdurmak için: `Ctrl+C`. Geliştirme modunda otomatik yeniden başlatma için:
 
@@ -86,13 +86,13 @@ Hızlı kabul paketi (şema + tutarlılık + canlı spot-kontroller, <60 sn):
 npm test   # python tests/acceptance.py
 ```
 
-> `sunucuya ulaşılamadı` hatası alırsan → sunucunun `npm start` ile ayakta olduğundan ve `http://localhost:3000/dashboard` adresinin açıldığından emin ol.
+> `sunucuya ulaşılamadı` hatası alırsan → sunucunun `npm start` ile ayakta olduğundan ve `http://localhost:8800/dashboard` adresinin açıldığından emin ol.
 
 ---
 
 ## 5. Port değiştirme
 
-Varsayılan port `3000`'dir. Doluysa veya değiştirmek istersen:
+Varsayılan port `8800`'dir. Doluysa veya değiştirmek istersen:
 
 ```powershell
 # Windows PowerShell
@@ -102,7 +102,7 @@ $env:PORT=4000; npm start
 PORT=4000 npm start
 ```
 
-Python tarafına da söyle (yoksa `http://localhost:3000` varsayar):
+Python tarafına da söyle (yoksa `http://localhost:8800` varsayar):
 
 ```powershell
 $env:DAST_TARGET="http://localhost:4000"; python evaluation/verify.py
@@ -130,15 +130,15 @@ Detay: [RESET.md](./RESET.md) (EN). Modlar ve kimlik paketi: [AUTH-PACK.md](./AU
 Sunucu host'ta çalışırken ZAP'ı Docker'dan koşturmak en temiz yoldur:
 
 ```powershell
-docker run --rm --network host ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t http://localhost:3000 -J zap-rapor.json
+docker run --rm --network host ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t http://localhost:8800 -J zap-rapor.json
 ```
 
-> Windows'ta `--network host` çalışmazsa `http://host.docker.internal:3000` adresini kullan.
+> Windows'ta `--network host` çalışmazsa `http://host.docker.internal:8800` adresini kullan.
 
 Nuclei (kuruluysa):
 
 ```powershell
-nuclei -u http://localhost:3000 -jsonl -o nuclei.jsonl
+nuclei -u http://localhost:8800 -jsonl -o nuclei.jsonl
 ```
 
 Raporu skora çevirme → [TARAMA-VE-OLCUM.md](./TARAMA-VE-OLCUM.md)
@@ -149,13 +149,13 @@ Raporu skora çevirme → [TARAMA-VE-OLCUM.md](./TARAMA-VE-OLCUM.md)
 
 | Sorun | Neden | Çözüm |
 |---|---|---|
-| `npm start` → `EADDRINUSE :::3000` | Port dolu | Başka uygulamayı kapat veya [port değiştir](#5-port-değiştirme) |
+| `npm start` → `EADDRINUSE :::8800` | Port dolu | Başka uygulamayı kapat veya [port değiştir](#5-port-değiştirme) |
 | `python` bulunamadı | Python PATH'te yok | Python'u "Add to PATH" seçeneğiyle yeniden kur; veya `py` komutunu dene |
-| `verify.py` → bağlantı hatası | Sunucu kapalı | `npm start` çalışıyor mu? `http://localhost:3000/dashboard` açılıyor mu? |
+| `verify.py` → bağlantı hatası | Sunucu kapalı | `npm start` çalışıyor mu? `http://localhost:8800/dashboard` açılıyor mu? |
 | `194/194` yerine düşük sayı | Eski kod / yarım başlatma / sıfırlanmamış durum | `npm start`'ı yeniden başlat, `python evaluation/verify.py --seed 7` ile tekrar koştur |
 | `DECOY` sızıntısı (104/104 değil) | Kodda gerçek bir kirlenme | Hangi ID olduğunu not edip issue aç — benchmark bug'ı demektir |
 | Dashboard açılıyor ama `/app` boş | JS kapalı | `/app` JS-render SPA'dır, JS'i aç; API'yi direkt dene: `/app/api/login` |
-| ZAP Docker'dan bağlanamıyor (Win) | `host` network yok | Hedef olarak `http://host.docker.internal:3000` kullan |
+| ZAP Docker'dan bağlanamıyor (Win) | `host` network yok | Hedef olarak `http://host.docker.internal:8800` kullan |
 | `agent.py` CPU göstermiyor | `psutil` yok | `pip install psutil` kur, tekrar dene |
 | `logs/` klasörü yok | Henüz istek gelmedi | İlk istekte otomatik oluşur (`lib/requestLogger.js`) |
 
@@ -167,7 +167,7 @@ Daha fazlası → [SSS.md](./SSS.md)
 
 - [ ] `node --version` → v18+
 - [ ] `npm install` hatasız bitti
-- [ ] `npm start` → `http://localhost:3000/dashboard` açılıyor
+- [ ] `npm start` → `http://localhost:8800/dashboard` açılıyor
 - [ ] `python evaluation/verify.py` → `194/194` + `104/104`
 - [ ] `npm test` → `ACCEPTANCE: PASS`
 - [ ] Dashboard'da endpoint tablosu + skor tablosu görünüyor

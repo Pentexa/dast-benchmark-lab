@@ -25,7 +25,7 @@ python evaluation/scan.py finish --findings zap-rapor.json --format zap --exit-c
 
 # 4) Geçmişi listele / dashboard'dan izle
 python evaluation/scan.py list
-# http://localhost:3000/dashboard  |  GET /api/scans
+# http://localhost:8800/dashboard  |  GET /api/scans
 ```
 
 Kaydedilen dosya: `evaluation/runs/run-<tarih>-<tarayıcı>.json` — **silinmez**, araç karşılaştırması buradan yapılır.
@@ -59,14 +59,14 @@ python evaluation/report.py --findings zap.json --format zap --scanner "ZAP 2.17
 ### OWASP ZAP — baseline (hızlı)
 
 ```powershell
-docker run --rm --network host ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t http://localhost:3000 -J zap-rapor.json
+docker run --rm --network host ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t http://localhost:8800 -J zap-rapor.json
 python evaluation/evaluate.py --findings zap-rapor.json --format zap
 ```
 
 ### OWASP ZAP — full scan (derin, yavaş)
 
 ```powershell
-docker run --rm --network host ghcr.io/zaproxy/zaproxy:stable zap-full-scan.py -t http://localhost:3000 -J zap-full.json
+docker run --rm --network host ghcr.io/zaproxy/zaproxy:stable zap-full-scan.py -t http://localhost:8800 -J zap-full.json
 python evaluation/scan.py finish --findings zap-full.json --format zap --note "full scan"
 ```
 
@@ -75,13 +75,13 @@ python evaluation/scan.py finish --findings zap-full.json --format zap --note "f
 ### Nuclei
 
 ```powershell
-nuclei -u http://localhost:3000 -jsonl -o nuclei.jsonl
+nuclei -u http://localhost:8800 -jsonl -o nuclei.jsonl
 python evaluation/evaluate.py --findings nuclei.jsonl --format nuclei
 ```
 
 ### Burp Suite (manuel)
 
-1. Burp'ta Spider + Active Scan'i `http://localhost:3000` hedefine koştur
+1. Burp'ta Spider + Active Scan'i `http://localhost:8800` hedefine koştur
 2. Issue'ları dışa aktar (XML veya SARIF)
 3. Dönüştür:
 
@@ -94,8 +94,8 @@ python evaluation/evaluate.py --findings burp.sarif --format sarif
 
 ```json
 [
-  {"url": "http://localhost:3000/xss/reflected?name=<script>alert(1)</script>", "name": "Reflected XSS"},
-  {"url": "http://localhost:3000/injection/sqli?id=1", "name": "SQL Injection", "vuln_id": "INJ-SQLI-01", "evidence": "SQL syntax ..."}
+  {"url": "http://localhost:8800/xss/reflected?name=<script>alert(1)</script>", "name": "Reflected XSS"},
+  {"url": "http://localhost:8800/injection/sqli?id=1", "name": "SQL Injection", "vuln_id": "INJ-SQLI-01", "evidence": "SQL syntax ..."}
 ]
 ```
 
@@ -176,9 +176,9 @@ Blind XSS / blind SSRF / log4shell payload'ları `/oob/*` adresine callback bır
 
 ```powershell
 # tetik örneği
-Invoke-WebRequest "http://localhost:3000/oob/t123?x=1"
+Invoke-WebRequest "http://localhost:8800/oob/t123?x=1"
 # sayaç
-Invoke-RestMethod http://localhost:3000/api/oob-hits
+Invoke-RestMethod http://localhost:8800/api/oob-hits
 ```
 
 `scan.py finish` pencere içindeki OOB sayısını kayda yazar (`oob_callbacks_in_window`). Kör zafiyetleri bulan tarayıcılar burada belli olur.

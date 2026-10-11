@@ -23,7 +23,7 @@ RUNS_DIR = os.path.join(BASE, "evaluation", "runs")
 ACTIVE_FILE = os.path.join(BASE, "evaluation", ".scan-active.json")
 REQ_LOG = os.path.join(BASE, "logs", "requests.log")
 OOB_LOG = os.path.join(BASE, "logs", "oob.log")
-TARGET = os.environ.get("DAST_TARGET", "http://localhost:3000")
+TARGET = os.environ.get("DAST_TARGET", "http://localhost:8800")
 
 sys.path.insert(0, os.path.join(BASE, "evaluation"))
 from evaluate import load_gt, load_findings, compute_metrics, norm_path, match_ground_truth
