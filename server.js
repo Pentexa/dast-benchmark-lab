@@ -36,6 +36,21 @@ app.use('/http', require('./routes/cache')); // /http/method, /http/smuggle alia
 app.use('/runtime', require('./routes/runtime'));
 app.use('/oob', require('./routes/oob')); // kör callback toplayıcı (GT dışı ölçüm altyapısı)
 app.use('/app', require('./routes/shopapp')); // Juice Shop seviyesi SPA + zincirli akışlar
+// P1 Extreme Range V2: 14 yeni grup (izolasyonlu, doğrulanabilir senaryolar)
+app.use('/spa2', require('./routes/spa2'));
+app.use('/xss2', require('./routes/xss2'));
+app.use('/tenant', require('./routes/tenant'));
+app.use('/gql2', require('./routes/gql2'));
+app.use('/oidc', require('./routes/oidc'));
+app.use('/flow', require('./routes/flow'));
+app.use('/race2', require('./routes/race2'));
+app.use('/async2', require('./routes/async2'));
+app.use('/blindtime', require('./routes/blindtime'));
+app.use('/oob2', require('./routes/oob2'));
+app.use('/parser', require('./routes/parser'));
+app.use('/cache2', require('./routes/cache2'));
+app.use('/confuse', require('./routes/confuse'));
+app.use('/realtime', require('./routes/realtime'));
 // Kaos katmanı: aynı router birden çok namespace'e (UNION→injection, register→runtime,
 // motorlar→ssti, fallback→legacy). Tanımlı route'lar önce eşleşir, /:page en sonda.
 app.use('/injection', require('./routes/chaos'));
@@ -200,4 +215,6 @@ app.get('/api/scans', (req, res) => {
 // 404 + generic error (secure davranış)
 app.use((req, res) => res.status(404).send('<h1>404</h1><p>Referans: ERR-404</p>'));
 
-app.listen(PORT, () => console.log(`[+] DAST mock server: http://localhost:${PORT}/dashboard`));
+const server = app.listen(PORT, () => console.log(`[+] DAST mock server (${require('./lib/mode').mode()}): http://localhost:${PORT}/dashboard`));
+// P1.14 WebSocket attach (ws + ws-secure)
+try { require('./routes/realtime').attach(server); } catch (e) { console.log('[!] realtime attach atlandı:', e.message); }

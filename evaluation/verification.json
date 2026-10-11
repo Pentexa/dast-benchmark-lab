@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-10-11T18:57:51+0300",
-  "target": "http://localhost:3000",
+  "timestamp": "2026-10-11T19:03:22+0300",
+  "target": "http://localhost:4001",
   "seed": "7",
-  "total_vulnerable": 163,
-  "verified": 163,
+  "total_vulnerable": 194,
+  "verified": 194,
   "reachable": 0,
   "failed": [],
   "failed_ids": []
