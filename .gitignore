@@ -1,0 +1,7 @@
+node_modules/
+logs/
+*.log
+.env
+
+__pycache__/
+evaluation/.scan-active.json

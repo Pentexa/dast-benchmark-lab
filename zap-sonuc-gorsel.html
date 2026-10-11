@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>ZAP 2.17 Tarama Sonucu — Görsel Rapor</title>
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,Segoe UI,Arial;margin:0;background:#0f1420;color:#e8ecf4}
+.wrap{max-width:1080px;margin:0 auto;padding:24px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:16px;margin:28px 0 12px;color:#9fb3d8}
+.sub{color:#8a94a8;font-size:13px;margin-bottom:16px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.card{background:#1a2236;border:1px solid #2b3864;border-radius:12px;padding:14px}
+.card b{font-size:24px;display:block}.card span{font-size:12px;color:#8a94a8}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:800px){.grid2{grid-template-columns:1fr}}
+.panel{background:#1a2236;border:1px solid #2b3864;border-radius:12px;padding:16px}
+.bar-row{display:grid;grid-template-columns:170px 1fr 46px;align-items:center;gap:8px;margin:5px 0;font-size:12px}
+.bar-bg{background:#0c1220;border-radius:6px;height:16px;position:relative;overflow:hidden}
+.bar-fill{height:100%;border-radius:6px}
+.tp{background:#22c55e}.fp{background:#ef4444}.fn{background:#f59e0b}.tn{background:#3b82f6}
+.f1bar{background:linear-gradient(90deg,#7c3aed,#06b6d4)}
+.legend{display:flex;gap:14px;font-size:12px;margin-top:10px;flex-wrap:wrap}
+.dot{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:5px;vertical-align:middle}
+table{width:100%;border-collapse:collapse;font-size:12px}
+td,th{border-bottom:1px solid #2b3864;padding:6px 8px;text-align:right}
+td:first-child,th:first-child{text-align:left}
+.foot{color:#8a94a8;font-size:12px;margin-top:24px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>🎯 ZAP 2.17 — DAST Tarama Görsel Raporu</h1>
+<div class="sub">run-20261011-111053 • Hedef: http://127.0.0.1:3000 • Süre: 835.9 sn (14 dk) • 17.419 istek • Coverage: 143/222 (%64.4)</div>
+
+<div class="cards">
+<div class="card"><b style="color:#22c55e">34</b><span>TP (bulunan gerçek zaaf)</span></div>
+<div class="card"><b style="color:#ef4444">13</b><span>FP (yanlış alarm)</span></div>
+<div class="card"><b style="color:#f59e0b">129</b><span>FN (kaçan zaaf)</span></div>
+<div class="card"><b style="color:#3b82f6">46</b><span>TN (doğru sessizlik)</span></div>
+<div class="card"><b>0.72</b><span>Precision</span></div>
+<div class="card"><b>0.21</b><span>Recall</span></div>
+<div class="card"><b>0.32</b><span>F1</span></div>
+</div>
+
+<div class="grid2">
+<div class="panel">
+<h2 style="margin-top:0">TP / FP / FN / TN Dağılımı (222 endpoint)</h2>
+<svg viewBox="0 0 220 220" width="220" height="220" style="display:block;margin:0 auto">
+<circle cx="110" cy="110" r="80" fill="none" stroke="#22c55e" stroke-width="34" stroke-dasharray="77.1 502.6" transform="rotate(-90 110 110)"/>
+<circle cx="110" cy="110" r="80" fill="none" stroke="#ef4444" stroke-width="34" stroke-dasharray="29.5 502.6" stroke-dashoffset="-77.1" transform="rotate(-90 110 110)"/>
+<circle cx="110" cy="110" r="80" fill="none" stroke="#f59e0b" stroke-width="34" stroke-dasharray="292.1 502.6" stroke-dashoffset="-106.6" transform="rotate(-90 110 110)"/>
+<circle cx="110" cy="110" r="80" fill="none" stroke="#3b82f6" stroke-width="34" stroke-dasharray="104 502.6" stroke-dashoffset="-398.7" transform="rotate(-90 110 110)"/>
+<text x="110" y="105" text-anchor="middle" fill="#fff" font-size="26" font-weight="bold">F1 0.32</text>
+<text x="110" y="128" text-anchor="middle" fill="#8a94a8" font-size="12">34 TP / 129 FN</text>
+</svg>
+<div class="legend">
+<span><i class="dot tp"></i>TP 34 (%15)</span>
+<span><i class="dot fp"></i>FP 13 (%6)</span>
+<span><i class="dot fn"></i>FN 129 (%58)</span>
+<span><i class="dot tn"></i>TN 46 (%21)</span>
+</div>
+</div>
+
+<div class="panel">
+<h2 style="margin-top:0">Skorlar</h2>
+<div class="bar-row"><span>Precision</span><div class="bar-bg"><div class="bar-fill" style="width:72%;background:#22c55e"></div></div><b>0.72</b></div>
+<div class="bar-row"><span>Recall</span><div class="bar-bg"><div class="bar-fill" style="width:21%;background:#f59e0b"></div></div><b>0.21</b></div>
+<div class="bar-row"><span>F1</span><div class="bar-bg"><div class="bar-fill" style="width:32%;background:#7c3aed"></div></div><b>0.32</b></div>
+<div class="bar-row"><span>FPR (yanlış alarm oranı)</span><div class="bar-bg"><div class="bar-fill" style="width:22%;background:#ef4444"></div></div><b>0.22</b></div>
+<h2>Tarama profili</h2>
+<div class="bar-row"><span>Coverage</span><div class="bar-bg"><div class="bar-fill" style="width:64%;background:#06b6d4"></div></div><b>%64</b></div>
+<div class="bar-row"><span>İstek hızı (ort/tepe)</span><div class="bar-bg"><div class="bar-fill" style="width:8%;background:#3b82f6"></div></div><b>21/s</b></div>
+<div style="font-size:12px;color:#8a94a8;margin-top:8px">GET 17.418 / POST 1 — POST yokluğu recall'u ezen ana faktör. En çok vurulan: /edge/go2 (476), /xss/reflected-secure (430).</div>
+</div>
+</div>
+
+<div class="panel" style="margin-top:16px">
+<h2 style="margin-top:0">Kategori Bazında F1 (TP / FN / FP)</h2>
+<div id="cats"></div>
+</div>
+
+<div class="panel" style="margin-top:16px">
+<h2 style="margin-top:0">Kategori Detay Tablosu</h2>
+<table>
+<tr><th>Kategori</th><th>TP</th><th>FP</th><th>FN</th><th>TN</th><th>F1</th></tr>
+<tr><td>A01-AccessControl</td><td>8</td><td>1</td><td>4</td><td>4</td><td><b>0.76</b></td></tr>
+<tr><td>A05-Misconfig</td><td>4</td><td>2</td><td>4</td><td>1</td><td><b>0.57</b></td></tr>
+<tr><td>A02-Crypto</td><td>2</td><td>1</td><td>3</td><td>0</td><td>0.50</td></tr>
+<tr><td>A05-CacheSmuggle</td><td>2</td><td>0</td><td>4</td><td>2</td><td>0.50</td></tr>
+<tr><td>Client-Side</td><td>3</td><td>1</td><td>6</td><td>3</td><td>0.46</td></tr>
+<tr><td>API-Security</td><td>2</td><td>0</td><td>7</td><td>5</td><td>0.36</td></tr>
+<tr><td>A03-Injection</td><td>5</td><td>1</td><td>18</td><td>3</td><td>0.34</td></tr>
+<tr><td>A03-XSS</td><td>2</td><td>2</td><td>6</td><td>1</td><td>0.33</td></tr>
+<tr><td>A07-Auth</td><td>5</td><td>2</td><td>18</td><td>5</td><td>0.33</td></tr>
+<tr><td>A05-Exposure</td><td>1</td><td>0</td><td>10</td><td>0</td><td>0.17</td></tr>
+<tr><td>A04-BusinessLogic</td><td>0</td><td>0</td><td>4</td><td>2</td><td>0.00</td></tr>
+<tr><td>A04-FileHandling</td><td>0</td><td>0</td><td>9</td><td>3</td><td>0.00</td></tr>
+<tr><td>A10-SSRF</td><td>0</td><td>0</td><td>6</td><td>2</td><td>0.00</td></tr>
+<tr><td>API-GraphQL</td><td>0</td><td>0</td><td>4</td><td>1</td><td>0.00</td></tr>
+<tr><td>APP-Shop</td><td>0</td><td>0</td><td>23</td><td>4</td><td>0.00</td></tr>
+</table>
+</div>
+
+<div class="foot">Kaynak: evaluation/runs/run-20261011-111053-ZAP-2.17.json • Önceki koşuya delta: dTP +32, dF1 +0.30 • Doğrulanmış zafiyet: 163/163</div>
+</div>
+<script>
+var cats=[["A01-AccessControl",8,4,1,0.76],["A05-Misconfig",4,4,2,0.57],["A02-Crypto",2,3,1,0.50],["A05-CacheSmuggle",2,4,0,0.50],["Client-Side",3,6,1,0.46],["API-Security",2,7,0,0.36],["A03-Injection",5,18,1,0.34],["A03-XSS",2,6,2,0.33],["A07-Auth",5,18,2,0.33],["A05-Exposure",1,10,0,0.17],["A04-BusinessLogic",0,4,0,0],["A04-FileHandling",0,9,0,0],["A10-SSRF",0,6,0,0],["API-GraphQL",0,4,0,0],["APP-Shop",0,23,0,0]];
+document.getElementById('cats').innerHTML=cats.map(function(c){
+var tot=c[1]+c[2]+c[3]||1;
+return '<div class="bar-row"><span>'+c[0]+'</span><div class="bar-bg"><div style="display:flex;height:100%">'
++'<div style="width:'+(100*c[1]/tot)+'%;background:#22c55e" title="TP '+c[1]+'"></div>'
++'<div style="width:'+(100*c[2]/tot)+'%;background:#f59e0b" title="FN '+c[2]+'"></div>'
++'<div style="width:'+(100*c[3]/tot)+'%;background:#ef4444" title="FP '+c[3]+'"></div>'
++'</div></div><b>'+c[4].toFixed(2)+'</b></div>'}).join('')
++'<div class="legend"><span><i class="dot tp"></i>TP</span><span><i class="dot fn"></i>FN</span><span><i class="dot fp"></i>FP</span></div>';
+</script>
+</body>
+</html>

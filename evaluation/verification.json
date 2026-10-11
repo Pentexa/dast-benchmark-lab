@@ -1,0 +1,9 @@
+{
+  "timestamp": "2026-10-10T23:59:25+0300",
+  "target": "http://localhost:3000",
+  "total_vulnerable": 163,
+  "verified": 163,
+  "reachable": 0,
+  "failed": [],
+  "failed_ids": []
+}

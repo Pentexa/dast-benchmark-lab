@@ -1,0 +1,6 @@
+[
+  {"url": "http://localhost:3000/xss/reflected?name=<script>alert(1)</script>", "name": "Reflected XSS"},
+  {"url": "http://localhost:3000/injection/sqli?id=1' OR '1'='1", "name": "SQL Injection"},
+  {"url": "http://localhost:3000/xss/reflected-secure?name=<script>alert(1)</script>", "name": "Reflected XSS (HATALI - burası güvenli, FP olmalı)"},
+  {"url": "http://localhost:3000/fp/search?q=test", "name": "SQL Injection (HATALI - yardım metni, FP olmalı)"}
+]

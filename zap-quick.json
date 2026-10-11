@@ -1,0 +1,1507 @@
+{
+	"@programName": "ZAP",
+	"@version": "2.17.0",
+	"@generated": "Paz, 11 Eki 2026 14:24:16",
+	"created": "2026-10-11T11:24:16.328797900Z",
+	"insights":[
+		{
+			"level": "Orta",
+			"reason": "Exceeded Low",
+			"site": "",
+			"key": "insight.memory.usage",
+			"description": "Percentage of memory used",
+			"statistic": "92"
+		},
+		{
+			"level": "Düşük",
+			"reason": "Uyarı",
+			"site": "",
+			"key": "insight.log.warn",
+			"description": "ZAP warnings logged - see the zap.log file for details",
+			"statistic": "31"
+		},
+		{
+			"level": "Bilgi",
+			"reason": "Bilgilendirme",
+			"site": "http://127.0.0.1:3000",
+			"key": "insight.code.2xx",
+			"description": "Percentage of responses with status code 2xx",
+			"statistic": "42"
+		},
+		{
+			"level": "Bilgi",
+			"reason": "Bilgilendirme",
+			"site": "http://127.0.0.1:3000",
+			"key": "insight.code.3xx",
+			"description": "Percentage of responses with status code 3xx",
+			"statistic": "4"
+		},
+		{
+			"level": "Bilgi",
+			"reason": "Bilgilendirme",
+			"site": "http://127.0.0.1:3000",
+			"key": "insight.code.4xx",
+			"description": "Percentage of responses with status code 4xx",
+			"statistic": "51"
+		},
+		{
+			"level": "Bilgi",
+			"reason": "Bilgilendirme",
+			"site": "http://127.0.0.1:3000",
+			"key": "insight.code.5xx",
+			"description": "Percentage of responses with status code 5xx",
+			"statistic": "1"
+		},
+		{
+			"level": "Bilgi",
+			"reason": "Bilgilendirme",
+			"site": "http://127.0.0.1:3000",
+			"key": "insight.endpoint.ctype.application/json",
+			"description": "Percentage of endpoints with content type application/json",
+			"statistic": "11"
+		},
+		{
+			"level": "Bilgi",
+			"reason": "Bilgilendirme",
+			"site": "http://127.0.0.1:3000",
+			"key": "insight.endpoint.ctype.text/html",
+			"description": "Percentage of endpoints with content type text/html",
+			"statistic": "77"
+		},
+		{
+			"level": "Bilgi",
+			"reason": "Bilgilendirme",
+			"site": "http://127.0.0.1:3000",
+			"key": "insight.endpoint.ctype.text/plain",
+			"description": "Percentage of endpoints with content type text/plain",
+			"statistic": "8"
+		},
+		{
+			"level": "Bilgi",
+			"reason": "Bilgilendirme",
+			"site": "http://127.0.0.1:3000",
+			"key": "insight.endpoint.method.GET",
+			"description": "Percentage of endpoints with method GET",
+			"statistic": "100"
+		},
+		{
+			"level": "Bilgi",
+			"reason": "Bilgilendirme",
+			"site": "http://127.0.0.1:3000",
+			"key": "insight.endpoint.total",
+			"description": "Count of total endpoints",
+			"statistic": "229"
+		},
+		{
+			"level": "Bilgi",
+			"reason": "Bilgilendirme",
+			"site": "http://127.0.0.1:3000",
+			"key": "insight.response.slow",
+			"description": "Percentage of slow responses",
+			"statistic": "11"
+		}
+	],
+	"site":[ 
+		{
+			"@name": "http://127.0.0.1:3000",
+			"@host": "127.0.0.1",
+			"@port": "3000",
+			"@ssl": "false",
+			"alerts": [ 
+				{
+					"pluginid": "20019",
+					"alertRef": "20019-1",
+					"alert": "External Redirect",
+					"name": "External Redirect",
+					"riskcode": "3",
+					"confidence": "2",
+					"riskdesc": "Y\u00FCkek (Orta)",
+					"desc": "<p>URL redirectors represent common functionality employed by web sites to forward an incoming request to an alternate resource. Bu bir \u00E7ok sebepten dolay\u0131 yap\u0131labilir ve genellikle kaynaklar\u0131n dizin yap\u0131s\u0131ndan ta\u015F\u0131nmas\u0131 ve bir \u00F6nceki yerindeki kaynaklar i\u00E7in istek yollayan kullan\u0131c\u0131lar i\u00E7in i\u015Flevselli\u011Fin bozulmas\u0131n\u0131 \u00F6nlemek i\u00E7in yap\u0131l\u0131r. URL redirectors may also be used to implement load balancing, leveraging abbreviated URLs or recording outgoing links. It is this last implementation which is often used in phishing attacks as described in the example below. URL y\u00F6nlendiricileri, do\u011Frudan bir g\u00FCvenlik a\u00E7\u0131\u011F\u0131n\u0131 temsil etmez, ancak ma\u011Fdurlar\u0131, ger\u00E7ek hedefin d\u0131\u015F\u0131ndaki bir siteye gideceklerine inand\u0131ran sosyal m\u00FChendislik yapmaya \u00E7al\u0131\u015Fan sald\u0131rganlar taraf\u0131ndan istismar edilebilirler.</p>",
+					"instances":[ 
+						{
+							"id": "544",
+							"uri": "http://127.0.0.1:3000/authx/oauth?client_id=shop&redirect_uri=https%3A%2F%2F2520045595509570066.owasp.org&response_type=code",
+							"nodeName": "http:\/\/127.0.0.1:3000\/authx\/oauth (client_id,redirect_uri,response_type)",
+							"method": "GET",
+							"param": "redirect_uri",
+							"attack": "https://2520045595509570066.owasp.org",
+							"evidence": "https://2520045595509570066.owasp.org",
+							"otherinfo": "The response contains a redirect in its Location header which allows an external Url to be set."
+						},
+						{
+							"id": "570",
+							"uri": "http://127.0.0.1:3000/authx/oauth-nostate?client_id=x&redirect_uri=https%3A%2F%2F2520045595509570066.owasp.org",
+							"nodeName": "http:\/\/127.0.0.1:3000\/authx\/oauth-nostate (client_id,redirect_uri)",
+							"method": "GET",
+							"param": "redirect_uri",
+							"attack": "https://2520045595509570066.owasp.org",
+							"evidence": "https://2520045595509570066.owasp.org",
+							"otherinfo": "The response contains a redirect in its Location header which allows an external Url to be set."
+						},
+						{
+							"id": "605",
+							"uri": "http://127.0.0.1:3000/client/goto?next=https%3A%2F%2F2520045595509570066.owasp.org",
+							"nodeName": "http:\/\/127.0.0.1:3000\/client\/goto (next)",
+							"method": "GET",
+							"param": "next",
+							"attack": "https://2520045595509570066.owasp.org",
+							"evidence": "https://2520045595509570066.owasp.org",
+							"otherinfo": "The response contains a redirect in its Location header which allows an external Url to be set."
+						},
+						{
+							"id": "636",
+							"uri": "http://127.0.0.1:3000/edge/go2?next=%2Fsafe&next=https%3A%2F%2F2520045595509570066.owasp.org",
+							"nodeName": "http:\/\/127.0.0.1:3000\/edge\/go2 (next,next)",
+							"method": "GET",
+							"param": "next",
+							"attack": "https://2520045595509570066.owasp.org",
+							"evidence": "https://2520045595509570066.owasp.org",
+							"otherinfo": "The response contains a redirect in its Location header which allows an external Url to be set."
+						},
+						{
+							"id": "701",
+							"uri": "http://127.0.0.1:3000/runtime/go?next=https%3A%2F%2F2520045595509570066.owasp.org",
+							"nodeName": "http:\/\/127.0.0.1:3000\/runtime\/go (next)",
+							"method": "GET",
+							"param": "next",
+							"attack": "https://2520045595509570066.owasp.org",
+							"evidence": "https://2520045595509570066.owasp.org",
+							"otherinfo": "The response contains a redirect in its Location header which allows an external Url to be set."
+						},
+						{
+							"id": "702",
+							"uri": "http://127.0.0.1:3000/ssrf/redirect?next=https%3A%2F%2F2520045595509570066.owasp.org",
+							"nodeName": "http:\/\/127.0.0.1:3000\/ssrf\/redirect (next)",
+							"method": "GET",
+							"param": "next",
+							"attack": "https://2520045595509570066.owasp.org",
+							"evidence": "https://2520045595509570066.owasp.org",
+							"otherinfo": "The response contains a redirect in its Location header which allows an external Url to be set."
+						},
+						{
+							"id": "700",
+							"uri": "http://127.0.0.1:3000/edge/login-return?returnUrl=https%3A%2F%2F2520045595509570066.owasp.org",
+							"nodeName": "http:\/\/127.0.0.1:3000\/edge\/login-return (returnUrl)",
+							"method": "GET",
+							"param": "returnUrl",
+							"attack": "https://2520045595509570066.owasp.org",
+							"evidence": "https://2520045595509570066.owasp.org",
+							"otherinfo": "The response contains a redirect in its JavaScript code which allows an external Url to be set."
+						}
+					],
+					"count": "7",
+					"systemic": false,
+					"solution": "<p>T\u00FCm girdilerin zararl\u0131 oldu\u011Funu varsay. Use an \"accept known good\" input validation strategy, i.e., use an allow list of acceptable inputs that strictly conform to specifications. \u015Eartlara tam olarak uymayan veya ba\u015Fka \u015Feye d\u00F6n\u00FC\u015Ft\u00FCren girdileri reddedin. Do not rely exclusively on looking for malicious or malformed inputs (i.e., do not rely on a deny list). However, deny lists can be useful for detecting potential attacks or determining which inputs are so malformed that they should be rejected outright.</p><p></p><p>Giri\u015F do\u011Frulamas\u0131n\u0131 ger\u00E7ekle\u015Ftirirken, uzunlu\u011Fu, girdi t\u00FCr\u00FCn\u00FC, kabul edilebilir de\u011Ferlerin t\u00FCm\u00FCn\u00FC, eksik veya fazla girdileri, s\u00F6z dizimini, ilgili alanlardaki tutarl\u0131l\u0131k ve i\u015F kurallar\u0131na uyum da dahil olmak \u00FCzere potansiyel olarak ilgili t\u00FCm \u00F6zellikleri d\u00FC\u015F\u00FCn\u00FCn. As an example of business rule logic, \"boat\" may be syntactically valid because it only contains alphanumeric characters, but it is not valid if you are expecting colors such as \"red\" or \"blue.\"</p><p></p><p>Use an allow list of approved URLs or domains to be used for redirection.</p><p></p><p>Kullan\u0131c\u0131ya sitenizden ayr\u0131ld\u0131klar\u0131na dair net bir uyar\u0131 sa\u011Flayan ara bir feragatname sayfas\u0131 kullan\u0131n. Y\u00F6nlendirme ger\u00E7ekle\u015Fmeden \u00F6nce uzun bir zamana\u015F\u0131m\u0131 geli\u015Ftirin veya kullan\u0131c\u0131y\u0131 linke t\u0131klamas\u0131 i\u00E7in zorlay\u0131n. Feragatname sayfas\u0131 olu\u015Fturulurken XSS sorunlar\u0131ndan ka\u00E7\u0131nmaya dikkat edin.</p><p></p><p>Dosya isimleri veya URL'ler gibi kabul edilen nesnelerin dizisi s\u0131n\u0131rland\u0131\u011F\u0131nda ya da bilindi\u011Finde, as\u0131l dosya isimleri veya URL'ler i\u00E7in sabit girdi de\u011Ferleri (say\u0131sal kimlikler gibi) dizisinden olu\u015Fturulan bir e\u015Fle\u015Fme yarat\u0131n ve di\u011Fer b\u00FCt\u00FCn girdileri reddedin.</p><p></p><p>For example, ID 1 could map to \"/login.asp\" and ID 2 could map to \"https://www.example.com/\". ESAPI AccessReferenceMap/Eri\u015FimReferansHaritas\u0131 gibi \u00F6zellikler bunu sa\u011Flar.</p><p></p><p>G\u00FCvenilir olmayan girdilerin yaz\u0131l\u0131m\u0131n\u0131za girebilecek b\u00FCt\u00FCn potansiyel alanlar\u0131n\u0131 \u00F6\u011Frenin: parametreler veya arg\u00FCmanlar, \u00E7erezler, a\u011Fdan okunan her\u015Fey, ortam de\u011Fi\u015Fkenleri, ters DNS aramalar\u0131, sorgu sonu\u00E7lar\u0131, istek ba\u015Fl\u0131klar\u0131, URL bile\u015Fenleri, e-postalar, dosyalar, veri tabanlar\u0131 ve uygulamaya veri getiren t\u00FCm harici sistemler. Unutmay\u0131n ki bunun gibi girdiler API \u00E7a\u011Fr\u0131lar\u0131 sayesinde dolayl\u0131 olarak elde edebilirler.</p><p></p><p>Bir \u00E7ok y\u00F6nlendirme sorunu, yaz\u0131l\u0131mc\u0131n\u0131n \u00E7erezler ve sakl\u0131 form alanlar\u0131 gibi baz\u0131 girdilerin de\u011Fi\u015Ftirilmeyece\u011Fini varsayd\u0131\u011F\u0131 i\u00E7in ortaya \u00E7\u0131kar.</p>",
+					"otherinfo": "<p>The response contains a redirect in its Location header which allows an external Url to be set.</p>",
+					"reference": "<p>https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html</p><p>https://cwe.mitre.org/data/definitions/601.html</p>",
+					"cweid": "601",
+					"wascid": "38",
+					"sourceid": "566"
+				},
+				{
+					"pluginid": "10028",
+					"alertRef": "10028",
+					"alert": "Off-site Redirect",
+					"name": "Off-site Redirect",
+					"riskcode": "3",
+					"confidence": "2",
+					"riskdesc": "Y\u00FCkek (Orta)",
+					"desc": "<p>Open redirects are one of the OWASP 2010 Top Ten vulnerabilities. This check looks at user-supplied input in query string parameters and POST data to identify where open redirects might be possible. Open redirects occur when an application allows user-supplied input (e.g. https://nottrusted.com) to control an off-site destination. This is generally a pretty accurate way to find where 301 or 302 redirects could be exploited by spammers or phishing attacks.</p><p></p><p>For example an attacker could supply a user with the following link: https://example.com/example.php?url=https://malicious.example.com.</p><p></p><p>NOTE: For the purposes of the passive check the authority portion of the origin and destination were compared. Manual testing may be required to validate the impact of this finding.</p>",
+					"instances":[ 
+						{
+							"id": "638",
+							"uri": "http://127.0.0.1:3000/edge/go2?next=/safe&next=https://evil.com",
+							"nodeName": "http:\/\/127.0.0.1:3000\/edge\/go2 (next,next)",
+							"method": "GET",
+							"param": "next",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": "The 301 or 302 response to a request for the following URL appeared to contain user input in the location header:\n\nhttp://127.0.0.1:3000/edge/go2?next=/safe&next=https://evil.com\n\nThe user input found was:\n\nnext=https://evil.com\n\nThe context was:\n\nhttps://evil.com"
+						},
+						{
+							"id": "107",
+							"uri": "http://127.0.0.1:3000/ssrf/redirect?next=https://evil.com",
+							"nodeName": "http:\/\/127.0.0.1:3000\/ssrf\/redirect (next)",
+							"method": "GET",
+							"param": "next",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": "The 301 or 302 response to a request for the following URL appeared to contain user input in the location header:\n\nhttp://127.0.0.1:3000/ssrf/redirect?next=https://evil.com\n\nThe user input found was:\n\nnext=https://evil.com\n\nThe context was:\n\nhttps://evil.com"
+						}
+					],
+					"count": "2",
+					"systemic": false,
+					"solution": "<p>To avoid the open redirect vulnerability, parameters of the application script/program must be validated before sending 302 HTTP code (redirect) to the client browser. Implement safe redirect functionality that only redirects to relative URI's, or a list of trusted domains.</p>",
+					"otherinfo": "<p>The 301 or 302 response to a request for the following URL appeared to contain user input in the location header:</p><p></p><p>http://127.0.0.1:3000/edge/go2?next=/safe&next=https://evil.com</p><p></p><p>The user input found was:</p><p></p><p>next=https://evil.com</p><p></p><p>The context was:</p><p></p><p>https://evil.com</p>",
+					"reference": "<p>https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html</p><p>https://cwe.mitre.org/data/definitions/601.html</p>",
+					"cweid": "601",
+					"wascid": "38",
+					"sourceid": "487"
+				},
+				{
+					"pluginid": "10062",
+					"alertRef": "10062",
+					"alert": "PII Disclosure",
+					"name": "PII Disclosure",
+					"riskcode": "3",
+					"confidence": "2",
+					"riskdesc": "Y\u00FCkek (Orta)",
+					"desc": "<p>The response contains Personally Identifiable Information, such as CC number, SSN and similar sensitive data.</p>",
+					"instances":[ 
+						{
+							"id": "147",
+							"uri": "http://127.0.0.1:3000/access/admin",
+							"nodeName": "http:\/\/127.0.0.1:3000\/access\/admin",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "3400 000000 00009",
+							"otherinfo": "Credit Card Type detected: American Express"
+						},
+						{
+							"id": "138",
+							"uri": "http://127.0.0.1:3000/access/admin",
+							"nodeName": "http:\/\/127.0.0.1:3000\/access\/admin",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "4111 1111 1111 1111",
+							"otherinfo": "Credit Card Type detected: Visa"
+						},
+						{
+							"id": "146",
+							"uri": "http://127.0.0.1:3000/access/admin",
+							"nodeName": "http:\/\/127.0.0.1:3000\/access\/admin",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "5500 0000 0000 0004",
+							"otherinfo": "Credit Card Type detected: Mastercard"
+						},
+						{
+							"id": "141",
+							"uri": "http://127.0.0.1:3000/access/idor?user_id=99",
+							"nodeName": "http:\/\/127.0.0.1:3000\/access\/idor (user_id)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "3400 000000 00009 ",
+							"otherinfo": "Credit Card Type detected: American Express"
+						},
+						{
+							"id": "244",
+							"uri": "http://127.0.0.1:3000/api/account?user=1",
+							"nodeName": "http:\/\/127.0.0.1:3000\/api\/account (user)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "4111 1111 1111 1111",
+							"otherinfo": "Credit Card Type detected: Visa"
+						},
+						{
+							"id": "238",
+							"uri": "http://127.0.0.1:3000/api/users/99",
+							"nodeName": "http:\/\/127.0.0.1:3000\/api\/users\/99",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "3400 000000 00009",
+							"otherinfo": "Credit Card Type detected: American Express"
+						},
+						{
+							"id": "212",
+							"uri": "http://127.0.0.1:3000/cors/cors",
+							"nodeName": "http:\/\/127.0.0.1:3000\/cors\/cors",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "4111 1111 1111 1111",
+							"otherinfo": "Credit Card Type detected: Visa"
+						},
+						{
+							"id": "137",
+							"uri": "http://127.0.0.1:3000/crypto/creditcard?user=1",
+							"nodeName": "http:\/\/127.0.0.1:3000\/crypto\/creditcard (user)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "4111 1111 1111 1111 ",
+							"otherinfo": "Credit Card Type detected: Visa"
+						},
+						{
+							"id": "164",
+							"uri": "http://127.0.0.1:3000/crypto/creditcard-secure?user=1",
+							"nodeName": "http:\/\/127.0.0.1:3000\/crypto\/creditcard-secure (user)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "4111 1111 1111 1111",
+							"otherinfo": "Credit Card Type detected: Visa"
+						},
+						{
+							"id": "140",
+							"uri": "http://127.0.0.1:3000/injection/sqli?id=1'%20OR%20'1'='1",
+							"nodeName": "http:\/\/127.0.0.1:3000\/injection\/sqli (id)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "3400 000000 00009",
+							"otherinfo": "Credit Card Type detected: American Express"
+						},
+						{
+							"id": "136",
+							"uri": "http://127.0.0.1:3000/injection/sqli?id=1'%20OR%20'1'='1",
+							"nodeName": "http:\/\/127.0.0.1:3000\/injection\/sqli (id)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "4111 1111 1111 1111",
+							"otherinfo": "Credit Card Type detected: Visa"
+						},
+						{
+							"id": "139",
+							"uri": "http://127.0.0.1:3000/injection/sqli?id=1'%20OR%20'1'='1",
+							"nodeName": "http:\/\/127.0.0.1:3000\/injection\/sqli (id)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "5500 0000 0000 0004",
+							"otherinfo": "Credit Card Type detected: Mastercard"
+						},
+						{
+							"id": "406",
+							"uri": "http://127.0.0.1:3000/runtime/hpp?id=1&id=99",
+							"nodeName": "http:\/\/127.0.0.1:3000\/runtime\/hpp (id,id)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "3400 000000 00009 ",
+							"otherinfo": "Credit Card Type detected: American Express"
+						}
+					],
+					"count": "13",
+					"systemic": false,
+					"solution": "<p>Check the response for the potential presence of personally identifiable information (PII), ensure nothing sensitive is leaked by the application.</p>",
+					"otherinfo": "<p>Credit Card Type detected: American Express</p>",
+					"reference": "",
+					"cweid": "359",
+					"wascid": "13",
+					"sourceid": "130"
+				},
+				{
+					"pluginid": "90020",
+					"alertRef": "90020",
+					"alert": "Remote OS Command Injection",
+					"name": "Remote OS Command Injection",
+					"riskcode": "3",
+					"confidence": "2",
+					"riskdesc": "Y\u00FCkek (Orta)",
+					"desc": "<p>Attack technique used for unauthorized execution of operating system commands. This attack is possible when an application accepts untrusted input to build operating system commands in an insecure manner involving improper data sanitization, and/or improper calling of external programs.</p>",
+					"instances":[ 
+						{
+							"id": "703",
+							"uri": "http://127.0.0.1:3000/access/traversal?file=cat+%2Fetc%2Fpasswd",
+							"nodeName": "http:\/\/127.0.0.1:3000\/access\/traversal (file)",
+							"method": "GET",
+							"param": "file",
+							"attack": "cat /etc/passwd",
+							"evidence": "root:x:0:0",
+							"otherinfo": "The scan rule was able to retrieve the content of a file or command by sending [cat /etc/passwd] to the operating system running this application."
+						}
+					],
+					"count": "1",
+					"systemic": false,
+					"solution": "<p>M\u00FCmk\u00FCnse, arzu edilen i\u015Flevselli\u011Fi yeniden olu\u015Fturmak i\u00E7in d\u0131\u015F i\u015Flemler yerine k\u00FCt\u00FCphane \u00E7a\u011Fr\u0131lar\u0131n\u0131 kullan\u0131n.</p><p></p><p>Kodunuzu \"jail\" ya da i\u015Flem ve i\u015Fletim sistemi aras\u0131na s\u0131k\u0131 s\u0131n\u0131rlar koyan, benzer bir sanal test ortam\u0131nda \u00E7al\u0131\u015Ft\u0131r\u0131n. Bu durum, belirli bir hedef dizin i\u00E7erisinde hangi dosyalara eri\u015Filece\u011Fini veya yaz\u0131l\u0131m taraf\u0131ndan hangi komutlar\u0131n uygulanaca\u011F\u0131n\u0131 etkili \u015Fekilde k\u0131s\u0131tlayabilir.</p><p></p><p>\u0130\u015Fletim sistemi seviyesi \u00F6rneklerine Unix chroot jail, AppArmor ve SeLinux da dahildir. Genel olarak, y\u00F6netilen kod baz\u0131 korumalar sa\u011Flayabilir. \u00D6rne\u011Fin, Java G\u00FCvenlik Y\u00F6neticisi i\u00E7erisindeki java.io.FilePermission, dosya operasyonlar\u0131 \u00FCzerinde k\u0131s\u0131tlamalar\u0131 belirtmenize izin verir.</p><p>Bu pratik bir \u00E7\u00F6z\u00FCm olmayabilir ve sadece i\u015Fletim sistemi \u00FCzerindeki etkileri k\u0131s\u0131tlar; uygulamalar\u0131n kalanlar\u0131 savunmas\u0131z kalabilir.</p><p></p><p>Ger\u00E7ekle\u015Ftirilecek bir komutu olu\u015Fturmak i\u00E7in kullan\u0131lacak herhangi bir veri i\u00E7in, bu verileri m\u00FCmk\u00FCn oldu\u011Funca d\u0131\u015F kontrol\u00FCn d\u0131\u015F\u0131nda tutun. \u00D6rne\u011Fin, a\u011F uygulamalar\u0131nda komutu gizli bir form alan\u0131nda kullan\u0131c\u0131lara g\u00F6ndermek yerine oturumun durumunda yerel olarak depolama gerektirebilir.</p><p></p><p>Dikkatle incelenmi\u015F, bu zay\u0131fl\u0131\u011F\u0131n olu\u015Fmas\u0131na izin vermeyen veya bu zay\u0131fl\u0131ktan ka\u00E7\u0131nmay\u0131 kolay hale getiren yap\u0131lar sa\u011Flayan bir k\u00FCt\u00FCphane veya aray\u00FCz kullan\u0131n.</p><p></p><p>\u00D6rne\u011Fin, ESAPI \u015Eifreleme kontrol\u00FC veya benzer bir ara\u00E7, k\u00FCt\u00FCphane veya framework kullan\u0131m\u0131n\u0131 g\u00F6z \u00F6n\u00FCnde bulundurun. Bunlar yaz\u0131l\u0131mc\u0131n\u0131n \u00E7\u0131kt\u0131lar\u0131 daha az hataya e\u011Filimli \u015Fekilde \u015Fifrelemesine yard\u0131mc\u0131 olacakt\u0131r.</p><p></p><p>E\u011Fer riske ra\u011Fmen dinamik olarak olu\u015Fturulmu\u015F sorgu katarlar\u0131n\u0131 veya komut dizinlerini kullanmaya ihtiyac\u0131n\u0131z varsa, arg\u00FCmanlar\u0131 uygun \u015Fekilde al\u0131nt\u0131lay\u0131n ve bu arg\u00FCmanlarda \u00F6zel karakter kullan\u0131m\u0131ndan ka\u00E7\u0131n\u0131n. The most conservative approach is to escape or filter all characters that do not pass an extremely strict allow list (such as everything that is not alphanumeric or white space). Beyaz bo\u015Fluk gibi baz\u0131 \u00F6zel karakterler hala gerekli ise, her arg\u00FCman\u0131 ka\u00E7\u0131\u015F/filtreleme ad\u0131m\u0131ndan sonra t\u0131rnak i\u015Faretleriyle sar\u0131n. Arg\u00FCman enjeksiyonuna dikkat edin.</p><p></p><p>Ger\u00E7ekle\u015Ftirilecek program, ba\u011F\u0131ms\u0131z de\u011Fi\u015Fkenlerin bir girdi dosyas\u0131 i\u00E7inde veya standart girdide belirtilmesine izin veriyorsa, bu modu kullanmay\u0131 komut sat\u0131r\u0131 yerine ba\u011F\u0131ms\u0131z de\u011Fi\u015Fkenleri ge\u00E7irmek i\u00E7in d\u00FC\u015F\u00FCn\u00FCn.</p><p></p><p>Varsa, veri ile kod aras\u0131ndaki ayr\u0131m\u0131 otomatik olarak uygulayan yap\u0131sal mekanizmalar kullan\u0131n. Bu mekanizmalar, \u00FCreticinin \u00FCretti\u011Fi her \u00E7\u0131k\u0131\u015F alan\u0131 i\u00E7in bu \u00F6zellikleri elde etmek i\u00E7in geli\u015Ftiriciye g\u00FCvenmek yerine, otomatik olarak do\u011Fru tan\u0131t\u0131m\u0131, kodlamay\u0131 ve do\u011Frulamay\u0131 sa\u011Flayabilir.</p><p></p><p>Baz\u0131 diller komutlar\u0131 \u00E7al\u0131\u015Ft\u0131rmak i\u00E7in kullan\u0131labilen birden fazla fonksiyon \u00F6nerir. Tek bir katar kullanarak bir komut kabu\u011Funu \u00E7al\u0131\u015Ft\u0131ran herhangi bir fonksiyon saptad\u0131\u011F\u0131n\u0131zda, m\u00FCmk\u00FCnse ayr\u0131k arg\u00FCmanlar gerektiren bir fonksiyon ile yerini de\u011Fi\u015Ftirin. Bu i\u015Flevler genellikle arg\u00FCmanlar\u0131n uygun bir \u015Fekilde al\u0131nt\u0131lanmas\u0131n\u0131 ve filtrelenmesini ger\u00E7ekle\u015Ftirir. \u00D6rne\u011Fin; C'de, system() fonksiyonu, \u00E7al\u0131\u015Ft\u0131r\u0131lacak t\u00FCm komutlar\u0131 i\u00E7eren bir dizgeyi kabul ederken, execl(), execve() ve benzeri di\u011Fer fonksiyonlar, her arg\u00FCman i\u00E7in ayr\u0131 dizge dizileri gerektirir. Windows'ta CreateProcess(), bir seferde yaln\u0131zca bir komut kabul eder. Perl dilinde e\u011Fer system() arg\u00FCmanlar\u0131n bir diziminden sa\u011Flan\u0131yorsa o zaman system() her bir arg\u00FCman\u0131 al\u0131nt\u0131layacakt\u0131r.</p><p></p><p>T\u00FCm girdilerin zararl\u0131 oldu\u011Funu varsay. Use an \"accept known good\" input validation strategy, i.e., use an allow list of acceptable inputs that strictly conform to specifications. \u015Eartlara tam olarak uymayan veya ba\u015Fka \u015Feye d\u00F6n\u00FC\u015Ft\u00FCren girdileri reddedin. Do not rely exclusively on looking for malicious or malformed inputs (i.e., do not rely on a deny list). However, deny lists can be useful for detecting potential attacks or determining which inputs are so malformed that they should be rejected outright.</p><p></p><p>Giri\u015F do\u011Frulamas\u0131n\u0131 ger\u00E7ekle\u015Ftirirken, uzunlu\u011Fu, girdi t\u00FCr\u00FCn\u00FC, kabul edilebilir de\u011Ferlerin t\u00FCm\u00FCn\u00FC, eksik veya fazla girdileri, s\u00F6z dizimini, ilgili alanlardaki tutarl\u0131l\u0131k ve i\u015F kurallar\u0131na uyum da dahil olmak \u00FCzere potansiyel olarak ilgili t\u00FCm \u00F6zellikleri d\u00FC\u015F\u00FCn\u00FCn. As an example of business rule logic, \"boat\" may be syntactically valid because it only contains alphanumeric characters, but it is not valid if you are expecting colors such as \"red\" or \"blue.\"</p><p></p><p>When constructing OS command strings, use stringent allow lists that limit the character set based on the expected value of the parameter in the request. Bu dolayl\u0131 olarak sald\u0131r\u0131n\u0131n kapsam\u0131n\u0131 s\u0131n\u0131rlar, ancak bu teknik uygun \u00E7\u0131kt\u0131 kodlamas\u0131ndan ve ka\u00E7\u0131\u015F\u0131ndan daha az \u00F6nemlidir.</p><p></p><p>Uygun \u00E7\u0131kt\u0131 \u015Fifreleme, ka\u00E7\u0131nma ve al\u0131nt\u0131lama i\u015Fletim sistemi komut enjeksiyonundan ka\u00E7\u0131nmak i\u00E7in en etkili \u00E7\u00F6z\u00FCm oldu\u011Funu unutmay\u0131n, ger\u00E7i girdi do\u011Frulamas\u0131 derinine koruma sa\u011Flayabilir. Bunun nedeni, \u00E7\u0131kt\u0131da g\u00F6r\u00FCnecek olan \u015Feyleri etkin bi\u00E7imde s\u0131n\u0131rland\u0131rmas\u0131d\u0131r. Girdi do\u011Frulama her zaman \u0130\u015Fletim Sistemi komut enjeksiyonunu \u00F6nlemez, \u00F6zellikle de e\u011Fer rastgele karakterler i\u00E7erebilen d\u00FCzensiz metin alanlar\u0131n\u0131 desteklemeniz gerekiyorsa. \u00D6rne\u011Fin, bir posta program\u0131n\u0131 ba\u015Flatt\u0131\u011F\u0131n\u0131zda ka\u00E7\u0131lmas\u0131 veya y\u00F6netilmesi gereken \";\" ve \">\" gibi aksi-tehlikeli girdiler i\u00E7erimesi i\u00E7in konu alanlar\u0131na izin vermeye ihtiya\u00E7 duyabilirsiniz. Bu durumda, karakteri soyma \u0130S komut enjeksiyonu riskini azaltabilir, fakat konu alan\u0131 kullan\u0131c\u0131n\u0131n istedi\u011Fi gibi kaydedilmeyece\u011Fi i\u00E7in yanl\u0131\u015F davran\u0131\u015Fla sonu\u00E7lanabilir. Bu ufak bir zahmet gibi g\u00F6r\u00FCnebilir, fakat program di\u011Fer bile\u015Fenlere mesajlar\u0131 aktarmak i\u00E7in iyi yap\u0131land\u0131r\u0131lm\u0131\u015F konu sat\u0131rlar\u0131na dayand\u0131\u011F\u0131 zaman daha \u00F6nemli olabilir.</p><p></p><p>Do\u011Frulaman\u0131zda bir hata yaparsan\u0131z bile (100 giri\u015F alan\u0131nda birinin unutulmas\u0131 gibi), uygun kodlaman\u0131n enjeksiyon tabanl\u0131 sald\u0131r\u0131lardan korunmak i\u00E7indir. Tek ba\u015F\u0131na yap\u0131lmad\u0131\u011F\u0131 s\u00FCrece, sald\u0131r\u0131 y\u00FCzeyinizi \u00F6nemli \u00F6l\u00E7\u00FCde azaltabilece\u011Finden, baz\u0131 sald\u0131r\u0131lar\u0131 tespit etmenize izin verdi\u011Finden ve uygun kodlaman\u0131n \u00E7\u00F6zemedi\u011Fi di\u011Fer g\u00FCvenlik avantajlar\u0131n\u0131 sa\u011Flad\u0131\u011F\u0131ndan giri\u015F do\u011Frulamas\u0131 hala yararl\u0131 bir tekniktir.</p>",
+					"otherinfo": "<p>The scan rule was able to retrieve the content of a file or command by sending [cat /etc/passwd] to the operating system running this application.</p>",
+					"reference": "<p>https://cwe.mitre.org/data/definitions/78.html</p><p>https://owasp.org/www-community/attacks/Command_Injection</p>",
+					"cweid": "78",
+					"wascid": "31",
+					"sourceid": "573"
+				},
+				{
+					"pluginid": "90022",
+					"alertRef": "90022",
+					"alert": "Application Error Disclosure",
+					"name": "Application Error Disclosure",
+					"riskcode": "2",
+					"confidence": "2",
+					"riskdesc": "Orta (Orta)",
+					"desc": "<p>This page contains an error/warning message that may disclose sensitive information like the location of the file that produced the unhandled exception. This information can be used to launch further attacks against the web application. The alert could be a false positive if the error message is found inside a documentation page.</p>",
+					"instances":[ 
+						{
+							"id": "410",
+							"uri": "http://127.0.0.1:3000/runtime/list?sort=(SELECT%20SLEEP(3))",
+							"nodeName": "http:\/\/127.0.0.1:3000\/runtime\/list (sort)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "You have an error in your SQL syntax",
+							"otherinfo": ""
+						}
+					],
+					"count": "1",
+					"systemic": false,
+					"solution": "<p>Review the source code of this page. Implement custom error pages. Consider implementing a mechanism to provide a unique error reference/identifier to the client (browser) while logging the details on the server side and not exposing them to the user.</p>",
+					"otherinfo": "",
+					"reference": "",
+					"cweid": "550",
+					"wascid": "13",
+					"sourceid": "318"
+				},
+				{
+					"pluginid": "30002",
+					"alertRef": "30002",
+					"alert": "Bi\u00E7im String Hatas\u0131",
+					"name": "Bi\u00E7im String Hatas\u0131",
+					"riskcode": "2",
+					"confidence": "2",
+					"riskdesc": "Orta (Orta)",
+					"desc": "<p>A Format String error occurs when the submitted data of an input string is evaluated as a command by the application.</p>",
+					"instances":[ 
+						{
+							"id": "704",
+							"uri": "http://127.0.0.1:3000/runtime/go?next=ZAP%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%0A",
+							"nodeName": "http:\/\/127.0.0.1:3000\/runtime\/go (next)",
+							"method": "GET",
+							"param": "next",
+							"attack": "ZAP%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s\n",
+							"evidence": "",
+							"otherinfo": "Potential Format String Error. The script closed the connection on a /%s."
+						}
+					],
+					"count": "1",
+					"systemic": false,
+					"solution": "<p>Rewrite the background program using proper deletion of bad character strings. This will require a recompile of the background executable.</p>",
+					"otherinfo": "<p>Potential Format String Error. The script closed the connection on a /%s.</p>",
+					"reference": "<p>https://owasp.org/www-community/attacks/Format_string_attack</p>",
+					"cweid": "134",
+					"wascid": "6",
+					"sourceid": "574"
+				},
+				{
+					"pluginid": "10055",
+					"alertRef": "10055-13",
+					"alert": "CSP: Failure to Define Directive with No Fallback",
+					"name": "CSP: Failure to Define Directive with No Fallback",
+					"riskcode": "2",
+					"confidence": "3",
+					"riskdesc": "Orta (Y\u00FCkek)",
+					"desc": "<p>The Content Security Policy fails to define one of the directives that has no fallback. Missing/excluding them is the same as allowing anything.</p>",
+					"instances":[ 
+						{
+							"id": "369",
+							"uri": "http://127.0.0.1:3000/fp/csp-inline",
+							"nodeName": "http:\/\/127.0.0.1:3000\/fp\/csp-inline",
+							"method": "GET",
+							"param": "Content-Security-Policy",
+							"attack": "",
+							"evidence": "default-src 'self'; script-src 'nonce-mock-nonce-abc123'",
+							"otherinfo": "The directive(s): frame-ancestors, form-action is/are among the directives that do not fallback to default-src."
+						},
+						{
+							"id": "226",
+							"uri": "http://127.0.0.1:3000/misconfig/headers-secure",
+							"nodeName": "http:\/\/127.0.0.1:3000\/misconfig\/headers-secure",
+							"method": "GET",
+							"param": "Content-Security-Policy",
+							"attack": "",
+							"evidence": "default-src 'self'",
+							"otherinfo": "The directive(s): frame-ancestors, form-action is/are among the directives that do not fallback to default-src."
+						}
+					],
+					"count": "2",
+					"systemic": false,
+					"solution": "<p>Ensure that your web server, application server, load balancer, etc. is properly configured to set the Content-Security-Policy header.</p>",
+					"otherinfo": "<p>The directive(s): frame-ancestors, form-action is/are among the directives that do not fallback to default-src.</p>",
+					"reference": "<p>https://www.w3.org/TR/CSP/</p><p>https://caniuse.com/#search=content+security+policy</p><p>https://content-security-policy.com/</p><p>https://github.com/HtmlUnit/htmlunit-csp</p><p>https://web.dev/articles/csp#resource-options</p>",
+					"cweid": "693",
+					"wascid": "15",
+					"sourceid": "289"
+				},
+				{
+					"pluginid": "10038",
+					"alertRef": "10038-1",
+					"alert": "Content Security Policy (CSP) Header Not Set",
+					"name": "Content Security Policy (CSP) Header Not Set",
+					"riskcode": "2",
+					"confidence": "3",
+					"riskdesc": "Orta (Y\u00FCkek)",
+					"desc": "<p>Content Security Policy (CSP) is an added layer of security that helps to detect and mitigate certain types of attacks, including Cross Site Scripting (XSS) and data injection attacks. These attacks are used for everything from data theft to site defacement or distribution of malware. CSP provides a set of standard HTTP headers that allow website owners to declare approved sources of content that browsers should be allowed to load on that page \u2014 covered types are JavaScript, CSS, HTML frames, fonts, images and embeddable objects such as Java applets, ActiveX, audio and video files.</p>",
+					"instances":[ 
+						{
+							"id": "10",
+							"uri": "http://127.0.0.1:3000",
+							"nodeName": "http:\/\/127.0.0.1:3000",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": ""
+						},
+						{
+							"id": "12",
+							"uri": "http://127.0.0.1:3000/dashboard",
+							"nodeName": "http:\/\/127.0.0.1:3000\/dashboard",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": ""
+						},
+						{
+							"id": "13",
+							"uri": "http://127.0.0.1:3000/injection/sqli?id=1'%20OR%20'1'='1",
+							"nodeName": "http:\/\/127.0.0.1:3000\/injection\/sqli (id)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": ""
+						},
+						{
+							"id": "18",
+							"uri": "http://127.0.0.1:3000/injection/sqli-secure?id=1'%20OR%20'1'='1",
+							"nodeName": "http:\/\/127.0.0.1:3000\/injection\/sqli-secure (id)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": ""
+						},
+						{
+							"id": "0",
+							"uri": "http://127.0.0.1:3000/sitemap.xml",
+							"nodeName": "http:\/\/127.0.0.1:3000\/sitemap.xml",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": ""
+						}
+					],
+					"count": "5",
+					"systemic": true,
+					"solution": "<p>Ensure that your web server, application server, load balancer, etc. is configured to set the Content-Security-Policy header.</p>",
+					"otherinfo": "",
+					"reference": "<p>https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP</p><p>https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html</p><p>https://www.w3.org/TR/CSP/</p><p>https://w3c.github.io/webappsec-csp/</p><p>https://web.dev/articles/csp</p><p>https://caniuse.com/#feat=contentsecuritypolicy</p><p>https://content-security-policy.com/</p>",
+					"cweid": "693",
+					"wascid": "15",
+					"sourceid": "1"
+				},
+				{
+					"pluginid": "10098",
+					"alertRef": "10098",
+					"alert": "Etki Alanlar\u0131 Aras\u0131 yanl\u0131\u015F yap\u0131land\u0131r\u0131lmas\u0131",
+					"name": "Etki Alanlar\u0131 Aras\u0131 yanl\u0131\u015F yap\u0131land\u0131r\u0131lmas\u0131",
+					"riskcode": "2",
+					"confidence": "2",
+					"riskdesc": "Orta (Orta)",
+					"desc": "<p>Web browser data loading may be possible, due to a Cross Origin Resource Sharing (CORS) misconfiguration on the web server.</p>",
+					"instances":[ 
+						{
+							"id": "209",
+							"uri": "http://127.0.0.1:3000/cors/cors",
+							"nodeName": "http:\/\/127.0.0.1:3000\/cors\/cors",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "Access-Control-Allow-Origin: *",
+							"otherinfo": "Web sunucusu \u00FCzerinde CORS yanl\u0131\u015F yap\u0131land\u0131rma etki alanlar\u0131 aras\u0131 bu etki kimli\u011Fi do\u011Frulanmam\u0131\u015F API'leri kullanarak keyfi \u00FC\u00E7\u00FCnc\u00FC taraf etki alanlar\u0131ndan istekleri, okuma verir. Web taray\u0131c\u0131s\u0131 uygulamalar\u0131, ancak kimli\u011Fi do\u011Frulanm\u0131\u015F API'ler yan\u0131t\u0131 okumak i\u00E7in keyfi \u00FC\u00E7\u00FCnc\u00FC taraflar\u0131n izin vermez. Bu biraz riskini azalt\u0131r. Bu yanl\u0131\u015F yap\u0131land\u0131rma do\u011Frulanmam\u0131\u015F bir \u015Fekilde kullan\u0131labilir verilere eri\u015Fmek i\u00E7in bir sald\u0131rgan taraf\u0131ndan kullan\u0131labilir, ancak hangi IP adresinin beyaz liste olarak, g\u00FCvenlik di\u011Fer baz\u0131 form kullan\u0131r."
+						}
+					],
+					"count": "1",
+					"systemic": false,
+					"solution": "<p>Bu hassas veriler kimli\u011Fi do\u011Frulanmam\u0131\u015F bir \u015Fekilde (\u00F6rne\u011Fin, IP adresi, beyaz-liste kullanarak) mevcut olmad\u0131\u011F\u0131ndan emin olun. Etki daha k\u0131s\u0131tlay\u0131c\u0131 dizi \"Eri\u015Fim Kontrol-izin-K\u00F6keni\" HTTP ba\u015Fl\u0131\u011F\u0131n\u0131 yap\u0131land\u0131rma ya da web taray\u0131c\u0131s\u0131 daha k\u0131s\u0131tlay\u0131c\u0131 bir \u015Fekilde ayn\u0131 K\u00F6keni Politikas\u0131 (SOP) uygulamak i\u00E7in izin, tamamen t\u00FCm CORS ba\u015Fl\u0131klar\u0131n\u0131 \u00E7\u0131kar\u0131n.</p>",
+					"otherinfo": "<p>Web sunucusu \u00FCzerinde CORS yanl\u0131\u015F yap\u0131land\u0131rma etki alanlar\u0131 aras\u0131 bu etki kimli\u011Fi do\u011Frulanmam\u0131\u015F API'leri kullanarak keyfi \u00FC\u00E7\u00FCnc\u00FC taraf etki alanlar\u0131ndan istekleri, okuma verir. Web taray\u0131c\u0131s\u0131 uygulamalar\u0131, ancak kimli\u011Fi do\u011Frulanm\u0131\u015F API'ler yan\u0131t\u0131 okumak i\u00E7in keyfi \u00FC\u00E7\u00FCnc\u00FC taraflar\u0131n izin vermez. Bu biraz riskini azalt\u0131r. Bu yanl\u0131\u015F yap\u0131land\u0131rma do\u011Frulanmam\u0131\u015F bir \u015Fekilde kullan\u0131labilir verilere eri\u015Fmek i\u00E7in bir sald\u0131rgan taraf\u0131ndan kullan\u0131labilir, ancak hangi IP adresinin beyaz liste olarak, g\u00FCvenlik di\u011Fer baz\u0131 form kullan\u0131r.</p>",
+					"reference": "<p>https://vulncat.fortify.com/en/detail?category=HTML5&subcategory=Overly%20Permissive%20CORS%20Policy</p>",
+					"cweid": "264",
+					"wascid": "14",
+					"sourceid": "212"
+				},
+				{
+					"pluginid": "10020",
+					"alertRef": "10020-1",
+					"alert": "Missing Anti-clickjacking Header",
+					"name": "Missing Anti-clickjacking Header",
+					"riskcode": "2",
+					"confidence": "2",
+					"riskdesc": "Orta (Orta)",
+					"desc": "<p>The response does not protect against 'ClickJacking' attacks. It should include either Content-Security-Policy with 'frame-ancestors' directive or X-Frame-Options.</p>",
+					"instances":[ 
+						{
+							"id": "6",
+							"uri": "http://127.0.0.1:3000",
+							"nodeName": "http:\/\/127.0.0.1:3000",
+							"method": "GET",
+							"param": "x-frame-options",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": ""
+						},
+						{
+							"id": "8",
+							"uri": "http://127.0.0.1:3000/dashboard",
+							"nodeName": "http:\/\/127.0.0.1:3000\/dashboard",
+							"method": "GET",
+							"param": "x-frame-options",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": ""
+						},
+						{
+							"id": "41",
+							"uri": "http://127.0.0.1:3000/injection/ldap?user=*)(uid=*))(%7C(uid=*",
+							"nodeName": "http:\/\/127.0.0.1:3000\/injection\/ldap (user)",
+							"method": "GET",
+							"param": "x-frame-options",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": ""
+						},
+						{
+							"id": "34",
+							"uri": "http://127.0.0.1:3000/injection/nosqli?user%5B$ne%5D=x",
+							"nodeName": "http:\/\/127.0.0.1:3000\/injection\/nosqli (user[$ne])",
+							"method": "GET",
+							"param": "x-frame-options",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": ""
+						},
+						{
+							"id": "11",
+							"uri": "http://127.0.0.1:3000/injection/sqli?id=1'%20OR%20'1'='1",
+							"nodeName": "http:\/\/127.0.0.1:3000\/injection\/sqli (id)",
+							"method": "GET",
+							"param": "x-frame-options",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": ""
+						}
+					],
+					"count": "5",
+					"systemic": true,
+					"solution": "<p>Modern Web browsers support the Content-Security-Policy and X-Frame-Options HTTP headers. Ensure one of them is set on all web pages returned by your site/app.</p><p>If you expect the page to be framed only by pages on your server (e.g. it's part of a FRAMESET) then you'll want to use SAMEORIGIN, otherwise if you never expect the page to be framed, you should use DENY. Alternatively consider implementing Content Security Policy's \"frame-ancestors\" directive.</p>",
+					"otherinfo": "",
+					"reference": "<p>https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options</p>",
+					"cweid": "1021",
+					"wascid": "15",
+					"sourceid": "1"
+				},
+				{
+					"pluginid": "90022",
+					"alertRef": "90022",
+					"alert": "Application Error Disclosure",
+					"name": "Application Error Disclosure",
+					"riskcode": "1",
+					"confidence": "2",
+					"riskdesc": "D\u00FC\u015F\u00FCk (Orta)",
+					"desc": "<p>This page contains an error/warning message that may disclose sensitive information like the location of the file that produced the unhandled exception. This information can be used to launch further attacks against the web application. The alert could be a false positive if the error message is found inside a documentation page.</p>",
+					"instances":[ 
+						{
+							"id": "228",
+							"uri": "http://127.0.0.1:3000/fp/error-fake",
+							"nodeName": "http:\/\/127.0.0.1:3000\/fp\/error-fake",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "HTTP/1.1 500 Internal Server Error",
+							"otherinfo": ""
+						},
+						{
+							"id": "178",
+							"uri": "http://127.0.0.1:3000/misconfig/error?cause=sql",
+							"nodeName": "http:\/\/127.0.0.1:3000\/misconfig\/error (cause)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "HTTP/1.1 500 Internal Server Error",
+							"otherinfo": ""
+						},
+						{
+							"id": "167",
+							"uri": "http://127.0.0.1:3000/misconfig/error-secure",
+							"nodeName": "http:\/\/127.0.0.1:3000\/misconfig\/error-secure",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "HTTP/1.1 500 Internal Server Error",
+							"otherinfo": ""
+						}
+					],
+					"count": "3",
+					"systemic": false,
+					"solution": "<p>Review the source code of this page. Implement custom error pages. Consider implementing a mechanism to provide a unique error reference/identifier to the client (browser) while logging the details on the server side and not exposing them to the user.</p>",
+					"otherinfo": "",
+					"reference": "",
+					"cweid": "550",
+					"wascid": "13",
+					"sourceid": "220"
+				},
+				{
+					"pluginid": "10010",
+					"alertRef": "10010",
+					"alert": "Cookie No HttpOnly Flag",
+					"name": "Cookie No HttpOnly Flag",
+					"riskcode": "1",
+					"confidence": "2",
+					"riskdesc": "D\u00FC\u015F\u00FCk (Orta)",
+					"desc": "<p>A cookie has been set without the HttpOnly flag, which means that the cookie can be accessed by JavaScript. If a malicious script can be run on this page then the cookie will be accessible and can be transmitted to another site. If this is a session cookie then session hijacking may be possible.</p>",
+					"instances":[ 
+						{
+							"id": "156",
+							"uri": "http://127.0.0.1:3000/auth/session-fixation",
+							"nodeName": "http:\/\/127.0.0.1:3000\/auth\/session-fixation",
+							"method": "GET",
+							"param": "sessionid",
+							"attack": "",
+							"evidence": "Set-Cookie: sessionid",
+							"otherinfo": ""
+						},
+						{
+							"id": "670",
+							"uri": "http://127.0.0.1:3000/authx/remember",
+							"nodeName": "http:\/\/127.0.0.1:3000\/authx\/remember",
+							"method": "GET",
+							"param": "remember",
+							"attack": "",
+							"evidence": "Set-Cookie: remember",
+							"otherinfo": ""
+						},
+						{
+							"id": "440",
+							"uri": "http://127.0.0.1:3000/runtime/cookie-set",
+							"nodeName": "http:\/\/127.0.0.1:3000\/runtime\/cookie-set",
+							"method": "GET",
+							"param": "sessionid",
+							"attack": "",
+							"evidence": "Set-Cookie: sessionid",
+							"otherinfo": ""
+						}
+					],
+					"count": "3",
+					"systemic": false,
+					"solution": "<p>Ensure that the HttpOnly flag is set for all cookies.</p>",
+					"otherinfo": "",
+					"reference": "<p>https://owasp.org/www-community/HttpOnly</p>",
+					"cweid": "1004",
+					"wascid": "13",
+					"sourceid": "159"
+				},
+				{
+					"pluginid": "10054",
+					"alertRef": "10054-1",
+					"alert": "Cookie without SameSite Attribute",
+					"name": "Cookie without SameSite Attribute",
+					"riskcode": "1",
+					"confidence": "2",
+					"riskdesc": "D\u00FC\u015F\u00FCk (Orta)",
+					"desc": "<p>A cookie has been set without the SameSite attribute, which means that the cookie can be sent as a result of a 'cross-site' request. The SameSite attribute is an effective counter measure to cross-site request forgery, cross-site script inclusion, and timing attacks.</p>",
+					"instances":[ 
+						{
+							"id": "157",
+							"uri": "http://127.0.0.1:3000/auth/session-fixation",
+							"nodeName": "http:\/\/127.0.0.1:3000\/auth\/session-fixation",
+							"method": "GET",
+							"param": "sessionid",
+							"attack": "",
+							"evidence": "Set-Cookie: sessionid",
+							"otherinfo": ""
+						},
+						{
+							"id": "671",
+							"uri": "http://127.0.0.1:3000/authx/remember",
+							"nodeName": "http:\/\/127.0.0.1:3000\/authx\/remember",
+							"method": "GET",
+							"param": "remember",
+							"attack": "",
+							"evidence": "Set-Cookie: remember",
+							"otherinfo": ""
+						},
+						{
+							"id": "441",
+							"uri": "http://127.0.0.1:3000/runtime/cookie-set",
+							"nodeName": "http:\/\/127.0.0.1:3000\/runtime\/cookie-set",
+							"method": "GET",
+							"param": "sessionid",
+							"attack": "",
+							"evidence": "Set-Cookie: sessionid",
+							"otherinfo": ""
+						}
+					],
+					"count": "3",
+					"systemic": false,
+					"solution": "<p>SameSite \u00F6zniteli\u011Finin t\u00FCm \u00E7erezler i\u00E7in 'gev\u015Fek' veya ideal olarak 'kat\u0131' olarak ayarland\u0131\u011F\u0131ndan emin olun.</p>",
+					"otherinfo": "",
+					"reference": "<p>https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-cookie-same-site</p>",
+					"cweid": "1275",
+					"wascid": "13",
+					"sourceid": "159"
+				},
+				{
+					"pluginid": "10036",
+					"alertRef": "10036-2",
+					"alert": "Server Leaks Version Information via \"Server\" HTTP Response Header Field",
+					"name": "Server Leaks Version Information via \"Server\" HTTP Response Header Field",
+					"riskcode": "1",
+					"confidence": "3",
+					"riskdesc": "D\u00FC\u015F\u00FCk (Y\u00FCkek)",
+					"desc": "<p>The web/application server is leaking version information via the \"Server\" HTTP response header. Access to such information may facilitate attackers identifying other vulnerabilities your web/application server is subject to.</p>",
+					"instances":[ 
+						{
+							"id": "260",
+							"uri": "http://127.0.0.1:3000/fp/version",
+							"nodeName": "http:\/\/127.0.0.1:3000\/fp\/version",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "nginx/1.25.3",
+							"otherinfo": ""
+						}
+					],
+					"count": "1",
+					"systemic": false,
+					"solution": "<p>Ensure that your web server, application server, load balancer, etc. is configured to suppress the \"Server\" header or provide generic details.</p>",
+					"otherinfo": "",
+					"reference": "<p>https://httpd.apache.org/docs/current/mod/core.html#servertokens</p><p>https://learn.microsoft.com/en-us/previous-versions/msp-n-p/ff648552(v=pandp.10)</p><p>https://www.troyhunt.com/shhh-dont-let-your-response-headers/</p>",
+					"cweid": "497",
+					"wascid": "13",
+					"sourceid": "227"
+				},
+				{
+					"pluginid": "10037",
+					"alertRef": "10037",
+					"alert": "Sunucu \"X-Powered-By\" \u00FCzerinden bilgiler Ka\u00E7aklar HTTP yan\u0131t \u00FCstbilgisi Field (ler)",
+					"name": "Sunucu \"X-Powered-By\" \u00FCzerinden bilgiler Ka\u00E7aklar HTTP yan\u0131t \u00FCstbilgisi Field (ler)",
+					"riskcode": "1",
+					"confidence": "2",
+					"riskdesc": "D\u00FC\u015F\u00FCk (Orta)",
+					"desc": "<p>Web / uygulama sunucusu, bir veya daha fazla \"X-Powered-By\" HTTP cevap ba\u015Fl\u0131klar\u0131n\u0131n yoluyla bilgi s\u0131zd\u0131r\u0131yor. B\u00F6yle bilgiye eri\u015Fim, web uygulamas\u0131 ba\u011F\u0131ml\u0131 olan di\u011Fer \u00E7er\u00E7eveler / bile\u015Fenleri tan\u0131mlayan sald\u0131rganlar\u0131n kolayla\u015Ft\u0131rabilir ve g\u00FCvenlik a\u00E7\u0131klar\u0131 gibi bile\u015Fenler tabi olabilir.</p>",
+					"instances":[ 
+						{
+							"id": "1",
+							"uri": "http://127.0.0.1:3000",
+							"nodeName": "http:\/\/127.0.0.1:3000",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "X-Powered-By: Express",
+							"otherinfo": ""
+						},
+						{
+							"id": "9",
+							"uri": "http://127.0.0.1:3000/api/scans",
+							"nodeName": "http:\/\/127.0.0.1:3000\/api\/scans",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "X-Powered-By: Express",
+							"otherinfo": ""
+						},
+						{
+							"id": "5",
+							"uri": "http://127.0.0.1:3000/files/robots.txt",
+							"nodeName": "http:\/\/127.0.0.1:3000\/files\/robots.txt",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "X-Powered-By: Express",
+							"otherinfo": ""
+						},
+						{
+							"id": "2",
+							"uri": "http://127.0.0.1:3000/robots.txt",
+							"nodeName": "http:\/\/127.0.0.1:3000\/robots.txt",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "X-Powered-By: Express",
+							"otherinfo": ""
+						},
+						{
+							"id": "3",
+							"uri": "http://127.0.0.1:3000/sitemap.xml",
+							"nodeName": "http:\/\/127.0.0.1:3000\/sitemap.xml",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "X-Powered-By: Express",
+							"otherinfo": ""
+						}
+					],
+					"count": "5",
+					"systemic": true,
+					"solution": "<p>Vb web sunucusu, uygulama sunucusu, y\u00FCk dengeleyici, \"X-Powered-By\" ba\u015Fl\u0131klar\u0131n\u0131 \u00F6nlemek i\u00E7in yap\u0131land\u0131r\u0131lm\u0131\u015F oldu\u011Fundan emin olun.</p>",
+					"otherinfo": "",
+					"reference": "<p>https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/08-Fingerprint_Web_Application_Framework</p><p>https://www.troyhunt.com/shhh-dont-let-your-response-headers/</p>",
+					"cweid": "497",
+					"wascid": "13",
+					"sourceid": "6"
+				},
+				{
+					"pluginid": "10021",
+					"alertRef": "10021",
+					"alert": "X-Content-Type-Options Header Missing",
+					"name": "X-Content-Type-Options Header Missing",
+					"riskcode": "1",
+					"confidence": "2",
+					"riskdesc": "D\u00FC\u015F\u00FCk (Orta)",
+					"desc": "<p>The Anti-MIME-Sniffing header X-Content-Type-Options was not set to 'nosniff'. This allows older versions of Internet Explorer and Chrome to perform MIME-sniffing on the response body, potentially causing the response body to be interpreted and displayed as a content type other than the declared content type. Current (early 2014) and legacy versions of Firefox will use the declared content type (if one is set), rather than performing MIME-sniffing.</p>",
+					"instances":[ 
+						{
+							"id": "14",
+							"uri": "http://127.0.0.1:3000",
+							"nodeName": "http:\/\/127.0.0.1:3000",
+							"method": "GET",
+							"param": "x-content-type-options",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": "This issue still applies to error type pages (401, 403, 500, etc.) as those pages are often still affected by injection issues, in which case there is still concern for browsers sniffing pages away from their actual content type.\nAt \"High\" threshold this scan rule will not alert on client or server error responses."
+						},
+						{
+							"id": "7",
+							"uri": "http://127.0.0.1:3000/api/scans",
+							"nodeName": "http:\/\/127.0.0.1:3000\/api\/scans",
+							"method": "GET",
+							"param": "x-content-type-options",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": "This issue still applies to error type pages (401, 403, 500, etc.) as those pages are often still affected by injection issues, in which case there is still concern for browsers sniffing pages away from their actual content type.\nAt \"High\" threshold this scan rule will not alert on client or server error responses."
+						},
+						{
+							"id": "20",
+							"uri": "http://127.0.0.1:3000/api/stats",
+							"nodeName": "http:\/\/127.0.0.1:3000\/api\/stats",
+							"method": "GET",
+							"param": "x-content-type-options",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": "This issue still applies to error type pages (401, 403, 500, etc.) as those pages are often still affected by injection issues, in which case there is still concern for browsers sniffing pages away from their actual content type.\nAt \"High\" threshold this scan rule will not alert on client or server error responses."
+						},
+						{
+							"id": "16",
+							"uri": "http://127.0.0.1:3000/dashboard",
+							"nodeName": "http:\/\/127.0.0.1:3000\/dashboard",
+							"method": "GET",
+							"param": "x-content-type-options",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": "This issue still applies to error type pages (401, 403, 500, etc.) as those pages are often still affected by injection issues, in which case there is still concern for browsers sniffing pages away from their actual content type.\nAt \"High\" threshold this scan rule will not alert on client or server error responses."
+						},
+						{
+							"id": "4",
+							"uri": "http://127.0.0.1:3000/files/robots.txt",
+							"nodeName": "http:\/\/127.0.0.1:3000\/files\/robots.txt",
+							"method": "GET",
+							"param": "x-content-type-options",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": "This issue still applies to error type pages (401, 403, 500, etc.) as those pages are often still affected by injection issues, in which case there is still concern for browsers sniffing pages away from their actual content type.\nAt \"High\" threshold this scan rule will not alert on client or server error responses."
+						}
+					],
+					"count": "5",
+					"systemic": true,
+					"solution": "<p>Ensure that the application/web server sets the Content-Type header appropriately, and that it sets the X-Content-Type-Options header to 'nosniff' for all web pages.</p><p>If possible, ensure that the end user uses a standards-compliant and modern web browser that does not perform MIME-sniffing at all, or that can be directed by the web application/web server to not perform MIME-sniffing.</p>",
+					"otherinfo": "<p>This issue still applies to error type pages (401, 403, 500, etc.) as those pages are often still affected by injection issues, in which case there is still concern for browsers sniffing pages away from their actual content type.</p><p>At \"High\" threshold this scan rule will not alert on client or server error responses.</p>",
+					"reference": "<p>https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/compatibility/gg622941(v=vs.85)</p><p>https://owasp.org/www-community/Security_Headers</p>",
+					"cweid": "693",
+					"wascid": "15",
+					"sourceid": "1"
+				},
+				{
+					"pluginid": "10111",
+					"alertRef": "10111",
+					"alert": "Authentication Request Identified",
+					"name": "Authentication Request Identified",
+					"riskcode": "0",
+					"confidence": "1",
+					"riskdesc": "Bilgilendirme (D\u00FC\u015F\u00FCk)",
+					"desc": "<p>The given request has been identified as an authentication request. The 'Other Info' field contains a set of key=value lines which identify any relevant fields. If the request is in a context which has an Authentication Method set to \"Auto-Detect\" then this rule will change the authentication to match the request identified.</p>",
+					"instances":[ 
+						{
+							"id": "377",
+							"uri": "http://127.0.0.1:3000/misconfig/default-creds?p=ZAP&u=ZAP",
+							"nodeName": "http:\/\/127.0.0.1:3000\/misconfig\/default-creds (p,u)",
+							"method": "GET",
+							"param": "u",
+							"attack": "",
+							"evidence": "p",
+							"otherinfo": "userParam=u\nuserValue=ZAP\npasswordParam=p\nreferer=http://127.0.0.1:3000/misconfig/default-creds"
+						}
+					],
+					"count": "1",
+					"systemic": false,
+					"solution": "<p>This is an informational alert rather than a vulnerability and so there is nothing to fix.</p>",
+					"otherinfo": "<p>userParam=u</p><p>userValue=ZAP</p><p>passwordParam=p</p><p>referer=http://127.0.0.1:3000/misconfig/default-creds</p>",
+					"reference": "<p>https://www.zaproxy.org/docs/desktop/addons/authentication-helper/auth-req-id/</p>",
+					"cweid": "-1",
+					"wascid": "-1",
+					"sourceid": "293"
+				},
+				{
+					"pluginid": "10027",
+					"alertRef": "10027",
+					"alert": "Bilginin A\u00E7\u0131\u011Fa \u00C7\u0131kmas\u0131 - \u015E\u00FCpheli Yorumlar",
+					"name": "Bilginin A\u00E7\u0131\u011Fa \u00C7\u0131kmas\u0131 - \u015E\u00FCpheli Yorumlar",
+					"riskcode": "0",
+					"confidence": "2",
+					"riskdesc": "Bilgilendirme (Orta)",
+					"desc": "<p>The response appears to contain suspicious comments which may help an attacker.</p>",
+					"instances":[ 
+						{
+							"id": "22",
+							"uri": "http://127.0.0.1:3000/api/ground-truth",
+							"nodeName": "http:\/\/127.0.0.1:3000\/api\/ground-truth",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "p/api/profile {role:admin} -> admin_token\",\"s",
+							"otherinfo": "The following pattern was used: \\bADMIN\\b and was detected in likely comment: \"//\",\"severity\":\"medium\"},{\"id\":\"RT-CTX-SECURE\",\"method\":\"GET\",\"path\":\"/runtime/attr-secure\",\"category\":\"Client-Side\",\"vuln_type\"\", see evidence field for the suspicious comment/snippet."
+						},
+						{
+							"id": "313",
+							"uri": "http://127.0.0.1:3000/client/jsonp?callback=alert(1)//",
+							"nodeName": "http:\/\/127.0.0.1:3000\/client\/jsonp (callback)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "//({\"user\":\"alice\",\"email\":\"a",
+							"otherinfo": "The following pattern was used: \\bUSER\\b and was detected in likely comment: \"//({\"user\":\"alice\",\"email\":\"alice@example.com\"});\", see evidence field for the suspicious comment/snippet."
+						}
+					],
+					"count": "2",
+					"systemic": false,
+					"solution": "<p>Bir sald\u0131rgana yard\u0131mc\u0131 olabilecek bilgileri d\u00F6nd\u00FCren t\u00FCm yorumlar\u0131 kald\u0131r\u0131n ve alttaki ba\u015Fvurulan problemleri d\u00FCzeltin.</p>",
+					"otherinfo": "<p>The following pattern was used: \\bADMIN\\b and was detected in likely comment: \"//\",\"severity\":\"medium\"},{\"id\":\"RT-CTX-SECURE\",\"method\":\"GET\",\"path\":\"/runtime/attr-secure\",\"category\":\"Client-Side\",\"vuln_type\"\", see evidence field for the suspicious comment/snippet.</p>",
+					"reference": "",
+					"cweid": "615",
+					"wascid": "13",
+					"sourceid": "18"
+				},
+				{
+					"pluginid": "10024",
+					"alertRef": "10024",
+					"alert": "Information Disclosure - Sensitive Information in URL",
+					"name": "Information Disclosure - Sensitive Information in URL",
+					"riskcode": "0",
+					"confidence": "2",
+					"riskdesc": "Bilgilendirme (Orta)",
+					"desc": "<p>\u0130ste\u011Fin, URL'de s\u0131zd\u0131r\u0131lm\u0131\u015F hassas bilgileri i\u00E7erdi\u011Fi g\u00F6r\u00FCld\u00FC. Bu, PCI ve \u00E7o\u011Fu kurulu\u015F uyum politikas\u0131n\u0131 ihlal edebilir. Ortam\u0131n\u0131za \u00F6zg\u00FC de\u011Ferleri eklemek veya kald\u0131rmak i\u00E7in bu denetimin dizelerinin listesini yap\u0131land\u0131rabilirsiniz.</p>",
+					"instances":[ 
+						{
+							"id": "81",
+							"uri": "http://127.0.0.1:3000/access/idor?user_id=99",
+							"nodeName": "http:\/\/127.0.0.1:3000\/access\/idor (user_id)",
+							"method": "GET",
+							"param": "user_id",
+							"attack": "",
+							"evidence": "user_id",
+							"otherinfo": "The URL contains potentially sensitive information. The following string was found via the pattern: user\nuser_id"
+						},
+						{
+							"id": "94",
+							"uri": "http://127.0.0.1:3000/access/idor-secure?as=1&user_id=99",
+							"nodeName": "http:\/\/127.0.0.1:3000\/access\/idor-secure (as,user_id)",
+							"method": "GET",
+							"param": "user_id",
+							"attack": "",
+							"evidence": "user_id",
+							"otherinfo": "The URL contains potentially sensitive information. The following string was found via the pattern: user\nuser_id"
+						},
+						{
+							"id": "43",
+							"uri": "http://127.0.0.1:3000/injection/ldap?user=*)(uid=*))(%7C(uid=*",
+							"nodeName": "http:\/\/127.0.0.1:3000\/injection\/ldap (user)",
+							"method": "GET",
+							"param": "user",
+							"attack": "",
+							"evidence": "user",
+							"otherinfo": "The URL contains potentially sensitive information. The following string was found via the pattern: user\nuser"
+						},
+						{
+							"id": "36",
+							"uri": "http://127.0.0.1:3000/injection/nosqli?user%5B$ne%5D=x",
+							"nodeName": "http:\/\/127.0.0.1:3000\/injection\/nosqli (user[$ne])",
+							"method": "GET",
+							"param": "user[$ne]",
+							"attack": "",
+							"evidence": "user[$ne]",
+							"otherinfo": "The URL contains potentially sensitive information. The following string was found via the pattern: user\nuser[$ne]"
+						},
+						{
+							"id": "50",
+							"uri": "http://127.0.0.1:3000/injection/xpath?user='%20or%20'1'='1",
+							"nodeName": "http:\/\/127.0.0.1:3000\/injection\/xpath (user)",
+							"method": "GET",
+							"param": "user",
+							"attack": "",
+							"evidence": "user",
+							"otherinfo": "The URL contains potentially sensitive information. The following string was found via the pattern: user\nuser"
+						}
+					],
+					"count": "5",
+					"systemic": true,
+					"solution": "<p>Hassas bilgileri URL'lerde ge\u00E7irmeyin.</p>",
+					"otherinfo": "<p>The URL contains potentially sensitive information. The following string was found via the pattern: user</p><p>user_id</p>",
+					"reference": "",
+					"cweid": "598",
+					"wascid": "13",
+					"sourceid": "122"
+				},
+				{
+					"pluginid": "90011",
+					"alertRef": "90011-4",
+					"alert": "Karakter uyu\u015Fmazl\u0131\u011F\u0131",
+					"name": "Karakter uyu\u015Fmazl\u0131\u011F\u0131",
+					"riskcode": "0",
+					"confidence": "1",
+					"riskdesc": "Bilgilendirme (D\u00FC\u015F\u00FCk)",
+					"desc": "<p>This check identifies responses where the HTTP Content-Type header declares a charset different from the charset defined by the body of the HTML or XML. When there's a charset mismatch between the HTTP header and content body Web browsers can be forced into an undesirable content-sniffing mode to determine the content's correct character set.</p><p></p><p>An attacker could manipulate content on the page to be interpreted in an encoding of their choice. For example, if an attacker can control content at the beginning of the page, they could inject script using UTF-7 encoded text and manipulate some browsers into interpreting that text.</p>",
+					"instances":[ 
+						{
+							"id": "641",
+							"uri": "http://127.0.0.1:3000/crossdomain.xml",
+							"nodeName": "http:\/\/127.0.0.1:3000\/crossdomain.xml",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": "HTTP \u00DCstbilgi ve XML kodlama bildirimi aras\u0131nda bir charset uyumsuzlu\u011Fu vard\u0131: [ utf-8 ] ve [ null ] uyu\u015Fmuyor."
+						}
+					],
+					"count": "1",
+					"systemic": false,
+					"solution": "<p>Kuvvet UTF-8 XML HTTP ba\u015Fl\u0131k ve meta etiketleri hem veya kodlama beyanlar t\u00FCm metin i\u00E7erik i\u00E7in.</p>",
+					"otherinfo": "<p>HTTP \u00DCstbilgi ve XML kodlama bildirimi aras\u0131nda bir charset uyumsuzlu\u011Fu vard\u0131: [ utf-8 ] ve [ null ] uyu\u015Fmuyor.</p>",
+					"reference": "<p>https://code.google.com/archive/p/browsersec/wikis/Part2.wiki#Character_set_handling_and_detection</p>",
+					"cweid": "436",
+					"wascid": "15",
+					"sourceid": "492"
+				},
+				{
+					"pluginid": "10109",
+					"alertRef": "10109",
+					"alert": "Modern Web Application",
+					"name": "Modern Web Application",
+					"riskcode": "0",
+					"confidence": "2",
+					"riskdesc": "Bilgilendirme (Orta)",
+					"desc": "<p>The application appears to be a modern web application. If you need to explore it automatically then the Client Spider may well be more effective than the standard one.</p>",
+					"instances":[ 
+						{
+							"id": "290",
+							"uri": "http://127.0.0.1:3000/client/chat-secure",
+							"nodeName": "http:\/\/127.0.0.1:3000\/client\/chat-secure",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "<script>\n    window.addEventListener('message', (e) => {\n      if (e.origin !== location.origin) return;\n      document.getElementById('box').textContent = 'Mesaj: ' + e.data;\n    });\n  </script>",
+							"otherinfo": "No links have been found while there are scripts, which is an indication that this is a modern web application."
+						},
+						{
+							"id": "88",
+							"uri": "http://127.0.0.1:3000/xss/dom?default=%3Cimg%20src=x%20onerror=alert(1)%3E",
+							"nodeName": "http:\/\/127.0.0.1:3000\/xss\/dom (default)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "<script>\n      const p = new URLSearchParams(location.search);\n      const v = p.get('default') || 'ho\u015Fgeldin';\n      document.getElementById('out').innerHTML = 'Merhaba ' + v; // sink: innerHTML\n    </script>",
+							"otherinfo": "No links have been found while there are scripts, which is an indication that this is a modern web application."
+						},
+						{
+							"id": "95",
+							"uri": "http://127.0.0.1:3000/xss/dom-secure?default=%3Cimg%20src=x%20onerror=alert(1)%3E",
+							"nodeName": "http:\/\/127.0.0.1:3000\/xss\/dom-secure (default)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "<script>\n      const p = new URLSearchParams(location.search);\n      const v = p.get('default') || 'ho\u015Fgeldin';\n      document.getElementById('out').textContent = 'Merhaba ' + v; // safe sink\n    </script>",
+							"otherinfo": "No links have been found while there are scripts, which is an indication that this is a modern web application."
+						},
+						{
+							"id": "56",
+							"uri": "http://127.0.0.1:3000/xss/reflected?name=%3Cscript%3Ealert(1)%3C/script%3E",
+							"nodeName": "http:\/\/127.0.0.1:3000\/xss\/reflected (name)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "<script>alert(1)</script>",
+							"otherinfo": "No links have been found while there are scripts, which is an indication that this is a modern web application."
+						},
+						{
+							"id": "232",
+							"uri": "http://127.0.0.1:3000/xss/reflected?name=%3Cscript%3Ealert(1)%3C/script%3E&name=ZAP",
+							"nodeName": "http:\/\/127.0.0.1:3000\/xss\/reflected (name,name)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "<script>alert(1)</script>",
+							"otherinfo": "No links have been found while there are scripts, which is an indication that this is a modern web application."
+						}
+					],
+					"count": "5",
+					"systemic": true,
+					"solution": "<p>This is an informational alert and so no changes are required.</p>",
+					"otherinfo": "<p>No links have been found while there are scripts, which is an indication that this is a modern web application.</p>",
+					"reference": "",
+					"cweid": "-1",
+					"wascid": "-1",
+					"sourceid": "247"
+				},
+				{
+					"pluginid": "10050",
+					"alertRef": "10050-1",
+					"alert": "Retrieved from Cache",
+					"name": "Retrieved from Cache",
+					"riskcode": "0",
+					"confidence": "2",
+					"riskdesc": "Bilgilendirme (Orta)",
+					"desc": "<p>The content was retrieved from a shared cache. If the response data is sensitive, personal or user-specific, this may result in sensitive information being leaked. In some cases, this may even result in a user gaining complete control of the session of another user, depending on the configuration of the caching components in use in their environment. This is primarily an issue where caching servers such as \"proxy\" caches are configured on the local network. This configuration is typically found in corporate or educational environments, for instance.</p>",
+					"instances":[ 
+						{
+							"id": "359",
+							"uri": "http://127.0.0.1:3000/cache/account/1.css",
+							"nodeName": "http:\/\/127.0.0.1:3000\/cache\/account\/1.css",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "HIT (mock CDN)",
+							"otherinfo": ""
+						},
+						{
+							"id": "427",
+							"uri": "http://127.0.0.1:3000/runtime/search?q=%3Cscript%3Ealert(1)%3C/script%3E",
+							"nodeName": "http:\/\/127.0.0.1:3000\/runtime\/search (q)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "Age: 0",
+							"otherinfo": "The presence of the 'Age' header indicates that a HTTP/1.1 compliant caching server is in use."
+						}
+					],
+					"count": "2",
+					"systemic": false,
+					"solution": "<p>Validate that the response does not contain sensitive, personal or user-specific information. If it does, consider the use of the following HTTP response headers, to limit, or prevent the content being stored and retrieved from the cache by another user:</p><p>Cache-Control: no-cache, no-store, must-revalidate, private</p><p>Pragma: no-cache</p><p>Expires: 0</p><p>This configuration directs both HTTP 1.0 and HTTP 1.1 compliant caching servers to not store the response, and to not retrieve the response (without validation) from the cache, in response to a similar request.</p>",
+					"otherinfo": "",
+					"reference": "<p>https://datatracker.ietf.org/doc/html/rfc7234</p><p>https://datatracker.ietf.org/doc/html/rfc7231</p><p>https://www.rfc-editor.org/rfc/rfc9110.html</p>",
+					"cweid": "525",
+					"wascid": "-1",
+					"sourceid": "287"
+				},
+				{
+					"pluginid": "10112",
+					"alertRef": "10112",
+					"alert": "Session Management Response Identified",
+					"name": "Session Management Response Identified",
+					"riskcode": "0",
+					"confidence": "2",
+					"riskdesc": "Bilgilendirme (Orta)",
+					"desc": "<p>The given response has been identified as containing a session management token. The 'Other Info' field contains a set of header tokens that can be used in the Header Based Session Management Method. If the request is in a context which has a Session Management Method set to \"Auto-Detect\" then this rule will change the session management to use the tokens identified.</p>",
+					"instances":[ 
+						{
+							"id": "24",
+							"uri": "http://127.0.0.1:3000/api/oob-hits",
+							"nodeName": "http:\/\/127.0.0.1:3000\/api\/oob-hits",
+							"method": "GET",
+							"param": "hits[2].token",
+							"attack": "",
+							"evidence": "hits[2].token",
+							"otherinfo": "json:hits[2].token\njson:hits[0].token\njson:hits[1].token"
+						},
+						{
+							"id": "153",
+							"uri": "http://127.0.0.1:3000/auth/session-fixation",
+							"nodeName": "http:\/\/127.0.0.1:3000\/auth\/session-fixation",
+							"method": "GET",
+							"param": "sessionid",
+							"attack": "",
+							"evidence": "sessionid",
+							"otherinfo": "cookie:sessionid"
+						},
+						{
+							"id": "657",
+							"uri": "http://127.0.0.1:3000/authx/remember",
+							"nodeName": "http:\/\/127.0.0.1:3000\/authx\/remember",
+							"method": "GET",
+							"param": "remember",
+							"attack": "",
+							"evidence": "remember",
+							"otherinfo": "cookie:remember"
+						},
+						{
+							"id": "434",
+							"uri": "http://127.0.0.1:3000/runtime/cookie-set",
+							"nodeName": "http:\/\/127.0.0.1:3000\/runtime\/cookie-set",
+							"method": "GET",
+							"param": "sessionid",
+							"attack": "",
+							"evidence": "sessionid",
+							"otherinfo": "cookie:sessionid"
+						},
+						{
+							"id": "431",
+							"uri": "http://127.0.0.1:3000/runtime/cookie-set-secure",
+							"nodeName": "http:\/\/127.0.0.1:3000\/runtime\/cookie-set-secure",
+							"method": "GET",
+							"param": "sessionid",
+							"attack": "",
+							"evidence": "sessionid",
+							"otherinfo": "cookie:sessionid"
+						},
+						{
+							"id": "603",
+							"uri": "http://127.0.0.1:3000/runtime/role-cookie-secure",
+							"nodeName": "http:\/\/127.0.0.1:3000\/runtime\/role-cookie-secure",
+							"method": "GET",
+							"param": "srole",
+							"attack": "",
+							"evidence": "srole",
+							"otherinfo": "cookie:srole"
+						},
+						{
+							"id": "658",
+							"uri": "http://127.0.0.1:3000/authx/remember",
+							"nodeName": "http:\/\/127.0.0.1:3000\/authx\/remember",
+							"method": "GET",
+							"param": "remember",
+							"attack": "",
+							"evidence": "remember",
+							"otherinfo": "cookie:remember"
+						},
+						{
+							"id": "620",
+							"uri": "http://127.0.0.1:3000/runtime/role-cookie-secure",
+							"nodeName": "http:\/\/127.0.0.1:3000\/runtime\/role-cookie-secure",
+							"method": "GET",
+							"param": "srole",
+							"attack": "",
+							"evidence": "srole",
+							"otherinfo": "cookie:srole"
+						}
+					],
+					"count": "8",
+					"systemic": false,
+					"solution": "<p>This is an informational alert rather than a vulnerability and so there is nothing to fix.</p>",
+					"otherinfo": "<p>json:hits[2].token</p><p>json:hits[0].token</p><p>json:hits[1].token</p>",
+					"reference": "<p>https://www.zaproxy.org/docs/desktop/addons/authentication-helper/session-mgmt-id/</p>",
+					"cweid": "-1",
+					"wascid": "-1",
+					"sourceid": "50"
+				},
+				{
+					"pluginid": "10031",
+					"alertRef": "10031",
+					"alert": "User Controllable HTML Element Attribute (Potential XSS)",
+					"name": "User Controllable HTML Element Attribute (Potential XSS)",
+					"riskcode": "0",
+					"confidence": "1",
+					"riskdesc": "Bilgilendirme (D\u00FC\u015F\u00FCk)",
+					"desc": "<p>This check looks at user-supplied input in query string parameters and POST data to identify where certain HTML attribute values might be controlled. This provides hot-spot detection for XSS (cross-site scripting) that will require further review by a security analyst to determine exploitability.</p>",
+					"instances":[ 
+						{
+							"id": "307",
+							"uri": "http://127.0.0.1:3000/client/goto?next=javascript:alert(1)",
+							"nodeName": "http:\/\/127.0.0.1:3000\/client\/goto (next)",
+							"method": "GET",
+							"param": "next",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": "User-controlled HTML attribute values were found. Try injecting special characters to see if XSS might be possible. The page at the following URL:\n\nhttp://127.0.0.1:3000/client/goto?next=javascript:alert(1)\n\nappears to include user input in:\na(n) [a] tag [href] attribute\n\nThe user input found was:\nnext=javascript:alert(1)\n\nThe user-controlled value was:\njavascript:alert(1)"
+						},
+						{
+							"id": "634",
+							"uri": "http://127.0.0.1:3000/edge/login-return?returnUrl=https://evil.com",
+							"nodeName": "http:\/\/127.0.0.1:3000\/edge\/login-return (returnUrl)",
+							"method": "GET",
+							"param": "returnUrl",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": "User-controlled HTML attribute values were found. Try injecting special characters to see if XSS might be possible. The page at the following URL:\n\nhttp://127.0.0.1:3000/edge/login-return?returnUrl=https://evil.com\n\nappears to include user input in:\na(n) [a] tag [href] attribute\n\nThe user input found was:\nreturnUrl=https://evil.com\n\nThe user-controlled value was:\nhttps://evil.com"
+						},
+						{
+							"id": "505",
+							"uri": "http://127.0.0.1:3000/runtime/attr?img=x%20onerror=alert(1)",
+							"nodeName": "http:\/\/127.0.0.1:3000\/runtime\/attr (img)",
+							"method": "GET",
+							"param": "img",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": "User-controlled HTML attribute values were found. Try injecting special characters to see if XSS might be possible. The page at the following URL:\n\nhttp://127.0.0.1:3000/runtime/attr?img=x%20onerror=alert(1)\n\nappears to include user input in:\na(n) [img] tag [src] attribute\n\nThe user input found was:\nimg=x onerror=alert(1)\n\nThe user-controlled value was:\nx onerror=alert(1)"
+						},
+						{
+							"id": "483",
+							"uri": "http://127.0.0.1:3000/runtime/reset-page?pass=ZAP&token=ABC123",
+							"nodeName": "http:\/\/127.0.0.1:3000\/runtime\/reset-page (pass,token)",
+							"method": "GET",
+							"param": "token",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": "User-controlled HTML attribute values were found. Try injecting special characters to see if XSS might be possible. The page at the following URL:\n\nhttp://127.0.0.1:3000/runtime/reset-page?pass=ZAP&token=ABC123\n\nappears to include user input in:\na(n) [input] tag [value] attribute\n\nThe user input found was:\ntoken=ABC123\n\nThe user-controlled value was:\nabc123"
+						},
+						{
+							"id": "453",
+							"uri": "http://127.0.0.1:3000/runtime/reset-page?token=ABC123",
+							"nodeName": "http:\/\/127.0.0.1:3000\/runtime\/reset-page (token)",
+							"method": "GET",
+							"param": "token",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": "User-controlled HTML attribute values were found. Try injecting special characters to see if XSS might be possible. The page at the following URL:\n\nhttp://127.0.0.1:3000/runtime/reset-page?token=ABC123\n\nappears to include user input in:\na(n) [input] tag [value] attribute\n\nThe user input found was:\ntoken=ABC123\n\nThe user-controlled value was:\nabc123"
+						},
+						{
+							"id": "57",
+							"uri": "http://127.0.0.1:3000/xss/reflected?name=%3Cscript%3Ealert(1)%3C/script%3E",
+							"nodeName": "http:\/\/127.0.0.1:3000\/xss\/reflected (name)",
+							"method": "GET",
+							"param": "name",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": "User-controlled HTML attribute values were found. Try injecting special characters to see if XSS might be possible. The page at the following URL:\n\nhttp://127.0.0.1:3000/xss/reflected?name=%3Cscript%3Ealert(1)%3C/script%3E\n\nappears to include user input in:\na(n) [input] tag [value] attribute\n\nThe user input found was:\nname=<script>alert(1)</script>\n\nThe user-controlled value was:\n<script>alert(1)</script>"
+						},
+						{
+							"id": "233",
+							"uri": "http://127.0.0.1:3000/xss/reflected?name=%3Cscript%3Ealert(1)%3C/script%3E&name=ZAP",
+							"nodeName": "http:\/\/127.0.0.1:3000\/xss\/reflected (name,name)",
+							"method": "GET",
+							"param": "name",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": "User-controlled HTML attribute values were found. Try injecting special characters to see if XSS might be possible. The page at the following URL:\n\nhttp://127.0.0.1:3000/xss/reflected?name=%3Cscript%3Ealert(1)%3C/script%3E&name=ZAP\n\nappears to include user input in:\na(n) [input] tag [value] attribute\n\nThe user input found was:\nname=<script>alert(1)</script>\n\nThe user-controlled value was:\n<script>alert(1)</script>,zap"
+						},
+						{
+							"id": "78",
+							"uri": "http://127.0.0.1:3000/xss/reflected-secure?name=%3Cscript%3Ealert(1)%3C/script%3E",
+							"nodeName": "http:\/\/127.0.0.1:3000\/xss\/reflected-secure (name)",
+							"method": "GET",
+							"param": "name",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": "User-controlled HTML attribute values were found. Try injecting special characters to see if XSS might be possible. The page at the following URL:\n\nhttp://127.0.0.1:3000/xss/reflected-secure?name=%3Cscript%3Ealert(1)%3C/script%3E\n\nappears to include user input in:\na(n) [input] tag [value] attribute\n\nThe user input found was:\nname=<script>alert(1)</script>\n\nThe user-controlled value was:\n<script>alert(1)</script>"
+						},
+						{
+							"id": "256",
+							"uri": "http://127.0.0.1:3000/xss/reflected-secure?name=%3Cscript%3Ealert(1)%3C/script%3E&name=ZAP",
+							"nodeName": "http:\/\/127.0.0.1:3000\/xss\/reflected-secure (name,name)",
+							"method": "GET",
+							"param": "name",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": "User-controlled HTML attribute values were found. Try injecting special characters to see if XSS might be possible. The page at the following URL:\n\nhttp://127.0.0.1:3000/xss/reflected-secure?name=%3Cscript%3Ealert(1)%3C/script%3E&name=ZAP\n\nappears to include user input in:\na(n) [input] tag [value] attribute\n\nThe user input found was:\nname=<script>alert(1)</script>\n\nThe user-controlled value was:\n<script>alert(1)</script>,zap"
+						}
+					],
+					"count": "9",
+					"systemic": false,
+					"solution": "<p>Validate all input and sanitize output it before writing to any HTML attributes.</p>",
+					"otherinfo": "<p>User-controlled HTML attribute values were found. Try injecting special characters to see if XSS might be possible. The page at the following URL:</p><p></p><p>http://127.0.0.1:3000/client/goto?next=javascript:alert(1)</p><p></p><p>appears to include user input in:</p><p>a(n) [a] tag [href] attribute</p><p></p><p>The user input found was:</p><p>next=javascript:alert(1)</p><p></p><p>The user-controlled value was:</p><p>javascript:alert(1)</p>",
+					"reference": "<p>https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html</p>",
+					"cweid": "20",
+					"wascid": "20",
+					"sourceid": "253"
+				}
+			]
+		}
+	],
+	"sequences":[
+	]
+
+}

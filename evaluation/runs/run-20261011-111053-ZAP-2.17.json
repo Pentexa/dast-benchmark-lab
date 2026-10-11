@@ -1,0 +1,510 @@
+{
+  "run_id": "run-20261011-111053",
+  "scanner": "ZAP 2.17",
+  "target": "http://localhost:3000",
+  "started_at": "2026-10-11T11:10:53.363954+00:00",
+  "finished_at": "2026-10-11T11:24:49.236475+00:00",
+  "duration_sec": 835.9,
+  "findings_count": 91,
+  "scanner_exit_code": 0,
+  "scanner_errors_reported": 0,
+  "note": "terminal quick scan 127.0.0.1:3000",
+  "requests": {
+    "total_requests": 17419,
+    "unique_paths": 666,
+    "by_status": {
+      "2xx": 10028,
+      "3xx": 2107,
+      "4xx": 5262,
+      "5xx": 22
+    },
+    "by_method": {
+      "POST": 1,
+      "GET": 17418
+    },
+    "req_per_sec": 20.84,
+    "peak_10s_rps": 274.5,
+    "max_concurrency": 5,
+    "discovery_curve_sec": {
+      "t25": 426.2,
+      "t50": 426.7,
+      "t75": 427.5
+    },
+    "max_hits_single_path": 476,
+    "top_targets": {
+      "/edge/go2": 476,
+      "/xss/reflected-secure": 430,
+      "/runtime/reset-page": 429,
+      "/xss/reflected": 427,
+      "/authx/oauth": 399,
+      "/client/goto": 339,
+      "/ssrf/redirect": 337,
+      "/runtime/go": 337
+    },
+    "payload_variety_signals": 16,
+    "total_response_bytes": 3448009,
+    "total_response_mb": 3.29,
+    "fetched_robots_txt": true,
+    "server_errors_5xx": 22,
+    "server_errors_by_path": {
+      "/runtime/go": 13,
+      "/misconfig/error": 5,
+      "/misconfig/error-secure": 1,
+      "/fp/error-fake": 1,
+      "/fp/error-fake/": 1,
+      "/misconfig/error-secure/": 1
+    },
+    "slow_responses_over_2500ms": 56,
+    "max_response_ms": 3052,
+    "slow_by_path": {
+      "/runtime/sqli-time": 56
+    },
+    "probe_signals": {
+      "exposure_probe": 57,
+      "cmdi_probe": 102,
+      "xss_probe": 731,
+      "traversal_probe": 27,
+      "xxe_probe": 64,
+      "ssrf_probe": 369,
+      "apikey_probe": 143,
+      "pagination_probe": 57,
+      "otp_mfa_probe": 27,
+      "graphql_probe": 31,
+      "oauth_probe": 805,
+      "jsonp_probe": 145,
+      "sqli_probe": 210,
+      "massassign_probe": 2,
+      "proto_pollution_probe": 143,
+      "ssti_probe": 105
+    },
+    "coverage_endpoints_hit": 143,
+    "coverage_endpoints_total": 222,
+    "coverage_pct": 64.4,
+    "coverage_by_category": {
+      "A03-Injection": {
+        "hit": 20,
+        "total": 27,
+        "pct": 74.1
+      },
+      "A03-XSS": {
+        "hit": 8,
+        "total": 11,
+        "pct": 72.7
+      },
+      "A01-AccessControl": {
+        "hit": 14,
+        "total": 17,
+        "pct": 82.4
+      },
+      "A07-Auth": {
+        "hit": 19,
+        "total": 30,
+        "pct": 63.3
+      },
+      "A02-Crypto": {
+        "hit": 6,
+        "total": 6,
+        "pct": 100.0
+      },
+      "A05-Misconfig": {
+        "hit": 10,
+        "total": 11,
+        "pct": 90.9
+      },
+      "A10-SSRF": {
+        "hit": 8,
+        "total": 8,
+        "pct": 100.0
+      },
+      "A04-InsecureDesign": {
+        "hit": 1,
+        "total": 3,
+        "pct": 33.3
+      },
+      "A08-Integrity": {
+        "hit": 0,
+        "total": 1,
+        "pct": 0.0
+      },
+      "FP-Trap": {
+        "hit": 10,
+        "total": 12,
+        "pct": 83.3
+      },
+      "API-Security": {
+        "hit": 7,
+        "total": 14,
+        "pct": 50.0
+      },
+      "API-GraphQL": {
+        "hit": 1,
+        "total": 5,
+        "pct": 20.0
+      },
+      "Client-Side": {
+        "hit": 10,
+        "total": 13,
+        "pct": 76.9
+      },
+      "A05-Exposure": {
+        "hit": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "A04-FileHandling": {
+        "hit": 6,
+        "total": 12,
+        "pct": 50.0
+      },
+      "A04-BusinessLogic": {
+        "hit": 1,
+        "total": 6,
+        "pct": 16.7
+      },
+      "A05-CacheSmuggle": {
+        "hit": 4,
+        "total": 8,
+        "pct": 50.0
+      },
+      "APP-Shop": {
+        "hit": 7,
+        "total": 27,
+        "pct": 25.9
+      }
+    },
+    "untouched_categories": [
+      "A08-Integrity"
+    ]
+  },
+  "scanner_resources": null,
+  "oob_callbacks_in_window": 0,
+  "metrics": {
+    "TP": 34,
+    "FP": 13,
+    "FN": 129,
+    "TN": 46,
+    "precision": 0.7234,
+    "recall": 0.2086,
+    "f1": 0.3238,
+    "fpr": 0.2203,
+    "by_category": {
+      "A01-AccessControl": {
+        "TP": 8,
+        "FP": 1,
+        "FN": 4,
+        "TN": 4,
+        "precision": 0.8889,
+        "recall": 0.6667,
+        "f1": 0.7619
+      },
+      "A02-Crypto": {
+        "TP": 2,
+        "FP": 1,
+        "FN": 3,
+        "TN": 0,
+        "precision": 0.6667,
+        "recall": 0.4,
+        "f1": 0.5
+      },
+      "A03-Injection": {
+        "TP": 5,
+        "FP": 1,
+        "FN": 18,
+        "TN": 3,
+        "precision": 0.8333,
+        "recall": 0.2174,
+        "f1": 0.3448
+      },
+      "A03-XSS": {
+        "TP": 2,
+        "FP": 2,
+        "FN": 6,
+        "TN": 1,
+        "precision": 0.5,
+        "recall": 0.25,
+        "f1": 0.3333
+      },
+      "A04-BusinessLogic": {
+        "TP": 0,
+        "FP": 0,
+        "FN": 4,
+        "TN": 2,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "A04-FileHandling": {
+        "TP": 0,
+        "FP": 0,
+        "FN": 9,
+        "TN": 3,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "A04-InsecureDesign": {
+        "TP": 0,
+        "FP": 0,
+        "FN": 2,
+        "TN": 1,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "A05-CacheSmuggle": {
+        "TP": 2,
+        "FP": 0,
+        "FN": 4,
+        "TN": 2,
+        "precision": 1.0,
+        "recall": 0.3333,
+        "f1": 0.5
+      },
+      "A05-Exposure": {
+        "TP": 1,
+        "FP": 0,
+        "FN": 10,
+        "TN": 0,
+        "precision": 1.0,
+        "recall": 0.0909,
+        "f1": 0.1667
+      },
+      "A05-Misconfig": {
+        "TP": 4,
+        "FP": 2,
+        "FN": 4,
+        "TN": 1,
+        "precision": 0.6667,
+        "recall": 0.5,
+        "f1": 0.5714
+      },
+      "A07-Auth": {
+        "TP": 5,
+        "FP": 2,
+        "FN": 18,
+        "TN": 5,
+        "precision": 0.7143,
+        "recall": 0.2174,
+        "f1": 0.3333
+      },
+      "A08-Integrity": {
+        "TP": 0,
+        "FP": 0,
+        "FN": 1,
+        "TN": 0,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "A10-SSRF": {
+        "TP": 0,
+        "FP": 0,
+        "FN": 6,
+        "TN": 2,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "API-GraphQL": {
+        "TP": 0,
+        "FP": 0,
+        "FN": 4,
+        "TN": 1,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "API-Security": {
+        "TP": 2,
+        "FP": 0,
+        "FN": 7,
+        "TN": 5,
+        "precision": 1.0,
+        "recall": 0.2222,
+        "f1": 0.3636
+      },
+      "APP-Shop": {
+        "TP": 0,
+        "FP": 0,
+        "FN": 23,
+        "TN": 4,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "Client-Side": {
+        "TP": 3,
+        "FP": 1,
+        "FN": 6,
+        "TN": 3,
+        "precision": 0.75,
+        "recall": 0.3333,
+        "f1": 0.4615
+      },
+      "FP-Trap": {
+        "TP": 0,
+        "FP": 3,
+        "FN": 0,
+        "TN": 9,
+        "precision": 0.0,
+        "recall": 0,
+        "f1": 0
+      }
+    },
+    "fn_list": [
+      "INJ-AUTH-BYPASS-01",
+      "INJ-CMDI-01",
+      "INJ-SSTI-01",
+      "INJ-XXE-01",
+      "INJ-CRLF-01",
+      "XSS-STORED-01",
+      "CSRF-01",
+      "AUTH-JWT-01",
+      "AUTH-RESET-01",
+      "AUTH-BRUTE-01",
+      "CRYPTO-DEBUG-01",
+      "CRYPTO-GIT-01",
+      "CRYPTO-HASH-01",
+      "MIS-HDR-01",
+      "MIS-DIR-01",
+      "CLICK-01",
+      "SSRF-01",
+      "UPL-01",
+      "BIZ-01",
+      "DESER-01",
+      "API-MASS-01",
+      "API-RATE-01",
+      "API-KEY-01",
+      "API-PAGE-01",
+      "API-INVITE-01",
+      "GQL-INTROS-01",
+      "GQL-BATCH-01",
+      "GQL-DEPTH-01",
+      "GQL-IDOR-01",
+      "AUTHX-OTP-01",
+      "AUTHX-MFA-01",
+      "AUTHX-RESET-POISON-01",
+      "AUTHX-ENUM-01",
+      "AUTHX-KID-01",
+      "AUTHX-JKU-01",
+      "AUTHX-WEAK-01",
+      "CL-PM-01",
+      "CL-MD-01",
+      "CL-CLOBBER-01",
+      "CL-PPOLL-01",
+      "EXP-ENV-01",
+      "EXP-BAK-01",
+      "EXP-DS-01",
+      "EXP-MAP-01",
+      "EXP-SWAG-01",
+      "EXP-ACT-01",
+      "FILE-SVG-01",
+      "FILE-ZIP-01",
+      "FILE-LFI-01",
+      "FILE-RFI-01",
+      "FILE-CSV-01",
+      "SHOP-PRICE-01",
+      "SHOP-QTY-01",
+      "SHOP-RACE-01",
+      "SHOP-ORDER-01",
+      "CACHE-HOST-01",
+      "HTTP-METHOD-01",
+      "HTTP-SMUG-01",
+      "RT-TIME-01",
+      "RT-BOOL-01",
+      "RT-HDRSQLI-01",
+      "RT-MAGIC-01",
+      "RT-MAILHDR-01",
+      "RT-LOGPOISON-01",
+      "RT-SIDURL-01",
+      "RT-BFLA-01",
+      "RT-HEADBOLA-01",
+      "RT-JWK-01",
+      "RT-NOEXP-ISSUE",
+      "RT-NOEXP-01",
+      "RT-LOG4J-01",
+      "RT-BLINDXSS-01",
+      "RT-BLINDXSS-02",
+      "RT-PHPINFO-01",
+      "RT-PKG-01",
+      "RT-COMPOSER-01",
+      "RT-UPLDBL-01",
+      "RT-CTX-JS-01",
+      "APP-AUTH-01",
+      "APP-MASS-01",
+      "APP-ADDR-01",
+      "APP-TRACK-01",
+      "APP-BASKET-01",
+      "APP-CSRF-01",
+      "APP-COUPON-01",
+      "APP-WALLET-01",
+      "APP-REFUND-01",
+      "APP-RESET-01",
+      "APP-BFLA-01",
+      "APP-DEBUG-01",
+      "APP-AVATAR-01",
+      "APP-ENUM-01",
+      "APP-FEED-01",
+      "APP-FEEDVIEW-01",
+      "APP-TOKEN-01",
+      "APP-RECOVERY-01",
+      "CH-UNION-01",
+      "CH-STACK-01",
+      "CH-2ND-01",
+      "CH-2ND-02",
+      "CH-SSTI-JINJA",
+      "CH-SSTI-TWIG",
+      "CH-SSTI-FMT",
+      "CH-SSTI-ERB",
+      "CH-LEGACY-01",
+      "CH-ROLE-01",
+      "CH-HTACCESS-01",
+      "CH-VERB-01",
+      "EDGE-SSRF-DEC",
+      "EDGE-SSRF-ZERO",
+      "EDGE-SSRF-AT",
+      "EDGE-SSRF-FRAG",
+      "EDGE-SSRF-REDIR",
+      "EDGE-ORIG-01",
+      "EDGE-LOCAL-01",
+      "EDGE-TRACE-01",
+      "EDGE-CFG-01",
+      "CACHE-XFF-01",
+      "AX-CONFUSE-01",
+      "AX-REUSE-01",
+      "FILE-WRAP-01",
+      "FILE-UNI-01",
+      "APP-EMAIL-01",
+      "APP-GIFT-01",
+      "APP-POINTS-01",
+      "APP-SHIP-01",
+      "APP-REG-01",
+      "XSS-MXSS-01",
+      "CL-PPOLLQ-01"
+    ],
+    "fp_list": [
+      "INJ-SQLI-01-SECURE",
+      "XSS-REFL-01-SECURE",
+      "XSS-DOM-01-SECURE",
+      "AC-IDOR-01-SECURE",
+      "CRYPTO-PAN-01-SECURE",
+      "MIS-HDR-01-SECURE",
+      "MIS-ERR-01-SECURE",
+      "FP-VERSION-01",
+      "FP-ERROR-01",
+      "CL-PM-01-SECURE",
+      "FP-CSP-01",
+      "RT-COOKIE-01-SECURE",
+      "CH-ROLE-01-SECURE"
+    ]
+  },
+  "delta_vs_previous": {
+    "run_id": "run-20261010-210534",
+    "d_tp": 32,
+    "d_fp": 11,
+    "d_fn": -32,
+    "d_precision": 0.2234,
+    "d_recall": 0.1963,
+    "d_f1": 0.2998
+  }
+}
