@@ -10,8 +10,9 @@
 [![Express](https://img.shields.io/badge/Express-4.x-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![OWASP](https://img.shields.io/badge/OWASP-Top_10_covered-FF0000?style=for-the-badge&logo=owasp&logoColor=white)](https://owasp.org/Top10/)
-[![Endpoints](https://img.shields.io/badge/endpoints-222-blue?style=for-the-badge)](./ground-truth.json)
-[![Verified](https://img.shields.io/badge/verified_vulns-163%2F163-success?style=for-the-badge)](./evaluation/verification.json)
+[![Endpoints](https://img.shields.io/badge/endpoints-383-blue?style=for-the-badge)](./ground-truth.json)
+[![Verified](https://img.shields.io/badge/verified_vulns-194%2F194-success?style=for-the-badge)](./evaluation/verification.json)
+[![Decoys](https://img.shields.io/badge/decoys-104%2F104_clean-lightgrey?style=for-the-badge)](./evaluation/verification.json)
 
 [🚀 Quickstart](#-quickstart-2-minutes) •
 [🛰️ Why DAST-Specific?](#️-why-purpose-built-for-dast) •
@@ -32,17 +33,17 @@
 > **Problem:** You run a DAST scanner. It reports 50 findings. How many are real? How many are false alarms? How many critical vulnerabilities did it **miss**? Normally, you can't know.
 >
 > **Solution:** This server gives you a target whose **answers are known in advance**:
-> - 🔴 **163 vulnerable endpoints** → the scanner should find them (found = **TP**, missed = **FN**)
-> - 🟢 **47 secure endpoints** → the scanner should stay silent (alert = **FP**, silent = **TN**)
-> - 🟡 **12 FP-trap endpoints** → pages that look suspicious but are clean (WAF text, sample keys, slow report...). They measure the scanner's **false-positive discipline**.
+> - 🔴 **194 vulnerable endpoints** → the scanner should find them (found = **TP**, missed = **FN**)
+> - 🟢 **73 secure endpoints** → the scanner should stay silent (alert = **FP**, silent = **TN**)
+> - 🟡 **116 FP-trap endpoints** (12 classic + **104-trap hell**) → pages that look suspicious but are clean (WAF text, sample keys, slow report...). They measure the scanner's **false-positive discipline**.
 
 `ground-truth.json` is the referee. Compare the scanner report with `evaluation/evaluate.py` → get **Precision / Recall / F1 + per-category breakdown**.
 
 ```mermaid
 flowchart LR
-    A[🔴 163 Vulnerable\nTP expected] --> S[🎯 Mock Server\n:3000]
-    B[🟢 47 Secure\nTN expected] --> S
-    C[🟡 12 FP-Traps\nTN expected] --> S
+    A[🔴 194 Vulnerable\nTP expected] --> S[🎯 Mock Server\n:3000]
+    B[🟢 73 Secure\nTN expected] --> S
+    C[🟡 116 FP-Traps\nTN expected] --> S
     S --> D[ZAP / Nuclei / Burp\nscan]
     D --> E[evaluate.py\nreport vs ground-truth]
     E --> F[📊 TP FP FN TN\nPrecision Recall F1]
@@ -56,13 +57,14 @@ Concept deep-dive (Turkish) → **[📖 docs/NE-ISE-YARAR.md](./docs/NE-ISE-YARA
 
 | | |
 |---|---|
-| 🎯 **222 endpoints, one target** | SQLi (UNION / stacked / blind / second-order) • 4 SSTI engines • XSS (reflected / stored / DOM / blind / mXSS) • IDOR/BOLA • JWT attacks (alg:none, kid, jku, RS→HS) • SSRF bypass set • GraphQL • Prototype Pollution • Zip Slip • CSV formula • Business logic • Juice Shop-level SPA (`/app`) |
-| ✅ **163/163 proof-verified** | `python evaluation/verify.py` fires a real payload at every vulnerability and confirms exploitability. Shown as a badge on the dashboard. |
-| 🟡 **12 FP traps** | Where real tools false-positive the most: "SQL syntax" in help text, SAMPLE key in docs, nonce+CSP script, correct rate-limit, legitimately slow page... |
+| 🎯 **383 endpoints, one target** | Everything in v1 **plus Extreme Range V2**: deep-SPA + Shadow DOM, cross-role stored/blind XSS, multi-tenant IDOR/BOLA, GraphQL nested authz + federation, OAuth/OIDC flows, workflow bypass, deterministic race, async second-order, calibrated blind timing, staged OOB, parser differentials, shared-cache auth, soft-404/rate-limit confusion, WebSocket/SSE/gRPC-Web |
+| ✅ **194/194 proof-verified + 104/104 decoys clean** | `python evaluation/verify.py` fires a real payload at every vulnerability and independently confirms every decoy is clean. Shown on the dashboard. |
+| 🙈 **Blind Mode** | `DAST_MODE=blind` hides headers, answers, hints and GT APIs — fair-measurement mode (see `docs/BLIND-MODE.md`). Transparent stays default for learning. |
+| 🟡 **116-trap FP hell** | Classic 12 + 104 generated decoys (fake SQL errors, neutralized reflections, fake secrets, WAF-like pages...) each with machine-checked negative proofs. |
 | 📊 **Persistent score tracking** | `scan.py start/finish` → every run stored as JSON under `evaluation/runs/`. Duration, request count, speed, coverage, CPU/RAM, 5xx, OOB, **ΔF1 vs previous run**. |
 | 🔍 **FN analysis** | Every request lands in `logs/requests.log` with a signal tag (`sqli_probe`, `xss_probe`...). Distinguish "tried but missed" from "never tried". |
 | 🛡️ **Safe to scan** | CMDi / SSRF / XXE / Deserialization / RFI / Zip Slip **never really execute** — pattern-match mocks. `ping` / `cat /etc/passwd` outputs are fake text. |
-| 🧭 **Live dashboard** | `http://localhost:3000/dashboard` → 222-endpoint list with try-it links + score table + OOB triggers. |
+| 🧭 **Live dashboard** | `http://localhost:3000/dashboard` → 383-endpoint list with try-it links + score table + OOB triggers. |
 
 ---
 
@@ -72,7 +74,7 @@ Concept deep-dive (Turkish) → **[📖 docs/NE-ISE-YARAR.md](./docs/NE-ISE-YARA
 
 | DAST capability | What this project provides |
 |---|---|
-| 🕷️ **Crawling / discovery** | `/dashboard` links all 222 endpoints • `robots.txt` lists sensitive paths • JS-rendered SPA (`/app`) — separates classic spiders from AJAX spiders |
+| 🕷️ **Crawling / discovery** | `/dashboard` links all 383 endpoints • `robots.txt` lists sensitive paths • JS-rendered SPA (`/app`) — separates classic spiders from AJAX spiders |
 | 🎯 **Active fuzzing + oracle reading** | Deterministic flaw markers: error-based `SQL syntax`, boolean content diff, a **real 3-second** time-based delay (`/runtime/sqli-time`), header reflections (`Location`, `X-Injected`), `MOCK-SSRF-LEAK` markers |
 | 🙈 **Blind/OOB detection** | `/oob/*` callback collector + `GET /api/oob-hits` counter — separates scanners that catch blind XSS / blind SSRF from those that don't |
 | 🔐 **Authenticated scanning** | Bearer JWT (`/app/*`), cookies (`role`, `sessionid`), header-spoof scenarios (`X-User-Id`, `X-Role`, `X-Debug`) — an unauthenticated scan misses this whole surface (provable via FN analysis) |
@@ -81,7 +83,7 @@ Concept deep-dive (Turkish) → **[📖 docs/NE-ISE-YARAR.md](./docs/NE-ISE-YARA
 | 📊 **Behavior profiling** | Signal-tagged request log answers "did it try and miss, or never try?" |
 | 🛡️ **Safe fuzz target** | Dangerous vectors are mocks (no real command/request execution) — open the scanner to full throttle |
 
-**In short:** SAST reads code, DAST talks to a target — this server is a conversation partner with 222 topics.
+**In short:** SAST reads code, DAST talks to a target — this server is a conversation partner with 383 topics.
 
 ---
 
@@ -95,7 +97,7 @@ Concept deep-dive (Turkish) → **[📖 docs/NE-ISE-YARAR.md](./docs/NE-ISE-YARA
 | 🟡 **Level 2 — Medium** `active scan + fuzz` | Active scan, wordlists, rule sets | Stored/DOM XSS, UNION/stacked SQLi, 4 SSTI engines, IDOR/traversal, JWT `alg:none`, lock-free OTP, GraphQL introspection, CORS `*`, SVG upload | ZAP full-scan, Burp Active Scan |
 | 🟠 **Level 3 — Hard** `auth + logic + multi-step` | Logged-in scan, chaining, business-logic reasoning | Mass-assignment → admin escalation **chain** (`/app/api/profile` → `/app/api/feedback-view`), BOLA, coupon stacking/negative wallet, JWT `kid`/`jku`/RS→HS confusion, SSRF bypass set (decimal-IP, `@`, fragment), OAuth `redirect_uri`, second-order SQLi | Authenticated scan + API/GraphQL add-ons + manual support |
 | 🔴 **Level 4 — Chaos / Master** `blind + timing + SPA + race` | Timing measurement, OOB listening, JS-render crawling, race windows | **Real 3-sec** time-based SQLi, blind XSS (`/runtime/feedback` → `/oob/*`), `/app` SPA AJAX crawl, single-coupon race (`/shop/coupon-race`), GraphQL depth DoS, cache poisoning | Tuned full-scan + AJAX spider + OOB handler |
-| 🟣 **Level FP-Hunter** `judgement, not signal` | Discipline of NOT alerting | 12 FP traps (`/fp/search`, `/fp/sdk-example`, `/fp/slow-report`...) + 47 `secure` twins | Mature policy — naive rule sets fall into FP here |
+| 🟣 **Level FP-Hunter** `judgement, not signal` | Discipline of NOT alerting | 116 FP traps (12 classic + 104 hell: `/fp/search`, `/fp/sdk-example`, `/fp/slow-report`...) + 47 `secure` twins | Mature policy — naive rule sets fall into FP here |
 
 ```
 Expected F1 curve:  high at Level 1  →  drops toward Level 4  →  FP-Hunter reveals FPR
@@ -120,9 +122,10 @@ npm start
 ```
 
 ```powershell
-# 3) New terminal — is everything working? (expect 163/163)
+# 3) New terminal — is everything working? (expect 194/194 + 104/104)
 python evaluation/verify.py
-# === VERIFIED: 163/163 exploitable ===
+# === VERIFIED: 194/194 exploitable ===
+# === DECOY: 104/104 clean ===
 ```
 
 🎉 Open **`http://localhost:3000/dashboard`** — you'll see all endpoints with "try it" links.
@@ -175,18 +178,20 @@ Supported report formats: `generic` • `zap` • `zap-xml` • `sarif` • `nuc
 
 Full guide (ZAP full-scan, Nuclei, Burp, FN analysis, OOB, APIs — in Turkish) → **[📊 docs/TARAMA-VE-OLCUM.md](./docs/TARAMA-VE-OLCUM.md)**
 
-### Sample score output
+### Sample score output (real run: `evaluation/ornek-bulgular.json`, 4 findings)
 
 ```
-=== OVERALL (222 endpoints, 41 findings) ===
-TP=35  FP=2  FN=128  TN=57
-Precision=0.946  Recall=0.215  F1=0.350  FPR=0.034
+=== OVERALL (383 endpoints, 4 findings) ===
+TP=2  FP=2  FN=192  TN=187
+Precision=0.500  Recall=0.010  F1=0.020  FPR=0.011
+Match strength: strong(vuln_id)=0 weak(path)=4
 
-=== BY CATEGORY ===
-Category                TP  FP  FN  TN  Prec   Rec    F1
-A03-Injection           12   0  15   4   1.00  0.44  0.61
-A07-Auth                 5   1  18   7   0.83  0.22  0.34
-...
+=== BY DIFFICULTY ===
+Difficulty   TP  FP  FN  TN  Prec   Rec    F1
+chaos         0   0  25   0   0.00  0.00  0.00
+easy          2   0  63   0   1.00  0.03  0.06
+fp-hunter     0   2   0 187  0.00  0.00  0.00
+hard          0   0 100   0   0.00  0.00  0.00
 ```
 
 ---
@@ -214,29 +219,29 @@ Concepts + example scenarios (Turkish) → **[📖 docs/NE-ISE-YARAR.md](./docs/
 ## 🗂️ Category map
 
 <details>
-<summary><b>Distribution of the 222 endpoints — click to expand</b></summary>
+<summary><b>Distribution of the 383 endpoints — click to expand</b></summary>
 
 | Category | Vulnerable | Secure | FP-Trap | Examples |
 |---|---|---|---|---|
-| A03-Injection | 23 | 4 | – | UNION / stacked / time-based / boolean / second-order SQLi, NoSQLi, CMDi (mock), 4 SSTI engines, LDAPi, XPath, XXE, CRLF, log4shell (mock) |
-| A07-Auth | 23 | 7 | – | JWT alg:none / kid / jku / weak-secret / RS→HS confusion / jwk, lock-free OTP, MFA bypass, OAuth redirect_uri, enumeration, magic-hash, session fixation |
+| A03-Injection | 28 | 8 | – | UNION / stacked / async second-order / time-based (calibrated) / boolean, NoSQLi, CMDi (mock), 4 SSTI engines, parser differentials, log4shell (mock) |
+| A07-Auth | 27 | 10 | – | JWT alg:none / kid / jku / weak-secret / RS→HS confusion / jwk, lock-free OTP, MFA bypass, OAuth/OIDC flows + PKCE, enumeration, magic-hash, soft-404 + fake rate-limit confusion |
 | APP-Shop (Juice Shop-level) | 23 | 4 | – | JWT login, mass-assignment escalation chain, address/order IDOR, coupon stacking, negative wallet, unlimited refund, CAPTCHA-bypass stored XSS, sequential recovery codes |
-| A01-AccessControl | 12 | 5 | – | IDOR, traversal, forced browsing, open redirect (+bypasses), CSRF, HPP, verb confusion, X-Original-URL / XFF bypass |
+| A01-AccessControl | 16 | 9 | – | IDOR, multi-tenant BOLA, traversal, forced browsing, open redirect (+bypasses), CSRF, HPP, verb confusion, X-Original-URL / XFF bypass |
+| Client-Side | 13 | 8 | – | postMessage XSS, Shadow-DOM XSS, wizard-skip, JSONP, markdown XSS, DOM clobbering, prototype pollution, `javascript:` redirect, WS/SSE vulns |
+| A03-XSS | 13 | 6 | – | Reflected / stored / DOM / blind / cross-role / staged-OOB + mXSS + log-poisoning viewer |
 | A05-Exposure | 11 | – | – | .env, .bak, .DS_Store, source-map, swagger, actuator, robots.txt, phpinfo, package/composer.json |
 | API-Security | 9 | 5 | – | BOLA (TCKN/IBAN), mass-assignment, excessive data, OTP rate-limit, API key in URL, pagination abuse, sequential invite, BFLA |
-| Client-Side | 9 | 4 | – | postMessage XSS, JSONP, markdown XSS, DOM clobbering, prototype pollution, `javascript:` redirect, attribute/JS-string context XSS |
 | A04-FileHandling | 9 | 3 | – | SVG XSS, Zip Slip (mock), LFI/RFI (mock), CSV formula, double-extension upload, wrapper/unicode traversal |
-| A03-XSS | 8 | 3 | – | Reflected / stored / DOM / blind + mXSS + log-poisoning viewer |
 | A05-Misconfig | 8 | 3 | – | Missing headers, verbose errors, dir-listing, default creds, CORS `*`, clickjacking, TRACE, crossdomain.xml |
+| A05-CacheSmuggle | 8 | 4 | – | Host poisoning, shared-cache auth leak, cache deception (PII), method-override, CL.TE oracle, cache-poisoning search |
+| A04-BusinessLogic | 8 | 5 | – | Client-side pricing, negative quantity, coupon race, deterministic burst race, workflow skip/replay, sequential order IDs |
+| API-GraphQL | 7 | 4 | – | Introspection, nested field authz, federation passthrough, batch brute-force, depth DoS, GraphQL IDOR, gRPC-Web errors |
 | A10-SSRF | 6 | 2 | – | Mock SSRF + decimal-IP / 0.0.0.0 / `@` / fragment / redirect-chain bypasses |
-| A05-CacheSmuggle | 6 | 2 | – | Host poisoning, cache deception (PII), method-override, CL.TE oracle, cache-poisoning search |
 | A02-Crypto | 5 | 1 | – | PAN exposure, debug env leak, .git exposure, MD5, reset-token Referer leak |
-| A04-BusinessLogic | 4 | 2 | – | Client-side pricing, negative quantity, coupon race, sequential order IDs |
-| API-GraphQL | 4 | 1 | – | Introspection, batch brute-force, depth DoS, GraphQL IDOR |
 | A04-InsecureDesign | 2 | 1 | – | Unrestricted upload, coupon reuse |
 | A08-Integrity | 1 | – | – | Deserialization (mock) |
-| FP-Trap | – | – | 12 | Help text, SAMPLE key, WAF page, nonce+CSP, correct lockout, single-use coupon, legit slow report... |
-| **TOTAL** | **163** | **47** | **12** | **222** |
+| FP-Trap (incl. 104 hell) | – | – | 116 | Help text, SAMPLE keys, WAF pages, nonce+CSP, correct locks, fake errors/secrets/timing, single-use coupons, legit slow reports... |
+| **TOTAL** | **194** | **73** | **116** | **383** |
 
 </details>
 
@@ -254,59 +259,82 @@ Concepts + example scenarios (Turkish) → **[📖 docs/NE-ISE-YARAR.md](./docs/
 | `GET /api/scans` | Last 30 runs (duration, speed, coverage, TP/FP/FN/TN, CPU/RAM, ΔF1) |
 | `GET /api/stats` | Log summary: request count + signal distribution |
 | `GET /api/oob-hits` | Blind-callback triggers |
-| `GET /api/ground-truth` | Live `ground-truth.json` |
+| `GET /api/ground-truth` | Live `ground-truth.json` (404 in blind mode) |
+| `POST /api/admin/reset` | Reset state + reseed (loopback only; `X-Admin-Token` if `DAST_ADMIN_TOKEN` set) |
+
+> 🙈 In blind mode (`DAST_MODE=blind`) answers are hidden: no GT headers, neutral dashboard, closed GT/coverage APIs. See [`docs/BLIND-MODE.md`](./docs/BLIND-MODE.md).
 
 ---
 
 ## 📁 Project structure
 
 ```
-server.js                  → Express entry, router mounting, dashboard, APIs
-ground-truth.json          → the referee (222 endpoints: 163 vuln + 47 secure + 12 fp-trap)
+server.js                  → Express entry, router mounting, dashboard, APIs (blind-aware, reset endpoint)
+ground-truth.json          → the referee (383 rows: 194 vuln + 73 secure + 116 fp-trap, with difficulty/oracle/execution)
 lib/
   utils.js                 → escHtml, fake DB, payload heuristics
-  requestLogger.js         → logs every request to logs/requests.log with signal tags
-routes/                    → categories (injection, xss, access, auth, authx, api,
+  requestLogger.js         → every request to logs/requests.log with signal tags (blind-safe)
+  mode.js                  → DAST_MODE gate (transparent/blind)
+  seeded.js                → seeded PRNG for reproducible scenarios
+  stateReset.js            → reset-handler registry (20 handlers)
+routes/                    → v1 categories (injection, xss, access, auth, authx, api,
                              graphql, client, files, shop, cache, crypto, misconfig,
                              ssrf, logic, runtime, chaos, edge, shopapp, oob, fptraps)
+                           + V2: spa2, xss2, tenant, gql2, oidc, flow, race2, async2,
+                             blindtime, oob2, parser, cache2, confuse, realtime (WS/SSE/gRPC-Web),
+                             fphell (104 decoys via manifest)
 evaluation/
-  verify.py                → self-verification: proof payload per vuln (163/163) + verification.json
-  evaluate.py              → TP/FP/FN/TN + precision/recall/F1 calculator (importable)
-  scan.py                  → start/finish/list: persistent records with time+errors+coverage
+  verify.py                → self-verification: proof per vuln (194/194) + decoy negatives (104/104) + verification.json
+  evaluate.py              → TP/FP/FN/TN + precision/recall/F1, vuln-level (strong/weak) matching, by category/difficulty
+  report.py                → JSON + Markdown reports (class × difficulty × execution splits)
+  scan.py                  → start/finish/list with --mode/--reset/--seed: persistent records
   agent.py                 → scanner-machine CPU/RAM monitor (psutil)
-  runs/                    → scan records (JSON, append-only — ZAP vs Nuclei comparison)
+  migrate_gt.py / extend_gt_p1.py / extend_gt_p2.py / add_execution.py → GT evolution scripts (auditable)
+  ground-truth.v1.json     → pre-V2 backup (222 rows)
+  runs/                    → scan records (JSON, append-only)
+  reports/                 → generated JSON + Markdown reports
   ornek-bulgular.json      → sample generic-finding format
 logs/
   requests.log             → every request (JSON-lines + signal tags)
   oob.log                  → blind-callback triggers
   scans.jsonl              → scan-start markers
-docs/  (Turkish guides)
-  KURULUM.md               → detailed setup guide
-  NE-ISE-YARAR.md          → concept + TP/FP/FN/TN + who is it for?
-  ZORLUK-SEVIYELERI.md     → DAST-specific design + 5 difficulty levels + scan profiles
-  TARAMA-VE-OLCUM.md       → ZAP/Nuclei/Burp + scan.py + FN analysis + OOB
-  SSS.md                   → FAQ + troubleshooting
+tests/
+  acceptance.py            → fast acceptance suite (schema + parity + live spot checks, both modes)
+docs/
+  KURULUM.md (TR)          → detailed setup guide
+  NE-ISE-YARAR.md (TR)     → concept + TP/FP/FN/TN + audience
+  TARAMA-VE-OLCUM.md (TR)  → ZAP/Nuclei/Burp + scan.py + FN analysis + OOB
+  SSS.md (TR)              → FAQ + troubleshooting
+  ZORLUK-SEVIYELERI.md (TR) → DAST-specific design + difficulty levels
+  BLIND-MODE.md (EN)       → fair-measurement mode + leak surface
+  ORACLES.md (EN)          → GT v2 schema + proof registry + matching
+  RESET.md (EN)            → deterministic resets + seeds + scope limits
+  AUTH-PACK.md (EN)        → vendor-neutral credentials for identical conditions
 ```
 
 ---
 
-## 📚 Documentation (Turkish)
+## 📚 Documentation
 
 | Document | Content |
 |---|---|
-| [🔧 docs/KURULUM.md](./docs/KURULUM.md) | Node/Python/Docker setup, first run, port changes, `verify.py`, common errors |
-| [📖 docs/NE-ISE-YARAR.md](./docs/NE-ISE-YARAR.md) | Which problem it solves, TP/FP/FN/TN, ground-truth & FP-trap concepts, audience |
-| [🎚️ docs/ZORLUK-SEVIYELERI.md](./docs/ZORLUK-SEVIYELERI.md) | DAST-specific design, 5 difficulty levels, severity-vs-difficulty, scanner profiles |
-| [📊 docs/TARAMA-VE-OLCUM.md](./docs/TARAMA-VE-OLCUM.md) | Scanning with ZAP / Nuclei / Burp, `scan.py` flow, `agent.py`, FN analysis, OOB, APIs |
-| [❓ docs/SSS.md](./docs/SSS.md) | 15+ Q&A + troubleshooting table |
+| [🔧 docs/KURULUM.md](./docs/KURULUM.md) *(TR)* | Node/Python/Docker setup, first run, port changes, `verify.py`, common errors |
+| [📖 docs/NE-ISE-YARAR.md](./docs/NE-ISE-YARAR.md) *(TR)* | Which problem it solves, TP/FP/FN/TN, ground-truth & FP-trap concepts, audience |
+| [🎚️ docs/ZORLUK-SEVIYELERI.md](./docs/ZORLUK-SEVIYELERI.md) *(TR)* | DAST-specific design, 5 difficulty levels, severity-vs-difficulty, scanner profiles |
+| [🙈 docs/BLIND-MODE.md](./docs/BLIND-MODE.md) | Fair-measurement mode + hidden leak surface |
+| [🔮 docs/ORACLES.md](./docs/ORACLES.md) | GT v2 schema + proof registry + vuln-level matching |
+| [🔄 docs/RESET.md](./docs/RESET.md) | Deterministic resets + seeds + scope limits |
+| [🔐 docs/AUTH-PACK.md](./docs/AUTH-PACK.md) | Vendor-neutral credentials for identical conditions (ZAP/Burp/Nuclei/Limma/Invicti) |
+| [📊 docs/TARAMA-VE-OLCUM.md](./docs/TARAMA-VE-OLCUM.md) *(TR)* | Scanning with ZAP / Nuclei / Burp, `scan.py` flow, `agent.py`, FN analysis, OOB, APIs |
+| [❓ docs/SSS.md](./docs/SSS.md) *(TR)* | 15+ Q&A + troubleshooting table |
 
 ---
 
 ## 🤝 Contributing
 
 1. Fork → feature branch → make your change
-2. Run `python evaluation/verify.py` to confirm 163/163 still green
-3. New endpoint? Add its `ground-truth.json` row + `verify.py` proof together
+2. Run `python evaluation/verify.py` to confirm 194/194 + 104/104 stay green (or `npm test` for the fast suite)
+3. New endpoint? Add its `ground-truth.json` row (with `difficulty` + `oracle` + `execution`) + `verify.py` proof together
 4. Open a PR (Turkish or English, both fine)
 
 ---

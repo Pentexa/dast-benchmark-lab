@@ -1,11 +1,13 @@
 {
-  "name": "dast-mock-server",
-  "version": "1.0.0",
-  "description": "DAST FP/FN/TP/TN ölçümü için gerçek dünya zafiyet senaryoları içeren mock sunucu",
+  "name": "dast-benchmark-lab",
+  "version": "2.0.0",
+  "description": "Extreme Range V2: deliberately vulnerable + secure mock target with ground truth for measuring DAST scanner accuracy (TP/FP/FN/TN)",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node --watch server.js"
+    "dev": "node --watch server.js",
+    "test": "python tests/acceptance.py",
+    "verify": "python evaluation/verify.py"
   },
   "dependencies": {
     "cookie-parser": "^1.4.6",
