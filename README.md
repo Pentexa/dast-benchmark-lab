@@ -1,187 +1,189 @@
 <div align="center">
 
-# 🎯 DAST Mock Sunucu
+# 🎯 DAST Benchmark Lab
 
-### DAST Tarayıcılarının Doğruluğunu Ölçen Bilerek Zafiyetli + Bilerek Güvenli Test Alanı
+### A Deliberately Vulnerable + Deliberately Secure Test Range for Measuring DAST Scanner Accuracy
 
-**OWASP ZAP • Burp Suite • Nuclei • Acunetix • Nessus için TP / FP / FN / TN skorlama laboratuvarı**
+**TP / FP / FN / TN scoring lab for OWASP ZAP • Burp Suite • Nuclei • Acunetix • Nessus**
 
 [![Node.js](https://img.shields.io/badge/Node.js-18%2B-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
 [![Express](https://img.shields.io/badge/Express-4.x-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![OWASP](https://img.shields.io/badge/OWASP-Top_10_covered-FF0000?style=for-the-badge&logo=owasp&logoColor=white)](https://owasp.org/Top10/)
 [![Endpoints](https://img.shields.io/badge/endpoints-222-blue?style=for-the-badge)](./ground-truth.json)
-[![Verified](https://img.shields.io/badge/doğrulanmış_zafiyet-163%2F163-success?style=for-the-badge)](./evaluation/verification.json)
+[![Verified](https://img.shields.io/badge/verified_vulns-163%2F163-success?style=for-the-badge)](./evaluation/verification.json)
 
-[🚀 Hızlı Kurulum](#-hızlı-kurulum-2-dakika) •
-[🛰️ Neden DAST'a Özel?](#️-neden-dasta-özel-tasarlandı) •
-[🎚️ Zorluk Seviyeleri](#️-zorluk-seviyeleri) •
-[📖 Ne İşe Yarar?](./docs/NE-ISE-YARAR.md) •
-[🔧 Detaylı Kurulum](./docs/KURULUM.md) •
-[📊 Tarama ve Ölçüm](./docs/TARAMA-VE-OLCUM.md) •
-[❓ SSS](./docs/SSS.md)
+[🚀 Quickstart](#-quickstart-2-minutes) •
+[🛰️ Why DAST-Specific?](#️-why-purpose-built-for-dast) •
+[🎚️ Difficulty Levels](#️-difficulty-levels) •
+[📖 What Is This For?](./docs/NE-ISE-YARAR.md) •
+[🔧 Setup Guide](./docs/KURULUM.md) •
+[📊 Scanning & Scoring](./docs/TARAMA-VE-OLCUM.md) •
+[❓ FAQ](./docs/SSS.md)
+
+> 📝 Detailed guides under [`docs/`](./docs/) are currently in Turkish. The commands and code samples work regardless of language.
 
 </div>
 
 ---
 
-## 📌 Bu proje ne işe yarar? (30 saniyede)
+## 📌 What is this? (in 30 seconds)
 
-> **Sorun:** Bir DAST tarayıcısı çalıştırdın. 50 bulgu verdi. Kaçı gerçek? Kaçı yanlış alarm? Kaç kritik açığı **kaçırdı?** Bunu normalde bilemezsin.
+> **Problem:** You run a DAST scanner. It reports 50 findings. How many are real? How many are false alarms? How many critical vulnerabilities did it **miss**? Normally, you can't know.
 >
-> **Çözüm:** Bu sunucu sana **cevabı önceden bilinen** bir hedef verir:
-> - 🔴 **163 zafiyetli endpoint** → tarayıcı bulmalı (bulursa **TP**, bulamazsa **FN**)
-> - 🟢 **47 güvenli endpoint** → tarayıcı susmalı (öterse **FP**, susarsa **TN**)
-> - 🟡 **12 FP-tuzağı endpoint** → bilerek "şüpheli görünüp" temiz olan sayfalar (WAF metni, örnek anahtar, yavaş rapor...). Tarayıcının **yanlış alarm avcılığını** ölçer.
+> **Solution:** This server gives you a target whose **answers are known in advance**:
+> - 🔴 **163 vulnerable endpoints** → the scanner should find them (found = **TP**, missed = **FN**)
+> - 🟢 **47 secure endpoints** → the scanner should stay silent (alert = **FP**, silent = **TN**)
+> - 🟡 **12 FP-trap endpoints** → pages that look suspicious but are clean (WAF text, sample keys, slow report...). They measure the scanner's **false-positive discipline**.
 
-`ground-truth.json` = hakem heyeti. Tarayıcı raporunu `evaluation/evaluate.py` ile karşılaştırıyorsun → **Precision / Recall / F1 + kategori kırılımı** alıyorsun.
+`ground-truth.json` is the referee. Compare the scanner report with `evaluation/evaluate.py` → get **Precision / Recall / F1 + per-category breakdown**.
 
 ```mermaid
 flowchart LR
-    A[🔴 163 Zafiyetli\nTP beklenir] --> S[🎯 Mock Sunucu\n:3000]
-    B[🟢 47 Güvenli\nTN beklenir] --> S
-    C[🟡 12 FP-Tuzağı\nTN beklenir] --> S
-    S --> D[ZAP / Nuclei / Burp\ntaraması]
-    D --> E[evaluate.py\nrapor vs ground-truth]
+    A[🔴 163 Vulnerable\nTP expected] --> S[🎯 Mock Server\n:3000]
+    B[🟢 47 Secure\nTN expected] --> S
+    C[🟡 12 FP-Traps\nTN expected] --> S
+    S --> D[ZAP / Nuclei / Burp\nscan]
+    D --> E[evaluate.py\nreport vs ground-truth]
     E --> F[📊 TP FP FN TN\nPrecision Recall F1]
 ```
 
-Detaylı konsept anlatımı → **[📖 docs/NE-ISE-YARAR.md](./docs/NE-ISE-YARAR.md)**
+Concept deep-dive (Turkish) → **[📖 docs/NE-ISE-YARAR.md](./docs/NE-ISE-YARAR.md)**
 
 ---
 
-## ✨ Öne çıkanlar
+## ✨ Highlights
 
 | | |
 |---|---|
-| 🎯 **222 endpoint, tek hedef** | SQLi (UNION / stacked / blind / second-order) • 4 SSTI motoru • XSS (reflected / stored / DOM / blind / mXSS) • IDOR/BOLA • JWT saldırıları (alg:none, kid, jku, RS→HS) • SSRF bypass seti • GraphQL • Prototype Pollution • Zip Slip • CSV formül • Business logic • Juice Shop seviyesi SPA (`/app`) |
-| ✅ **163/163 proof ile doğrulanmış** | `python evaluation/verify.py` her zafiyete gerçek payload gönderir, sömürülebilirliği teyit eder. Rozet dashboard'da görünür. |
-| 🟡 **12 FP-tuzağı** | Gerçek araçların en çok false-positive verdiği yerler: yardım metnindeki "SQL syntax", dokümandaki ÖRNEK anahtar, nonce+CSP'li script, doğru rate-limit, meşru yavaş sayfa... |
-| 📊 **Kalıcı skor takibi** | `scan.py start/finish` → her koşu `evaluation/runs/` altında JSON saklanır. Süre, istek sayısı, hız, coverage, CPU/RAM, 5xx, OOB, **önceki koşuyla ΔF1** karşılaştırması. |
-| 🔍 **FN analizi** | Her istek `logs/requests.log`'a sinyal etiketiyle düşer (`sqli_probe`, `xss_probe`...). Tarayıcı denedi de mi bulamadı, hiç denemedi mi? Ayırt edersin. |
-| 🛡️ **Güvenle taratılabilir** | CMDi / SSRF / XXE / Deserialization / RFI / Zip Slip **gerçekten çalışmaz** — pattern-match mock'tur. `ping` / `cat /etc/passwd` çıktıları sahte metindir. |
-| 🧭 **Canlı dashboard** | `http://localhost:3000/dashboard` → 222 endpoint listesi + deneme linkleri + skor tablosu + OOB tetikler. |
+| 🎯 **222 endpoints, one target** | SQLi (UNION / stacked / blind / second-order) • 4 SSTI engines • XSS (reflected / stored / DOM / blind / mXSS) • IDOR/BOLA • JWT attacks (alg:none, kid, jku, RS→HS) • SSRF bypass set • GraphQL • Prototype Pollution • Zip Slip • CSV formula • Business logic • Juice Shop-level SPA (`/app`) |
+| ✅ **163/163 proof-verified** | `python evaluation/verify.py` fires a real payload at every vulnerability and confirms exploitability. Shown as a badge on the dashboard. |
+| 🟡 **12 FP traps** | Where real tools false-positive the most: "SQL syntax" in help text, SAMPLE key in docs, nonce+CSP script, correct rate-limit, legitimately slow page... |
+| 📊 **Persistent score tracking** | `scan.py start/finish` → every run stored as JSON under `evaluation/runs/`. Duration, request count, speed, coverage, CPU/RAM, 5xx, OOB, **ΔF1 vs previous run**. |
+| 🔍 **FN analysis** | Every request lands in `logs/requests.log` with a signal tag (`sqli_probe`, `xss_probe`...). Distinguish "tried but missed" from "never tried". |
+| 🛡️ **Safe to scan** | CMDi / SSRF / XXE / Deserialization / RFI / Zip Slip **never really execute** — pattern-match mocks. `ping` / `cat /etc/passwd` outputs are fake text. |
+| 🧭 **Live dashboard** | `http://localhost:3000/dashboard` → 222-endpoint list with try-it links + score table + OOB triggers. |
 
 ---
 
-## 🛰️ Neden DAST'a özel tasarlandı?
+## 🛰️ Why purpose-built for DAST?
 
-> Bu proje SAST (kod okuyan) araçlar için değil, **çalışan hedefe HTTP isteği atıp yanıtı yorumlayan** DAST tarayıcıları için inşa edildi. Her tasarım kararı bir DAST yeteneğini ölçer:
+> This project is not for SAST (code-reading) tools — it is built for scanners that **send HTTP requests to a live target and interpret responses**. Every design decision measures one DAST capability:
 
-| DAST yeteneği | Projedeki karşılığı |
+| DAST capability | What this project provides |
 |---|---|
-| 🕷️ **Crawl / keşif** | `/dashboard` tüm 222 endpoint'i linkler • `robots.txt` + sitemap hissi veren liste • JS-render SPA (`/app`) — klasik spider mı, AJAX spider mı? ayrımı burada belli olur |
-| 🎯 **Aktif fuzz + oracle okuma** | Deterministik zaaf işaretleri: error-based `SQL syntax`, boolean içerik farkı, **gerçek 3 sn uyuyan** time-based (`/runtime/sqli-time`), header yankıları (`Location`, `X-Injected`), `MOCK-SSRF-LEAK` marker'ları |
-| 🙈 **Kör (blind/OOB) bulma** | `/oob/*` callback toplayıcı + `GET /api/oob-hits` sayacı — blind XSS / blind SSRF / log4shell'i bulanla bulamayan ayrılır |
-| 🔐 **Authenticated tarama** | Bearer JWT (`/app/*`), cookie (`role`, `sessionid`), header-spoof (`X-User-Id`, `X-Role`, `X-Debug`) senaryoları — girişsiz tarama bu yüzeyin tamamını kaçırır (FN analiziyle kanıtlanır) |
-| 🧠 **Muhakeme / FP direnci** | Her zaafın **güvenli ikizi** (`/injection/sqli` → `/injection/sqli-secure`) + **12 FP-tuzağı** — metin-eşleşmeyle öten kurallar burada FP'ye düşer |
-| 📡 **Eşleştirme dostu** | Her yanıtta `X-Vuln-Id`, `X-Vuln-Category`, `X-Ground-Truth` header'ı • `evaluate.py` trailing-slash ve `:id` placeholder duyarsız eşleşir |
-| 📊 **Davranış profili** | `logs/requests.log` her isteği sinyal etiketiyle yazar (`sqli_probe`, `xss_probe`...) → "denedi de bulamadı mı, hiç denemedi mi?" sorusu cevaplanır |
-| 🛡️ **Güvenli fuzz hedefi** | CMDi / SSRF / XXE / Deserialization / RFI / Zip Slip **gerçekten çalışmaz** (pattern-match mock) — tarayıcıyı sonuna kadar açabilirsin |
+| 🕷️ **Crawling / discovery** | `/dashboard` links all 222 endpoints • `robots.txt` lists sensitive paths • JS-rendered SPA (`/app`) — separates classic spiders from AJAX spiders |
+| 🎯 **Active fuzzing + oracle reading** | Deterministic flaw markers: error-based `SQL syntax`, boolean content diff, a **real 3-second** time-based delay (`/runtime/sqli-time`), header reflections (`Location`, `X-Injected`), `MOCK-SSRF-LEAK` markers |
+| 🙈 **Blind/OOB detection** | `/oob/*` callback collector + `GET /api/oob-hits` counter — separates scanners that catch blind XSS / blind SSRF from those that don't |
+| 🔐 **Authenticated scanning** | Bearer JWT (`/app/*`), cookies (`role`, `sessionid`), header-spoof scenarios (`X-User-Id`, `X-Role`, `X-Debug`) — an unauthenticated scan misses this whole surface (provable via FN analysis) |
+| 🧠 **Judgement / FP resistance** | Every flaw has a **secure twin** (`/injection/sqli` → `/injection/sqli-secure`) + **12 FP traps** — text-matching rules fall into FP here |
+| 📡 **Matching-friendly** | Every response carries `X-Vuln-Id`, `X-Vuln-Category`, `X-Ground-Truth` headers • `evaluate.py` matches trailing-slash and `:id`-placeholder insensitively |
+| 📊 **Behavior profiling** | Signal-tagged request log answers "did it try and miss, or never try?" |
+| 🛡️ **Safe fuzz target** | Dangerous vectors are mocks (no real command/request execution) — open the scanner to full throttle |
 
-**Kısacası:** SAST "kodu okur", DAST "hedefle konuşur" — bu sunucu konuşmaya hazır 222 konulu bir muhataptır.
+**In short:** SAST reads code, DAST talks to a target — this server is a conversation partner with 222 topics.
 
 ---
 
-## 🎚️ Zorluk seviyeleri
+## 🎚️ Difficulty levels
 
-> `ground-truth.json`'daki `severity` (kritiklik) **zorluk değildir**. Aşağıdaki tablo, bir DAST tarayıcısının (veya pentester'ın) her seviyede **hangi yeteneğe** ihtiyaç duyduğunu gösterir. Detaylı liste + önerilen tarama profili → **[🎚️ docs/ZORLUK-SEVIYELERI.md](./docs/ZORLUK-SEVIYELERI.md)**
+> `severity` in `ground-truth.json` is **criticality, not difficulty**. The table below shows which **capability** a DAST scanner (or pentester) needs per level. Full list + scan profiles → **[🎚️ docs/ZORLUK-SEVIYELERI.md](./docs/ZORLUK-SEVIYELERI.md)**
 
-| Seviye | Ne ister? | Örnek endpoint'ler | Yakalayan tarayıcı profili |
+| Level | Requires | Example endpoints | Scanner profile that catches it |
 |---|---|---|---|
-| 🟢 **Seviye 1 — Kolay** `baseline yakalar` | Pasif tarama + basit payload yeter | `/xss/reflected`, `/injection/sqli` (error-based), `/files/.env`, `/misconfig/headers`, `/robots.txt`, `/ssrf/redirect` | ZAP baseline, Nuclei default şablonlar |
-| 🟡 **Seviye 2 — Orta** `aktif tarama + fuzz` | Aktif scan, kelime listesi, kural seti gerekir | Stored/DOM XSS, UNION/stacked SQLi, 4 SSTI motoru, IDOR/traversal, JWT `alg:none`, kilitsiz OTP, GraphQL introspection, CORS `*`, SVG upload | ZAP full-scan, Burp Active Scan |
-| 🟠 **Seviye 3 — Zor** `auth + mantık + çok adım` | Girişli tarama, zincir kurma, iş-mantığı anlama gerekir | Mass-assignment → admin escalation **zinciri** (`/app/api/profile` → `/app/api/feedback-view`), BOLA, kupon istifleme/negatif cüzdan, JWT `kid`/`jku`/RS→HS confusion, SSRF bypass seti (desimal-IP, `@`, fragment), OAuth `redirect_uri`, second-order SQLi | Authenticated scan + API/GraphQL eklentileri + manuel destek |
-| 🔴 **Seviye 4 — Kaos / Usta** `kör + zaman + SPA + yarış` | Zaman ölçümü, OOB dinleme, JS-render crawl, race-condition gerekir | **Gerçek 3 sn** time-based SQLi, blind XSS (`/runtime/feedback` → `/oob/*`), `/app` SPA AJAX crawl, tek kupon race (`/shop/coupon-race`), GraphQL depth DoS, cache-poisoning | İnce ayarlı full-scan + AJAX spider + OOB handler (Interactsh/Boomerang benzeri) |
-| 🟣 **Seviye FP-Avcısı** `sinyal değil muhakeme` | Alarm üretMEme disiplini ölçülür | 12 FP-tuzağı (`/fp/search`, `/fp/sdk-example`, `/fp/slow-report`...) + 47 `secure` ikiz | Olgun policy — acemi kural seti burada FP'ye düşer |
+| 🟢 **Level 1 — Easy** `baseline catches it` | Passive scan + one simple payload | `/xss/reflected`, `/injection/sqli` (error-based), `/files/.env`, `/misconfig/headers`, `/robots.txt`, `/ssrf/redirect` | ZAP baseline, Nuclei default templates |
+| 🟡 **Level 2 — Medium** `active scan + fuzz` | Active scan, wordlists, rule sets | Stored/DOM XSS, UNION/stacked SQLi, 4 SSTI engines, IDOR/traversal, JWT `alg:none`, lock-free OTP, GraphQL introspection, CORS `*`, SVG upload | ZAP full-scan, Burp Active Scan |
+| 🟠 **Level 3 — Hard** `auth + logic + multi-step` | Logged-in scan, chaining, business-logic reasoning | Mass-assignment → admin escalation **chain** (`/app/api/profile` → `/app/api/feedback-view`), BOLA, coupon stacking/negative wallet, JWT `kid`/`jku`/RS→HS confusion, SSRF bypass set (decimal-IP, `@`, fragment), OAuth `redirect_uri`, second-order SQLi | Authenticated scan + API/GraphQL add-ons + manual support |
+| 🔴 **Level 4 — Chaos / Master** `blind + timing + SPA + race` | Timing measurement, OOB listening, JS-render crawling, race windows | **Real 3-sec** time-based SQLi, blind XSS (`/runtime/feedback` → `/oob/*`), `/app` SPA AJAX crawl, single-coupon race (`/shop/coupon-race`), GraphQL depth DoS, cache poisoning | Tuned full-scan + AJAX spider + OOB handler |
+| 🟣 **Level FP-Hunter** `judgement, not signal` | Discipline of NOT alerting | 12 FP traps (`/fp/search`, `/fp/sdk-example`, `/fp/slow-report`...) + 47 `secure` twins | Mature policy — naive rule sets fall into FP here |
 
 ```
-Beklenen F1 eğrisi:  Seviye 1'de yüksek  →  Seviye 4'e doğru düşer  →  FP-Avcısı'nda FPR belli olur
-Yorum: "Recall Seviye 1'de %90, Seviye 3'te %20 ise sorun dedektörde değil kapsamdadır (auth/crawl eksik)."
+Expected F1 curve:  high at Level 1  →  drops toward Level 4  →  FP-Hunter reveals FPR
+Reading: "Recall 90% at Level 1 but 20% at Level 3 means the gap is coverage (auth/crawl), not detection."
 ```
 
 ---
 
-## ⚡ Hızlı kurulum (2 dakika)
+## ⚡ Quickstart (2 minutes)
 
-> Tam adım adım rehber (Node/Python sürümleri, Docker, port değiştirme, hata çözümleri) → **[🔧 docs/KURULUM.md](./docs/KURULUM.md)**
+> Full step-by-step guide (Node/Python versions, Docker, port changes, troubleshooting — in Turkish) → **[🔧 docs/KURULUM.md](./docs/KURULUM.md)**
 
-**Gerekenler:** Node.js 18+ • Python 3.10+ • (opsiyonel) Docker
+**Requirements:** Node.js 18+ • Python 3.10+ • (optional) Docker
 
 ```powershell
-# 1) Bağımlılıkları kur
+# 1) Install dependencies
 npm install
 
-# 2) Sunucuyu başlat
+# 2) Start the server
 npm start
 # [+] DAST mock server: http://localhost:3000/dashboard
 ```
 
 ```powershell
-# 3) Yeni terminal — her şey çalışıyor mu? (163/163 beklenir)
+# 3) New terminal — is everything working? (expect 163/163)
 python evaluation/verify.py
-# === DOĞRULAMA: 163/163 sömürülebilir ===
+# === VERIFIED: 163/163 exploitable ===
 ```
 
-🎉 Tarayıcıyı aç: **`http://localhost:3000/dashboard`** — tüm endpoint'leri "dene" linkleriyle göreceksin.
+🎉 Open **`http://localhost:3000/dashboard`** — you'll see all endpoints with "try it" links.
 
-Hızlı test payloadları:
+Quick test payloads:
 
 ```
-XSS:    /xss/reflected?name=<script>alert(1)</script>
-SQLi:   /injection/sqli?id=1' OR '1'='1
-IDOR:   /access/idor?user_id=99
-BOLA:   /api/users/99  (TCKN+IBAN döner)
+XSS:     /xss/reflected?name=<script>alert(1)</script>
+SQLi:    /injection/sqli?id=1' OR '1'='1
+IDOR:    /access/idor?user_id=99
+BOLA:    /api/users/99  (returns TCKN+IBAN)
 GraphQL: POST /graphql {"query":"{ __schema { queryType { name } } }"}
-SSRF:   /ssrf?url=http://169.254.169.254/latest/meta-data/
-JWT:    /auth/jwt-none?token=<alg:none token>
-OTP:    POST /authx/otp {"code":"0000"}  (kilit yok, dene dur)
+SSRF:    /ssrf?url=http://169.254.169.254/latest/meta-data/
+JWT:     /auth/jwt-none?token=<alg:none token>
+OTP:     POST /authx/otp {"code":"0000"}  (no lockout, spray away)
 ```
 
 ---
 
-## 📊 Tarayıcını ölç (tavsiye edilen akış)
+## 📊 Score your scanner (recommended flow)
 
 ```powershell
-# 0) Öz-doğrulama (bir kez)
+# 0) Self-verification (once)
 python evaluation/verify.py
 
-# 1) Taramayı başlat (işaret koyulur)
+# 1) Start the run (marks the time window)
 python evaluation/scan.py start --scanner "ZAP 2.14"
 
-# 2) Tarayıcıyı çalıştır (örnek: ZAP baseline + AYNI ANDA kaynak ölçer)
+# 2) Run the scanner (example: ZAP baseline + resource monitor IN PARALLEL)
 pip install psutil
-python evaluation/agent.py --process java   # ayrı terminalde, ZAP için
-docker run --rm --network host ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t http://localhost:3000 -J zap-rapor.json
+python evaluation/agent.py --process java   # separate terminal, for ZAP
+docker run --rm --network host ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t http://localhost:3000 -J zap-report.json
 
-# 3) Bitir + ölç + kaydet
-python evaluation/scan.py finish --findings zap-rapor.json --format zap --exit-code 0 --errors 0 --note "ilk ZAP koşusu"
+# 3) Finish + measure + save
+python evaluation/scan.py finish --findings zap-report.json --format zap --exit-code 0 --errors 0 --note "first ZAP run"
 
-# 4) Geçmişi gör
+# 4) See history
 python evaluation/scan.py list
-# veya dashboard: http://localhost:3000/dashboard  |  GET /api/scans
+# or dashboard: http://localhost:3000/dashboard  |  GET /api/scans
 ```
 
-Tek seferlik hızlı bakış (kayıt tutmadan):
+One-shot quick look (no record saved):
 
 ```powershell
-python evaluation/evaluate.py --findings zap-rapor.json --format zap
+python evaluation/evaluate.py --findings zap-report.json --format zap
 python evaluation/evaluate.py --findings nuclei.jsonl --format nuclei
 ```
 
-Desteklenen rapor formatları: `generic` • `zap` • `zap-xml` • `sarif` • `nuclei`
+Supported report formats: `generic` • `zap` • `zap-xml` • `sarif` • `nuclei`
 
-Tam rehber (ZAP full-scan, Nuclei, Burp, FN analizi, OOB, API'ler) → **[📊 docs/TARAMA-VE-OLCUM.md](./docs/TARAMA-VE-OLCUM.md)**
+Full guide (ZAP full-scan, Nuclei, Burp, FN analysis, OOB, APIs — in Turkish) → **[📊 docs/TARAMA-VE-OLCUM.md](./docs/TARAMA-VE-OLCUM.md)**
 
-### Örnek skor çıktısı
+### Sample score output
 
 ```
-=== GENEL SONUÇ (222 endpoint, 41 bulgu) ===
+=== OVERALL (222 endpoints, 41 findings) ===
 TP=35  FP=2  FN=128  TN=57
 Precision=0.946  Recall=0.215  F1=0.350  FPR=0.034
 
-=== KATEGORİ BAZLI ===
-Kategori                TP  FP  FN  TN  Prec   Rec    F1
+=== BY CATEGORY ===
+Category                TP  FP  FN  TN  Prec   Rec    F1
 A03-Injection           12   0  15   4   1.00  0.44  0.61
 A07-Auth                 5   1  18   7   0.83  0.22  0.34
 ...
@@ -189,15 +191,15 @@ A07-Auth                 5   1  18   7   0.83  0.22  0.34
 
 ---
 
-## 🧮 Skorlama mantığı
+## 🧮 Scoring logic
 
-| Endpoint tipi | Beklenti | Tarayıcı bulursa | Bulamazsa |
+| Endpoint type | Expectation | Scanner alerts | Scanner stays silent |
 |---|---|---|---|
-| 🔴 `vulnerable` (gerçek zaaf) | Alarm üretmeli | **TP** ✅ | **FN** ❌ (kaçırdı) |
-| 🟢 `secure` (güvenli kontrol) | Sessiz kalmalı | **FP** ❌ (yanlış alarm) | **TN** ✅ |
-| 🟡 `fp-trap` (FP tuzağı) | Sessiz kalmalı | **FP** ❌ | **TN** ✅ |
+| 🔴 `vulnerable` (real flaw) | Should alert | **TP** ✅ | **FN** ❌ (missed) |
+| 🟢 `secure` (secure control) | Should stay silent | **FP** ❌ (false alarm) | **TN** ✅ |
+| 🟡 `fp-trap` (FP trap) | Should stay silent | **FP** ❌ | **TN** ✅ |
 
-Her yanıt şu header'ları taşır (DAST'yi etkilemez, eşleştirmede yardımcı olur):
+Every response carries these headers (don't affect the DAST, help with matching):
 
 ```
 X-Vuln-Id: INJ-SQLI-01
@@ -205,116 +207,116 @@ X-Vuln-Category: A03-Injection
 X-Ground-Truth: vulnerable | secure | fp-trap
 ```
 
-Kavramların detaylı anlatımı + örnek senaryolar → **[📖 docs/NE-ISE-YARAR.md](./docs/NE-ISE-YARAR.md)**
+Concepts + example scenarios (Turkish) → **[📖 docs/NE-ISE-YARAR.md](./docs/NE-ISE-YARAR.md)**
 
 ---
 
-## 🗂️ Kategori haritası
+## 🗂️ Category map
 
 <details>
-<summary><b>222 endpoint'in dağılımı — tıklayarak aç</b></summary>
+<summary><b>Distribution of the 222 endpoints — click to expand</b></summary>
 
-| Kategori | Zafiyetli | Güvenli | FP-Tuzağı | Örnekler |
+| Category | Vulnerable | Secure | FP-Trap | Examples |
 |---|---|---|---|---|
-| A03-Injection | 23 | 4 | – | UNION / stacked / time-based / boolean / second-order SQLi, NoSQLi, CMDi (mock), 4 SSTI motoru, LDAPi, XPath, XXE, CRLF, log4shell (mock) |
-| A07-Auth | 23 | 7 | – | JWT alg:none / kid / jku / weak-secret / RS→HS confusion / jwk, OTP kilitsiz, MFA bypass, OAuth redirect_uri, enumeration, magic-hash, session fixation |
-| APP-Shop (Juice Shop seviyesi) | 23 | 4 | – | JWT login, mass-assignment escalation zinciri, adres/sipariş IDOR, kupon istifleme, negatif cüzdan, sınırsız iade, CAPTCHA bypass stored XSS, sıralı kurtarma kodu |
-| A01-AccessControl | 12 | 5 | – | IDOR, traversal, forced browsing, open redirect (+bypass'lar), CSRF, HPP, verb confusion, X-Original-URL / XFF bypass |
+| A03-Injection | 23 | 4 | – | UNION / stacked / time-based / boolean / second-order SQLi, NoSQLi, CMDi (mock), 4 SSTI engines, LDAPi, XPath, XXE, CRLF, log4shell (mock) |
+| A07-Auth | 23 | 7 | – | JWT alg:none / kid / jku / weak-secret / RS→HS confusion / jwk, lock-free OTP, MFA bypass, OAuth redirect_uri, enumeration, magic-hash, session fixation |
+| APP-Shop (Juice Shop-level) | 23 | 4 | – | JWT login, mass-assignment escalation chain, address/order IDOR, coupon stacking, negative wallet, unlimited refund, CAPTCHA-bypass stored XSS, sequential recovery codes |
+| A01-AccessControl | 12 | 5 | – | IDOR, traversal, forced browsing, open redirect (+bypasses), CSRF, HPP, verb confusion, X-Original-URL / XFF bypass |
 | A05-Exposure | 11 | – | – | .env, .bak, .DS_Store, source-map, swagger, actuator, robots.txt, phpinfo, package/composer.json |
-| API-Security | 9 | 5 | – | BOLA (TCKN/IBAN), mass-assignment, excessive data, OTP rate-limit, URL'de API key, pagination abuse, sıralı davet, BFLA |
+| API-Security | 9 | 5 | – | BOLA (TCKN/IBAN), mass-assignment, excessive data, OTP rate-limit, API key in URL, pagination abuse, sequential invite, BFLA |
 | Client-Side | 9 | 4 | – | postMessage XSS, JSONP, markdown XSS, DOM clobbering, prototype pollution, `javascript:` redirect, attribute/JS-string context XSS |
-| A04-FileHandling | 9 | 3 | – | SVG XSS, Zip Slip (mock), LFI/RFI (mock), CSV formül, çift uzantı upload, wrapper/unicode traversal |
+| A04-FileHandling | 9 | 3 | – | SVG XSS, Zip Slip (mock), LFI/RFI (mock), CSV formula, double-extension upload, wrapper/unicode traversal |
 | A03-XSS | 8 | 3 | – | Reflected / stored / DOM / blind + mXSS + log-poisoning viewer |
-| A05-Misconfig | 8 | 3 | – | Eksik header, verbose error, dir-listing, default creds, CORS `*`, clickjacking, TRACE, crossdomain.xml |
-| A10-SSRF | 6 | 2 | – | Mock SSRF + desimal-IP / 0.0.0.0 / `@` / fragment / redirect-chain bypass'ları |
-| A05-CacheSmuggle | 6 | 2 | – | Host zehirlenmesi, cache deception (PII), method-override, CL.TE oracle, cache-poisoning search |
-| A02-Crypto | 5 | 1 | – | PAN ifşası, debug env leak, .git ifşası, MD5, reset-token Referer sızıntısı |
-| A04-BusinessLogic | 4 | 2 | – | Client-side fiyat, negatif adet, kupon race, sıralı sipariş ID |
+| A05-Misconfig | 8 | 3 | – | Missing headers, verbose errors, dir-listing, default creds, CORS `*`, clickjacking, TRACE, crossdomain.xml |
+| A10-SSRF | 6 | 2 | – | Mock SSRF + decimal-IP / 0.0.0.0 / `@` / fragment / redirect-chain bypasses |
+| A05-CacheSmuggle | 6 | 2 | – | Host poisoning, cache deception (PII), method-override, CL.TE oracle, cache-poisoning search |
+| A02-Crypto | 5 | 1 | – | PAN exposure, debug env leak, .git exposure, MD5, reset-token Referer leak |
+| A04-BusinessLogic | 4 | 2 | – | Client-side pricing, negative quantity, coupon race, sequential order IDs |
 | API-GraphQL | 4 | 1 | – | Introspection, batch brute-force, depth DoS, GraphQL IDOR |
-| A04-InsecureDesign | 2 | 1 | – | Sınırsız upload, kupon reuse |
+| A04-InsecureDesign | 2 | 1 | – | Unrestricted upload, coupon reuse |
 | A08-Integrity | 1 | – | – | Deserialization (mock) |
-| FP-Trap | – | – | 12 | Yardım metni, ÖRNEK anahtar, WAF satırı, nonce+CSP, doğru kilit, tek-kullanımlık kupon, meşru yavaş rapor... |
-| **TOPLAM** | **163** | **47** | **12** | **222** |
+| FP-Trap | – | – | 12 | Help text, SAMPLE key, WAF page, nonce+CSP, correct lockout, single-use coupon, legit slow report... |
+| **TOTAL** | **163** | **47** | **12** | **222** |
 
 </details>
 
-> ⚠️ **Güvenlik notu:** CMDi / SSRF / XXE / Deserialization / RFI / Zip Slip **gerçekten çalıştırılmaz**, pattern-match simülasyondur. `ping`, `cat /etc/passwd`, metadata çıktıları mock metindir. Güvenle taratılabilir.
+> ⚠️ **Safety note:** CMDi / SSRF / XXE / Deserialization / RFI / Zip Slip **never really execute** — pattern-match simulations. `ping`, `cat /etc/passwd`, metadata outputs are mock text. Safe to scan.
 
 ---
 
-## 🖥️ Dashboard ve API'ler
+## 🖥️ Dashboard & APIs
 
-| Adres | Ne verir? |
+| Address | What you get |
 |---|---|
-| `GET /dashboard` | 222 endpoint listesi + deneme linkleri + skor tablosu + hızlı payload'lar |
-| `GET /app` | Juice Shop seviyesi SPA (JS-render, scanner score-board `/app/coverage` dahil) |
-| `GET /api/overview` | Rozet verisi: GT sayısı + doğrulanmış zafiyet + kayıtlı tarama |
-| `GET /api/scans` | Son 30 koşunun özeti (süre, istek, hız, coverage, TP/FP/FN/TN, CPU/RAM, ΔF1) |
-| `GET /api/stats` | `requests.log` özeti: toplam istek + sinyal sayımları + son 20 istek |
-| `GET /api/oob-hits` | Kör callback tetikleri (blind XSS / SSRF ölçümü) |
-| `GET /api/ground-truth` | `ground-truth.json`'un canlı hali |
+| `GET /dashboard` | Human panel: endpoint list + score table |
+| `GET /app` | Juice Shop-level SPA (JS-rendered, scanner scoreboard at `/app/coverage`) |
+| `GET /api/overview` | Badge data: GT counts + verified vulns + recorded scans |
+| `GET /api/scans` | Last 30 runs (duration, speed, coverage, TP/FP/FN/TN, CPU/RAM, ΔF1) |
+| `GET /api/stats` | Log summary: request count + signal distribution |
+| `GET /api/oob-hits` | Blind-callback triggers |
+| `GET /api/ground-truth` | Live `ground-truth.json` |
 
 ---
 
-## 📁 Proje yapısı
+## 📁 Project structure
 
 ```
-server.js                  → Express giriş, router montajı, dashboard, API'ler
-ground-truth.json          → hakem heyeti (222 endpoint: 163 vuln + 47 secure + 12 fp-trap)
+server.js                  → Express entry, router mounting, dashboard, APIs
+ground-truth.json          → the referee (222 endpoints: 163 vuln + 47 secure + 12 fp-trap)
 lib/
-  utils.js                 → escHtml, fake DB, payload sezgileri
-  requestLogger.js         → her isteği logs/requests.log'a sinyal etiketiyle yazar
-routes/                    → kategoriler (injection, xss, access, auth, authx, api,
+  utils.js                 → escHtml, fake DB, payload heuristics
+  requestLogger.js         → logs every request to logs/requests.log with signal tags
+routes/                    → categories (injection, xss, access, auth, authx, api,
                              graphql, client, files, shop, cache, crypto, misconfig,
                              ssrf, logic, runtime, chaos, edge, shopapp, oob, fptraps)
 evaluation/
-  verify.py                → öz-doğrulama: her zafiyete proof payload (163/163) + verification.json
-  evaluate.py              → TP/FP/FN/TN + precision/recall/F1 hesaplayıcı (import edilebilir)
-  scan.py                  → start/finish/list: süre+hata+coverage'lı kalıcı kayıt
-  agent.py                 → tarayıcı-makine CPU/RAM ölçer (psutil)
-  runs/                    → tarama kayıtları (JSON, silinmez — ZAP vs Nuclei karşılaştırması)
-  ornek-bulgular.json      → örnek generic bulgu formatı
+  verify.py                → self-verification: proof payload per vuln (163/163) + verification.json
+  evaluate.py              → TP/FP/FN/TN + precision/recall/F1 calculator (importable)
+  scan.py                  → start/finish/list: persistent records with time+errors+coverage
+  agent.py                 → scanner-machine CPU/RAM monitor (psutil)
+  runs/                    → scan records (JSON, append-only — ZAP vs Nuclei comparison)
+  ornek-bulgular.json      → sample generic-finding format
 logs/
-  requests.log             → her istek (JSON-lines + sinyal etiketleri)
-  oob.log                  → kör callback tetikleri
-  scans.jsonl              → tarama başlangıç işaretleri
-docs/
-  KURULUM.md               → detaylı kurulum rehberi
-  NE-ISE-YARAR.md          → konsept + TP/FP/FN/TN + kimler için?
-  ZORLUK-SEVIYELERI.md     → DAST'a özel tasarım + 5 zorluk seviyesi + tarama profilleri
-  TARAMA-VE-OLCUM.md       → ZAP/Nuclei/Burp + scan.py + FN analizi + OOB
-  SSS.md                   → sık sorulan sorular + sorun giderme
+  requests.log             → every request (JSON-lines + signal tags)
+  oob.log                  → blind-callback triggers
+  scans.jsonl              → scan-start markers
+docs/  (Turkish guides)
+  KURULUM.md               → detailed setup guide
+  NE-ISE-YARAR.md          → concept + TP/FP/FN/TN + who is it for?
+  ZORLUK-SEVIYELERI.md     → DAST-specific design + 5 difficulty levels + scan profiles
+  TARAMA-VE-OLCUM.md       → ZAP/Nuclei/Burp + scan.py + FN analysis + OOB
+  SSS.md                   → FAQ + troubleshooting
 ```
 
 ---
 
-## 📚 Dokümantasyon
+## 📚 Documentation (Turkish)
 
-| Doküman | İçerik |
+| Document | Content |
 |---|---|
-| [🔧 docs/KURULUM.md](./docs/KURULUM.md) | Node/Python/Docker kurulumu, ilk çalıştırma, port değiştirme, `verify.py`, sık hatalar ve çözümleri |
-| [📖 docs/NE-ISE-YARAR.md](./docs/NE-ISE-YARAR.md) | Bu proje hangi sorunu çözer? TP/FP/FN/TN nedir? Ground-truth ve FP-trap kavramları, kimler kullanmalı? |
-| [🎚️ docs/ZORLUK-SEVIYELERI.md](./docs/ZORLUK-SEVIYELERI.md) | DAST'a özel tasarım kararları, 5 zorluk seviyesi, severity-vs-difficulty, tarayıcı profilleri |
-| [📊 docs/TARAMA-VE-OLCUM.md](./docs/TARAMA-VE-OLCUM.md) | ZAP / Nuclei / Burp ile tarama, `scan.py` akışı, `agent.py`, FN analizi (`requests.log`), OOB, dashboard API'leri |
-| [❓ docs/SSS.md](./docs/SSS.md) | 15+ soru-cevap + sorun giderme tablosu |
+| [🔧 docs/KURULUM.md](./docs/KURULUM.md) | Node/Python/Docker setup, first run, port changes, `verify.py`, common errors |
+| [📖 docs/NE-ISE-YARAR.md](./docs/NE-ISE-YARAR.md) | Which problem it solves, TP/FP/FN/TN, ground-truth & FP-trap concepts, audience |
+| [🎚️ docs/ZORLUK-SEVIYELERI.md](./docs/ZORLUK-SEVIYELERI.md) | DAST-specific design, 5 difficulty levels, severity-vs-difficulty, scanner profiles |
+| [📊 docs/TARAMA-VE-OLCUM.md](./docs/TARAMA-VE-OLCUM.md) | Scanning with ZAP / Nuclei / Burp, `scan.py` flow, `agent.py`, FN analysis, OOB, APIs |
+| [❓ docs/SSS.md](./docs/SSS.md) | 15+ Q&A + troubleshooting table |
 
 ---
 
-## 🤝 Katkı
+## 🤝 Contributing
 
-1. Fork'la → feature branch aç → değişikliğini yap
-2. `python evaluation/verify.py` ile 163/163'ü bozmadığını doğrula
-3. Yeni endpoint ekliyorsan `ground-truth.json` + `verify.py` proof'unu birlikte ekle
-4. PR aç (Türkçe/İngilizce fark etmez)
+1. Fork → feature branch → make your change
+2. Run `python evaluation/verify.py` to confirm 163/163 still green
+3. New endpoint? Add its `ground-truth.json` row + `verify.py` proof together
+4. Open a PR (Turkish or English, both fine)
 
 ---
 
-## 📄 Lisans
+## 📄 License
 
-Bu proje eğitim ve test amaçlıdır. Bilerek zafiyetli kod içerir — **asla production'da veya internete açık şekilde çalıştırmayın.** Sorumluluk kullanıcıya aittir.
+See [LICENSE](./LICENSE). Educational and testing purposes only. Contains deliberately vulnerable code — **never run in production or exposed to the internet.** Use at your own risk.
 
 <div align="center">
 
-**⭐ İşine yaradıysa yıldız bırakmayı unutma — iyi taramalar! 🎯**
+**⭐ If it helped, leave a star — happy scanning! 🎯**
 
 </div>
