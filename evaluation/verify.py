@@ -546,6 +546,27 @@ def main():
             reachable.append(gid)
             print(f"  [~] {gid}: eksik marker {miss} (status={st})")
 
+    # ---------- P2 decoy negatif doğrulama: güvenli olduğu BAĞIMSIZ kanıtlanır ----------
+    # Her FP-HELL satırı: present marker'lar VAR + absent marker'lar YOK olmalı.
+    decoys = [g for g in gt if (g.get("negative_proof") and g["expectation"] == "fp-trap")]
+    decoy_ok, decoy_failed = [], []
+    for g in decoys:
+        np = g["negative_proof"]
+        probe = g["path"] + "?nick=<script>alert(9)</script>"
+        st, _, rb = ctx.http("GET", probe)
+        if st == -1:
+            decoy_failed.append({"id": g["id"], "detail": rb})
+            print(f"  [X] {g['id']}: {rb}")
+            continue
+        missing = [m for m in np.get("present", []) if m not in rb]
+        leaked = [m for m in np.get("absent", []) if m in rb]
+        if st >= 500 or missing or leaked:
+            decoy_failed.append({"id": g["id"], "detail": f"status={st} missing={missing} leaked={leaked}"})
+            print(f"  [!] {g['id']}: status={st} missing={missing} leaked={leaked}")
+        else:
+            decoy_ok.append(g["id"])
+    print(f"decoy negatif: {len(decoy_ok)}/{len(decoys)} temiz")
+
     result = {
         "timestamp": time.strftime("%Y-%m-%dT%H:%M:%S%z"),
         "target": args.target,
@@ -555,12 +576,16 @@ def main():
         "reachable": len(reachable),
         "failed": failed,
         "failed_ids": [f["id"] for f in failed],
+        "decoys_total": len(decoys),
+        "decoys_clean": len(decoy_ok),
+        "decoy_failures": decoy_failed,
     }
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(result, f, indent=2, ensure_ascii=False)
     print(f"\n=== DOĞRULAMA: {len(verified)}/{len(vulns)} sömürülebilir (+{len(reachable)} erişilebilir, {len(failed)} hatalı) ===")
+    print(f"=== DECOY: {len(decoy_ok)}/{len(decoys)} temiz ({len(decoy_failed)} sızıntı) ===")
     print(f"kayıt: evaluation/verification.json")
-    sys.exit(0 if not failed else 1)
+    sys.exit(0 if (not failed and not decoy_failed) else 1)
 
 
 if __name__ == "__main__":

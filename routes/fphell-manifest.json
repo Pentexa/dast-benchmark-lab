@@ -1,0 +1,1880 @@
+[
+  {
+    "id": "FP-HELL-001",
+    "slug": "sql-01",
+    "title": "Decoy sql #01",
+    "trap": "Arama yardımı: tırnak içeren sorgularda SQL sözdizimi hatası alırsan yardım sayfasını oku.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Arama yardımı: tırnak iç"
+    ],
+    "absent": [
+      "information_schema",
+      "2 rows dumped",
+      "DUMP for",
+      "@@version",
+      "2 result set"
+    ]
+  },
+  {
+    "id": "FP-HELL-002",
+    "slug": "sql-02",
+    "title": "Decoy sql #02",
+    "trap": "SSS: 'SQL syntax' uyarısı bir yardım başlığıdır, veritabanı hatası değildir.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "SSS: &#x27;SQL syntax&#x27; uyarıs"
+    ],
+    "absent": [
+      "information_schema",
+      "2 rows dumped",
+      "DUMP for",
+      "@@version",
+      "2 result set"
+    ]
+  },
+  {
+    "id": "FP-HELL-003",
+    "slug": "sql-03",
+    "title": "Decoy sql #03",
+    "trap": "Doküman: WHERE yan tümcesi örnekleri salt okunur belgede listelenir.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Doküman: WHERE yan tümce"
+    ],
+    "absent": [
+      "information_schema",
+      "2 rows dumped",
+      "DUMP for",
+      "@@version",
+      "2 result set"
+    ]
+  },
+  {
+    "id": "FP-HELL-004",
+    "slug": "sql-04",
+    "title": "Decoy sql #04",
+    "trap": "Hata kodları: ERR-SQL-100 dokümantasyon kodudur, istisna yığını değildir.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Hata kodları: ERR-SQL-10"
+    ],
+    "absent": [
+      "information_schema",
+      "2 rows dumped",
+      "DUMP for",
+      "@@version",
+      "2 result set"
+    ]
+  },
+  {
+    "id": "FP-HELL-005",
+    "slug": "sql-05",
+    "title": "Decoy sql #05",
+    "trap": "Örnek sorgu: SELECT * FROM docs WHERE topic='yardım' (çalıştırılmaz).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Örnek sorgu: SELECT * FR"
+    ],
+    "absent": [
+      "information_schema",
+      "2 rows dumped",
+      "DUMP for",
+      "@@version",
+      "2 result set"
+    ]
+  },
+  {
+    "id": "FP-HELL-006",
+    "slug": "sql-06",
+    "title": "Decoy sql #06",
+    "trap": "Not: tek tırnak içeren girdiler yardım önerisi döndürür, sorguya girmez.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Not: tek tırnak içeren g"
+    ],
+    "absent": [
+      "information_schema",
+      "2 rows dumped",
+      "DUMP for",
+      "@@version",
+      "2 result set"
+    ]
+  },
+  {
+    "id": "FP-HELL-007",
+    "slug": "sql-07",
+    "title": "Decoy sql #07",
+    "trap": "Rehber: UNION kelimesi geçen cümleler sendika (union) aidatı hakkındadır.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Rehber: UNION kelimesi g"
+    ],
+    "absent": [
+      "information_schema",
+      "2 rows dumped",
+      "DUMP for",
+      "@@version",
+      "2 result set"
+    ]
+  },
+  {
+    "id": "FP-HELL-008",
+    "slug": "sql-08",
+    "title": "Decoy sql #08",
+    "trap": "Sözlük: 'sleep' kelimesi uyku modu belgesine aittir, SLEEP() fonksiyonuna değil.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Sözlük: &#x27;sleep&#x27; kelimesi"
+    ],
+    "absent": [
+      "information_schema",
+      "2 rows dumped",
+      "DUMP for",
+      "@@version",
+      "2 result set"
+    ]
+  },
+  {
+    "id": "FP-HELL-009",
+    "slug": "sql-09",
+    "title": "Decoy sql #09",
+    "trap": "Değişiklik günlüğü: benchmark() sözcüğü performans testi başlığıdır.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Değişiklik günlüğü: benc"
+    ],
+    "absent": [
+      "information_schema",
+      "2 rows dumped",
+      "DUMP for",
+      "@@version",
+      "2 result set"
+    ]
+  },
+  {
+    "id": "FP-HELL-010",
+    "slug": "sql-10",
+    "title": "Decoy sql #10",
+    "trap": "Eğitim: OR operatörü mantık dersi örneğidir, sorgu parçası değildir.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Eğitim: OR operatörü man"
+    ],
+    "absent": [
+      "information_schema",
+      "2 rows dumped",
+      "DUMP for",
+      "@@version",
+      "2 result set"
+    ]
+  },
+  {
+    "id": "FP-HELL-011",
+    "slug": "sql-11",
+    "title": "Decoy sql #11",
+    "trap": "Uyarı metni: veritabanı bağlantı dizesi bu sayfada asla yazılmaz.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Uyarı metni: veritabanı "
+    ],
+    "absent": [
+      "information_schema",
+      "2 rows dumped",
+      "DUMP for",
+      "@@version",
+      "2 result set"
+    ]
+  },
+  {
+    "id": "FP-HELL-012",
+    "slug": "sql-12",
+    "title": "Decoy sql #12",
+    "trap": "İpucu: çift tire (--) ile başlayan satırlar yorum satırı örneğidir.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "İpucu: çift tire (--) il"
+    ],
+    "absent": [
+      "information_schema",
+      "2 rows dumped",
+      "DUMP for",
+      "@@version",
+      "2 result set"
+    ]
+  },
+  {
+    "id": "FP-HELL-013",
+    "slug": "sql-13",
+    "title": "Decoy sql #13",
+    "trap": "Kılavuz: LIKE kalıpları arama ipucudur, enjeksiyon vektörü değildir.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Kılavuz: LIKE kalıpları "
+    ],
+    "absent": [
+      "information_schema",
+      "2 rows dumped",
+      "DUMP for",
+      "@@version",
+      "2 result set"
+    ]
+  },
+  {
+    "id": "FP-HELL-014",
+    "slug": "sql-14",
+    "title": "Decoy sql #14",
+    "trap": "Bilgi: ORDER BY ifadesi sıralama menüsünü anlatır.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Bilgi: ORDER BY ifadesi "
+    ],
+    "absent": [
+      "information_schema",
+      "2 rows dumped",
+      "DUMP for",
+      "@@version",
+      "2 result set"
+    ]
+  },
+  {
+    "id": "FP-HELL-015",
+    "slug": "sql-15",
+    "title": "Decoy sql #15",
+    "trap": "Not: noktalı virgül; cümleleri ayırır, sorguları değil.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Not: noktalı virgül; cüm"
+    ],
+    "absent": [
+      "information_schema",
+      "2 rows dumped",
+      "DUMP for",
+      "@@version",
+      "2 result set"
+    ]
+  },
+  {
+    "id": "FP-HELL-016",
+    "slug": "sql-16",
+    "title": "Decoy sql #16",
+    "trap": "SSS: büyük/küçük harf duyarlılığı collation belgesinde anlatılır.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "SSS: büyük/küçük harf du"
+    ],
+    "absent": [
+      "information_schema",
+      "2 rows dumped",
+      "DUMP for",
+      "@@version",
+      "2 result set"
+    ]
+  },
+  {
+    "id": "FP-HELL-017",
+    "slug": "xss-01",
+    "title": "Decoy xss #01",
+    "trap": "Profil takma adı sayfada aynen gösterilir (güvenli kodlama ile).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": true,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Profil takma adı sayfada"
+    ],
+    "absent": [
+      "<script>alert",
+      "<img src=x onerror=",
+      "<svg onload=",
+      "WS-ECHO-READY"
+    ]
+  },
+  {
+    "id": "FP-HELL-018",
+    "slug": "xss-02",
+    "title": "Decoy xss #02",
+    "trap": "Yorum önizleme: köşeli parantezler metin olarak saklanır.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": true,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Yorum önizleme: köşeli p"
+    ],
+    "absent": [
+      "<script>alert",
+      "<img src=x onerror=",
+      "<svg onload=",
+      "WS-ECHO-READY"
+    ]
+  },
+  {
+    "id": "FP-HELL-019",
+    "slug": "xss-03",
+    "title": "Decoy xss #03",
+    "trap": "Arama kutusu: script kelimesi geçen aramalar yalnızca sayaç artırır.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": true,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Arama kutusu: script kel"
+    ],
+    "absent": [
+      "<script>alert",
+      "<img src=x onerror=",
+      "<svg onload=",
+      "WS-ECHO-READY"
+    ]
+  },
+  {
+    "id": "FP-HELL-020",
+    "slug": "xss-04",
+    "title": "Decoy xss #04",
+    "trap": "Doküman: onload/onerror olayları olay-işleyici dersinde anlatılır.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": true,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Doküman: onload/onerror "
+    ],
+    "absent": [
+      "<script>alert",
+      "<img src=x onerror=",
+      "<svg onload=",
+      "WS-ECHO-READY"
+    ]
+  },
+  {
+    "id": "FP-HELL-021",
+    "slug": "xss-05",
+    "title": "Decoy xss #05",
+    "trap": "Uyarı: javascript: şeması bu sitede bağlantılarda yasaktır.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": true,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Uyarı: javascript: şemas"
+    ],
+    "absent": [
+      "<script>alert",
+      "<img src=x onerror=",
+      "<svg onload=",
+      "WS-ECHO-READY"
+    ]
+  },
+  {
+    "id": "FP-HELL-022",
+    "slug": "xss-06",
+    "title": "Decoy xss #06",
+    "trap": "Bilgi: svg dosyaları yalnızca .png önizlemesiyle gösterilir.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": true,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Bilgi: svg dosyaları yal"
+    ],
+    "absent": [
+      "<script>alert",
+      "<img src=x onerror=",
+      "<svg onload=",
+      "WS-ECHO-READY"
+    ]
+  },
+  {
+    "id": "FP-HELL-023",
+    "slug": "xss-07",
+    "title": "Decoy xss #07",
+    "trap": "Not: img etiketi kullanımı editör kılavuzunda anlatılır.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": true,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Not: img etiketi kullanı"
+    ],
+    "absent": [
+      "<script>alert",
+      "<img src=x onerror=",
+      "<svg onload=",
+      "WS-ECHO-READY"
+    ]
+  },
+  {
+    "id": "FP-HELL-024",
+    "slug": "xss-08",
+    "title": "Decoy xss #08",
+    "trap": "SSS: alert() fonksiyonu tarayıcı konsol dersine aittir.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": true,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "SSS: alert() fonksiyonu "
+    ],
+    "absent": [
+      "<script>alert",
+      "<img src=x onerror=",
+      "<svg onload=",
+      "WS-ECHO-READY"
+    ]
+  },
+  {
+    "id": "FP-HELL-025",
+    "slug": "xss-09",
+    "title": "Decoy xss #09",
+    "trap": "Rehber: innerHTML kullanımı bu projede yasaktır (textContent kullanılır).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": true,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Rehber: innerHTML kullan"
+    ],
+    "absent": [
+      "<script>alert",
+      "<img src=x onerror=",
+      "<svg onload=",
+      "WS-ECHO-READY"
+    ]
+  },
+  {
+    "id": "FP-HELL-026",
+    "slug": "xss-10",
+    "title": "Decoy xss #10",
+    "trap": "Örnek: kullanıcı girdisi her zaman entity-encoded basılır.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": true,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Örnek: kullanıcı girdisi"
+    ],
+    "absent": [
+      "<script>alert",
+      "<img src=x onerror=",
+      "<svg onload=",
+      "WS-ECHO-READY"
+    ]
+  },
+  {
+    "id": "FP-HELL-027",
+    "slug": "xss-11",
+    "title": "Decoy xss #11",
+    "trap": "Kılavuz: tırnak işaretleri HTML entity karşılığıyla saklanır.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": true,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Kılavuz: tırnak işaretle"
+    ],
+    "absent": [
+      "<script>alert",
+      "<img src=x onerror=",
+      "<svg onload=",
+      "WS-ECHO-READY"
+    ]
+  },
+  {
+    "id": "FP-HELL-028",
+    "slug": "xss-12",
+    "title": "Decoy xss #12",
+    "trap": "Bilgi: DOM sink listesi güvenlik kontrol listesinde tutulur.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": true,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Bilgi: DOM sink listesi "
+    ],
+    "absent": [
+      "<script>alert",
+      "<img src=x onerror=",
+      "<svg onload=",
+      "WS-ECHO-READY"
+    ]
+  },
+  {
+    "id": "FP-HELL-029",
+    "slug": "xss-13",
+    "title": "Decoy xss #13",
+    "trap": "Not: postMessage dinleyicisi origin doğrular (dinleyici kodu ekte).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": true,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Not: postMessage dinleyi"
+    ],
+    "absent": [
+      "<script>alert",
+      "<img src=x onerror=",
+      "<svg onload=",
+      "WS-ECHO-READY"
+    ]
+  },
+  {
+    "id": "FP-HELL-030",
+    "slug": "xss-14",
+    "title": "Decoy xss #14",
+    "trap": "Uyarı: harici betik (script src) bu sayfaya gömülemez.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": true,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Uyarı: harici betik (scr"
+    ],
+    "absent": [
+      "<script>alert",
+      "<img src=x onerror=",
+      "<svg onload=",
+      "WS-ECHO-READY"
+    ]
+  },
+  {
+    "id": "FP-HELL-031",
+    "slug": "xss-15",
+    "title": "Decoy xss #15",
+    "trap": "SSS: HTML yorum satırları kullanıcı verisi taşımaz.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": true,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "SSS: HTML yorum satırlar"
+    ],
+    "absent": [
+      "<script>alert",
+      "<img src=x onerror=",
+      "<svg onload=",
+      "WS-ECHO-READY"
+    ]
+  },
+  {
+    "id": "FP-HELL-032",
+    "slug": "xss-16",
+    "title": "Decoy xss #16",
+    "trap": "Doküman: şablon değişkenleri otomatik kaçışlıdır.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": true,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Doküman: şablon değişken"
+    ],
+    "absent": [
+      "<script>alert",
+      "<img src=x onerror=",
+      "<svg onload=",
+      "WS-ECHO-READY"
+    ]
+  },
+  {
+    "id": "FP-HELL-033",
+    "slug": "ssrf-01",
+    "title": "Decoy ssrf #01",
+    "trap": "Bağlantı önizleme: URL metni gösterilir, getirme (fetch) kapalıdır.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Bağlantı önizleme: URL m"
+    ],
+    "absent": [
+      "MOCK-SSRF-LEAK",
+      "secret:",
+      "role: admin"
+    ]
+  },
+  {
+    "id": "FP-HELL-034",
+    "slug": "ssrf-02",
+    "title": "Decoy ssrf #02",
+    "trap": "Avatar servisi: harici adresler kuyruğa alınır, çağrılmaz.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Avatar servisi: harici a"
+    ],
+    "absent": [
+      "MOCK-SSRF-LEAK",
+      "secret:",
+      "role: admin"
+    ]
+  },
+  {
+    "id": "FP-HELL-035",
+    "slug": "ssrf-03",
+    "title": "Decoy ssrf #03",
+    "trap": "Webhook kaydı: hedef URL doğrulanır ama istek gönderilmez.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Webhook kaydı: hedef URL"
+    ],
+    "absent": [
+      "MOCK-SSRF-LEAK",
+      "secret:",
+      "role: admin"
+    ]
+  },
+  {
+    "id": "FP-HELL-036",
+    "slug": "ssrf-04",
+    "title": "Decoy ssrf #04",
+    "trap": "Doküman: 169.254.169.254 adresi test vektörü listesindedir (erişilmez).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Doküman: 169.254.169.254"
+    ],
+    "absent": [
+      "MOCK-SSRF-LEAK",
+      "secret:",
+      "role: admin"
+    ]
+  },
+  {
+    "id": "FP-HELL-037",
+    "slug": "ssrf-05",
+    "title": "Decoy ssrf #05",
+    "trap": "Proxy ayarı: metadata uçları engelli listededir.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Proxy ayarı: metadata uç"
+    ],
+    "absent": [
+      "MOCK-SSRF-LEAK",
+      "secret:",
+      "role: admin"
+    ]
+  },
+  {
+    "id": "FP-HELL-038",
+    "slug": "ssrf-06",
+    "title": "Decoy ssrf #06",
+    "trap": "Önizleme: redirect zinciri takip edilmez, ilk adres gösterilir.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Önizleme: redirect zinci"
+    ],
+    "absent": [
+      "MOCK-SSRF-LEAK",
+      "secret:",
+      "role: admin"
+    ]
+  },
+  {
+    "id": "FP-HELL-039",
+    "slug": "ssrf-07",
+    "title": "Decoy ssrf #07",
+    "trap": "Bilgi: URL şemaları allowlist dışındaysa reddedilir.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Bilgi: URL şemaları allo"
+    ],
+    "absent": [
+      "MOCK-SSRF-LEAK",
+      "secret:",
+      "role: admin"
+    ]
+  },
+  {
+    "id": "FP-HELL-040",
+    "slug": "ssrf-08",
+    "title": "Decoy ssrf #08",
+    "trap": "Not: iç ağ çağrıları bu servisten yapılamaz.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Not: iç ağ çağrıları bu "
+    ],
+    "absent": [
+      "MOCK-SSRF-LEAK",
+      "secret:",
+      "role: admin"
+    ]
+  },
+  {
+    "id": "FP-HELL-041",
+    "slug": "ssrf-09",
+    "title": "Decoy ssrf #09",
+    "trap": "SSS: callback adresleri yalnızca kuyrukta bekler.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "SSS: callback adresleri "
+    ],
+    "absent": [
+      "MOCK-SSRF-LEAK",
+      "secret:",
+      "role: admin"
+    ]
+  },
+  {
+    "id": "FP-HELL-042",
+    "slug": "ssrf-10",
+    "title": "Decoy ssrf #10",
+    "trap": "Kılavuz: dış istekler denetim günlüğüne yazılır, çalıştırılmaz.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Kılavuz: dış istekler de"
+    ],
+    "absent": [
+      "MOCK-SSRF-LEAK",
+      "secret:",
+      "role: admin"
+    ]
+  },
+  {
+    "id": "FP-HELL-043",
+    "slug": "timing-01",
+    "title": "Decoy timing #01",
+    "trap": "Aylık rapor: ağır toplama ~2 sn sürer (girdiyle alakasız, sabit maliyet).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Aylık rapor: ağır toplam"
+    ],
+    "absent": [
+      "SLEEP(",
+      "SLEEP executed",
+      "query_time=",
+      "SLEEP çalıştı"
+    ]
+  },
+  {
+    "id": "FP-HELL-044",
+    "slug": "timing-02",
+    "title": "Decoy timing #02",
+    "trap": "Dışa aktarım: büyük CSV üretimi kuyrukta bekler, istek başına sabit.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Dışa aktarım: büyük CSV "
+    ],
+    "absent": [
+      "SLEEP(",
+      "SLEEP executed",
+      "query_time=",
+      "SLEEP çalıştı"
+    ]
+  },
+  {
+    "id": "FP-HELL-045",
+    "slug": "timing-03",
+    "title": "Decoy timing #03",
+    "trap": "Yedekleme: gece 02:00'de çalışır, istek anında üretilmez.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Yedekleme: gece 02:00&#x27;de"
+    ],
+    "absent": [
+      "SLEEP(",
+      "SLEEP executed",
+      "query_time=",
+      "SLEEP çalıştı"
+    ]
+  },
+  {
+    "id": "FP-HELL-046",
+    "slug": "timing-04",
+    "title": "Decoy timing #04",
+    "trap": "Dizin listesi: önbellekten 5 ms'de döner (sabit).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Dizin listesi: önbellekt"
+    ],
+    "absent": [
+      "SLEEP(",
+      "SLEEP executed",
+      "query_time=",
+      "SLEEP çalıştı"
+    ]
+  },
+  {
+    "id": "FP-HELL-047",
+    "slug": "timing-05",
+    "title": "Decoy timing #05",
+    "trap": "Arşiv indirme: önceden üretilmiş dosya sunulur.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Arşiv indirme: önceden ü"
+    ],
+    "absent": [
+      "SLEEP(",
+      "SLEEP executed",
+      "query_time=",
+      "SLEEP çalıştı"
+    ]
+  },
+  {
+    "id": "FP-HELL-048",
+    "slug": "timing-06",
+    "title": "Decoy timing #06",
+    "trap": "İstatistik: önbellekli sayaçlar anında döner.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "İstatistik: önbellekli s"
+    ],
+    "absent": [
+      "SLEEP(",
+      "SLEEP executed",
+      "query_time=",
+      "SLEEP çalıştı"
+    ]
+  },
+  {
+    "id": "FP-HELL-049",
+    "slug": "timing-07",
+    "title": "Decoy timing #07",
+    "trap": "Rapor: sayfa derleme süresi sabittir, parametreden etkilenmez.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Rapor: sayfa derleme sür"
+    ],
+    "absent": [
+      "SLEEP(",
+      "SLEEP executed",
+      "query_time=",
+      "SLEEP çalıştı"
+    ]
+  },
+  {
+    "id": "FP-HELL-050",
+    "slug": "timing-08",
+    "title": "Decoy timing #08",
+    "trap": "Bakım: zamanlanmış görevler istek döngüsü dışındadır.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Bakım: zamanlanmış görev"
+    ],
+    "absent": [
+      "SLEEP(",
+      "SLEEP executed",
+      "query_time=",
+      "SLEEP çalıştı"
+    ]
+  },
+  {
+    "id": "FP-HELL-051",
+    "slug": "timing-09",
+    "title": "Decoy timing #09",
+    "trap": "Not: yavaş sayfa ≠ zaman-tabanlı enjeksiyon (fark: girdi bağımlılığı).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Not: yavaş sayfa ≠ zaman"
+    ],
+    "absent": [
+      "SLEEP(",
+      "SLEEP executed",
+      "query_time=",
+      "SLEEP çalıştı"
+    ]
+  },
+  {
+    "id": "FP-HELL-052",
+    "slug": "timing-10",
+    "title": "Decoy timing #10",
+    "trap": "Bilgi: yanıt süreleri izlenir, eşik aşımı alarm üretir (izleme amaçlı).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Bilgi: yanıt süreleri iz"
+    ],
+    "absent": [
+      "SLEEP(",
+      "SLEEP executed",
+      "query_time=",
+      "SLEEP çalıştı"
+    ]
+  },
+  {
+    "id": "FP-HELL-053",
+    "slug": "secret-01",
+    "title": "Decoy secret #01",
+    "trap": "Örnek: STRIPE_KEY=sk_test_EXAMPLE_0000 (ÖRNEK anahtar, gerçek değil).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Örnek: STRIPE_KEY=sk_tes"
+    ],
+    "absent": [
+      "sk_live_mock_123",
+      "live_mock_key_123",
+      "Sup3rS3cret",
+      "DB_PASSWORD=postgres"
+    ]
+  },
+  {
+    "id": "FP-HELL-054",
+    "slug": "secret-02",
+    "title": "Decoy secret #02",
+    "trap": "Doküman: AWS anahtarı biçimi AKIAEXAMPLE00000000 (test verisi).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Doküman: AWS anahtarı bi"
+    ],
+    "absent": [
+      "sk_live_mock_123",
+      "live_mock_key_123",
+      "Sup3rS3cret",
+      "DB_PASSWORD=postgres"
+    ]
+  },
+  {
+    "id": "FP-HELL-055",
+    "slug": "secret-03",
+    "title": "Decoy secret #03",
+    "trap": "SDK örneği: api_key=TEST-KEY-DOCS-ONLY-1234 (belge amaçlı).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "SDK örneği: api_key=TEST"
+    ],
+    "absent": [
+      "sk_live_mock_123",
+      "live_mock_key_123",
+      "Sup3rS3cret",
+      "DB_PASSWORD=postgres"
+    ]
+  },
+  {
+    "id": "FP-HELL-056",
+    "slug": "secret-04",
+    "title": "Decoy secret #04",
+    "trap": "Yapılandırma şablonu: DB_PASSWORD=degistir-beni (yer tutucu).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Yapılandırma şablonu: DB"
+    ],
+    "absent": [
+      "sk_live_mock_123",
+      "live_mock_key_123",
+      "Sup3rS3cret",
+      "DB_PASSWORD=postgres"
+    ]
+  },
+  {
+    "id": "FP-HELL-057",
+    "slug": "secret-05",
+    "title": "Decoy secret #05",
+    "trap": ".env.example: tüm değerler EXAMPLE ile işaretli taslaklardır.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      ".env.example: tüm değerl"
+    ],
+    "absent": [
+      "sk_live_mock_123",
+      "live_mock_key_123",
+      "Sup3rS3cret",
+      "DB_PASSWORD=postgres"
+    ]
+  },
+  {
+    "id": "FP-HELL-058",
+    "slug": "secret-06",
+    "title": "Decoy secret #06",
+    "trap": "CI örneği: token=ci_example_token_000 (salt pipeline şablonu).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "CI örneği: token=ci_exam"
+    ],
+    "absent": [
+      "sk_live_mock_123",
+      "live_mock_key_123",
+      "Sup3rS3cret",
+      "DB_PASSWORD=postgres"
+    ]
+  },
+  {
+    "id": "FP-HELL-059",
+    "slug": "secret-07",
+    "title": "Decoy secret #07",
+    "trap": "Webhook sırrı: whsec_TEST_EXAMPLE (imza doğrulanmaz, örnektir).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Webhook sırrı: whsec_TES"
+    ],
+    "absent": [
+      "sk_live_mock_123",
+      "live_mock_key_123",
+      "Sup3rS3cret",
+      "DB_PASSWORD=postgres"
+    ]
+  },
+  {
+    "id": "FP-HELL-060",
+    "slug": "secret-08",
+    "title": "Decoy secret #08",
+    "trap": "JWT örneği: secret=ornek-imza-anahtari-degil (dokümantasyon).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "JWT örneği: secret=ornek"
+    ],
+    "absent": [
+      "sk_live_mock_123",
+      "live_mock_key_123",
+      "Sup3rS3cret",
+      "DB_PASSWORD=postgres"
+    ]
+  },
+  {
+    "id": "FP-HELL-061",
+    "slug": "secret-09",
+    "title": "Decoy secret #09",
+    "trap": "Örnek parola: P@ssw0rd! (kılavuzda geçen varsayılan, atanmamış).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Örnek parola: P@ssw0rd! "
+    ],
+    "absent": [
+      "sk_live_mock_123",
+      "live_mock_key_123",
+      "Sup3rS3cret",
+      "DB_PASSWORD=postgres"
+    ]
+  },
+  {
+    "id": "FP-HELL-062",
+    "slug": "secret-10",
+    "title": "Decoy secret #10",
+    "trap": "SSH örneği: ssh-ed25519 EXAMPLE... yorum satırı (geçersiz).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "SSH örneği: ssh-ed25519 "
+    ],
+    "absent": [
+      "sk_live_mock_123",
+      "live_mock_key_123",
+      "Sup3rS3cret",
+      "DB_PASSWORD=postgres"
+    ]
+  },
+  {
+    "id": "FP-HELL-063",
+    "slug": "secret-11",
+    "title": "Decoy secret #11",
+    "trap": "API şeması: password alanı örnek yanıtta yıldızlıdır (***).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "API şeması: password ala"
+    ],
+    "absent": [
+      "sk_live_mock_123",
+      "live_mock_key_123",
+      "Sup3rS3cret",
+      "DB_PASSWORD=postgres"
+    ]
+  },
+  {
+    "id": "FP-HELL-064",
+    "slug": "secret-12",
+    "title": "Decoy secret #12",
+    "trap": "OAuth örneği: client_secret=ornek-istemci-sirri (kayıtlı değil).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "OAuth örneği: client_sec"
+    ],
+    "absent": [
+      "sk_live_mock_123",
+      "live_mock_key_123",
+      "Sup3rS3cret",
+      "DB_PASSWORD=postgres"
+    ]
+  },
+  {
+    "id": "FP-HELL-065",
+    "slug": "secret-13",
+    "title": "Decoy secret #13",
+    "trap": "Kupon örneği: ORNEK10 kodu kasıtlı geçersizdir.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Kupon örneği: ORNEK10 ko"
+    ],
+    "absent": [
+      "sk_live_mock_123",
+      "live_mock_key_123",
+      "Sup3rS3cret",
+      "DB_PASSWORD=postgres"
+    ]
+  },
+  {
+    "id": "FP-HELL-066",
+    "slug": "secret-14",
+    "title": "Decoy secret #14",
+    "trap": "Sertifika: -----BEGIN EXAMPLE CERTIFICATE----- (kendinden test).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Sertifika: -----BEGIN EX"
+    ],
+    "absent": [
+      "sk_live_mock_123",
+      "live_mock_key_123",
+      "Sup3rS3cret",
+      "DB_PASSWORD=postgres"
+    ]
+  },
+  {
+    "id": "FP-HELL-067",
+    "slug": "secret-15",
+    "title": "Decoy secret #15",
+    "trap": "Not: gerçek sırlar kasa servisindedir, dosyada asla yazmaz.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Not: gerçek sırlar kasa "
+    ],
+    "absent": [
+      "sk_live_mock_123",
+      "live_mock_key_123",
+      "Sup3rS3cret",
+      "DB_PASSWORD=postgres"
+    ]
+  },
+  {
+    "id": "FP-HELL-068",
+    "slug": "secret-16",
+    "title": "Decoy secret #16",
+    "trap": "Uyarı: EXAMPLE/TEST işaretli dizgiler alarm üretmemelidir.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Uyarı: EXAMPLE/TEST işar"
+    ],
+    "absent": [
+      "sk_live_mock_123",
+      "live_mock_key_123",
+      "Sup3rS3cret",
+      "DB_PASSWORD=postgres"
+    ]
+  },
+  {
+    "id": "FP-HELL-069",
+    "slug": "auth-01",
+    "title": "Decoy auth #01",
+    "trap": "Giriş yardımı: admin paneli adresi belgede yazmaz (destek kanalıyla).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Giriş yardımı: admin pan"
+    ],
+    "absent": [
+      "admin@example.com",
+      "mock-session",
+      "mock-admin-session",
+      "Temp123!"
+    ]
+  },
+  {
+    "id": "FP-HELL-070",
+    "slug": "auth-02",
+    "title": "Decoy auth #02",
+    "trap": "Rol açıklaması: admin rolü tanımı sözlük maddesidir.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Rol açıklaması: admin ro"
+    ],
+    "absent": [
+      "admin@example.com",
+      "mock-session",
+      "mock-admin-session",
+      "Temp123!"
+    ]
+  },
+  {
+    "id": "FP-HELL-071",
+    "slug": "auth-03",
+    "title": "Decoy auth #03",
+    "trap": "Hata mesajı: kullanıcı adı veya şifre hatalı (hangi alan belirtilmez).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Hata mesajı: kullanıcı a"
+    ],
+    "absent": [
+      "admin@example.com",
+      "mock-session",
+      "mock-admin-session",
+      "Temp123!"
+    ]
+  },
+  {
+    "id": "FP-HELL-072",
+    "slug": "auth-04",
+    "title": "Decoy auth #04",
+    "trap": "Kilit bilgisi: 5 hatada 15 dk kilit + Retry-After (doğru davranış).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Kilit bilgisi: 5 hatada "
+    ],
+    "absent": [
+      "admin@example.com",
+      "mock-session",
+      "mock-admin-session",
+      "Temp123!"
+    ]
+  },
+  {
+    "id": "FP-HELL-073",
+    "slug": "auth-05",
+    "title": "Decoy auth #05",
+    "trap": "Oturum: çerezler HttpOnly+Secure+SameSite (başlıkta görünür).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Oturum: çerezler HttpOnl"
+    ],
+    "absent": [
+      "admin@example.com",
+      "mock-session",
+      "mock-admin-session",
+      "Temp123!"
+    ]
+  },
+  {
+    "id": "FP-HELL-074",
+    "slug": "auth-06",
+    "title": "Decoy auth #06",
+    "trap": "MFA: TOTP kurulum kılavuzu (kodlar sunucuda üretilir).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "MFA: TOTP kurulum kılavu"
+    ],
+    "absent": [
+      "admin@example.com",
+      "mock-session",
+      "mock-admin-session",
+      "Temp123!"
+    ]
+  },
+  {
+    "id": "FP-HELL-075",
+    "slug": "auth-07",
+    "title": "Decoy auth #07",
+    "trap": "Parola politikası: en az 12 karakter, yönetici sıfırlar.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Parola politikası: en az"
+    ],
+    "absent": [
+      "admin@example.com",
+      "mock-session",
+      "mock-admin-session",
+      "Temp123!"
+    ]
+  },
+  {
+    "id": "FP-HELL-076",
+    "slug": "auth-08",
+    "title": "Decoy auth #08",
+    "trap": "OAuth: kayıtlı uygulamalar listesi (yönlendirme allowlist'li).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "OAuth: kayıtlı uygulamal"
+    ],
+    "absent": [
+      "admin@example.com",
+      "mock-session",
+      "mock-admin-session",
+      "Temp123!"
+    ]
+  },
+  {
+    "id": "FP-HELL-077",
+    "slug": "auth-09",
+    "title": "Decoy auth #09",
+    "trap": "Not: 401 ve 403 yanıtları ayırt edici bilgi taşımaz.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Not: 401 ve 403 yanıtlar"
+    ],
+    "absent": [
+      "admin@example.com",
+      "mock-session",
+      "mock-admin-session",
+      "Temp123!"
+    ]
+  },
+  {
+    "id": "FP-HELL-078",
+    "slug": "auth-10",
+    "title": "Decoy auth #10",
+    "trap": "SSS: şifre sıfırlama bağlantısı 15 dakika geçerlidir (tek kullanımlık).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "SSS: şifre sıfırlama bağ"
+    ],
+    "absent": [
+      "admin@example.com",
+      "mock-session",
+      "mock-admin-session",
+      "Temp123!"
+    ]
+  },
+  {
+    "id": "FP-HELL-079",
+    "slug": "auth-11",
+    "title": "Decoy auth #11",
+    "trap": "Destek: hesap kilidi açma kimlik doğrulamasıyla yapılır.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Destek: hesap kilidi açm"
+    ],
+    "absent": [
+      "admin@example.com",
+      "mock-session",
+      "mock-admin-session",
+      "Temp123!"
+    ]
+  },
+  {
+    "id": "FP-HELL-080",
+    "slug": "auth-12",
+    "title": "Decoy auth #12",
+    "trap": "Güvenlik: başarısız girişler hız sınırlıdır (429 + Retry-After).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Güvenlik: başarısız giri"
+    ],
+    "absent": [
+      "admin@example.com",
+      "mock-session",
+      "mock-admin-session",
+      "Temp123!"
+    ]
+  },
+  {
+    "id": "FP-HELL-081",
+    "slug": "auth-13",
+    "title": "Decoy auth #13",
+    "trap": "Bilgi: yetkisiz erişim denemeleri günlüğe yazılır.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Bilgi: yetkisiz erişim d"
+    ],
+    "absent": [
+      "admin@example.com",
+      "mock-session",
+      "mock-admin-session",
+      "Temp123!"
+    ]
+  },
+  {
+    "id": "FP-HELL-082",
+    "slug": "auth-14",
+    "title": "Decoy auth #14",
+    "trap": "Kılavuz: yetki matrisi rol-tablosunda belgelenir.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Kılavuz: yetki matrisi r"
+    ],
+    "absent": [
+      "admin@example.com",
+      "mock-session",
+      "mock-admin-session",
+      "Temp123!"
+    ]
+  },
+  {
+    "id": "FP-HELL-083",
+    "slug": "waf-01",
+    "title": "Decoy waf #01",
+    "trap": "WAF bilgi sayfası: engellenen desenler listesi (statik belge).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "WAF bilgi sayfası: engel"
+    ],
+    "absent": [
+      "bypassed",
+      "WAF kapalı",
+      "kural dışı bırakıldı",
+      "engelleme kaldırıldı"
+    ]
+  },
+  {
+    "id": "FP-HELL-084",
+    "slug": "waf-02",
+    "title": "Decoy waf #02",
+    "trap": "Kural açıklaması: SQLi kuralı #1001 (imza metni, tetiklenmez).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Kural açıklaması: SQLi k"
+    ],
+    "absent": [
+      "bypassed",
+      "WAF kapalı",
+      "kural dışı bırakıldı",
+      "engelleme kaldırıldı"
+    ]
+  },
+  {
+    "id": "FP-HELL-085",
+    "slug": "waf-03",
+    "title": "Decoy waf #03",
+    "trap": "Kural açıklaması: XSS kuralı #2001 (örnek yük metni karantinada).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Kural açıklaması: XSS ku"
+    ],
+    "absent": [
+      "bypassed",
+      "WAF kapalı",
+      "kural dışı bırakıldı",
+      "engelleme kaldırıldı"
+    ]
+  },
+  {
+    "id": "FP-HELL-086",
+    "slug": "waf-04",
+    "title": "Decoy waf #04",
+    "trap": "Engel sayfası: istek reddedildi (olay günlüğü, sayaç artmaz).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Engel sayfası: istek red"
+    ],
+    "absent": [
+      "bypassed",
+      "WAF kapalı",
+      "kural dışı bırakıldı",
+      "engelleme kaldırıldı"
+    ]
+  },
+  {
+    "id": "FP-HELL-087",
+    "slug": "waf-05",
+    "title": "Decoy waf #05",
+    "trap": "Allowlist: kurumsal IP aralıkları salt-okunur listelenir.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Allowlist: kurumsal IP a"
+    ],
+    "absent": [
+      "bypassed",
+      "WAF kapalı",
+      "kural dışı bırakıldı",
+      "engelleme kaldırıldı"
+    ]
+  },
+  {
+    "id": "FP-HELL-088",
+    "slug": "waf-06",
+    "title": "Decoy waf #06",
+    "trap": "Not: blok sayfası her zaman aynı şablonu döndürür.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Not: blok sayfası her za"
+    ],
+    "absent": [
+      "bypassed",
+      "WAF kapalı",
+      "kural dışı bırakıldı",
+      "engelleme kaldırıldı"
+    ]
+  },
+  {
+    "id": "FP-HELL-089",
+    "slug": "waf-07",
+    "title": "Decoy waf #07",
+    "trap": "SSS: yanlış pozitif bildirimi formu (inceleme kuyruğu).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "SSS: yanlış pozitif bild"
+    ],
+    "absent": [
+      "bypassed",
+      "WAF kapalı",
+      "kural dışı bırakıldı",
+      "engelleme kaldırıldı"
+    ]
+  },
+  {
+    "id": "FP-HELL-090",
+    "slug": "waf-08",
+    "title": "Decoy waf #08",
+    "trap": "Sürüm: kural seti v4.2 (değişiklik günlüğü ekte).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Sürüm: kural seti v4.2 ("
+    ],
+    "absent": [
+      "bypassed",
+      "WAF kapalı",
+      "kural dışı bırakıldı",
+      "engelleme kaldırıldı"
+    ]
+  },
+  {
+    "id": "FP-HELL-091",
+    "slug": "waf-09",
+    "title": "Decoy waf #09",
+    "trap": "Bilgi: denetim modu izler, engellemez (izleme amaçlı).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Bilgi: denetim modu izle"
+    ],
+    "absent": [
+      "bypassed",
+      "WAF kapalı",
+      "kural dışı bırakıldı",
+      "engelleme kaldırıldı"
+    ]
+  },
+  {
+    "id": "FP-HELL-092",
+    "slug": "waf-10",
+    "title": "Decoy waf #10",
+    "trap": "Kılavuz: istisna talepleri change-board onayıyla açılır.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Kılavuz: istisna taleple"
+    ],
+    "absent": [
+      "bypassed",
+      "WAF kapalı",
+      "kural dışı bırakıldı",
+      "engelleme kaldırıldı"
+    ]
+  },
+  {
+    "id": "FP-HELL-093",
+    "slug": "exposure-01",
+    "title": "Decoy exposure #01",
+    "trap": ".env.example dosyası (gerçek .env değil, taslak).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      ".env.example dosyası (ge"
+    ],
+    "absent": [
+      "Sup3rS3cret",
+      "sk_live_mock_123",
+      "DB_PASSWORD=postgres",
+      "PRIVATE KEY"
+    ]
+  },
+  {
+    "id": "FP-HELL-094",
+    "slug": "exposure-02",
+    "title": "Decoy exposure #02",
+    "trap": "Sürüm bilgisi: app v2.4.1 (yamalı, CVE kaydı kapalı).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Sürüm bilgisi: app v2.4."
+    ],
+    "absent": [
+      "Sup3rS3cret",
+      "sk_live_mock_123",
+      "DB_PASSWORD=postgres",
+      "PRIVATE KEY"
+    ]
+  },
+  {
+    "id": "FP-HELL-095",
+    "slug": "exposure-03",
+    "title": "Decoy exposure #03",
+    "trap": "robots.txt açıklaması (bu sayfa hariç gerçek yollar listelemez).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "robots.txt açıklaması (b"
+    ],
+    "absent": [
+      "Sup3rS3cret",
+      "sk_live_mock_123",
+      "DB_PASSWORD=postgres",
+      "PRIVATE KEY"
+    ]
+  },
+  {
+    "id": "FP-HELL-096",
+    "slug": "exposure-04",
+    "title": "Decoy exposure #04",
+    "trap": "CHANGELOG: güvenlik düzeltmeleri sürüm notunda.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "CHANGELOG: güvenlik düze"
+    ],
+    "absent": [
+      "Sup3rS3cret",
+      "sk_live_mock_123",
+      "DB_PASSWORD=postgres",
+      "PRIVATE KEY"
+    ]
+  },
+  {
+    "id": "FP-HELL-097",
+    "slug": "exposure-05",
+    "title": "Decoy exposure #05",
+    "trap": "API şeması: iç uçlar şemada yoktur (genel şema ayrı).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "API şeması: iç uçlar şem"
+    ],
+    "absent": [
+      "Sup3rS3cret",
+      "sk_live_mock_123",
+      "DB_PASSWORD=postgres",
+      "PRIVATE KEY"
+    ]
+  },
+  {
+    "id": "FP-HELL-098",
+    "slug": "exposure-06",
+    "title": "Decoy exposure #06",
+    "trap": "Durum sayfası: uptime metrikleri (iç metrik yok).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Durum sayfası: uptime me"
+    ],
+    "absent": [
+      "Sup3rS3cret",
+      "sk_live_mock_123",
+      "DB_PASSWORD=postgres",
+      "PRIVATE KEY"
+    ]
+  },
+  {
+    "id": "FP-HELL-099",
+    "slug": "exposure-07",
+    "title": "Decoy exposure #07",
+    "trap": "Lisans: üçüncü parti bildirimleri (sürüm numaraları yamalı).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Lisans: üçüncü parti bil"
+    ],
+    "absent": [
+      "Sup3rS3cret",
+      "sk_live_mock_123",
+      "DB_PASSWORD=postgres",
+      "PRIVATE KEY"
+    ]
+  },
+  {
+    "id": "FP-HELL-100",
+    "slug": "exposure-08",
+    "title": "Decoy exposure #08",
+    "trap": "Doküman: yedekleme politikası (konum bilgisi yok).",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Doküman: yedekleme polit"
+    ],
+    "absent": [
+      "Sup3rS3cret",
+      "sk_live_mock_123",
+      "DB_PASSWORD=postgres",
+      "PRIVATE KEY"
+    ]
+  },
+  {
+    "id": "FP-HELL-101",
+    "slug": "exposure-09",
+    "title": "Decoy exposure #09",
+    "trap": "Not: kaynak eşleme (source-map) üretimde kapalıdır.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Not: kaynak eşleme (sour"
+    ],
+    "absent": [
+      "Sup3rS3cret",
+      "sk_live_mock_123",
+      "DB_PASSWORD=postgres",
+      "PRIVATE KEY"
+    ]
+  },
+  {
+    "id": "FP-HELL-102",
+    "slug": "exposure-10",
+    "title": "Decoy exposure #10",
+    "trap": "Bilgi: hata ayıklama uçları üretimde 404 döner.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Bilgi: hata ayıklama uçl"
+    ],
+    "absent": [
+      "Sup3rS3cret",
+      "sk_live_mock_123",
+      "DB_PASSWORD=postgres",
+      "PRIVATE KEY"
+    ]
+  },
+  {
+    "id": "FP-HELL-103",
+    "slug": "exposure-11",
+    "title": "Decoy exposure #11",
+    "trap": "SSS: yapılandırma yönetimi kasa servisiyle yapılır.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "SSS: yapılandırma yöneti"
+    ],
+    "absent": [
+      "Sup3rS3cret",
+      "sk_live_mock_123",
+      "DB_PASSWORD=postgres",
+      "PRIVATE KEY"
+    ]
+  },
+  {
+    "id": "FP-HELL-104",
+    "slug": "exposure-12",
+    "title": "Decoy exposure #12",
+    "trap": "Kılavuz: hassas dosya denetimi haftalık taramada yapılır.",
+    "guard": "Bu sayfa güvenli sayfa (decoy): içerik statik dokümantasyon, çalıştırılabilir kod yok.",
+    "reflect": false,
+    "present": [
+      "güvenli sayfa (decoy)",
+      "Kılavuz: hassas dosya de"
+    ],
+    "absent": [
+      "Sup3rS3cret",
+      "sk_live_mock_123",
+      "DB_PASSWORD=postgres",
+      "PRIVATE KEY"
+    ]
+  }
+]

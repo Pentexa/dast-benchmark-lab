@@ -24,6 +24,7 @@ app.use('/ssrf', require('./routes/ssrf'));
 app.use('/logic', require('./routes/logic'));
 app.use('/csrf', require('./routes/logic')); // /csrf/* alias (transfer, token)
 app.use('/fp', require('./routes/fptraps'));
+app.use('/fphell', require('./routes/fphell')); // P2: 100+ güvenli decoy
 app.use('/cors', require('./routes/logic')); // /cors/* alias
 app.use('/upload', require('./routes/logic')); // uyumluluk
 app.use('/api', require('./routes/api'));

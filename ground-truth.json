@@ -4954,5 +4954,2507 @@
     "severity": "info",
     "difficulty": "fp-hunter",
     "oracle": null
+  },
+  {
+    "id": "FP-HELL-001",
+    "method": "GET",
+    "path": "/fphell/sql-01",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: sql (01)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/sql-01",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Arama yardımı: tırnak iç"
+      ],
+      "absent": [
+        "information_schema",
+        "2 rows dumped",
+        "DUMP for",
+        "@@version",
+        "2 result set"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-002",
+    "method": "GET",
+    "path": "/fphell/sql-02",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: sql (02)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/sql-02",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "SSS: &#x27;SQL syntax&#x27; uyarıs"
+      ],
+      "absent": [
+        "information_schema",
+        "2 rows dumped",
+        "DUMP for",
+        "@@version",
+        "2 result set"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-003",
+    "method": "GET",
+    "path": "/fphell/sql-03",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: sql (03)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/sql-03",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Doküman: WHERE yan tümce"
+      ],
+      "absent": [
+        "information_schema",
+        "2 rows dumped",
+        "DUMP for",
+        "@@version",
+        "2 result set"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-004",
+    "method": "GET",
+    "path": "/fphell/sql-04",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: sql (04)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/sql-04",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Hata kodları: ERR-SQL-10"
+      ],
+      "absent": [
+        "information_schema",
+        "2 rows dumped",
+        "DUMP for",
+        "@@version",
+        "2 result set"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-005",
+    "method": "GET",
+    "path": "/fphell/sql-05",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: sql (05)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/sql-05",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Örnek sorgu: SELECT * FR"
+      ],
+      "absent": [
+        "information_schema",
+        "2 rows dumped",
+        "DUMP for",
+        "@@version",
+        "2 result set"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-006",
+    "method": "GET",
+    "path": "/fphell/sql-06",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: sql (06)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/sql-06",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Not: tek tırnak içeren g"
+      ],
+      "absent": [
+        "information_schema",
+        "2 rows dumped",
+        "DUMP for",
+        "@@version",
+        "2 result set"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-007",
+    "method": "GET",
+    "path": "/fphell/sql-07",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: sql (07)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/sql-07",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Rehber: UNION kelimesi g"
+      ],
+      "absent": [
+        "information_schema",
+        "2 rows dumped",
+        "DUMP for",
+        "@@version",
+        "2 result set"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-008",
+    "method": "GET",
+    "path": "/fphell/sql-08",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: sql (08)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/sql-08",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Sözlük: &#x27;sleep&#x27; kelimesi"
+      ],
+      "absent": [
+        "information_schema",
+        "2 rows dumped",
+        "DUMP for",
+        "@@version",
+        "2 result set"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-009",
+    "method": "GET",
+    "path": "/fphell/sql-09",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: sql (09)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/sql-09",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Değişiklik günlüğü: benc"
+      ],
+      "absent": [
+        "information_schema",
+        "2 rows dumped",
+        "DUMP for",
+        "@@version",
+        "2 result set"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-010",
+    "method": "GET",
+    "path": "/fphell/sql-10",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: sql (10)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/sql-10",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Eğitim: OR operatörü man"
+      ],
+      "absent": [
+        "information_schema",
+        "2 rows dumped",
+        "DUMP for",
+        "@@version",
+        "2 result set"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-011",
+    "method": "GET",
+    "path": "/fphell/sql-11",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: sql (11)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/sql-11",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Uyarı metni: veritabanı "
+      ],
+      "absent": [
+        "information_schema",
+        "2 rows dumped",
+        "DUMP for",
+        "@@version",
+        "2 result set"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-012",
+    "method": "GET",
+    "path": "/fphell/sql-12",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: sql (12)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/sql-12",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "İpucu: çift tire (--) il"
+      ],
+      "absent": [
+        "information_schema",
+        "2 rows dumped",
+        "DUMP for",
+        "@@version",
+        "2 result set"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-013",
+    "method": "GET",
+    "path": "/fphell/sql-13",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: sql (13)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/sql-13",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Kılavuz: LIKE kalıpları "
+      ],
+      "absent": [
+        "information_schema",
+        "2 rows dumped",
+        "DUMP for",
+        "@@version",
+        "2 result set"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-014",
+    "method": "GET",
+    "path": "/fphell/sql-14",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: sql (14)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/sql-14",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Bilgi: ORDER BY ifadesi "
+      ],
+      "absent": [
+        "information_schema",
+        "2 rows dumped",
+        "DUMP for",
+        "@@version",
+        "2 result set"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-015",
+    "method": "GET",
+    "path": "/fphell/sql-15",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: sql (15)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/sql-15",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Not: noktalı virgül; cüm"
+      ],
+      "absent": [
+        "information_schema",
+        "2 rows dumped",
+        "DUMP for",
+        "@@version",
+        "2 result set"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-016",
+    "method": "GET",
+    "path": "/fphell/sql-16",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: sql (16)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/sql-16",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "SSS: büyük/küçük harf du"
+      ],
+      "absent": [
+        "information_schema",
+        "2 rows dumped",
+        "DUMP for",
+        "@@version",
+        "2 result set"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-017",
+    "method": "GET",
+    "path": "/fphell/xss-01",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: xss (01)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/xss-01",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Profil takma adı sayfada"
+      ],
+      "absent": [
+        "<script>alert",
+        "<img src=x onerror=",
+        "<svg onload=",
+        "WS-ECHO-READY"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-018",
+    "method": "GET",
+    "path": "/fphell/xss-02",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: xss (02)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/xss-02",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Yorum önizleme: köşeli p"
+      ],
+      "absent": [
+        "<script>alert",
+        "<img src=x onerror=",
+        "<svg onload=",
+        "WS-ECHO-READY"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-019",
+    "method": "GET",
+    "path": "/fphell/xss-03",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: xss (03)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/xss-03",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Arama kutusu: script kel"
+      ],
+      "absent": [
+        "<script>alert",
+        "<img src=x onerror=",
+        "<svg onload=",
+        "WS-ECHO-READY"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-020",
+    "method": "GET",
+    "path": "/fphell/xss-04",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: xss (04)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/xss-04",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Doküman: onload/onerror "
+      ],
+      "absent": [
+        "<script>alert",
+        "<img src=x onerror=",
+        "<svg onload=",
+        "WS-ECHO-READY"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-021",
+    "method": "GET",
+    "path": "/fphell/xss-05",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: xss (05)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/xss-05",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Uyarı: javascript: şemas"
+      ],
+      "absent": [
+        "<script>alert",
+        "<img src=x onerror=",
+        "<svg onload=",
+        "WS-ECHO-READY"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-022",
+    "method": "GET",
+    "path": "/fphell/xss-06",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: xss (06)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/xss-06",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Bilgi: svg dosyaları yal"
+      ],
+      "absent": [
+        "<script>alert",
+        "<img src=x onerror=",
+        "<svg onload=",
+        "WS-ECHO-READY"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-023",
+    "method": "GET",
+    "path": "/fphell/xss-07",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: xss (07)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/xss-07",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Not: img etiketi kullanı"
+      ],
+      "absent": [
+        "<script>alert",
+        "<img src=x onerror=",
+        "<svg onload=",
+        "WS-ECHO-READY"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-024",
+    "method": "GET",
+    "path": "/fphell/xss-08",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: xss (08)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/xss-08",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "SSS: alert() fonksiyonu "
+      ],
+      "absent": [
+        "<script>alert",
+        "<img src=x onerror=",
+        "<svg onload=",
+        "WS-ECHO-READY"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-025",
+    "method": "GET",
+    "path": "/fphell/xss-09",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: xss (09)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/xss-09",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Rehber: innerHTML kullan"
+      ],
+      "absent": [
+        "<script>alert",
+        "<img src=x onerror=",
+        "<svg onload=",
+        "WS-ECHO-READY"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-026",
+    "method": "GET",
+    "path": "/fphell/xss-10",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: xss (10)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/xss-10",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Örnek: kullanıcı girdisi"
+      ],
+      "absent": [
+        "<script>alert",
+        "<img src=x onerror=",
+        "<svg onload=",
+        "WS-ECHO-READY"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-027",
+    "method": "GET",
+    "path": "/fphell/xss-11",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: xss (11)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/xss-11",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Kılavuz: tırnak işaretle"
+      ],
+      "absent": [
+        "<script>alert",
+        "<img src=x onerror=",
+        "<svg onload=",
+        "WS-ECHO-READY"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-028",
+    "method": "GET",
+    "path": "/fphell/xss-12",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: xss (12)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/xss-12",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Bilgi: DOM sink listesi "
+      ],
+      "absent": [
+        "<script>alert",
+        "<img src=x onerror=",
+        "<svg onload=",
+        "WS-ECHO-READY"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-029",
+    "method": "GET",
+    "path": "/fphell/xss-13",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: xss (13)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/xss-13",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Not: postMessage dinleyi"
+      ],
+      "absent": [
+        "<script>alert",
+        "<img src=x onerror=",
+        "<svg onload=",
+        "WS-ECHO-READY"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-030",
+    "method": "GET",
+    "path": "/fphell/xss-14",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: xss (14)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/xss-14",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Uyarı: harici betik (scr"
+      ],
+      "absent": [
+        "<script>alert",
+        "<img src=x onerror=",
+        "<svg onload=",
+        "WS-ECHO-READY"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-031",
+    "method": "GET",
+    "path": "/fphell/xss-15",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: xss (15)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/xss-15",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "SSS: HTML yorum satırlar"
+      ],
+      "absent": [
+        "<script>alert",
+        "<img src=x onerror=",
+        "<svg onload=",
+        "WS-ECHO-READY"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-032",
+    "method": "GET",
+    "path": "/fphell/xss-16",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: xss (16)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/xss-16",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Doküman: şablon değişken"
+      ],
+      "absent": [
+        "<script>alert",
+        "<img src=x onerror=",
+        "<svg onload=",
+        "WS-ECHO-READY"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-033",
+    "method": "GET",
+    "path": "/fphell/ssrf-01",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: ssrf (01)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/ssrf-01",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Bağlantı önizleme: URL m"
+      ],
+      "absent": [
+        "MOCK-SSRF-LEAK",
+        "secret:",
+        "role: admin"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-034",
+    "method": "GET",
+    "path": "/fphell/ssrf-02",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: ssrf (02)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/ssrf-02",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Avatar servisi: harici a"
+      ],
+      "absent": [
+        "MOCK-SSRF-LEAK",
+        "secret:",
+        "role: admin"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-035",
+    "method": "GET",
+    "path": "/fphell/ssrf-03",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: ssrf (03)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/ssrf-03",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Webhook kaydı: hedef URL"
+      ],
+      "absent": [
+        "MOCK-SSRF-LEAK",
+        "secret:",
+        "role: admin"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-036",
+    "method": "GET",
+    "path": "/fphell/ssrf-04",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: ssrf (04)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/ssrf-04",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Doküman: 169.254.169.254"
+      ],
+      "absent": [
+        "MOCK-SSRF-LEAK",
+        "secret:",
+        "role: admin"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-037",
+    "method": "GET",
+    "path": "/fphell/ssrf-05",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: ssrf (05)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/ssrf-05",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Proxy ayarı: metadata uç"
+      ],
+      "absent": [
+        "MOCK-SSRF-LEAK",
+        "secret:",
+        "role: admin"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-038",
+    "method": "GET",
+    "path": "/fphell/ssrf-06",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: ssrf (06)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/ssrf-06",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Önizleme: redirect zinci"
+      ],
+      "absent": [
+        "MOCK-SSRF-LEAK",
+        "secret:",
+        "role: admin"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-039",
+    "method": "GET",
+    "path": "/fphell/ssrf-07",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: ssrf (07)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/ssrf-07",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Bilgi: URL şemaları allo"
+      ],
+      "absent": [
+        "MOCK-SSRF-LEAK",
+        "secret:",
+        "role: admin"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-040",
+    "method": "GET",
+    "path": "/fphell/ssrf-08",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: ssrf (08)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/ssrf-08",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Not: iç ağ çağrıları bu "
+      ],
+      "absent": [
+        "MOCK-SSRF-LEAK",
+        "secret:",
+        "role: admin"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-041",
+    "method": "GET",
+    "path": "/fphell/ssrf-09",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: ssrf (09)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/ssrf-09",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "SSS: callback adresleri "
+      ],
+      "absent": [
+        "MOCK-SSRF-LEAK",
+        "secret:",
+        "role: admin"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-042",
+    "method": "GET",
+    "path": "/fphell/ssrf-10",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: ssrf (10)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/ssrf-10",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Kılavuz: dış istekler de"
+      ],
+      "absent": [
+        "MOCK-SSRF-LEAK",
+        "secret:",
+        "role: admin"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-043",
+    "method": "GET",
+    "path": "/fphell/timing-01",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: timing (01)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/timing-01",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Aylık rapor: ağır toplam"
+      ],
+      "absent": [
+        "SLEEP(",
+        "SLEEP executed",
+        "query_time=",
+        "SLEEP çalıştı"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-044",
+    "method": "GET",
+    "path": "/fphell/timing-02",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: timing (02)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/timing-02",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Dışa aktarım: büyük CSV "
+      ],
+      "absent": [
+        "SLEEP(",
+        "SLEEP executed",
+        "query_time=",
+        "SLEEP çalıştı"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-045",
+    "method": "GET",
+    "path": "/fphell/timing-03",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: timing (03)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/timing-03",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Yedekleme: gece 02:00&#x27;de"
+      ],
+      "absent": [
+        "SLEEP(",
+        "SLEEP executed",
+        "query_time=",
+        "SLEEP çalıştı"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-046",
+    "method": "GET",
+    "path": "/fphell/timing-04",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: timing (04)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/timing-04",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Dizin listesi: önbellekt"
+      ],
+      "absent": [
+        "SLEEP(",
+        "SLEEP executed",
+        "query_time=",
+        "SLEEP çalıştı"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-047",
+    "method": "GET",
+    "path": "/fphell/timing-05",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: timing (05)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/timing-05",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Arşiv indirme: önceden ü"
+      ],
+      "absent": [
+        "SLEEP(",
+        "SLEEP executed",
+        "query_time=",
+        "SLEEP çalıştı"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-048",
+    "method": "GET",
+    "path": "/fphell/timing-06",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: timing (06)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/timing-06",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "İstatistik: önbellekli s"
+      ],
+      "absent": [
+        "SLEEP(",
+        "SLEEP executed",
+        "query_time=",
+        "SLEEP çalıştı"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-049",
+    "method": "GET",
+    "path": "/fphell/timing-07",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: timing (07)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/timing-07",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Rapor: sayfa derleme sür"
+      ],
+      "absent": [
+        "SLEEP(",
+        "SLEEP executed",
+        "query_time=",
+        "SLEEP çalıştı"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-050",
+    "method": "GET",
+    "path": "/fphell/timing-08",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: timing (08)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/timing-08",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Bakım: zamanlanmış görev"
+      ],
+      "absent": [
+        "SLEEP(",
+        "SLEEP executed",
+        "query_time=",
+        "SLEEP çalıştı"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-051",
+    "method": "GET",
+    "path": "/fphell/timing-09",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: timing (09)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/timing-09",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Not: yavaş sayfa ≠ zaman"
+      ],
+      "absent": [
+        "SLEEP(",
+        "SLEEP executed",
+        "query_time=",
+        "SLEEP çalıştı"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-052",
+    "method": "GET",
+    "path": "/fphell/timing-10",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: timing (10)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/timing-10",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Bilgi: yanıt süreleri iz"
+      ],
+      "absent": [
+        "SLEEP(",
+        "SLEEP executed",
+        "query_time=",
+        "SLEEP çalıştı"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-053",
+    "method": "GET",
+    "path": "/fphell/secret-01",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: secret (01)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/secret-01",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Örnek: STRIPE_KEY=sk_tes"
+      ],
+      "absent": [
+        "sk_live_mock_123",
+        "live_mock_key_123",
+        "Sup3rS3cret",
+        "DB_PASSWORD=postgres"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-054",
+    "method": "GET",
+    "path": "/fphell/secret-02",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: secret (02)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/secret-02",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Doküman: AWS anahtarı bi"
+      ],
+      "absent": [
+        "sk_live_mock_123",
+        "live_mock_key_123",
+        "Sup3rS3cret",
+        "DB_PASSWORD=postgres"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-055",
+    "method": "GET",
+    "path": "/fphell/secret-03",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: secret (03)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/secret-03",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "SDK örneği: api_key=TEST"
+      ],
+      "absent": [
+        "sk_live_mock_123",
+        "live_mock_key_123",
+        "Sup3rS3cret",
+        "DB_PASSWORD=postgres"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-056",
+    "method": "GET",
+    "path": "/fphell/secret-04",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: secret (04)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/secret-04",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Yapılandırma şablonu: DB"
+      ],
+      "absent": [
+        "sk_live_mock_123",
+        "live_mock_key_123",
+        "Sup3rS3cret",
+        "DB_PASSWORD=postgres"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-057",
+    "method": "GET",
+    "path": "/fphell/secret-05",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: secret (05)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/secret-05",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        ".env.example: tüm değerl"
+      ],
+      "absent": [
+        "sk_live_mock_123",
+        "live_mock_key_123",
+        "Sup3rS3cret",
+        "DB_PASSWORD=postgres"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-058",
+    "method": "GET",
+    "path": "/fphell/secret-06",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: secret (06)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/secret-06",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "CI örneği: token=ci_exam"
+      ],
+      "absent": [
+        "sk_live_mock_123",
+        "live_mock_key_123",
+        "Sup3rS3cret",
+        "DB_PASSWORD=postgres"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-059",
+    "method": "GET",
+    "path": "/fphell/secret-07",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: secret (07)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/secret-07",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Webhook sırrı: whsec_TES"
+      ],
+      "absent": [
+        "sk_live_mock_123",
+        "live_mock_key_123",
+        "Sup3rS3cret",
+        "DB_PASSWORD=postgres"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-060",
+    "method": "GET",
+    "path": "/fphell/secret-08",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: secret (08)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/secret-08",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "JWT örneği: secret=ornek"
+      ],
+      "absent": [
+        "sk_live_mock_123",
+        "live_mock_key_123",
+        "Sup3rS3cret",
+        "DB_PASSWORD=postgres"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-061",
+    "method": "GET",
+    "path": "/fphell/secret-09",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: secret (09)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/secret-09",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Örnek parola: P@ssw0rd! "
+      ],
+      "absent": [
+        "sk_live_mock_123",
+        "live_mock_key_123",
+        "Sup3rS3cret",
+        "DB_PASSWORD=postgres"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-062",
+    "method": "GET",
+    "path": "/fphell/secret-10",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: secret (10)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/secret-10",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "SSH örneği: ssh-ed25519 "
+      ],
+      "absent": [
+        "sk_live_mock_123",
+        "live_mock_key_123",
+        "Sup3rS3cret",
+        "DB_PASSWORD=postgres"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-063",
+    "method": "GET",
+    "path": "/fphell/secret-11",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: secret (11)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/secret-11",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "API şeması: password ala"
+      ],
+      "absent": [
+        "sk_live_mock_123",
+        "live_mock_key_123",
+        "Sup3rS3cret",
+        "DB_PASSWORD=postgres"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-064",
+    "method": "GET",
+    "path": "/fphell/secret-12",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: secret (12)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/secret-12",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "OAuth örneği: client_sec"
+      ],
+      "absent": [
+        "sk_live_mock_123",
+        "live_mock_key_123",
+        "Sup3rS3cret",
+        "DB_PASSWORD=postgres"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-065",
+    "method": "GET",
+    "path": "/fphell/secret-13",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: secret (13)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/secret-13",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Kupon örneği: ORNEK10 ko"
+      ],
+      "absent": [
+        "sk_live_mock_123",
+        "live_mock_key_123",
+        "Sup3rS3cret",
+        "DB_PASSWORD=postgres"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-066",
+    "method": "GET",
+    "path": "/fphell/secret-14",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: secret (14)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/secret-14",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Sertifika: -----BEGIN EX"
+      ],
+      "absent": [
+        "sk_live_mock_123",
+        "live_mock_key_123",
+        "Sup3rS3cret",
+        "DB_PASSWORD=postgres"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-067",
+    "method": "GET",
+    "path": "/fphell/secret-15",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: secret (15)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/secret-15",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Not: gerçek sırlar kasa "
+      ],
+      "absent": [
+        "sk_live_mock_123",
+        "live_mock_key_123",
+        "Sup3rS3cret",
+        "DB_PASSWORD=postgres"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-068",
+    "method": "GET",
+    "path": "/fphell/secret-16",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: secret (16)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/secret-16",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Uyarı: EXAMPLE/TEST işar"
+      ],
+      "absent": [
+        "sk_live_mock_123",
+        "live_mock_key_123",
+        "Sup3rS3cret",
+        "DB_PASSWORD=postgres"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-069",
+    "method": "GET",
+    "path": "/fphell/auth-01",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: auth (01)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/auth-01",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Giriş yardımı: admin pan"
+      ],
+      "absent": [
+        "admin@example.com",
+        "mock-session",
+        "mock-admin-session",
+        "Temp123!"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-070",
+    "method": "GET",
+    "path": "/fphell/auth-02",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: auth (02)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/auth-02",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Rol açıklaması: admin ro"
+      ],
+      "absent": [
+        "admin@example.com",
+        "mock-session",
+        "mock-admin-session",
+        "Temp123!"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-071",
+    "method": "GET",
+    "path": "/fphell/auth-03",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: auth (03)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/auth-03",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Hata mesajı: kullanıcı a"
+      ],
+      "absent": [
+        "admin@example.com",
+        "mock-session",
+        "mock-admin-session",
+        "Temp123!"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-072",
+    "method": "GET",
+    "path": "/fphell/auth-04",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: auth (04)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/auth-04",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Kilit bilgisi: 5 hatada "
+      ],
+      "absent": [
+        "admin@example.com",
+        "mock-session",
+        "mock-admin-session",
+        "Temp123!"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-073",
+    "method": "GET",
+    "path": "/fphell/auth-05",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: auth (05)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/auth-05",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Oturum: çerezler HttpOnl"
+      ],
+      "absent": [
+        "admin@example.com",
+        "mock-session",
+        "mock-admin-session",
+        "Temp123!"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-074",
+    "method": "GET",
+    "path": "/fphell/auth-06",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: auth (06)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/auth-06",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "MFA: TOTP kurulum kılavu"
+      ],
+      "absent": [
+        "admin@example.com",
+        "mock-session",
+        "mock-admin-session",
+        "Temp123!"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-075",
+    "method": "GET",
+    "path": "/fphell/auth-07",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: auth (07)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/auth-07",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Parola politikası: en az"
+      ],
+      "absent": [
+        "admin@example.com",
+        "mock-session",
+        "mock-admin-session",
+        "Temp123!"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-076",
+    "method": "GET",
+    "path": "/fphell/auth-08",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: auth (08)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/auth-08",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "OAuth: kayıtlı uygulamal"
+      ],
+      "absent": [
+        "admin@example.com",
+        "mock-session",
+        "mock-admin-session",
+        "Temp123!"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-077",
+    "method": "GET",
+    "path": "/fphell/auth-09",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: auth (09)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/auth-09",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Not: 401 ve 403 yanıtlar"
+      ],
+      "absent": [
+        "admin@example.com",
+        "mock-session",
+        "mock-admin-session",
+        "Temp123!"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-078",
+    "method": "GET",
+    "path": "/fphell/auth-10",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: auth (10)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/auth-10",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "SSS: şifre sıfırlama bağ"
+      ],
+      "absent": [
+        "admin@example.com",
+        "mock-session",
+        "mock-admin-session",
+        "Temp123!"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-079",
+    "method": "GET",
+    "path": "/fphell/auth-11",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: auth (11)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/auth-11",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Destek: hesap kilidi açm"
+      ],
+      "absent": [
+        "admin@example.com",
+        "mock-session",
+        "mock-admin-session",
+        "Temp123!"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-080",
+    "method": "GET",
+    "path": "/fphell/auth-12",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: auth (12)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/auth-12",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Güvenlik: başarısız giri"
+      ],
+      "absent": [
+        "admin@example.com",
+        "mock-session",
+        "mock-admin-session",
+        "Temp123!"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-081",
+    "method": "GET",
+    "path": "/fphell/auth-13",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: auth (13)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/auth-13",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Bilgi: yetkisiz erişim d"
+      ],
+      "absent": [
+        "admin@example.com",
+        "mock-session",
+        "mock-admin-session",
+        "Temp123!"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-082",
+    "method": "GET",
+    "path": "/fphell/auth-14",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: auth (14)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/auth-14",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Kılavuz: yetki matrisi r"
+      ],
+      "absent": [
+        "admin@example.com",
+        "mock-session",
+        "mock-admin-session",
+        "Temp123!"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-083",
+    "method": "GET",
+    "path": "/fphell/waf-01",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: waf (01)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/waf-01",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "WAF bilgi sayfası: engel"
+      ],
+      "absent": [
+        "bypassed",
+        "WAF kapalı",
+        "kural dışı bırakıldı",
+        "engelleme kaldırıldı"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-084",
+    "method": "GET",
+    "path": "/fphell/waf-02",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: waf (02)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/waf-02",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Kural açıklaması: SQLi k"
+      ],
+      "absent": [
+        "bypassed",
+        "WAF kapalı",
+        "kural dışı bırakıldı",
+        "engelleme kaldırıldı"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-085",
+    "method": "GET",
+    "path": "/fphell/waf-03",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: waf (03)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/waf-03",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Kural açıklaması: XSS ku"
+      ],
+      "absent": [
+        "bypassed",
+        "WAF kapalı",
+        "kural dışı bırakıldı",
+        "engelleme kaldırıldı"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-086",
+    "method": "GET",
+    "path": "/fphell/waf-04",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: waf (04)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/waf-04",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Engel sayfası: istek red"
+      ],
+      "absent": [
+        "bypassed",
+        "WAF kapalı",
+        "kural dışı bırakıldı",
+        "engelleme kaldırıldı"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-087",
+    "method": "GET",
+    "path": "/fphell/waf-05",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: waf (05)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/waf-05",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Allowlist: kurumsal IP a"
+      ],
+      "absent": [
+        "bypassed",
+        "WAF kapalı",
+        "kural dışı bırakıldı",
+        "engelleme kaldırıldı"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-088",
+    "method": "GET",
+    "path": "/fphell/waf-06",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: waf (06)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/waf-06",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Not: blok sayfası her za"
+      ],
+      "absent": [
+        "bypassed",
+        "WAF kapalı",
+        "kural dışı bırakıldı",
+        "engelleme kaldırıldı"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-089",
+    "method": "GET",
+    "path": "/fphell/waf-07",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: waf (07)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/waf-07",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "SSS: yanlış pozitif bild"
+      ],
+      "absent": [
+        "bypassed",
+        "WAF kapalı",
+        "kural dışı bırakıldı",
+        "engelleme kaldırıldı"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-090",
+    "method": "GET",
+    "path": "/fphell/waf-08",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: waf (08)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/waf-08",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Sürüm: kural seti v4.2 ("
+      ],
+      "absent": [
+        "bypassed",
+        "WAF kapalı",
+        "kural dışı bırakıldı",
+        "engelleme kaldırıldı"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-091",
+    "method": "GET",
+    "path": "/fphell/waf-09",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: waf (09)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/waf-09",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Bilgi: denetim modu izle"
+      ],
+      "absent": [
+        "bypassed",
+        "WAF kapalı",
+        "kural dışı bırakıldı",
+        "engelleme kaldırıldı"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-092",
+    "method": "GET",
+    "path": "/fphell/waf-10",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: waf (10)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/waf-10",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Kılavuz: istisna taleple"
+      ],
+      "absent": [
+        "bypassed",
+        "WAF kapalı",
+        "kural dışı bırakıldı",
+        "engelleme kaldırıldı"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-093",
+    "method": "GET",
+    "path": "/fphell/exposure-01",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: exposure (01)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/exposure-01",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        ".env.example dosyası (ge"
+      ],
+      "absent": [
+        "Sup3rS3cret",
+        "sk_live_mock_123",
+        "DB_PASSWORD=postgres",
+        "PRIVATE KEY"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-094",
+    "method": "GET",
+    "path": "/fphell/exposure-02",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: exposure (02)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/exposure-02",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Sürüm bilgisi: app v2.4."
+      ],
+      "absent": [
+        "Sup3rS3cret",
+        "sk_live_mock_123",
+        "DB_PASSWORD=postgres",
+        "PRIVATE KEY"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-095",
+    "method": "GET",
+    "path": "/fphell/exposure-03",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: exposure (03)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/exposure-03",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "robots.txt açıklaması (b"
+      ],
+      "absent": [
+        "Sup3rS3cret",
+        "sk_live_mock_123",
+        "DB_PASSWORD=postgres",
+        "PRIVATE KEY"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-096",
+    "method": "GET",
+    "path": "/fphell/exposure-04",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: exposure (04)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/exposure-04",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "CHANGELOG: güvenlik düze"
+      ],
+      "absent": [
+        "Sup3rS3cret",
+        "sk_live_mock_123",
+        "DB_PASSWORD=postgres",
+        "PRIVATE KEY"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-097",
+    "method": "GET",
+    "path": "/fphell/exposure-05",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: exposure (05)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/exposure-05",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "API şeması: iç uçlar şem"
+      ],
+      "absent": [
+        "Sup3rS3cret",
+        "sk_live_mock_123",
+        "DB_PASSWORD=postgres",
+        "PRIVATE KEY"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-098",
+    "method": "GET",
+    "path": "/fphell/exposure-06",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: exposure (06)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/exposure-06",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Durum sayfası: uptime me"
+      ],
+      "absent": [
+        "Sup3rS3cret",
+        "sk_live_mock_123",
+        "DB_PASSWORD=postgres",
+        "PRIVATE KEY"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-099",
+    "method": "GET",
+    "path": "/fphell/exposure-07",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: exposure (07)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/exposure-07",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Lisans: üçüncü parti bil"
+      ],
+      "absent": [
+        "Sup3rS3cret",
+        "sk_live_mock_123",
+        "DB_PASSWORD=postgres",
+        "PRIVATE KEY"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-100",
+    "method": "GET",
+    "path": "/fphell/exposure-08",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: exposure (08)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/exposure-08",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Doküman: yedekleme polit"
+      ],
+      "absent": [
+        "Sup3rS3cret",
+        "sk_live_mock_123",
+        "DB_PASSWORD=postgres",
+        "PRIVATE KEY"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-101",
+    "method": "GET",
+    "path": "/fphell/exposure-09",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: exposure (09)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/exposure-09",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Not: kaynak eşleme (sour"
+      ],
+      "absent": [
+        "Sup3rS3cret",
+        "sk_live_mock_123",
+        "DB_PASSWORD=postgres",
+        "PRIVATE KEY"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-102",
+    "method": "GET",
+    "path": "/fphell/exposure-10",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: exposure (10)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/exposure-10",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Bilgi: hata ayıklama uçl"
+      ],
+      "absent": [
+        "Sup3rS3cret",
+        "sk_live_mock_123",
+        "DB_PASSWORD=postgres",
+        "PRIVATE KEY"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-103",
+    "method": "GET",
+    "path": "/fphell/exposure-11",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: exposure (11)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/exposure-11",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "SSS: yapılandırma yöneti"
+      ],
+      "absent": [
+        "Sup3rS3cret",
+        "sk_live_mock_123",
+        "DB_PASSWORD=postgres",
+        "PRIVATE KEY"
+      ]
+    }
+  },
+  {
+    "id": "FP-HELL-104",
+    "method": "GET",
+    "path": "/fphell/exposure-12",
+    "category": "FP-Trap",
+    "vuln_type": "FP hell decoy: exposure (12)",
+    "expectation": "fp-trap",
+    "test_hint": "/fphell/exposure-12",
+    "severity": "info",
+    "difficulty": "fp-hunter",
+    "oracle": null,
+    "negative_proof": {
+      "present": [
+        "güvenli sayfa (decoy)",
+        "Kılavuz: hassas dosya de"
+      ],
+      "absent": [
+        "Sup3rS3cret",
+        "sk_live_mock_123",
+        "DB_PASSWORD=postgres",
+        "PRIVATE KEY"
+      ]
+    }
   }
 ]

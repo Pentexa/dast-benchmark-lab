@@ -1,10 +1,13 @@
 {
-  "timestamp": "2026-10-11T19:03:22+0300",
+  "timestamp": "2026-10-11T19:05:10+0300",
   "target": "http://localhost:4001",
   "seed": "7",
   "total_vulnerable": 194,
   "verified": 194,
   "reachable": 0,
   "failed": [],
-  "failed_ids": []
+  "failed_ids": [],
+  "decoys_total": 104,
+  "decoys_clean": 104,
+  "decoy_failures": []
 }
